@@ -1,6 +1,6 @@
 package Integracion.TareasDelEmpleado;
 
-import Negocio.TareasDelEmpleado.TTareasDelEmpleado;
+import Negocio.Empleados.TTareasDelEmpleado;
 
 import java.util.Collection;
 

@@ -1,6 +1,6 @@
 package Integracion.LineaPedido;
 
-import Negocio.LineaPedido.TLineaPedido;
+import Negocio.Reserva.TLineaPedido;
 
 import java.util.Collection;
 

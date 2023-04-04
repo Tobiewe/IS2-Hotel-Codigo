@@ -1,6 +1,6 @@
 package Integracion.Cliente;
 
-import Negocio.Cliente.TCliente;
+import Negocio.Clientes.TCliente;
 
 import java.util.Collection;
 

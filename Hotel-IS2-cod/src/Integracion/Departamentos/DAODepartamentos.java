@@ -1,19 +1,19 @@
 package Integracion.Departamentos;
 
-import Negocio.Departamento.TDepartamentos;
+import Negocio.Departamentos.TDepartamento;
 
 import java.util.Collection;
 
 public interface DAODepartamentos {
 
-	public Integer crear(TDepartamentos tDepartamento);
+	public Integer crear(TDepartamento tDepartamento);
 
 	public Integer borrar(Integer id);
 
-	public Integer modificar(TDepartamentos tDepartamento);
+	public Integer modificar(TDepartamento tDepartamento);
 
-	public TDepartamentos MostrarUno(Integer id);
+	public TDepartamento MostrarUno(Integer id);
 
-	public Collection<TDepartamentos> MostrarTodos();
+	public Collection<TDepartamento> MostrarTodos();
 	
 }
