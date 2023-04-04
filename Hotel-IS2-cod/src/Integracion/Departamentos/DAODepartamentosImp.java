@@ -16,12 +16,34 @@ public class DAODepartamentosImp implements DAODepartamentos {
     String usuario = "root";
     String clave = "";
     
-	@Override
+	
 	public Integer crear(TDepartamento tDepartamento) {
-		// TODO Auto-generated method stub
-		return null;
+		int key = -1;
+		try {
+			String consulta = "INSERT INTO hotel-is2.departamento (Id, jefe, nombre, activo) VALUES (?, ?, ?, ?);";
+
+			Connection miConexion = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = miConexion.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+
+			ps.setInt(1, tDepartamento.getId());
+			ps.setString(2, tDepartamento.getJefe());
+			ps.setString(3, tDepartamento.getNombre());
+			ps.setBoolean(4, tDepartamento.getActivado());
+			ps.executeUpdate();
+
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next())
+				key = rs.getInt(1);
+			miConexion.close();
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return key;
 	}
-	@Override
+	
+	
 	public Integer borrar(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
