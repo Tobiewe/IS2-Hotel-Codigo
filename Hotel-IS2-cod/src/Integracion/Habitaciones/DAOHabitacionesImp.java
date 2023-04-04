@@ -91,11 +91,11 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
-			ps.setString(1, tDepartamento.getJefe());
-			ps.setString(2, tDepartamento.getNombre());
-			ps.setBoolean(3, tDepartamento.getActivado());
-			ps.setInt(4, tDepartamento.getId());
-			if(ps.executeUpdate()==1) ok= tDepartamento.getId();
+			//ps.setString(1, tDepartamento.getJefe());
+			//ps.setString(2, tDepartamento.getNombre());
+			//ps.setBoolean(3, tDepartamento.getActivado());
+			//ps.setInt(4, tDepartamento.getId());
+			//if(ps.executeUpdate()==1) ok= tDepartamento.getId();
 			
 			Cnx.close();
 			ps.close();
