@@ -16,12 +16,12 @@ public interface DAOReserva {
 	
 	public Integer cerrar(Integer id);
 
-	public Integer modificar(THabitaciones tReserva);
+	public Integer modificar(TReserva tReserva);
 
 	public TReserva MostrarUna(Integer id);
 	
 	public Collection<TReserva> MostrarTodas();
 	
-	public Collection<THabitaciones> readReservaPorEmpleado(int idEmpleado);
+	public Collection<TReserva> readReservaPorEmpleado(int idEmpleado);
 
 }
