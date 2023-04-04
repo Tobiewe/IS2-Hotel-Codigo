@@ -1,4 +1,3 @@
-tabla cliente: Id, telefono, Correo
 CREATE TABLE cliente (
   Id INT PRIMARY KEY,
   telefono VARCHAR(20),
