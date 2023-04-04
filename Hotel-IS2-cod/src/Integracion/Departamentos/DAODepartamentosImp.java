@@ -20,10 +20,10 @@ public class DAODepartamentosImp implements DAODepartamentos {
 	public Integer crear(TDepartamento tDepartamento) {
 		int key = -1;
 		try {
-			String consulta = "INSERT INTO hotel-is2.departamento (Id, jefe, nombre, activo) VALUES (?, ?, ?, ?);";
+			String c = "INSERT INTO hotel-is2.departamento (Id, jefe, nombre, activo) VALUES (?, ?, ?, ?);";
 
-			Connection miConexion = DriverManager.getConnection(url, usuario, clave);
-			PreparedStatement ps = miConexion.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setInt(1, tDepartamento.getId());
 			ps.setString(2, tDepartamento.getJefe());
@@ -34,7 +34,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next())
 				key = rs.getInt(1);
-			miConexion.close();
+			Cnx.close();
 			ps.close();
 			rs.close();
 		} catch (SQLException e) {
@@ -48,17 +48,17 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		int key = -1;
 
 		try {
-			String consulta = "UPDATE hotel-is2.departamento SET activo = ? WHERE Id = ?;";
+			String c = "UPDATE hotel-is2.departamento SET activo = ? WHERE Id = ?;";
 
-			Connection miConexion = DriverManager.getConnection(url, usuario, clave);
-			PreparedStatement ps = miConexion.prepareStatement(consulta);
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setBoolean(1, false);
 			ps.setInt(2, id);
 
 			key = (ps.executeUpdate() == 1) ? id : -1;
 			
-			miConexion.close();
+			Cnx.close();
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,10 +71,10 @@ public class DAODepartamentosImp implements DAODepartamentos {
 	public Integer modificar(TDepartamento tDepartamento) {
 		int ok = -1;
 		try {
-			String consulta = "UPDATE hotel-is2.departamento SET jefe = ?, nombre = ?, activo= ? WHERE Id = ?;";
+			String c = "UPDATE hotel-is2.departamento SET jefe = ?, nombre = ?, activo= ? WHERE Id = ?;";
 
-			Connection miConexion = DriverManager.getConnection(url, usuario, clave);
-			PreparedStatement ps = miConexion.prepareStatement(consulta);
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setString(1, tDepartamento.getJefe());
 			ps.setString(2, tDepartamento.getNombre());
@@ -82,7 +82,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 			ps.setInt(4, tDepartamento.getId());
 			if(ps.executeUpdate()==1) ok= tDepartamento.getId();
 			
-			miConexion.close();
+			Cnx.close();
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,22 +95,22 @@ public class DAODepartamentosImp implements DAODepartamentos {
 	public TDepartamento MostrarUno(Integer id) {
 		TDepartamento tDepartamento = null;
 		try {
-			String consulta = "SELECT * FROM hotel-is2.departamento WHERE Id = ?;";
+			String c = "SELECT * FROM hotel-is2.departamento WHERE Id = ?;";
 
-			Connection miConexion = DriverManager.getConnection(url, usuario, clave);
-			PreparedStatement ps = miConexion.prepareStatement(consulta);
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setInt(1, id);
-			ResultSet miResult = ps.executeQuery();
+			ResultSet Rs = ps.executeQuery();
 
-			if (miResult.next()){
-				tDepartamento = new TDepartamento(miResult.getInt("Id"), miResult.getString("jefe"),
-						miResult.getString("nombre"), miResult.getBoolean("activo"));
+			if (Rs.next()){
+				tDepartamento = new TDepartamento(Rs.getInt("Id"), Rs.getString("jefe"),
+						Rs.getString("nombre"), Rs.getBoolean("activo"));
 			}
 	
-			miConexion.close();
+			Cnx.close();
 			ps.close();
-			miResult.close();
+			Rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -122,18 +122,18 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		
 		ArrayList<TDepartamento> lista = new ArrayList<TDepartamento>();
 		try {
-			String consulta = "SELECT * FROM hotel-is2.departamento";
+			String c = "SELECT * FROM hotel-is2.departamento";
 
-			Connection miConexion = DriverManager.getConnection(url, usuario, clave);
-			Statement miStatement = miConexion.createStatement();
-			ResultSet miResult = miStatement.executeQuery(consulta);
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			Statement St = Cnx.createStatement();
+			ResultSet Rs = St.executeQuery(c);
 
-			while (miResult.next())
-				lista.add(new TDepartamento(miResult.getInt("Id"), miResult.getString("jefe"),
-						miResult.getString("nombre"), miResult.getBoolean("activo")));
-			miConexion.close();
-			miStatement.close();
-			miResult.close();
+			while (Rs.next())
+				lista.add(new TDepartamento(Rs.getInt("Id"), Rs.getString("jefe"),
+						Rs.getString("nombre"), Rs.getBoolean("activo")));
+			Cnx.close();
+			St.close();
+			Rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
