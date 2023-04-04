@@ -8,7 +8,7 @@ public interface DAOHabitaciones {
 
 	public Integer añadir(THabitaciones tHabitaciones);
 
-	public Integer borrar(Integer id);
+	public Integer borrar(Integer numero);
 
 	public Integer modificar(THabitaciones tHabitaciones);
 

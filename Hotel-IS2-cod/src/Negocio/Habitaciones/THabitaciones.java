@@ -55,6 +55,10 @@ public class THabitaciones {
 		this.ocupada = ocupada;
 	}
 
+	public Integer getId_empledo() {
+		return id_empleado;
+	}
+
 	
 	
 }
