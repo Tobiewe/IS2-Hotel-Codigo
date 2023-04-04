@@ -18,7 +18,7 @@ public interface DAOHabitaciones {
 
 	public Collection<THabitaciones> MostrarTodasDisponibles();
 	
-	public Collection<THabitaciones> MostrarHabitacionesPorCliente(int idCliente);
+	public Collection<THabitaciones> leerHabitacionesPorEmpleado(int idCliente);
 
 	
 }

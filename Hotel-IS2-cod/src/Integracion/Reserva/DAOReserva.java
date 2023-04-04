@@ -22,6 +22,6 @@ public interface DAOReserva {
 	
 	public Collection<TReserva> MostrarTodas();
 	
-	public Collection<TReserva> readReservaPorEmpleado(int idEmpleado);
+	public Collection<TReserva> leerReservasPorCliente(int idEmpleado);
 
 }
