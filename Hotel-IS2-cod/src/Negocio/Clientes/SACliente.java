@@ -10,9 +10,9 @@ public interface SACliente {
 	
 	public Integer modificar(TCliente cliente);
 
-	public Integer eliminar(int id);
+	public Integer eliminar(int idCliente);
 
-	public TCliente mostrarUno(int id);
+	public TCliente mostrarUno(int idCliente);
 	
 	public Collection<TCliente> mostrarTodos();
 	
