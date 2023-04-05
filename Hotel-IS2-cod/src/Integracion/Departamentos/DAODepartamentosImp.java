@@ -19,7 +19,9 @@ public class DAODepartamentosImp implements DAODepartamentos {
 	
 	public Integer crear(TDepartamento tDepartamento) {
 		int key = -1;
+		
 		try {
+			
 			String c = "INSERT INTO hotel-is2.departamento (Id, jefe, nombre, activo) VALUES (?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
@@ -32,13 +34,18 @@ public class DAODepartamentosImp implements DAODepartamentos {
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
-			if (rs.next())
+			if (rs.next()){
 				key = rs.getInt(1);
+			}
+				
 			Cnx.close();
 			ps.close();
 			rs.close();
+			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
+			
 		}
 		return key;
 	}
@@ -48,6 +55,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		int key = -1;
 
 		try {
+			
 			String c = "UPDATE hotel-is2.departamento SET activo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
@@ -60,8 +68,11 @@ public class DAODepartamentosImp implements DAODepartamentos {
 			
 			Cnx.close();
 			ps.close();
+			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
+			
 		}
 
 		return key;
@@ -71,6 +82,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 	public Integer modificar(TDepartamento tDepartamento) {
 		int ok = -1;
 		try {
+			
 			String c = "UPDATE hotel-is2.departamento SET jefe = ?, nombre = ?, activo= ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
@@ -84,8 +96,11 @@ public class DAODepartamentosImp implements DAODepartamentos {
 			
 			Cnx.close();
 			ps.close();
+			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
+			
 		}
 
 		return ok;
@@ -93,7 +108,9 @@ public class DAODepartamentosImp implements DAODepartamentos {
 	
 	
 	public TDepartamento MostrarUno(Integer id) {
+		
 		TDepartamento tDepartamento = null;
+		
 		try {
 			String c = "SELECT * FROM hotel-is2.departamento WHERE Id = ?;";
 
@@ -104,15 +121,20 @@ public class DAODepartamentosImp implements DAODepartamentos {
 			ResultSet Rs = ps.executeQuery();
 
 			if (Rs.next()){
+				
 				tDepartamento = new TDepartamento(Rs.getInt("Id"), Rs.getString("jefe"),
 						Rs.getString("nombre"), Rs.getBoolean("activo"));
+				
 			}
 	
 			Cnx.close();
 			ps.close();
 			Rs.close();
+			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
+			
 		}
 		return tDepartamento;
 	}
@@ -121,21 +143,29 @@ public class DAODepartamentosImp implements DAODepartamentos {
 	public Collection<TDepartamento> MostrarTodos() {
 		
 		ArrayList<TDepartamento> lista = new ArrayList<TDepartamento>();
+		
 		try {
-			String c = "SELECT * FROM hotel-is2.departamento";
+			String c = "SELECT * FROM hotel-is2.departamento;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
 			ResultSet Rs = St.executeQuery(c);
 
-			while (Rs.next())
+			while (Rs.next()){
+				
 				lista.add(new TDepartamento(Rs.getInt("Id"), Rs.getString("jefe"),
 						Rs.getString("nombre"), Rs.getBoolean("activo")));
+				
+			}
+						
 			Cnx.close();
 			St.close();
 			Rs.close();
+			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
+			
 		}
 		return lista;
 		

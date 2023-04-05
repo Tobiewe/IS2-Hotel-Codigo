@@ -8,10 +8,12 @@ public class TDepartamento {
 	private Boolean activado;
 	
 	public TDepartamento(Integer id, String jefe, String nombre, Boolean activado){
+		
 		this.setId(id);
 		this.setJefe(jefe);
 		this.setNombre(nombre);
 		this.setActivado(activado);
+		
 	}
 
 	public Integer getId() {

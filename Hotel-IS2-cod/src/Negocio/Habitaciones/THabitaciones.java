@@ -9,13 +9,6 @@ public class THabitaciones {
 	private Boolean ocupada;
 	private Integer id_empleado;
 	
-	//this.numero = numero;
-	//this.piso = piso;
-	//this.tamaño = tamaño;
-	//this.precio = precio;
-	//this.ocupada = ocupada;
-	//this.id_empleado = id_empleado;
-	
 	public THabitaciones(Integer numero, Integer piso, Float tamaño, Float precio, Boolean ocupada, Integer id_empleado){
 		
 		this.numero = numero;
@@ -53,6 +46,10 @@ public class THabitaciones {
 
 	public void setOcupada(Boolean ocupada) {
 		this.ocupada = ocupada;
+	}
+
+	public Integer getId_empledo() {
+		return id_empleado;
 	}
 
 	
