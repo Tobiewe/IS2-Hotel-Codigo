@@ -212,6 +212,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 	
 	public Collection<THabitaciones> leerHabitacionesPorEmpleado(int idEmpleado) {
+		
 		ArrayList<THabitaciones> lista = new ArrayList<THabitaciones>();
 		
 		try {
