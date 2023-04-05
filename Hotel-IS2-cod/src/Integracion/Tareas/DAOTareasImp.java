@@ -1,6 +1,5 @@
 package Integracion.Tareas;
 
-import Negocio.Departamentos.TDepartamento;
 import Negocio.Tareas.TTareas;
 import java.sql.Connection;
 import java.sql.DriverManager;
