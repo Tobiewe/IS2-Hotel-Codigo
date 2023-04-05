@@ -6,16 +6,18 @@ public class TTareas {
 	private String descripcion;
 	private String lugar;
 	private String nombre;
+	private Boolean activa;
 	private Integer id_empleado;
 	
 
 	
-	public TTareas(Integer id, String descripcion, String lugar, String nombre, Integer id_empleado){
+	public TTareas(Integer id, String descripcion, String lugar, String nombre, Boolean activa, Integer id_empleado){
 		
 		this.id = id;
 		this.descripcion = descripcion;
 		this.lugar = lugar;
 		this.nombre = nombre;
+		this.activa = activa;
 		this.id_empleado = id_empleado;
 		
 	}
@@ -54,6 +56,14 @@ public class TTareas {
 
 	public void setId_empleado(Integer id_empleado) {
 		this.id_empleado = id_empleado;
+	}
+
+	public Boolean getActiva() {
+		return activa;
+	}
+
+	public void setActiva(Boolean activa) {
+		this.activa = activa;
 	}
 
 
