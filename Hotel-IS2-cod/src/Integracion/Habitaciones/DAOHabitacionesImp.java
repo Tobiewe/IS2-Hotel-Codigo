@@ -22,15 +22,15 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.habitacion (Numero, Precio, Piso, Tamano, Ocupada, id_empleado) VALUES (?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO hotel-is2.habitacion (numero, piso, tamaño, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setInt(1, tHabitaciones.getNumero());
-			ps.setFloat(2, tHabitaciones.getPrecio());
-			ps.setInt(3, tHabitaciones.getPiso());
-			ps.setFloat(4, tHabitaciones.getTamaño());
+			ps.setInt(2, tHabitaciones.getPiso());
+			ps.setFloat(3, tHabitaciones.getTamaño());
+			ps.setFloat(4, tHabitaciones.getPrecio());
 			ps.setBoolean(5, tHabitaciones.getOcupada());
 			ps.setInt(6, tHabitaciones.getId_empledo());
 			ps.executeUpdate();
@@ -58,7 +58,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 		try {
 			
-			String c = "UPDATE hotel-is2.habitacion SET activo = ? WHERE Numero = ?;";
+			String c = "UPDATE hotel-is2.habitacion SET ocupada = ? WHERE Numero = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -86,16 +86,16 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE hotel-is2.habitacion SET precio = ?, nombre = ?, piso= ?, tamano = ?, ocupada = ?, id_empleado = ? WHERE Numero = ?;";
+			String c = "UPDATE hotel-is2.habitacion SET precio = ?, ocupada = ?, id_empleado = ? WHERE Numero = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
-			//ps.setString(1, tDepartamento.getJefe());
-			//ps.setString(2, tDepartamento.getNombre());
-			//ps.setBoolean(3, tDepartamento.getActivado());
-			//ps.setInt(4, tDepartamento.getId());
-			//if(ps.executeUpdate()==1) ok= tDepartamento.getId();
+			ps.setFloat(1, tHabitaciones.getPrecio());
+			ps.setBoolean(2, tHabitaciones.getOcupada());
+			ps.setInt(3, tHabitaciones.getId_empledo());
+			ps.setInt(4, tHabitaciones.getNumero());
+			if(ps.executeUpdate()==1) ok= tHabitaciones.getNumero();
 			
 			Cnx.close();
 			ps.close();
@@ -110,28 +110,136 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		
 	}
 
-	@Override
-	public THabitaciones MostrarUna(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public THabitaciones MostrarUna(Integer numero) {
+
+		THabitaciones tHabitaciones = null;
+		
+		try {
+			String c = "SELECT * FROM hotel-is2.habitacion WHERE numero = ?;";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
+
+			ps.setInt(1, numero);
+			ResultSet Rs = ps.executeQuery();
+
+			if (Rs.next()){
+				
+				tHabitaciones = new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getFloat("tamaño"), Rs.getFloat("precio"), 
+						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado"));
+				
+			}
+	
+			Cnx.close();
+			ps.close();
+			Rs.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return tHabitaciones;
+		
 	}
 
-	@Override
+	
 	public Collection<THabitaciones> MostrarTodas() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<THabitaciones> lista = new ArrayList<THabitaciones>();
+		
+		try {
+			String c = "SELECT * FROM hotel-is2.habitacion;";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			Statement St = Cnx.createStatement();
+			ResultSet Rs = St.executeQuery(c);
+
+			while (Rs.next()){
+				
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getFloat("tamaño"), Rs.getFloat("precio"), 
+						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
+				
+			}
+						
+			Cnx.close();
+			St.close();
+			Rs.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return lista;
+		
 	}
 
-	@Override
+
+	
 	public Collection<THabitaciones> MostrarTodasDisponibles() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<THabitaciones> lista = new ArrayList<THabitaciones>();
+		
+		try {
+			String c = "SELECT * FROM hotel-is2.habitacion WHERE ocupada = ?;";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
+
+			ps.setBoolean(1, false);
+			ResultSet Rs = ps.executeQuery();
+
+			while (Rs.next()){
+				
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getFloat("tamaño"), Rs.getFloat("precio"), 
+						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
+				
+			}
+						
+			Cnx.close();
+			ps.close();
+			Rs.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return lista;
+		
 	}
 
-	@Override
-	public Collection<THabitaciones> leerHabitacionesPorEmpleado(int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Collection<THabitaciones> leerHabitacionesPorEmpleado(int idEmpleado) {
+		ArrayList<THabitaciones> lista = new ArrayList<THabitaciones>();
+		
+		try {
+			String c = "SELECT * FROM hotel-is2.habitacion WHERE id_empleado = ?";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
+
+			ps.setInt(1, idEmpleado);
+			ResultSet Rs = ps.executeQuery();
+
+			while (Rs.next()){
+				
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getFloat("tamaño"), Rs.getFloat("precio"), 
+						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
+				
+			}
+						
+			Cnx.close();
+			ps.close();
+			Rs.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return lista;
 	}
 
 }

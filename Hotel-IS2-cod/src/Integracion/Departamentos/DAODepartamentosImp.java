@@ -145,7 +145,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		ArrayList<TDepartamento> lista = new ArrayList<TDepartamento>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.departamento";
+			String c = "SELECT * FROM hotel-is2.departamento;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -163,7 +163,10 @@ public class DAODepartamentosImp implements DAODepartamentos {
 			Rs.close();
 			
 		} catch (SQLException e) {
-}
+			
+			e.printStackTrace();
+			
+		}
 		return lista;
 		
 	}
