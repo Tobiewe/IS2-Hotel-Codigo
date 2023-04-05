@@ -5,7 +5,8 @@ import java.util.Collection;
 import Negocio.Departamentos.TDepartamento;
 
 public interface SADepartamento {
-public Integer crear(TDepartamento departamento);
+	
+	public Integer crear(TDepartamento departamento);
 	
 	public Integer modificar(TDepartamento departamento);
 

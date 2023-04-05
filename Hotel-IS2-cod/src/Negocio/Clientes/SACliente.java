@@ -2,18 +2,18 @@ package Negocio.Clientes;
 
 import java.util.Collection;
 
-import Negocio.Empleados.TEmpleados;
+import Negocio.Clientes.TCliente;
 
 
 public interface SACliente {
-	public Integer crear(TEmpleados empleado);
+	public Integer crear(TCliente cliente);
 	
-	public Integer modificar(TEmpleados empleado);
+	public Integer modificar(TCliente cliente);
 
 	public Integer eliminar(int id);
 
-	public TEmpleados mostrarUno(int id);
+	public TCliente mostrarUno(int id);
 	
-	public Collection<TEmpleados> mostrarTodos();
+	public Collection<TCliente> mostrarTodos();
 	
 }
