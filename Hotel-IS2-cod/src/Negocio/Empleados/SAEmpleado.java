@@ -2,7 +2,7 @@ package Negocio.Empleados;
 
 import java.util.Collection;
 
-import Negocio.Departamentos.TDepartamento;
+import Negocio.Empleados.TEmpleados;
 
 public interface SAEmpleado {
 	
