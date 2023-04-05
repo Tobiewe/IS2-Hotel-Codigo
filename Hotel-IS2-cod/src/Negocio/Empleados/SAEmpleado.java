@@ -10,9 +10,9 @@ public interface SAEmpleado {
 	
 	public Integer modificar(TEmpleados empleado);
 
-	public Integer eliminar(int id);
+	public Integer eliminar(int idEmpleado);
 
-	public TEmpleados mostrarUno(int id);
+	public TEmpleados mostrarUno(int idEmpleado);
 	
 	public Collection<TEmpleados> mostrarTodos();
 	

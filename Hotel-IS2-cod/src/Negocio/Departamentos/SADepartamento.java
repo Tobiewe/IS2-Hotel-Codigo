@@ -10,9 +10,9 @@ public interface SADepartamento {
 	
 	public Integer modificar(TDepartamento departamento);
 
-	public Integer eliminar(int id);
+	public Integer eliminar(int idDepartamento);
 
-	public TDepartamento mostrarUno(int id);
+	public TDepartamento mostrarUno(int idDepartamento);
 	
 	public Collection<TDepartamento> mostrarTodos();
 }
