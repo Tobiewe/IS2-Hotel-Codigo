@@ -5,63 +5,59 @@ import Integracion.Cliente.DAOCliente;
 import Integracion.Cliente.DAOClienteImp;
 import Integracion.Departamentos.DAODepartamentos;
 import Integracion.Departamentos.DAODepartamentosImp;
+import Integracion.Empleados.DAOEmpleadoImp;
 import Integracion.Empleados.DAOEmpleados;
 import Integracion.Habitaciones.DAOHabitaciones;
 import Integracion.Habitaciones.DAOHabitacionesImp;
 import Integracion.LineaPedido.DAOLineaPedido;
+import Integracion.LineaPedido.DAOLineaPedidoImp;
 import Integracion.Reserva.DAOReserva;
+import Integracion.Reserva.DAOReservaImp;
 import Integracion.Tareas.DAOTareas;
 import Integracion.Tareas.DAOTareasImp;
 import Integracion.TareasDelEmpleado.DAOTareasDelEmpleado;
+import Integracion.TareasDelEmpleado.DAOTareasDelEmpleadoImp;
 public class FactoriaIntegracionImp  extends FactoriaIntegracion{
 	
 
-	@Override
+	
 	public DAOHabitaciones newDAOHabitaciones() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAOHabitacionesImp();
 	}
 
-	@Override
+	
 	public DAOTareas newDAOTarea() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAOTareasImp();
 	}
 
-	@Override
+	
 	public DAODepartamentos newDAODepartamento() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAODepartamentosImp();
 	}
 
-	@Override
+	
 	public DAOCliente newDAOCliente() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAOClienteImp();
 	}
 
-	@Override
+	
 	public DAOLineaPedido newLineaPedido() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAOLineaPedidoImp();
 	}
 
-	@Override
+	
 	public DAOTareasDelEmpleado newDAOTareasDelEmpleado() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAOTareasDelEmpleadoImp();
 	}
 
-	@Override
+	
 	public DAOReserva newDAOReserva() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAOReservaImp();
 	}
 
-	@Override
+	
 	public DAOEmpleados newDAOEmpleado() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DAOEmpleadoImp();
 	}
 		
 }
