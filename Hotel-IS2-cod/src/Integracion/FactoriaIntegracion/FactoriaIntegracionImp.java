@@ -28,7 +28,7 @@ public class FactoriaIntegracionImp  extends FactoriaIntegracion{
 	
 	public DAOCliente newDAOClientes()
 	{
-		return new DAOClienteImp();
+		return new DAClienteImp();
 	}
 		
 }
