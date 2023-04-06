@@ -160,6 +160,7 @@ public class DAOClienteImp implements DAOCliente {
 				psP.setString(2, tCliente.getApellidos());
 				psP.setString(3, tCliente.getNIF());
 				psP.setInt(4, tCliente.getId());;
+				
 				psP.executeUpdate();
 					
 				CnxP.close();
