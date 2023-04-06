@@ -9,16 +9,16 @@ public interface DAOLineaPedido {
 	
 	public Integer crear(TLineaPedido tLineaPedido);
 
-	public Integer eliminar(Integer id);
+	public Integer eliminar(Integer idReserva, Integer idCliente);
 
 	public Integer modificar(TLineaPedido tLineaPedido);
 
-	public TLineaPedido LeerUno(Integer id);
+	public TLineaPedido LeerUno(Integer idReserva, Integer idCliente);
 	
 	public Collection<TLineaPedido> Leertodos();
 
-	public Collection<TLineaPedido> LeerLineasPedidoPorReserva(int idReserva);
+	public Collection<TLineaPedido> LeerLineasPedidoPorReserva(Integer idReserva);
 	
-	public Collection<TLineaPedido> LeerLineasPedidoPorHabitacion(int idHabitacion);
+	public Collection<TLineaPedido> LeerLineasPedidoPorHabitacion(Integer idHabitacion);
 
 }

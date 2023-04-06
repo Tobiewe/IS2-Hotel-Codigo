@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import Negocio.Clientes.TCliente;
 import Negocio.Empleados.TEmpleados;
 
 public class DAOEmpleadoImp implements DAOEmpleados {
