@@ -7,28 +7,42 @@ import Negocio.Habitaciones.SAHabitacion;
 import Negocio.Reserva.SAReserva;
 import Negocio.Tareas.SATarea;
 
-public class SAIMPFactory {
-	public SAEmpleado generarSAEmpleado() {
-		return new SAEmpleadoIMP();
+public class SAIMPFactory extends SAFactory {
+
+	@Override
+	public SAHabitacion newSAHabitaciones() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public SAHabitacion generarSAFactura() {
-		return new SAFacturaImp();
+	@Override
+	public SATarea newSATarea() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public SATarea generarSAIngrediente() {
-		return new SAIngredienteImp();
+	@Override
+	public SADepartamento newSADepartamento() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public SAReserva generarSAMenu() {
-		return new SAMenuImp();
+	@Override
+	public SACliente newSACliente() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public SADepartamento generarSAMesa() {
-		return new SAMesaImp();
+	@Override
+	public SAReserva newSAReserva() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public SACliente generarSAProducto() {
-		return new SAProductoImp();
+	@Override
+	public SAEmpleado newSAEmpleado() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 }

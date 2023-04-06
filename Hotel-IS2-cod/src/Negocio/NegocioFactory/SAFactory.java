@@ -19,15 +19,15 @@ public abstract class SAFactory {
 		return instance;
 	}
 
-	public abstract SAEmpleado generarSAEmpleado();
-
-	public abstract SAFactura generarSAFactura();
-
-	public abstract SAIngrediente generarSAIngrediente();
-
-	public abstract SAMenu generarSAMenu();
-
-	public abstract SAMesa generarSAMesa();
-
-	public abstract SAProducto generarSAProducto();
+	public abstract SAHabitacion newSAHabitaciones();
+	
+	public abstract SATarea newSATarea();
+	
+	public abstract SADepartamento newSADepartamento();
+	
+	public abstract SACliente newSACliente();
+	
+	public abstract SAReserva newSAReserva();
+	
+	public abstract SAEmpleado newSAEmpleado();
 }

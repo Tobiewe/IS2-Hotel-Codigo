@@ -1,8 +1,15 @@
 package Presentacion.Controller;
 
 public class Events {
+	//Empleado
 	public static final int EVENT_EMPLEADO = 100;
+	
 	public static final int EVENT_EMPLEADO_CREAR = 110;
+	public static final int EVENT_EMPLEADO_CREAR_PARAMETROS_INCORRECTOS = 111;
+	public static final int 
+	
+	
+	
 	public static final int EVENT_EMPLEADO_MODIFICAR = 120; 
 	public static final int EVENT_EMPLEADO_ELIMINAR = 130;
 	public static final int EVENT_EMPLEADO_MOSTRAR_UNO = 140;
