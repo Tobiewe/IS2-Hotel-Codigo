@@ -3,7 +3,7 @@ package Integracion.Empleados;
 
 import java.util.Collection;
 
-public class DAOEmpleadoImp {
+public class DAOEmpleadoImp implements DAOEmpleados {
 
 	
 }
