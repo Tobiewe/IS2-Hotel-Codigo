@@ -24,7 +24,7 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.cliente (Id, telefeono, Correo) VALUES (?, ?, ?);";
+			String c = "INSERT INTO hotel-is2.cliente (Id, telefeono, Correo, activo) VALUES (?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -32,6 +32,7 @@ public class DAOClienteImp implements DAOCliente {
 			ps.setInt(1, tCliente.getId());
 			ps.setInt(2, tCliente.getTelefono());
 			ps.setString(3, tCliente.getCorreo());
+			ps.setBoolean(4, tCliente.getActivo());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -42,6 +43,36 @@ public class DAOClienteImp implements DAOCliente {
 			Cnx.close();
 			ps.close();
 			rs.close();
+			
+			if(tCliente.getCIF() != null){
+				String cE = "INSERT INTO hotel-is2.cliente_empresa (nombre, CIF, cliente_id) VALUES (?, ?, ?);";
+
+				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
+				PreparedStatement psE = CnxE.prepareStatement(cE);
+
+				psE.setString(1, tCliente.getNombre());
+				psE.setString(2, tCliente.getCIF());
+				psE.setInt(3, tCliente.getId());
+				psE.executeUpdate();
+
+				CnxE.close();
+				psE.close();
+			}
+			else{
+				String cP = "INSERT INTO hotel-is2.cliente_particular (nombre, apellidos, NIF, cliente_id) VALUES (?, ?, ?, ?);";
+
+				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
+				PreparedStatement psP = CnxP.prepareStatement(cP);
+
+				psP.setString(1, tCliente.getNombre());
+				psP.setString(2, tCliente.getApellidos());
+				psP.setString(3, tCliente.getNIF());
+				psP.setInt(4, tCliente.getId());;
+				psP.executeUpdate();
+					
+				CnxP.close();
+				psP.close();
+			}
 			
 		} catch (SQLException e) {
 			
@@ -71,6 +102,8 @@ public class DAOClienteImp implements DAOCliente {
 			
 			Cnx.close();
 			ps.close();
+			
+			
 			
 		} catch (SQLException e) {
 			
@@ -102,6 +135,39 @@ public class DAOClienteImp implements DAOCliente {
 			Cnx.close();
 			ps.close();
 			
+			if(tCliente.getCIF() != null){
+				
+				String cE = "UPDATE hotel-is2.cliente_empresa SET Nombre = ?, CIF = ? WHERE cliente_id = ?;";
+
+				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
+				PreparedStatement psE = CnxE.prepareStatement(cE);
+
+				psE.setString(1, tCliente.getNombre());
+				psE.setString(2, tCliente.getCIF());
+				psE.setInt(3, tCliente.getId());
+				psE.executeUpdate();
+
+				CnxE.close();
+				psE.close();
+			}
+			else if (tCliente.getNIF() != null){
+				String cP = "UPDATE hotel-is2.cliente_particular SET nombre = ?, apellidos = ?, NIF = ? WHERE cliente_id = ?;";
+
+				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
+				PreparedStatement psP = CnxP.prepareStatement(cP);
+
+				psP.setString(1, tCliente.getNombre());
+				psP.setString(2, tCliente.getApellidos());
+				psP.setString(3, tCliente.getNIF());
+				psP.setInt(4, tCliente.getId());;
+				
+				psP.executeUpdate();
+					
+				CnxP.close();
+				psP.close();
+			}
+			
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -128,8 +194,9 @@ public class DAOClienteImp implements DAOCliente {
 
 			if (Rs.next()){
 				
-				//tCliente = new TCliente(Rs.getInt("Id"), Rs.getInt("telefono"),
-					//	Rs.getString("correo"), Rs.getBoolean("activo"));
+				tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+						Rs.getInt("telefono"), Rs.getString("nombre"),  Rs.getString("CIF"),  Rs.getString("apellidos")
+						,Rs.getString("NIF"),  Rs.getBoolean("activo"));
 				
 			}
 	
@@ -160,8 +227,9 @@ public class DAOClienteImp implements DAOCliente {
 
 			while (Rs.next()){
 				
-				//lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("jefe"),
-					//	Rs.getString("nombre"), Rs.getBoolean("activo")));
+				lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+						Rs.getInt("telefono"), Rs.getString("nombre"),  Rs.getString("CIF"),  Rs.getString("apellidos")
+						,Rs.getString("NIF"),  Rs.getBoolean("activo")));
 				
 			}
 						
