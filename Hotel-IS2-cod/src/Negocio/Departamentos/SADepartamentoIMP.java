@@ -3,7 +3,7 @@ package Negocio.Departamentos;
 import java.util.Collection;
 
 public class SADepartamentoIMP implements SADepartamento {
-
+	public static 
 	@Override
 	public Integer crear(TDepartamento departamento) {
 		if(departamento.get)
