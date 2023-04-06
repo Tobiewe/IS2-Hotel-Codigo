@@ -1,7 +1,6 @@
 package Integracion.Cliente;
 
 import Negocio.Clientes.TCliente;
-import Negocio.Departamentos.TDepartamento;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
