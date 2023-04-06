@@ -2,6 +2,7 @@ package Negocio.Clientes;
 
 public class TCliente {
 	
+	private Boolean activo;
 	private Integer id;
 	private String correo;
 	private Integer telefono;
@@ -9,7 +10,7 @@ public class TCliente {
 	protected String CIF;
 	protected String apellidos;
 	protected String NIF;
-	private Boolean activo;
+	
 
 	
 	public TCliente(Integer id, String correo, Integer telefono, String nombre, String CIF, String apellidos,  String NIF, Boolean activo){

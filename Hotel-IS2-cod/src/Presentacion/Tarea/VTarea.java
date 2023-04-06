@@ -1,8 +1,15 @@
 package Presentacion.;
 
+<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+=======
+public class VTarea {
+	public VTarea(){
+		
+	}
+>>>>>>> branch 'master' of https://github.com/Tobiewe/IS2-Hotel-Codigo.git
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
