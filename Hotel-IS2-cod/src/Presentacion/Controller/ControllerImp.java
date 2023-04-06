@@ -5,6 +5,7 @@ import Negocio.Clientes.SACliente;
 import Negocio.Tareas.SATarea;
 import Negocio.Departamentos.SADepartamento;
 import Negocio.Habitaciones.SAHabitacion;
+import Negocio.NegocioFactory.SAFactory;
 import Negocio.Reserva.SAReserva;
 
 public class ControllerImp extends Controller {
@@ -18,16 +19,21 @@ public class ControllerImp extends Controller {
 	private SAReserva saReserva;
 	
 	public ControllerImp() {
-		saIngrediente = FactoriaSA.getInstance().generarSAIngrediente();
-		saProducto = FactoriaSA.getInstance().generarSAProducto();
-		saMenu = FactoriaSA.getInstance().generarSAMenu();
-		saMesa = FactoriaSA.getInstance().generarSAMesa();
-		saEmpleado = FactoriaSA.getInstance().generarSAEmpleado();
-		saFactura = FactoriaSA.getInstance().generarSAFactura();
+		saEmpleado = SAFactory.getInstance().newSAEmpleado();
+		saCliente = SAFactory.getInstance().newSACliente();
+		saTarea = SAFactory.getInstance().newSATarea();
+		saDepartamento = SAFactory.getInstance().newSADepartamento();
+		saHabitacion = SAFactory.getInstance().newSAHabitaciones();
+		saReserva = SAFactory.getInstance().newSAReserva();
 	}
 	@Override
 	public void carryAction(int event, Object data) {
-		// TODO Auto-generated method stub
+		
+		
+		switch(event)
+		{
+		case Events.
+		}
 		
 	}
 

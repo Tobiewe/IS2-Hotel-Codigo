@@ -10,11 +10,11 @@ public class SAClienteIMP implements SACliente{
 	public Integer crear(TCliente entradaCliente) {
 		//Creamos el dao
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
-		TCliente auxCliente = daoCliente.MostrarUno(entradaCliente.getId());
+		TCliente tCliente = daoCliente.MostrarUno(entradaCliente.getId());
 		
-		if(auxCliente != null)
+		if(tCliente != null)
 		{
-			if(!auxCliente.getActivo())
+			if(!tCliente.getActivo())
 			{
 				entradaCliente.setActivo(true);
 				//Dependiendo de resupuesta de Antonio
@@ -25,6 +25,7 @@ public class SAClienteIMP implements SACliente{
 				return -1;
 				
 		}
+		//Si positivo no pasa nada
 		return entradaCliente.getId();
 	}
 
@@ -32,20 +33,37 @@ public class SAClienteIMP implements SACliente{
 	public Integer modificar(TCliente cliente) {
 		if(cliente.getCorreo().trim().equals("") || cliente.getTelefono() < 111111111 || cliente.getTelefono() > 999999999)
 		{
-			
+			return -2;
 		}
+		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
+		TCliente auxCliente = daoCliente.MostrarUno(cliente.getId());
+		if(!auxCliente.getActivo() || auxCliente == null )
+			return -2;
+		return cliente.getId();
 	}
 
 	@Override
 	public Integer eliminar(int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
+		TCliente tCliente = daoCliente.MostrarUno(idCliente);
+		//Hacer otro if con el caso de que esté simplemente desactivado según diga Antonio
+		if(tCliente == null)
+		{
+			return -3;
+		}
+		return idCliente;
 	}
 
 	@Override
 	public TCliente mostrarUno(int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
+		TCliente tCliente = daoCliente.MostrarUno(idCliente);
+		//Hacer otro if con el caso de que esté simplemente desactivado según diga Antonio
+
+		if(tCliente == null)
+			return null;
+		
+		return daoCliente.MostrarUno(idCliente);
 	}
 
 	@Override
