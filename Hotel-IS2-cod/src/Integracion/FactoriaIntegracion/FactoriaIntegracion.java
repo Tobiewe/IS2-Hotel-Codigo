@@ -1,6 +1,15 @@
 package Integracion.FactoriaIntegracion;
 
-public  class FactoriaIntegracion {
+import Integracion.Cliente.DAOCliente;
+import Integracion.Departamentos.DAODepartamentos;
+import Integracion.Empleados.DAOEmpleados;
+import Integracion.Habitaciones.DAOHabitaciones;
+import Integracion.LineaPedido.DAOLineaPedido;
+import Integracion.Reserva.DAOReserva;
+import Integracion.Tareas.DAOTareas;
+import Integracion.TareasDelEmpleado.DAOTareasDelEmpleado;
+
+public abstract  class FactoriaIntegracion {
 		
 	private static FactoriaIntegracion instance;
 	
@@ -10,4 +19,21 @@ public  class FactoriaIntegracion {
 			instance = new FactoriaIntegracionImp();
 		return instance;
 	}
+	public abstract DAOHabitaciones newDAOHabitaciones();
+	
+	public abstract DAOTareas newDAOTarea();
+	
+	public abstract DAODepartamentos newDAODepartamento();
+	
+	public abstract DAOCliente newDAOCliente();
+	
+	public abstract DAOLineaPedido newLineaPedido();
+	
+	public abstract DAOTareasDelEmpleado newDAOTareasDelEmpleado();
+	
+	public abstract DAOReserva newDAOReserva();
+	
+	public abstract DAOEmpleados newDAOEmpleado();
+	
+	
 }
