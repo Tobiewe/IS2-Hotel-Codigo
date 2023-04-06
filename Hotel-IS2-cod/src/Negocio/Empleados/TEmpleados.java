@@ -11,10 +11,12 @@ public class TEmpleados {
 	private Integer telefono;
 	protected String lugar;
 	protected String especialidad;
+	private Integer id_Departamento;
+
 
 	
 	public TEmpleados(Integer id, Float sueldo, String nombre, String apellidos, Boolean activo , String correo, Integer telefono,
-			String lugar, String especialidad){
+			String lugar, String especialidad, Integer id_Departamento){
 		
 		this.id = id;
 		this.sueldo = sueldo;
@@ -25,6 +27,7 @@ public class TEmpleados {
 		this.telefono = telefono;
 		this.lugar = lugar;
 		this.especialidad = especialidad;
+		this.id_Departamento = id_Departamento;
 		
 	}
 
@@ -111,6 +114,16 @@ public class TEmpleados {
 
 	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
+	}
+
+
+	public Integer getId_Departamento() {
+		return id_Departamento;
+	}
+
+
+	public void setId_Departamento(Integer id_Departamento) {
+		this.id_Departamento = id_Departamento;
 	}
 	
 }
