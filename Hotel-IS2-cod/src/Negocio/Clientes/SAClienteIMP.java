@@ -8,8 +8,7 @@ public class SAClienteIMP implements SACliente{
 
 	@Override
 	public Integer crear(TCliente cliente) {
-		//Creamos el dao
-		DAOCliente daoCliente = FactoriaIntegracion.getInstance();
+
 		return null;
 	}
 
