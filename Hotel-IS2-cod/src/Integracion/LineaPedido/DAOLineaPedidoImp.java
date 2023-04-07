@@ -83,7 +83,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 
 
 
-	@Override
+	
 	public Integer modificar(TLineaPedido tLineaPedido) {
 
 		int key = -1;
@@ -113,7 +113,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 	}
 
 
-	@Override
+	
 	public Collection<TLineaPedido> Leertodos() {
 
 		ArrayList<TLineaPedido> lista = new ArrayList<TLineaPedido>();
@@ -183,7 +183,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 
 
 
-	@Override
+	
 	public Collection<TLineaPedido> LeerLineasPedidoPorReserva(Integer idReserva) {
 		
 		ArrayList<TLineaPedido> lista = new ArrayList<TLineaPedido>();

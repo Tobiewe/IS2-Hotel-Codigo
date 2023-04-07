@@ -120,15 +120,14 @@ public class DAOClienteImp implements DAOCliente {
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE hotel-is2.cliente SET telefono = ?, Correo = ?, activo = ? WHERE Id = ?;";
+			String c = "UPDATE hotel-is2.cliente SET telefono = ?, Correo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setInt(1, tCliente.getTelefono());
 			ps.setString(2, tCliente.getCorreo());
-			ps.setBoolean(3, tCliente.getActivo());
-			ps.setInt(4, tCliente.getId());
+			ps.setInt(3, tCliente.getId());
 			if(ps.executeUpdate()==1) ok= tCliente.getId();
 			
 			Cnx.close();
@@ -178,7 +177,7 @@ public class DAOClienteImp implements DAOCliente {
 	}
 
 	
-	public TCliente MostrarUno(Integer id) {
+	public TCliente MostrarUno(Integer id) { //pendiente de revision
 		
 		TCliente tCliente = null;
 		
