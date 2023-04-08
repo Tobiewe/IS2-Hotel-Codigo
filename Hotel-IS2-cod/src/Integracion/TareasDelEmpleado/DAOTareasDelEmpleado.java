@@ -8,16 +8,12 @@ public interface DAOTareasDelEmpleado {
 
 	public Integer crear(TTareasDelEmpleado tTareasDelEmpleado);
 
-	public Integer eliminar(Integer id);
-
 	public Integer modificar(TTareasDelEmpleado tTareasDelEmpleado);
-
-	public TTareasDelEmpleado LeerUno(Integer id);
 	
 	public Collection<TTareasDelEmpleado> Leertodos();
 
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(int idTareas);
+	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas);
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(int idEmpleado);
+	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
 	
 }

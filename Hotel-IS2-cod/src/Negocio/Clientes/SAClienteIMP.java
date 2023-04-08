@@ -7,6 +7,7 @@ import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 public class SAClienteIMP implements SACliente{
 
 	@Override
+<<<<<<< HEAD
 	public Integer crear(TCliente entradaCliente) {
 		//Creamos el dao
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
@@ -27,6 +28,11 @@ public class SAClienteIMP implements SACliente{
 		}
 		//Si positivo no pasa nada
 		return entradaCliente.getId();
+=======
+	public Integer crear(TCliente cliente) {
+
+		return null;
+>>>>>>> branch 'master' of https://github.com/Tobiewe/IS2-Hotel-Codigo.git
 	}
 
 	@Override
