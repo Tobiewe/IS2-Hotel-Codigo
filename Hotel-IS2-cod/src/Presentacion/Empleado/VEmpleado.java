@@ -1,11 +1,13 @@
 package Presentacion.Empleado;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Presentacion.Controller.Controller;
@@ -30,7 +32,17 @@ public class VEmpleado extends JFrame implements IGUI{
 	}
 
 	protected void initGUI() {
+		JPanel mainPanel = new JPanel(new BorderLayout());
+		Dimension dimension = new Dimension(700,500);
+		setPreferredSize(dimension);
+		setContentPane(mainPanel);
+		setTitle("Empleado");
 		
+		JPanel buttonsPanel = new JPanel();
+		
+		buttonsPanel.add(crearEmpleadoButton());
+		
+		mainPanel.add(buttonsPanel);
 	}
 	
 	//Crear cliente
