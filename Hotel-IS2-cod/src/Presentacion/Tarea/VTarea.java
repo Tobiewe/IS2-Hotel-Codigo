@@ -1,15 +1,8 @@
-package Presentacion.;
+package Presentacion.Tarea;
 
-<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-=======
-public class VTarea {
-	public VTarea(){
-		
-	}
->>>>>>> branch 'master' of https://github.com/Tobiewe/IS2-Hotel-Codigo.git
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,11 +13,11 @@ import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
 
 public class VTarea extends JFrame implements IGUI{
+	
 	private Controller ctrl;
 	private static final Dimension buttonDimension = new Dimension(220,100);
 	
-	public VTAREA()
-	{
+	public VTarea(){
 		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable()
 		{
@@ -125,7 +118,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EVENT_TAREA_MOSTRAR_POR_DEPARTAMENTO, null);
+					//ctrl.carryAction(Events.EVENT_TAREA_MOSTRAR_POR_DEPARTAMENTO, null);
 					setVisible(false);
 				}
 			});
