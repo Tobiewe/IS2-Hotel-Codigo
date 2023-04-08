@@ -7,7 +7,7 @@ import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 public class SAClienteIMP implements SACliente{
 
 	@Override
-<<<<<<< HEAD
+
 	public Integer crear(TCliente entradaCliente) {
 		//Creamos el dao
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
@@ -28,13 +28,7 @@ public class SAClienteIMP implements SACliente{
 		}
 		//Si positivo no pasa nada
 		return entradaCliente.getId();
-=======
-	public Integer crear(TCliente cliente) {
-
-		return null;
->>>>>>> branch 'master' of https://github.com/Tobiewe/IS2-Hotel-Codigo.git
 	}
-
 	@Override
 	public Integer modificar(TCliente cliente) {
 		if(cliente.getCorreo().trim().equals("") || cliente.getTelefono() < 111111111 || cliente.getTelefono() > 999999999)
@@ -68,13 +62,16 @@ public class SAClienteIMP implements SACliente{
 
 		if(tCliente == null)
 			return null;
-		
+		//Ver que hacer en mensajes si no se consigue mostrar uno
 		return daoCliente.MostrarUno(idCliente);
 	}
 
 	@Override
 	public Collection<TCliente> mostrarTodos() {
-		// TODO Auto-generated method stub
+		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
+		Collection<TCliente> clienteCollection;
+		
+		clienteCollection = daoCliente.MostrarTodos();
 		return null;
 	}
 
