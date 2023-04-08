@@ -3,11 +3,15 @@ package Negocio.Departamentos;
 import java.util.Collection;
 
 public class SADepartamentoIMP implements SADepartamento {
-
+	
 	@Override
 	public Integer crear(TDepartamento departamento) {
-		if(departamento.get)
-		return null;
+		if(departamento.getJefe().length() != 9 || departamento.getNombre().trim().equals(""))
+		return -1;
+		
+		
+		
+		return departamento.getId();
 	}
 
 	@Override
