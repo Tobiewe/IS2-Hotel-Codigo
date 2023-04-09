@@ -10,11 +10,7 @@ public interface DAOReserva {
 
 	public Integer abrir(TReserva tReserva);
 	
-	public Integer añadir(TReserva tReserva);
-
-	public Integer quitar(Integer id);
-	
-	public Integer cerrar(Integer id);
+	public Integer eliminar(Integer id);
 
 	public Integer modificar(TReserva tReserva);
 

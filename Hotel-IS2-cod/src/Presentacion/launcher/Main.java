@@ -1,27 +1,29 @@
 package Presentacion.launcher;
 
 import java.util.Collection;
+import java.sql.Date;
 
-
+import Integracion.LineaPedido.DAOLineaPedido;
+import Integracion.LineaPedido.DAOLineaPedidoImp;
+import Integracion.Reserva.DAOReserva;
+import Integracion.Reserva.DAOReservaImp;
 import Integracion.TareasDelEmpleado.DAOTareasDelEmpleado;
 import Integracion.TareasDelEmpleado.DAOTareasDelEmpleadoImp;
 import Negocio.Empleados.TTareasDelEmpleado;
+import Negocio.Reserva.TLineaPedido;
+import Negocio.Reserva.TReserva;
 
 
 public class Main {
 	public static void main(String[] args){
 		
-		TTareasDelEmpleado tTareasDelEmpleado = new TTareasDelEmpleado(69, 23);
-		DAOTareasDelEmpleado dao = new DAOTareasDelEmpleadoImp();
-
-		Collection<TTareasDelEmpleado> ta = dao.LeerLineasPedidoPorTareas(23);
+		Date fecha = new Date(15/10/21);
 		
-		for (TTareasDelEmpleado t : ta) {
-			
-			System.out.println(t.getId_empleado());
-			System.out.println(t.getId_tareas());
+		TReserva tReserva = new TReserva(1, 1030f, fecha, "fiesta", 3, 5, true);
+		DAOReserva dao = new DAOReservaImp();
 
-		}
+		dao.modificar(tReserva);
+		
 		
 		/*Collection<TTareas> ha = dao.leerHabitacionesPorEmpleado(23);
 		

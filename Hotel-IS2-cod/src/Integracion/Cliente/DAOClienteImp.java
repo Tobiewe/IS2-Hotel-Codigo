@@ -128,6 +128,7 @@ public class DAOClienteImp implements DAOCliente {
 			ps.setInt(1, tCliente.getTelefono());
 			ps.setString(2, tCliente.getCorreo());
 			ps.setInt(3, tCliente.getId());
+			
 			if(ps.executeUpdate()==1) ok= tCliente.getId();
 			
 			Cnx.close();

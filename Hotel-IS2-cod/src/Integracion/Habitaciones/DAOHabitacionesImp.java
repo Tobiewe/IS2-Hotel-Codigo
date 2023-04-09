@@ -95,6 +95,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 			ps.setBoolean(2, tHabitaciones.getOcupada());
 			ps.setInt(3, tHabitaciones.getId_empledo());
 			ps.setInt(4, tHabitaciones.getNumero());
+			
 			if(ps.executeUpdate()==1) ok= tHabitaciones.getNumero();
 			
 			Cnx.close();

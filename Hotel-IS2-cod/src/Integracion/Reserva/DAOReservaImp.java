@@ -25,79 +25,42 @@ public class DAOReservaImp implements DAOReserva {
 		
 		try {
 			
-			String c = "INSERT INTO reserva (Id, total, Fecha_entrada, nombre, noches) VALUES (?, ?, ?, ?. ?, ?);";
+			String c = "INSERT INTO reserva (Id, total, Fecha_entrada, nombre, noches, cliente_Id, activo) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
-			PreparedStatement ps = Cnx.prepareStatement(c);
+			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setInt(1, tReserva.getId());
 			ps.setFloat(2, tReserva.getTotal());
 			ps.setDate(3, (Date) tReserva.getFecha_entrada());
 			ps.setString(4, tReserva.getNombre());
 			ps.setInt(5, tReserva.getNoches());
+			ps.setInt(6, tReserva.getId_cliente());
+			ps.setBoolean(7, tReserva.getActivo());
 			ps.executeUpdate();
-
-				
-			Cnx.close();
-			ps.close();
 			
-		} catch (SQLException e) {
 			
-			e.printStackTrace();
-			
-		}
-		return key;
-		
-	}
-	
-	
-	public Integer añadir(TReserva tReserva) {
-		
-		int key = -1;
-
-		try {
-			
-			String c = "UPDATE reserva SET cliente_Id = ?, activo = ? WHERE Id = ?;";
-
-			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
-			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
-
-			ps.setInt(1, tReserva.getId_cliente());
-			ps.setBoolean(2, true);
-			ps.setInt(3, tReserva.getId());
-			ps.executeUpdate();
-
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next()){
 				key = rs.getInt(1);
 			}
+
 				
 			Cnx.close();
 			ps.close();
 			rs.close();
+
 			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 			
 		}
-
 		return key;
 		
 	}
 	
-	@Override
-	public Integer quitar(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Integer cerrar(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	@Override
 	public Integer modificar(TReserva tReserva) {
 		int key = -1;
 
@@ -111,16 +74,13 @@ public class DAOReservaImp implements DAOReserva {
 			ps.setDate(1, (Date) tReserva.getFecha_entrada());
 			ps.setString(2, tReserva.getNombre());
 			ps.setInt(3, tReserva.getNoches());
+			ps.setInt(4, tReserva.getId());
 			ps.executeUpdate();
 
-			ResultSet rs = ps.getGeneratedKeys();
-			if (rs.next()){
-				key = rs.getInt(1);
-			}
+			if(ps.executeUpdate()==1) key = tReserva.getId();
 				
 			Cnx.close();
 			ps.close();
-			rs.close();
 			
 		} catch (SQLException e) {
 			
@@ -171,7 +131,7 @@ public class DAOReservaImp implements DAOReserva {
 		ArrayList<TReserva> lista = new ArrayList<TReserva>();
 		
 		try {
-			String c = "SELECT * FROM departamento;";
+			String c = "SELECT * FROM reserva;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -204,7 +164,7 @@ public class DAOReservaImp implements DAOReserva {
 		ArrayList<TReserva> lista = new ArrayList<TReserva>();
 		
 		try {
-			String c = "SELECT * FROM departamento WHERE cliente_Id = ?;";
+			String c = "SELECT * FROM reserva WHERE cliente_Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -232,6 +192,37 @@ public class DAOReservaImp implements DAOReserva {
 			
 		}
 		return lista;
+	}
+
+
+	
+	public Integer eliminar(Integer id) {
+
+		int key = -1;
+
+		try {
+			
+			String c = "UPDATE reserva SET activo = ? WHERE Id = ?;";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
+
+			ps.setBoolean(1, false);
+			ps.setInt(2, id);
+
+			key = (ps.executeUpdate() == 1) ? id : -1;
+			
+			Cnx.close();
+			ps.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+
+		return key;
+
 	}
     
 	

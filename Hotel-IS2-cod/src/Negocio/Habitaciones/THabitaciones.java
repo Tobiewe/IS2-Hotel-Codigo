@@ -9,7 +9,7 @@ public class THabitaciones {
 	private Boolean ocupada;
 	private Integer id_empleado;
 	
-	public THabitaciones(Integer numero, Integer piso, Integer tamaño, Float precio, Boolean ocupada, Integer id_empleado){
+	public THabitaciones(Integer numero, Integer piso, Integer tamaño, Float precio, Boolean ocupada, Integer id_empleado){ //tamaño = numero personas
 		
 		this.numero = numero;
 		this.piso = piso;

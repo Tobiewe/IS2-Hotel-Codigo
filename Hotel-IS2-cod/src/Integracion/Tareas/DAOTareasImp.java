@@ -100,6 +100,7 @@ public class DAOTareasImp implements DAOTareas{
 			ps.setString(3, tTareas.getNombre());
 			ps.setInt(4, tTareas.getId_empleado());
 			ps.setInt(5, tTareas.getId());
+			
 			if(ps.executeUpdate()==1) ok= tTareas.getId();
 			
 			Cnx.close();

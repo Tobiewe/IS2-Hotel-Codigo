@@ -67,7 +67,9 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 			ps.setBoolean(1, false);
 			ps.setInt(2, idReserva);
 			ps.setInt(3, idCliente);
-			ps.setInt(3, idHabitacion);
+			ps.setInt(4, idHabitacion);
+			
+			key = (ps.executeUpdate() == 1) ? idReserva: -1 ;
 
 			Cnx.close();
 			ps.close();
@@ -99,6 +101,8 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 			ps.setInt(1, tLineaPedido.getId_habitacion());
 			ps.setInt(2, tLineaPedido.getId_reserva());
 			ps.setInt(3, tLineaPedido.getId_cliente());
+			
+			if(ps.executeUpdate()==1) key = tLineaPedido.getId_reserva();
 
 			Cnx.close();
 			ps.close();

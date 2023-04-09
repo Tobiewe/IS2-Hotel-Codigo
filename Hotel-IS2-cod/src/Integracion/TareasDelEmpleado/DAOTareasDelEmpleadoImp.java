@@ -65,6 +65,8 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 
 			ps.setInt(1, tTareasDelEmpleado.getId_tareas());
 			ps.setInt(2, tTareasDelEmpleado.getId_empleado());
+			
+			if(ps.executeUpdate()==1) key = tTareasDelEmpleado.getId_empleado();
 
 			Cnx.close();
 			ps.close();
