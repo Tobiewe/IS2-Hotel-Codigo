@@ -3,13 +3,14 @@ package Presentacion.Controller;
 import Negocio.Empleados.SAEmpleado;
 import Negocio.Clientes.SACliente;
 import Negocio.Tareas.SATarea;
+import Presentacion.VFactory.VFactory;
 import Negocio.Departamentos.SADepartamento;
 import Negocio.Habitaciones.SAHabitacion;
 import Negocio.NegocioFactory.SAFactory;
 import Negocio.Reserva.SAReserva;
 
 public class ControllerImp extends Controller {
-	private IGUI newIGUI;
+	private IGUI cIGUI;
 	
 	private SAEmpleado saEmpleado;
 	private SACliente saCliente;
@@ -32,7 +33,8 @@ public class ControllerImp extends Controller {
 		
 		switch(event)
 		{
-		case Events.
+		case Events.TAREA_CREAR:
+			cIGUI = VFactory.getInstance()
 		}
 		
 	}

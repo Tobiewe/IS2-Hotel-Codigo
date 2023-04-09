@@ -1,5 +1,7 @@
 package Presentacion.Tarea.VTareaCasosUso;
 
-public class VCrearTarea {
+import Presentacion.Controller.IGUI;
+
+public class VCrearTarea implements IGUI {
 
 }

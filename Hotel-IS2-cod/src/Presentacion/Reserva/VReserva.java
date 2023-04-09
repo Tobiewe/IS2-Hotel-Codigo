@@ -39,7 +39,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_ABRIR, null);
+				ctrl.carryAction(Events.RESERVA_ABRIR, null);
 				setVisible(false);
 			}
 		});
@@ -55,7 +55,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_MODIFICAR, null);
+				ctrl.carryAction(Events.RESERVA_MODIFICAR, null);
 				setVisible(false);
 			}
 		});
@@ -69,7 +69,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_ELIMINAR, null);
+				ctrl.carryAction(Events.RESERVA_ELIMINAR, null);
 				setVisible(false);
 			}
 		});
@@ -83,7 +83,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_MOSTRAR_UNA, null);
+				ctrl.carryAction(Events.RESERVA_MOSTRAR_UNA, null);
 				setVisible(false);
 			}
 		});
@@ -97,7 +97,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_MOSTRAR_TODAS, null);
+				ctrl.carryAction(Events.RESERVA_MOSTRAR_TODAS, null);
 				setVisible(false);
 			}
 		});
@@ -111,7 +111,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_CERRAR, null);
+				ctrl.carryAction(Events.RESERVA_CERRAR, null);
 				setVisible(false);
 			}
 		});
@@ -125,7 +125,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_QUITAR_HABITACIONES, null);
+				ctrl.carryAction(Events.RESERVA_QUITAR_HABITACIONES, null);
 				setVisible(false);
 			}
 		});
@@ -139,7 +139,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_AÑADIR_HABITACIONES, null);
+				ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES, null);
 				setVisible(false);
 			}
 		});
@@ -153,7 +153,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_RESERVA_MOSTRAR_POR_CLIENTE, null);
+				ctrl.carryAction(Events.RESERVA_MOSTRAR_POR_CLIENTE, null);
 				setVisible(false);
 			}
 		});

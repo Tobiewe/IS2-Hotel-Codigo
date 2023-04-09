@@ -21,6 +21,7 @@ import javax.swing.event.ChangeListener;
 
 import Negocio.Habitaciones.THabitaciones;
 import Presentacion.Controller.Controller;
+import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
 
 
@@ -129,6 +130,8 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		crearButton.addActionListener((e)->
 		{
 			THabitaciones tHabitacion = new THabitaciones(null,piso,tamanyo,Float.parseFloat(textField.getText()),false,null);
+			ctrl.carryAction(Events.HABITACION_CREAR, tHabitacion);
+			
 		});
 		return crearButton;
 	}

@@ -42,7 +42,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EVENT_TAREA_CREAR, null);
+					ctrl.carryAction(Events.TAREA_CREAR, null);
 					setVisible(false);
 				}
 			});
@@ -57,7 +57,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EVENT_TAREA_MODIFICAR, null);
+					ctrl.carryAction(Events.TAREA_MODIFICAR, null);
 					setVisible(false);
 				}
 			});
@@ -72,7 +72,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EVENT_TAREA_ELIMINAR, null);
+					ctrl.carryAction(Events.TAREA_ELIMINAR, null);
 					setVisible(false);
 				}
 			});
@@ -87,14 +87,14 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EVENT_TAREA_MOSTRAR_UNO, null);
+					ctrl.carryAction(Events.TAREA_MOSTRAR_UNO, null);
 					setVisible(false);
 				}
 			});
 			return mostrarUnoTAREAButton;
 		}
-		public static final int EVENT_TAREA_DESVINCULAR = 560;
-		public static final int EVENT_TAREA_VINCULAR = 570;
+		public static final int TAREA_DESVINCULAR = 560;
+		public static final int TAREA_VINCULAR = 570;
 		//Mostrar todos
 		public JButton mostrarTodosTAREAButton()
 		{
@@ -104,7 +104,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EVENT_TAREA_MOSTRAR_TODOS, null);
+					ctrl.carryAction(Events.TAREA_MOSTRAR_TODOS, null);
 					setVisible(false);
 				}
 			});
@@ -118,7 +118,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					//ctrl.carryAction(Events.EVENT_TAREA_MOSTRAR_POR_DEPARTAMENTO, null);
+					//ctrl.carryAction(Events.TAREA_MOSTRAR_POR_DEPARTAMENTO, null);
 					setVisible(false);
 				}
 			});

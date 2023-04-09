@@ -26,8 +26,9 @@ import javax.swing.event.DocumentListener;
 import javax.swing.UIManager;
 import java.awt.FlowLayout;
 import Presentacion.Controller.Controller;
+import Presentacion.Controller.IGUI;
 
-public class VEliminarHabitacion extends JFrame{
+public class VEliminarHabitacion extends JFrame implements IGUI{
 	private Controller ctrl;
 	boolean eliminado =false;
 	
@@ -96,6 +97,12 @@ public class VEliminarHabitacion extends JFrame{
 			}
 		});
 		return okButton;
+	}
+
+	@Override
+	public void update(int event, Object datos) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

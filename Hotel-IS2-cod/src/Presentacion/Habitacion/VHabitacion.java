@@ -42,7 +42,7 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_CREAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_CREAR, null);
 						setVisible(false);
 					}
 				});
@@ -57,7 +57,7 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_MODIFICAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MODIFICAR, null);
 						setVisible(false);
 					}
 				});
@@ -72,7 +72,7 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_ELIMINAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_ELIMINAR, null);
 						setVisible(false);
 					}
 				});
@@ -87,7 +87,7 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_MOSTRAR_UNO, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_UNO, null);
 						setVisible(false);
 					}
 				});
@@ -102,7 +102,7 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_MOSTRAR_TODOS, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_TODOS, null);
 						setVisible(false);
 					}
 				});
