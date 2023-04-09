@@ -19,7 +19,6 @@ public class Main {
 		for (TTareasDelEmpleado t : ta) {
 			
 			System.out.println(t.getId_empleado());
-			
 			System.out.println(t.getId_tareas());
 
 		}
