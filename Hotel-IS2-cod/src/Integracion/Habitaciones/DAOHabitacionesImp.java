@@ -126,7 +126,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 			if (Rs.next()){
 				
-				tHabitaciones = new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getFloat("tamaño"), Rs.getFloat("precio"), 
+				tHabitaciones = new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamaño"), Rs.getFloat("precio"), 
 						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado"));
 				
 			}
@@ -158,7 +158,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 			while (Rs.next()){
 				
-				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getFloat("tamaño"), Rs.getFloat("precio"), 
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamaño"), Rs.getFloat("precio"), 
 						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
 				
 			}
@@ -192,7 +192,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 			while (Rs.next()){
 				
-				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getFloat("tamaño"), Rs.getFloat("precio"), 
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamaño"), Rs.getFloat("precio"), 
 						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
 				
 			}
@@ -226,7 +226,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 			while (Rs.next()){
 				
-				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getFloat("tamaño"), Rs.getFloat("precio"), 
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamaño"), Rs.getFloat("precio"), 
 						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
 				
 			}
