@@ -33,8 +33,9 @@ public class ControllerImp extends Controller {
 		
 		switch(event)
 		{
-		case Events.TAREA_CREAR:
-			cIGUI = VFactory.getInstance()
+		case Events.HABITACION_CREAR:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_CREAR, null);
+			break;
 		}
 		
 	}
