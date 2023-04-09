@@ -4,12 +4,12 @@ public class THabitaciones {
 	
 	private Integer numero;
 	private Integer piso;
-	private Float tamaño;
+	private Integer tamaño;
 	private Float precio;
 	private Boolean ocupada;
 	private Integer id_empleado;
 	
-	public THabitaciones(Integer numero, Integer piso, Float tamaño, Float precio, Boolean ocupada, Integer id_empleado){
+	public THabitaciones(Integer numero, Integer piso, Integer tamaño, Float precio, Boolean ocupada, Integer id_empleado){
 		
 		this.numero = numero;
 		this.piso = piso;
@@ -28,7 +28,7 @@ public class THabitaciones {
 		return piso;
 	}
 
-	public Float getTamaño() {
+	public Integer getTamaño() {
 		return tamaño;
 	}
 

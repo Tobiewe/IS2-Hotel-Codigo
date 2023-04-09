@@ -7,6 +7,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Negocio.Habitaciones.THabitaciones;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.IGUI;
 
@@ -48,7 +50,9 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		
 		
 		
-		
+		pack();
+		setLocationRelativeTo(getParent());
+		setVisible(true);
 	}
 	
 	public JPanel panelPiso()
@@ -105,21 +109,28 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		
 		return tamanyoPanel;
 	}
-	public JPanel precioPanel()
+	public JPanel precioPanel(JTextField precioText)
 	{
 		JPanel precioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 		JLabel precioLabel = new JLabel("Precio: ");
-		JTextField precioText = new JTextField();
 		
 		precioPanel.add(precioLabel);
 		precioPanel.add(precioText);
 		
 		
-		pack();
-		setLocationRelativeTo(getParent());
-		setVisible(true);
+		
 		return precioPanel;
+	}
+	
+	public JButton CrearButton(JTextField textField)
+	{
+		JButton crearButton = new JButton("Crear");
+		crearButton.addActionListener((e)->
+		{
+			THabitaciones tHabitacion = new THabitaciones(null,piso,tamanyo,Float.parseFloat(textField.getText()),false,null);
+		});
+		return crearButton;
 	}
 	@Override
 	public void update(int event, Object datos) {
