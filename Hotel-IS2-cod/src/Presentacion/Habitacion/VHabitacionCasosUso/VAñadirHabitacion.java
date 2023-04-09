@@ -45,19 +45,13 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		
-		mainPanel.add(tamanyoPanel());
-		mainPanel.add(pisoPanel());
-		mainPanel.add(precioPanel());
-			
 		
 		
-		pack();
-		setLocationRelativeTo(getParent());
-		setVisible(true);
+		
 		
 	}
 	
-	public JPanel pisoPanel()
+	public JPanel panelPiso()
 	{
 		JPanel panelPiso = new JPanel();
 		panelPiso.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -112,17 +106,20 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		return tamanyoPanel;
 	}
 	public JPanel precioPanel()
-	{		
+	{
 		JPanel precioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 		JLabel precioLabel = new JLabel("Precio: ");
 		JTextField precioText = new JTextField();
 		
-		
 		precioPanel.add(precioLabel);
 		precioPanel.add(precioText);
-		return precioPanel;
 		
+		
+		pack();
+		setLocationRelativeTo(getParent());
+		setVisible(true);
+		return precioPanel;
 	}
 	@Override
 	public void update(int event, Object datos) {
