@@ -17,7 +17,6 @@ public class SAIMPFactory extends SAFactory {
 
 	@Override
 	public SATarea newSATarea() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
