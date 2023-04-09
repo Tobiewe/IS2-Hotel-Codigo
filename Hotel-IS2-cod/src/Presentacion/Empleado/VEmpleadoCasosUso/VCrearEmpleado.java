@@ -18,13 +18,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.UIManager;
 import java.awt.FlowLayout;
 import Presentacion.Controller.Controller;;
 
 public class VCrearEmpleado extends JFrame {
 	private Controller ctrl;
-	private String tipoEmpleado="Limpieza";
+	private String tipoEmpleado="Limpieza", nombre, apellidos,email,tlf;
+	
 
 	public VCrearEmpleado(){
 		
@@ -59,13 +62,7 @@ public class VCrearEmpleado extends JFrame {
 		apellidosPanel.add(new JLabel("Apellidos: "));
 		//apellidosPanel.add(apellidosField());
 		
-		//casilla ID 
-		JPanel idPanel = new JPanel();
-		mainPanel.add(idPanel);
-		idPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		idPanel.add(new JLabel("ID: "));
-		idPanel.add(idField());
-		
+	
 		// casilla email
 		JPanel emailPanel = new JPanel();
 		mainPanel.add(emailPanel);
@@ -80,20 +77,16 @@ public class VCrearEmpleado extends JFrame {
 		tlfPanel.add(new JLabel("Telefono: "));
 		//tlfPanel.add(tlfField());
 		
-		// casilla activo
-		JPanel activoPanel = new JPanel();
-		mainPanel.add(activoPanel);
-		activoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JCheckBox activoBox = new JCheckBox("En Activo");
-		activoPanel.add(activoBox);
+		
 		
 		//casilla sueldo
 		JPanel sueldoPanel = new JPanel();
+		mainPanel.add(sueldoPanel);
 		sueldoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		sueldoPanel.add(new JLabel("Sueldo: "));
 		//sueldoPanel.add(sueldoField());
 		
-		//comprobar si empleado esta activo para poner la casilla sueldo
+		/*comprobar si empleado esta activo para poner la casilla sueldo
 		activoBox.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        if (activoBox.isSelected()) {
@@ -105,7 +98,7 @@ public class VCrearEmpleado extends JFrame {
 		        mainPanel.repaint();
 		    }
 		});
-		
+		*/
 		//casilla Lugar y Especialidad
 		JPanel lugarPanel= new JPanel();
 		JPanel especialidadPanel= new JPanel();
@@ -131,7 +124,7 @@ public class VCrearEmpleado extends JFrame {
 						mainPanel.add(lugarPanel);
 						mainPanel.remove(especialidadPanel);
 					}
-					else{
+					else if (tipoEmpleado.equals("Limpieza")){
 						mainPanel.remove(lugarPanel);
 						mainPanel.add(especialidadPanel);
 					}
@@ -152,10 +145,145 @@ public class VCrearEmpleado extends JFrame {
 		
 	}
 	
-	JTextField idField(){
-		JTextField idField = new JTextField();
+	JTextField nombreField(){
+		JTextField nombreField=new JTextField(10);
+		nombre=new String();
 		
-		return idField;
+		nombreField.getDocument().addDocumentListener(new DocumentListener(){
+			
+			@Override
+			public void insertUpdate(DocumentEvent e){
+				nombre = nombreField.getText();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				nombre=nombreField.getText();
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				nombre=nombreField.getText();
+				
+			}
+			
+		});
+		return nombreField;
+	}
+	JTextField apellidosField(){
+		JTextField apellidosField=new JTextField(20);
+		apellidos=new String();
+		
+		apellidosField.getDocument().addDocumentListener(new DocumentListener(){
+			
+			@Override
+			public void insertUpdate(DocumentEvent e){
+				apellidos = apellidosField.getText();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				apellidos=apellidosField.getText();
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				apellidos=apellidosField.getText();
+				
+			}
+			
+		});
+		return apellidosField;
+	}
+	JTextField emailField(){
+		JTextField emailField=new JTextField(20);
+		email=new String();
+		
+		emailField.getDocument().addDocumentListener(new DocumentListener(){
+			
+			@Override
+			public void insertUpdate(DocumentEvent e){
+				email = emailField.getText();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				email=emailField.getText();
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				email=emailField.getText();
+				
+			}
+			
+		});
+		return emailField;
+	}
+	JTextField tlfField(){
+		JTextField tlfField=new JTextField(9);
+		tlf=new String();
+		
+		tlfField.getDocument().addDocumentListener(new DocumentListener(){
+			
+			@Override
+			public void insertUpdate(DocumentEvent e){
+				tlf = tlfField.getText();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				tlf=tlfField.getText();
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				tlf=tlfField.getText();
+				
+			}
+			
+		});
+		return tlfField;
+	}
+	JTextField sueldoField(){
+		JTextField sueldoField=new JTextField(5);
+		nombre=new String();
+		
+		apellidosField.getDocument().addDocumentListener(new DocumentListener(){
+			
+			@Override
+			public void insertUpdate(DocumentEvent e){
+				nombre = apellidosField.getText();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				nombre=apellidosField.getText();
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				nombre=apellidosField.getText();
+				
+			}
+			
+		});
+		return apellidosField;
 	}
 
 	
