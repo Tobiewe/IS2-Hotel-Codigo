@@ -1,7 +1,10 @@
 package Presentacion.VFactory;
 
+import Presentacion.Cliente.VCliente;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
+import Presentacion.Departamento.VDepartamento;
+import Presentacion.Empleado.VEmpleado;
 import Presentacion.Habitacion.VHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VAñadirHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VEliminarHabitacion;
@@ -10,6 +13,8 @@ import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarPorEmpleado;
 import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarTodasDisponiblesHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarTodasHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarUnaHabitacion;
+import Presentacion.Reserva.VReserva;
+import Presentacion.Tarea.VTarea;
 import Presentacion.Tarea.VTareaCasosUso.VCrearTarea;
 import Presentacion.launcher.VPrincipal;
 
@@ -21,6 +26,16 @@ public class VFactoryImp extends VFactory {
 		{
 		case Events.VENTANA_PRINCIPAL_INSTANCE:
 			return new VPrincipal();
+		case Events.CLIENTE_VISTA:
+			return new VCliente();
+		case Events.EMPLEADO_VISTA:
+			return new VEmpleado();
+		case Events.DEPARTAMENTO_VISTA:
+			return new VDepartamento();
+		case Events.TAREA_VISTA:
+			return new VTarea();
+		case Events.RESERVA_VISTA:
+			return new VReserva();
 			
 		case Events.HABITACION_VISTA:
 			return new VHabitacion();

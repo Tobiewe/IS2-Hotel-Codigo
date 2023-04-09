@@ -31,15 +31,21 @@ public class VPrincipal extends JFrame implements IGUI{
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		Dimension d = new Dimension(600,400);
 		mainPanel.setPreferredSize(d);
+		setLocationRelativeTo(null);
 		setContentPane(mainPanel);
 		
 		mainPanel.add(reservaButton());
+		mainPanel.add(habitacionButton());
+		mainPanel.add(tareaButton());
+		mainPanel.add(clienteButton());
+		mainPanel.add(departamentoButton());
+		mainPanel.add(empleadoButton());
 		
 		pack();
 		setVisible(true);
 	}
 	
-	public JButton  reservaButton()
+	public JButton reservaButton()
 	{
 		JButton reservaButton = new JButton("Reservar");
 		reservaButton.addActionListener(new ActionListener()
@@ -52,6 +58,74 @@ public class VPrincipal extends JFrame implements IGUI{
 		});
 		return reservaButton;
 	}
+	public JButton habitacionButton()
+	{
+		JButton reservaButton = new JButton("Habitacion");
+		reservaButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.carryAction(Events.HABITACION_VISTA, null);
+			}
+			
+		});
+		return reservaButton;
+	}
+	
+	public JButton clienteButton()
+	{
+		JButton reservaButton = new JButton("Cliente");
+		reservaButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.carryAction(Events.CLIENTE_VISTA, null);
+			}
+			
+		});
+		return reservaButton;
+	}
+	public JButton empleadoButton()
+	{
+		JButton reservaButton = new JButton("Empleado");
+		reservaButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.carryAction(Events.EMPLEADO_VISTA, null);
+			}
+			
+		});
+		return reservaButton;
+	}
+	
+	public JButton tareaButton()
+	{
+		JButton reservaButton = new JButton("Tarea");
+		reservaButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.carryAction(Events.TAREA_VISTA, null);
+			}
+			
+		});
+		return reservaButton;
+	}
+	public JButton departamentoButton()
+	{
+		JButton reservaButton = new JButton("Departamento");
+		reservaButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.carryAction(Events.DEPARTAMENTO_VISTA, null);
+			}
+			
+		});
+		return reservaButton;
+	}
+	
 	@Override
 	public void update(int event, Object datos) {
 		// TODO Auto-generated method stub

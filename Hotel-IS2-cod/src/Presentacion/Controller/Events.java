@@ -24,7 +24,7 @@ public class Events {
 	public static final int EMPLEADO_MOSTRAR_TODOS = 150;
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO = 160;
 	
-	public static final int CLIENTE_VISTAL = 200;
+	public static final int CLIENTE_VISTA = 200;
 	public static final int CLIENTE_CREAR = 210;
 	public static final int CLIENTE_MODIFICAR = 220;
 	public static final int CLIENTE_ELIMINAR = 230;
