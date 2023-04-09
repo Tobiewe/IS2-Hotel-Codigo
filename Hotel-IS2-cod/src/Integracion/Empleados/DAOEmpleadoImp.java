@@ -25,7 +25,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.empleado (Id, sueldo, nombre, apellidos, activo, correo, telefono) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO empleado (Id, sueldo, nombre, apellidos, activo, correo, telefono) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -49,7 +49,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			rs.close();
 			
 			if(tEmpleados.getEspecialidad() != null){
-				String cE = "INSERT INTO hotel-is2.empleado_mantenimiento (especialidad, id_empleado) VALUES (?, ?);";
+				String cE = "INSERT INTO empleado_mantenimiento (especialidad, id_empleado) VALUES (?, ?);";
 
 				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
 				PreparedStatement psE = CnxE.prepareStatement(cE);
@@ -62,7 +62,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 				psE.close();
 			}
 			else{
-				String cP = "INSERT INTO hotel-is2.empleado_limpieza (lugar, id_empleado) VALUES (?, ?);";
+				String cP = "INSERT INTO empleado_limpieza (lugar, id_empleado) VALUES (?, ?);";
 
 				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
 				PreparedStatement psP = CnxP.prepareStatement(cP);
@@ -91,7 +91,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 
 		try {
 			
-			String c = "UPDATE hotel-is2.empleado SET activo = ? WHERE Id = ?;";
+			String c = "UPDATE empleado SET activo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -123,7 +123,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		
 		try {
 			
-			String c = "UPDATE hotel-is2.empleado SET sueldo = ?, nombre = ?, apellidos = ?, correo = ?, telefono = ? WHERE Id = ?;";
+			String c = "UPDATE empleado SET sueldo = ?, nombre = ?, apellidos = ?, correo = ?, telefono = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -136,17 +136,13 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			ps.setInt(6, tEmpleados.getId());
 			ps.executeUpdate();
 
-			ResultSet rs = ps.getGeneratedKeys();
-			if (rs.next()){
-				key = rs.getInt(1);
-			}
-				
+			if(ps.executeUpdate() == 1) key = tEmpleados.getId();
+
 			Cnx.close();
 			ps.close();
-			rs.close();
 			
 			if(tEmpleados.getEspecialidad() != null){
-				String cE = "UPDATE hotel-is2.empleado_mantenimiento set especialidad = ? WHERE id_empleado = ?;";
+				String cE = "UPDATE empleado_mantenimiento set especialidad = ? WHERE id_empleado = ?;";
 
 				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
 				PreparedStatement psE = CnxE.prepareStatement(cE);
@@ -159,7 +155,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 				psE.close();
 			}
 			else{
-				String cP = "UPDATE hotel-is2.empleado_limpieza SET lugar = ? WHERE id_empleado = ?;";
+				String cP = "UPDATE empleado_limpieza SET lugar = ? WHERE id_empleado = ?;";
 
 				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
 				PreparedStatement psP = CnxP.prepareStatement(cP);
@@ -187,7 +183,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		TEmpleados tEmpleados = null;
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.empleado WHERE Id = ?;";
+			String c = "SELECT * FROM empleado WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -220,7 +216,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		ArrayList<TEmpleados> lista = new ArrayList<TEmpleados>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.empleado;";
+			String c = "SELECT * FROM empleado;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();

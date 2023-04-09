@@ -2,16 +2,34 @@ package Negocio.Departamentos;
 
 import java.util.Collection;
 
+import Integracion.Departamentos.DAODepartamentos;
+import Integracion.FactoriaIntegracion.FactoriaIntegracion;
+
 public class SADepartamentoIMP implements SADepartamento {
 	
 	@Override
-	public Integer crear(TDepartamento departamento) {
-		if(departamento.getJefe().length() != 9 || departamento.getNombre().trim().equals(""))
-		return -1;
+	public Integer crear(TDepartamento tdepartamento) {
+		if(tdepartamento.getJefe().length() != 9 || tdepartamento.getNombre().trim().equals("")){
+			return -5;
+		}
 		
+		DAODepartamentos daoDep = FactoriaIntegracion.getInstance().newDAODepartamento();
+		TDepartamento tDep = daoDep.MostrarPorNombre(tdepartamento.getNombre());
 		
+		if(tDep != null){
+			tdepartamento.setId(tDep.getId());
+			tdepartamento.setActivado(true);
+			
+			if(!tDep.getActivado()){
+				daoDep.modificar(tdepartamento);
+			}
+			
+			return tDep.getActivado() ? -2 : tDep.getId();
+		}
 		
-		return departamento.getId();
+		tDep.setId(daoDep.crear(tdepartamento));
+		
+		return tDep.getId();
 	}
 
 	@Override
@@ -34,6 +52,12 @@ public class SADepartamentoIMP implements SADepartamento {
 
 	@Override
 	public Collection<TDepartamento> mostrarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TDepartamento MostrarPorNombre(String nombre) {
 		// TODO Auto-generated method stub
 		return null;
 	}

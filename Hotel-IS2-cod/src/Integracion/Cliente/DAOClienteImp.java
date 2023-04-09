@@ -23,7 +23,7 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.cliente (Id, telefeono, Correo, activo) VALUES (?, ?, ?, ?);";
+			String c = "INSERT INTO cliente (Id, telefono, Correo, activo) VALUES (?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -44,7 +44,7 @@ public class DAOClienteImp implements DAOCliente {
 			rs.close();
 			
 			if(tCliente.getCIF() != null){
-				String cE = "INSERT INTO hotel-is2.cliente_empresa (nombre, CIF, cliente_id) VALUES (?, ?, ?);";
+				String cE = "INSERT INTO cliente_empresa (nombre, CIF, cliente_id) VALUES (?, ?, ?);";
 
 				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
 				PreparedStatement psE = CnxE.prepareStatement(cE);
@@ -58,7 +58,7 @@ public class DAOClienteImp implements DAOCliente {
 				psE.close();
 			}
 			else{
-				String cP = "INSERT INTO hotel-is2.cliente_particular (nombre, apellidos, NIF, cliente_id) VALUES (?, ?, ?, ?);";
+				String cP = "INSERT INTO cliente_particular (nombre, apellidos, NIF, cliente_id) VALUES (?, ?, ?, ?);";
 
 				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
 				PreparedStatement psP = CnxP.prepareStatement(cP);
@@ -89,7 +89,7 @@ public class DAOClienteImp implements DAOCliente {
 
 		try {
 			
-			String c = "UPDATE hotel-is2.cliente SET activo = ? WHERE Id = ?;";
+			String c = "UPDATE cliente SET activo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -120,7 +120,7 @@ public class DAOClienteImp implements DAOCliente {
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE hotel-is2.cliente SET telefono = ?, Correo = ? WHERE Id = ?;";
+			String c = "UPDATE cliente SET telefono = ?, Correo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -135,7 +135,7 @@ public class DAOClienteImp implements DAOCliente {
 			
 			if(tCliente.getCIF() != null){
 				
-				String cE = "UPDATE hotel-is2.cliente_empresa SET Nombre = ?, CIF = ? WHERE cliente_id = ?;";
+				String cE = "UPDATE cliente_empresa SET Nombre = ?, CIF = ? WHERE cliente_id = ?;";
 
 				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
 				PreparedStatement psE = CnxE.prepareStatement(cE);
@@ -149,7 +149,7 @@ public class DAOClienteImp implements DAOCliente {
 				psE.close();
 			}
 			else if (tCliente.getNIF() != null){
-				String cP = "UPDATE hotel-is2.cliente_particular SET nombre = ?, apellidos = ?, NIF = ? WHERE cliente_id = ?;";
+				String cP = "UPDATE cliente_particular SET nombre = ?, apellidos = ?, NIF = ? WHERE cliente_id = ?;";
 
 				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
 				PreparedStatement psP = CnxP.prepareStatement(cP);
@@ -182,7 +182,7 @@ public class DAOClienteImp implements DAOCliente {
 		TCliente tCliente = null;
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.cliente WHERE Id = ?;";
+			String c = "SELECT * FROM cliente WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -191,6 +191,7 @@ public class DAOClienteImp implements DAOCliente {
 			ResultSet Rs = ps.executeQuery();
 
 			if (Rs.next()){
+				
 				
 				tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
 						Rs.getInt("telefono"), Rs.getString("nombre"),  Rs.getString("CIF"),  Rs.getString("apellidos")
@@ -217,7 +218,7 @@ public class DAOClienteImp implements DAOCliente {
 		ArrayList<TCliente> lista = new ArrayList<TCliente>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.cliente;";
+			String c = "SELECT * FROM cliente;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -225,9 +226,22 @@ public class DAOClienteImp implements DAOCliente {
 
 			while (Rs.next()){
 				
-				lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-						Rs.getInt("telefono"), Rs.getString("nombre"),  Rs.getString("CIF"),  Rs.getString("apellidos")
-						,Rs.getString("NIF"),  Rs.getBoolean("activo")));
+				TCliente tCliente = MostrarUno(Rs.getInt("Id"));
+				
+				if(tCliente.getCIF() != null){
+					
+					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+							Rs.getInt("telefono"), tCliente.getNombre(), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
+					
+				}
+				else if(tCliente.getNIF() != null){
+					
+					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), tCliente.getNombre(), 
+							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo")));
+					
+				}
+				
+				tCliente = null;
 				
 			}
 						

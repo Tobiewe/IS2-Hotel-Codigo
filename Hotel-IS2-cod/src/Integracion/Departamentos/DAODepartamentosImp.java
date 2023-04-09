@@ -22,7 +22,8 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.departamentos (Id, jefe, nombre, activo) VALUES (?, ?, ?, ?);";
+			
+			String c = "INSERT INTO departamentos (Id, jefe, nombre, activo) VALUES (?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -56,7 +57,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 
 		try {
 			
-			String c = "UPDATE hotel-is2.departamentos SET activo = ? WHERE Id = ?;";
+			String c = "UPDATE departamentos SET activo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -83,7 +84,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE hotel-is2.departamentos SET jefe = ?, nombre = ? WHERE Id = ?;";
+			String c = "UPDATE departamentos SET jefe = ?, nombre = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -111,12 +112,45 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		TDepartamento tDepartamento = null;
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.departamentos WHERE Id = ?;";
+			String c = "SELECT * FROM departamentos WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setInt(1, id);
+			ResultSet Rs = ps.executeQuery();
+
+			if (Rs.next()){
+				
+				tDepartamento = new TDepartamento(Rs.getInt("Id"), Rs.getString("jefe"),
+						Rs.getString("nombre"), Rs.getBoolean("activo"));
+				
+			}
+	
+			Cnx.close();
+			ps.close();
+			Rs.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return tDepartamento;
+	}
+	
+	
+	public TDepartamento MostrarPorNombre(String nombre) {
+		
+		TDepartamento tDepartamento = null;
+		
+		try {
+			String c = "SELECT * FROM departamentos WHERE nombre = ?;";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
+
+			ps.setString(1, nombre);
 			ResultSet Rs = ps.executeQuery();
 
 			if (Rs.next()){
@@ -144,7 +178,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		ArrayList<TDepartamento> lista = new ArrayList<TDepartamento>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.departamentos;";
+			String c = "SELECT * FROM departamentos;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();

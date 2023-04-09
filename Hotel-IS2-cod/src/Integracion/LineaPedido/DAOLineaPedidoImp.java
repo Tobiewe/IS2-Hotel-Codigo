@@ -23,7 +23,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.linea_pedidos (id_Reserva, id_Cliente, id_Habitacion, activo) VALUES (?, ?, ?, ?);";
+			String c = "INSERT INTO linea_pedidos (id_Reserva, id_Cliente, id_Habitacion, activo) VALUES (?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -53,20 +53,21 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 
 	
 	
-	public Integer eliminar(Integer idReserva, Integer idCliente) {
+	public Integer eliminar(Integer idReserva, Integer idCliente, Integer idHabitacion) { // no funciona
 		
 		int key = -1;
 
 		try {
 			
-			String c = "UPDATE hotel-is2.linea_pedidos SET activo = ? WHERE id_Reserva = ? AND id_Cliente = ?;";
-
+			String c = "UPDATE linea_pedidos SET activo = ? WHERE id_Reserva = ? AND id_Cliente = ? AND id_Habitacion = ?;";
+			
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setBoolean(1, false);
 			ps.setInt(2, idReserva);
 			ps.setInt(3, idCliente);
+			ps.setInt(3, idHabitacion);
 
 			Cnx.close();
 			ps.close();
@@ -90,11 +91,11 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 
 		try {
 			
-			String c = "UPDATE hotel-is2.linea_pedidos SET id_Habitacion = ? WHERE id_Reserva = ? AND id_Cliente = ?;";
-
+			String c = "UPDATE linea_pedidos SET id_Habitacion = ? WHERE id_Reserva = ? AND id_Cliente = ?;";
+			
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
-
+			System.out.println( tLineaPedido.getId_habitacion());
 			ps.setInt(1, tLineaPedido.getId_habitacion());
 			ps.setInt(2, tLineaPedido.getId_reserva());
 			ps.setInt(3, tLineaPedido.getId_cliente());
@@ -119,7 +120,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 		ArrayList<TLineaPedido> lista = new ArrayList<TLineaPedido>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.linea_pedidos;";
+			String c = "SELECT * FROM linea_pedidos;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -127,7 +128,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 
 			while (Rs.next()){
 				
-				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activa")));
+				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
 				
 			}
 						
@@ -153,7 +154,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 		TLineaPedido tLineaPedido = null;
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.linea_pedidos WHERE id_Reserva = ? AND id_Cliente = ?;";
+			String c = "SELECT * FROM linea_pedidos WHERE id_Reserva = ? AND id_Cliente = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -164,7 +165,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 
 			if (Rs.next()){
 				
-				tLineaPedido = new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activa"));
+				tLineaPedido = new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo"));
 				
 			}
 	
@@ -189,7 +190,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 		ArrayList<TLineaPedido> lista = new ArrayList<TLineaPedido>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.linea_pedidos WHERE id_Reserva = ?;";
+			String c = "SELECT * FROM linea_pedidos WHERE id_Reserva = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -199,7 +200,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 
 			while (Rs.next()){
 				
-				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activa")));
+				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
 				
 			}
 						
@@ -224,7 +225,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 		ArrayList<TLineaPedido> lista = new ArrayList<TLineaPedido>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.linea_pedidos WHERE id_Habitacion = ?;";
+			String c = "SELECT * FROM linea_pedidos WHERE id_Habitacion = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -234,7 +235,7 @@ public class DAOLineaPedidoImp implements DAOLineaPedido {
 
 			while (Rs.next()){
 				
-				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activa")));
+				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
 				
 			}
 						

@@ -23,7 +23,7 @@ public class DAOTareasImp implements DAOTareas{
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.tareas (id, Descripcion, Lugar, Nombre, empleado_Id, activa) VALUES (?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO tareas (id, Descripcion, Lugar, Nombre, empleado_Id, activa) VALUES (?, ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -61,7 +61,7 @@ public class DAOTareasImp implements DAOTareas{
 
 		try {
 			
-			String c = "UPDATE hotel-is2.tareas SET activa = ? WHERE Id = ?;";
+			String c = "UPDATE tareas SET activa = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -90,7 +90,7 @@ public class DAOTareasImp implements DAOTareas{
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE hotel-is2.tareas SET Descripcion = ?, Lugar = ?, Nombre = ?, empleado_Id = ? WHERE Id = ?;";
+			String c = "UPDATE tareas SET Descripcion = ?, Lugar = ?, Nombre = ?, empleado_Id = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -122,7 +122,7 @@ public class DAOTareasImp implements DAOTareas{
 		TTareas tTareas = null;
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.tareas WHERE Id = ?;";
+			String c = "SELECT * FROM tareas WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -156,7 +156,7 @@ public class DAOTareasImp implements DAOTareas{
 		ArrayList<TTareas> lista = new ArrayList<TTareas>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.tareas;";
+			String c = "SELECT * FROM tareas;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();

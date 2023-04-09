@@ -14,5 +14,7 @@ public interface SADepartamento {
 
 	public TDepartamento mostrarUno(int idDepartamento);
 	
+	public TDepartamento MostrarPorNombre(String nombre);
+	
 	public Collection<TDepartamento> mostrarTodos();
 }

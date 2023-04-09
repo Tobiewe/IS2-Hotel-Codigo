@@ -13,6 +13,8 @@ public interface DAODepartamentos {
 	public Integer modificar(TDepartamento tDepartamento);
 
 	public TDepartamento MostrarUno(Integer id);
+	
+	public TDepartamento MostrarPorNombre(String nombre);
 
 	public Collection<TDepartamento> MostrarTodos();
 	

@@ -22,7 +22,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.habitacion (numero, piso, tamaño, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO habitacion (numero, piso, tamaño, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -58,7 +58,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 		try {
 			
-			String c = "UPDATE hotel-is2.habitacion SET ocupada = ? WHERE Numero = ?;";
+			String c = "UPDATE habitacion SET ocupada = ? WHERE Numero = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -86,7 +86,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE hotel-is2.habitacion SET precio = ?, ocupada = ?, id_empleado = ? WHERE Numero = ?;";
+			String c = "UPDATE habitacion SET precio = ?, ocupada = ?, id_empleado = ? WHERE Numero = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -116,7 +116,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		THabitaciones tHabitaciones = null;
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.habitacion WHERE numero = ?;";
+			String c = "SELECT * FROM habitacion WHERE numero = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -150,7 +150,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		ArrayList<THabitaciones> lista = new ArrayList<THabitaciones>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.habitacion;";
+			String c = "SELECT * FROM habitacion;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -182,7 +182,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		ArrayList<THabitaciones> lista = new ArrayList<THabitaciones>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.habitacion WHERE ocupada = ?;";
+			String c = "SELECT * FROM habitacion WHERE ocupada = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -211,12 +211,12 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 	}
 
 	
-	public Collection<THabitaciones> leerHabitacionesPorEmpleado(int idEmpleado) {
+	public Collection<THabitaciones> leerHabitacionesPorEmpleado(Integer idEmpleado) {
 		
 		ArrayList<THabitaciones> lista = new ArrayList<THabitaciones>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.habitacion WHERE id_empleado = ?";
+			String c = "SELECT * FROM habitacion WHERE id_empleado = ?";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);

@@ -25,7 +25,7 @@ public class DAOReservaImp implements DAOReserva {
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.reserva (Id, total, Fecha_entrada, nombre, noches) VALUES (?, ?, ?, ?. ?, ?);";
+			String c = "INSERT INTO reserva (Id, total, Fecha_entrada, nombre, noches) VALUES (?, ?, ?, ?. ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -57,7 +57,7 @@ public class DAOReservaImp implements DAOReserva {
 
 		try {
 			
-			String c = "UPDATE hotel-is2.reserva SET cliente_Id = ?, activo = ? WHERE Id = ?;";
+			String c = "UPDATE reserva SET cliente_Id = ?, activo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -103,7 +103,7 @@ public class DAOReservaImp implements DAOReserva {
 
 		try {
 			
-			String c = "UPDATE hotel-is2.reserva SET Fecha_entrada = ?, nombre = ?, noches = ? WHERE Id = ?;";
+			String c = "UPDATE reserva SET Fecha_entrada = ?, nombre = ?, noches = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -137,7 +137,7 @@ public class DAOReservaImp implements DAOReserva {
 		TReserva tReserva = null;
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.reserva WHERE Id = ?;";
+			String c = "SELECT * FROM reserva WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -171,7 +171,7 @@ public class DAOReservaImp implements DAOReserva {
 		ArrayList<TReserva> lista = new ArrayList<TReserva>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.departamento;";
+			String c = "SELECT * FROM departamento;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -204,7 +204,7 @@ public class DAOReservaImp implements DAOReserva {
 		ArrayList<TReserva> lista = new ArrayList<TReserva>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.departamento WHERE cliente_Id = ?;";
+			String c = "SELECT * FROM departamento WHERE cliente_Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);

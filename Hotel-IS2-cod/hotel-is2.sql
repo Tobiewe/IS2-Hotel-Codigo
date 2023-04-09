@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2023 a las 13:31:31
+-- Tiempo de generación: 09-04-2023 a las 17:28:17
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -30,8 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `cliente` (
   `Id` int(11) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
-  `Correo` varchar(100) DEFAULT NULL
+  `Correo` varchar(100) DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`Id`, `telefono`, `Correo`, `activo`) VALUES
+(3, '123456789', 'alvaro@gmail.com', 0),
+(4, '65478978', 'pepe@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -44,6 +53,13 @@ CREATE TABLE `cliente_empresa` (
   `CIF` varchar(20) DEFAULT NULL,
   `cliente_Id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cliente_empresa`
+--
+
+INSERT INTO `cliente_empresa` (`Nombre`, `CIF`, `cliente_Id`) VALUES
+('pwc', '12345678J', 4);
 
 -- --------------------------------------------------------
 
@@ -58,6 +74,13 @@ CREATE TABLE `cliente_particular` (
   `cliente_Id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `cliente_particular`
+--
+
+INSERT INTO `cliente_particular` (`nombre`, `apellidos`, `NIF`, `cliente_Id`) VALUES
+('alvaro', 'martinez', '12345671235Y', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +93,14 @@ CREATE TABLE `departamentos` (
   `nombre` varchar(100) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `departamentos`
+--
+
+INSERT INTO `departamentos` (`Id`, `jefe`, `nombre`, `activo`) VALUES
+(2, 'ana', 'reparar', 0),
+(23, 'alvaro', 'limpieza', 0);
 
 -- --------------------------------------------------------
 
@@ -87,6 +118,13 @@ CREATE TABLE `empleado` (
   `telefono` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`Id`, `sueldo`, `nombre`, `apellidos`, `activo`, `correo`, `telefono`) VALUES
+(23, '400.00', 'juan', 'luis', 1, 'pepe@gmail.com', '66666666');
+
 -- --------------------------------------------------------
 
 --
@@ -94,7 +132,7 @@ CREATE TABLE `empleado` (
 --
 
 CREATE TABLE `empleado_limpieza` (
-  `especialidad` varchar(50) NOT NULL,
+  `lugar` varchar(50) NOT NULL,
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -105,7 +143,7 @@ CREATE TABLE `empleado_limpieza` (
 --
 
 CREATE TABLE `empleado_mantenimiento` (
-  `lugar` varchar(50) NOT NULL,
+  `especialidad` varchar(50) NOT NULL,
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -124,6 +162,34 @@ CREATE TABLE `habitacion` (
   `id_empleado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `habitacion`
+--
+
+INSERT INTO `habitacion` (`numero`, `piso`, `tamaño`, `precio`, `ocupada`, `id_empleado`) VALUES
+(4, 5, '50.43', '5678.76', 1, 23),
+(6, 1, '30.5', '1030.54', 0, 23);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `linea_pedidos`
+--
+
+CREATE TABLE `linea_pedidos` (
+  `id_Reserva` int(11) NOT NULL,
+  `id_Cliente` int(11) NOT NULL,
+  `id_Habitacion` int(11) NOT NULL,
+  `activo` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `linea_pedidos`
+--
+
+INSERT INTO `linea_pedidos` (`id_Reserva`, `id_Cliente`, `id_Habitacion`, `activo`) VALUES
+(34, 3, 6, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -135,8 +201,17 @@ CREATE TABLE `reserva` (
   `Total` decimal(10,2) DEFAULT NULL,
   `Fecha_entrada` date DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
-  `cliente_Id` int(11) DEFAULT NULL
+  `cliente_Id` int(11) DEFAULT NULL,
+  `noches` int(11) NOT NULL,
+  `activo` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `reserva`
+--
+
+INSERT INTO `reserva` (`Id`, `Total`, `Fecha_entrada`, `Nombre`, `cliente_Id`, `noches`, `activo`) VALUES
+(34, '1000.00', '0000-00-00', 'Dondado', 3, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -151,6 +226,25 @@ CREATE TABLE `tareas` (
   `Nombre` varchar(100) DEFAULT NULL,
   `empleado_Id` int(11) DEFAULT NULL,
   `activa` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tareas`
+--
+
+INSERT INTO `tareas` (`Id`, `Descripcion`, `Lugar`, `Nombre`, `empleado_Id`, `activa`) VALUES
+(67, 'Arreglo aire', 'habitacion 23', 'aire acondicionado', 23, 1),
+(69, 'Limpieza planta 5', 'pasillo verde', 'manolos', 23, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tareas_empleado`
+--
+
+CREATE TABLE `tareas_empleado` (
+  `id_tareas` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -207,6 +301,14 @@ ALTER TABLE `habitacion`
   ADD KEY `id_empleado` (`id_empleado`);
 
 --
+-- Indices de la tabla `linea_pedidos`
+--
+ALTER TABLE `linea_pedidos`
+  ADD PRIMARY KEY (`id_Reserva`,`id_Cliente`,`id_Habitacion`),
+  ADD KEY `id_Cliente` (`id_Cliente`),
+  ADD KEY `id_Habitacion` (`id_Habitacion`);
+
+--
 -- Indices de la tabla `reserva`
 --
 ALTER TABLE `reserva`
@@ -219,6 +321,13 @@ ALTER TABLE `reserva`
 ALTER TABLE `tareas`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `empleado_Id` (`empleado_Id`);
+
+--
+-- Indices de la tabla `tareas_empleado`
+--
+ALTER TABLE `tareas_empleado`
+  ADD PRIMARY KEY (`id_tareas`,`id_empleado`),
+  ADD KEY `id_empleado` (`id_empleado`);
 
 --
 -- Restricciones para tablas volcadas
@@ -255,6 +364,14 @@ ALTER TABLE `habitacion`
   ADD CONSTRAINT `habitacion_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`Id`);
 
 --
+-- Filtros para la tabla `linea_pedidos`
+--
+ALTER TABLE `linea_pedidos`
+  ADD CONSTRAINT `linea_pedidos_ibfk_1` FOREIGN KEY (`id_Reserva`) REFERENCES `reserva` (`Id`),
+  ADD CONSTRAINT `linea_pedidos_ibfk_2` FOREIGN KEY (`id_Cliente`) REFERENCES `cliente` (`Id`),
+  ADD CONSTRAINT `linea_pedidos_ibfk_3` FOREIGN KEY (`id_Habitacion`) REFERENCES `habitacion` (`numero`);
+
+--
 -- Filtros para la tabla `reserva`
 --
 ALTER TABLE `reserva`
@@ -265,6 +382,13 @@ ALTER TABLE `reserva`
 --
 ALTER TABLE `tareas`
   ADD CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`empleado_Id`) REFERENCES `empleado` (`Id`);
+
+--
+-- Filtros para la tabla `tareas_empleado`
+--
+ALTER TABLE `tareas_empleado`
+  ADD CONSTRAINT `tareas_empleado_ibfk_1` FOREIGN KEY (`id_tareas`) REFERENCES `tareas` (`Id`),
+  ADD CONSTRAINT `tareas_empleado_ibfk_2` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

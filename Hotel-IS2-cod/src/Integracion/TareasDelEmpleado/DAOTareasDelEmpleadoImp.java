@@ -23,7 +23,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 		
 		try {
 			
-			String c = "INSERT INTO hotel-is2.tareas_empleado (id_tareas, id_empleado) VALUES (?, ?);";
+			String c = "INSERT INTO tareas_empleado (id_tareas, id_empleado) VALUES (?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -58,7 +58,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 
 		try {
 			
-			String c = "UPDATE hotel-is2.tareas_empleado SET id_tareas = ? WHERE id_empleado = ?;";
+			String c = "UPDATE tareas_empleado SET id_tareas = ? WHERE id_empleado = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -85,7 +85,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 		ArrayList<TTareasDelEmpleado> lista = new ArrayList<TTareasDelEmpleado>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.tareas_empleado;";
+			String c = "SELECT * FROM tareas_empleado;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -115,7 +115,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 		ArrayList<TTareasDelEmpleado> lista = new ArrayList<TTareasDelEmpleado>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.tareas_empleado WHERE id_tareas = ?;";
+			String c = "SELECT * FROM tareas_empleado WHERE id_tareas = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -148,7 +148,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 		ArrayList<TTareasDelEmpleado> lista = new ArrayList<TTareasDelEmpleado>();
 		
 		try {
-			String c = "SELECT * FROM hotel-is2.tareas_empleado WHERE id_empleado = ?;";
+			String c = "SELECT * FROM tareas_empleado WHERE id_empleado = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);

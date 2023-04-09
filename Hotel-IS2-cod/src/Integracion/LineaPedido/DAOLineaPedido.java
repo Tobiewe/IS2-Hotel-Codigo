@@ -9,7 +9,7 @@ public interface DAOLineaPedido {
 	
 	public Integer crear(TLineaPedido tLineaPedido);
 
-	public Integer eliminar(Integer idReserva, Integer idCliente);
+	public Integer eliminar(Integer idReserva, Integer idCliente, Integer idHabitacion);
 
 	public Integer modificar(TLineaPedido tLineaPedido);
 
