@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2023 a las 17:28:17
+-- Tiempo de generación: 09-04-2023 a las 19:27:29
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -123,7 +123,9 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`Id`, `sueldo`, `nombre`, `apellidos`, `activo`, `correo`, `telefono`) VALUES
-(23, '400.00', 'juan', 'luis', 1, 'pepe@gmail.com', '66666666');
+(23, '400.00', 'juan', 'luis', 1, 'pepe@gmail.com', '66666666'),
+(58, '1250.00', 'alberto', 'sanchez', 0, 'sanchez@jag.com', '33333333'),
+(59, '1200.00', 'alberto', 'galdos', 1, 'abertto@jag.com', '123456789');
 
 -- --------------------------------------------------------
 
@@ -136,6 +138,13 @@ CREATE TABLE `empleado_limpieza` (
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `empleado_limpieza`
+--
+
+INSERT INTO `empleado_limpieza` (`lugar`, `id_empleado`) VALUES
+('Planta 1', 59);
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +155,13 @@ CREATE TABLE `empleado_mantenimiento` (
   `especialidad` varchar(50) NOT NULL,
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `empleado_mantenimiento`
+--
+
+INSERT INTO `empleado_mantenimiento` (`especialidad`, `id_empleado`) VALUES
+('electronica', 58);
 
 -- --------------------------------------------------------
 
@@ -211,6 +227,7 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`Id`, `Total`, `Fecha_entrada`, `Nombre`, `cliente_Id`, `noches`, `activo`) VALUES
+(1, '1030.00', '1970-01-01', 'fiesta', 3, 5, 0),
 (34, '1000.00', '0000-00-00', 'Dondado', 3, 5, 1);
 
 -- --------------------------------------------------------
@@ -246,6 +263,13 @@ CREATE TABLE `tareas_empleado` (
   `id_tareas` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tareas_empleado`
+--
+
+INSERT INTO `tareas_empleado` (`id_tareas`, `id_empleado`) VALUES
+(67, 23);
 
 --
 -- Índices para tablas volcadas
