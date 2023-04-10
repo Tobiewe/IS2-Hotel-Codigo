@@ -64,7 +64,6 @@ public class SATareaIMP implements SATarea {
 		}
 		
 		return daoTareas.modificar(tTareas);
-		
 	}
 
 	
