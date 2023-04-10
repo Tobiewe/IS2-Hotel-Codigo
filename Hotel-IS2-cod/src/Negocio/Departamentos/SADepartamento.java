@@ -6,9 +6,9 @@ import Negocio.Departamentos.TDepartamento;
 
 public interface SADepartamento {
 	
-	public Integer crear(TDepartamento departamento);
+	public Integer crear(TDepartamento tdepartamento);
 	
-	public Integer modificar(TDepartamento departamento);
+	public Integer modificar(TDepartamento tdepartamento);
 
 	public Integer eliminar(int idDepartamento);
 

@@ -1,15 +1,17 @@
 package Negocio.Departamentos;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import Integracion.Departamentos.DAODepartamentos;
+import Integracion.Empleados.DAOEmpleados;
 import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 
 public class SADepartamentoIMP implements SADepartamento {
 	
-	@Override
+	
 	public Integer crear(TDepartamento tdepartamento) {
-		if(tdepartamento.getJefe().length() != 9 || tdepartamento.getNombre().trim().equals("")){
+		if(tdepartamento.getJefe().length() == 8 || tdepartamento.getNombre().trim().equals("")){
 			return -5;
 		}
 		
@@ -32,34 +34,71 @@ public class SADepartamentoIMP implements SADepartamento {
 		return tDep.getId();
 	}
 
-	@Override
-	public Integer modificar(TDepartamento departamento) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Integer modificar(TDepartamento tdepartamento) {
+		if(tdepartamento.getJefe().length() == 8 || tdepartamento.getNombre().trim().equals("")){
+			return -5;
+		}
+		
+		DAODepartamentos daoDep = FactoriaIntegracion.getInstance().newDAODepartamento();
+		TDepartamento tDep = daoDep.MostrarUno(tdepartamento.getId());
+		
+		if(tDep == null && !tDep.getNombre().equals(tdepartamento.getNombre())){
+			return -2;
+		}
+		
+		return daoDep.modificar(tdepartamento);
+		
 	}
 
-	@Override
+	
 	public Integer eliminar(int idDepartamento) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DAODepartamentos daoDep = FactoriaIntegracion.getInstance().newDAODepartamento();
+		TDepartamento tDep = daoDep.MostrarUno(idDepartamento);
+		
+		if(tDep == null || !tDep.getActivado()){
+			return -2;
+		}
+		
+		return daoDep.borrar(idDepartamento);
+		
 	}
 
-	@Override
+	
 	public TDepartamento mostrarUno(int idDepartamento) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DAODepartamentos daoDep = FactoriaIntegracion.getInstance().newDAODepartamento();
+		TDepartamento tDep = daoDep.MostrarUno(idDepartamento);
+		
+		if(tDep == null && !tDep.getActivado()){
+			return null;
+		}
+		
+		return daoDep.MostrarUno(idDepartamento);
 	}
 
-	@Override
+	
 	public Collection<TDepartamento> mostrarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DAODepartamentos daoDep = FactoriaIntegracion.getInstance().newDAODepartamento();
+		Collection<TDepartamento> dep = daoDep.MostrarTodos();
+
+		return dep;
 	}
 
-	@Override
+	
 	public TDepartamento MostrarPorNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DAODepartamentos daoDep = FactoriaIntegracion.getInstance().newDAODepartamento();
+		TDepartamento tDep = daoDep.MostrarPorNombre(nombre);
+		
+		if(tDep == null){
+			return null;
+		}
+		
+		return daoDep.MostrarPorNombre(nombre);
+		
 	}
 
 }
