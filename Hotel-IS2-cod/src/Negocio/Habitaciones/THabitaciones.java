@@ -52,6 +52,8 @@ public class THabitaciones {
 		return id_empleado;
 	}
 
-	
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
 	
 }

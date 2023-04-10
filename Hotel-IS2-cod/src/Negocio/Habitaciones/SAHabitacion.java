@@ -16,5 +16,7 @@ public interface SAHabitacion {
 	
 	public Collection<THabitaciones> mostrarTodos();
 	
-	public Collection<THabitaciones> mostrarPorEmpleado();
+	public Collection<THabitaciones> mostrarPorEmpleado(Integer idEmpleado);
+	
+	public Collection<THabitaciones> MostrarTodasDisponibles();
 }

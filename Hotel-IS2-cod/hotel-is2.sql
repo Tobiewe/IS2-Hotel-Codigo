@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2023 a las 19:27:29
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generaciÃ³n: 09-04-2023 a las 19:27:29
+-- VersiÃ³n del servidor: 10.4.27-MariaDB
+-- VersiÃ³n de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cliente` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `telefono` varchar(20) DEFAULT NULL,
   `Correo` varchar(100) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT 0
@@ -88,7 +88,7 @@ INSERT INTO `cliente_particular` (`nombre`, `apellidos`, `NIF`, `cliente_Id`) VA
 --
 
 CREATE TABLE `departamentos` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `jefe` varchar(100) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT NULL
@@ -109,7 +109,7 @@ INSERT INTO `departamentos` (`Id`, `jefe`, `nombre`, `activo`) VALUES
 --
 
 CREATE TABLE `empleado` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `sueldo` decimal(10,2) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `apellidos` varchar(100) DEFAULT NULL,
@@ -170,9 +170,9 @@ INSERT INTO `empleado_mantenimiento` (`especialidad`, `id_empleado`) VALUES
 --
 
 CREATE TABLE `habitacion` (
-  `numero` int(11) NOT NULL,
+  `numero` int(11) AUTO_INCREMENT PRIMARY KEY,
   `piso` int(11) NOT NULL,
-  `tamaño` varchar(20) NOT NULL,
+  `tamaÃ±o` varchar(20) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `ocupada` tinyint(1) DEFAULT 0,
   `id_empleado` int(11) DEFAULT NULL
@@ -182,7 +182,7 @@ CREATE TABLE `habitacion` (
 -- Volcado de datos para la tabla `habitacion`
 --
 
-INSERT INTO `habitacion` (`numero`, `piso`, `tamaño`, `precio`, `ocupada`, `id_empleado`) VALUES
+INSERT INTO `habitacion` (`numero`, `piso`, `tamaÃ±o`, `precio`, `ocupada`, `id_empleado`) VALUES
 (4, 5, '50.43', '5678.76', 1, 23),
 (6, 1, '30.5', '1030.54', 0, 23);
 
@@ -213,7 +213,7 @@ INSERT INTO `linea_pedidos` (`id_Reserva`, `id_Cliente`, `id_Habitacion`, `activ
 --
 
 CREATE TABLE `reserva` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `Total` decimal(10,2) DEFAULT NULL,
   `Fecha_entrada` date DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
@@ -237,7 +237,7 @@ INSERT INTO `reserva` (`Id`, `Total`, `Fecha_entrada`, `Nombre`, `cliente_Id`, `
 --
 
 CREATE TABLE `tareas` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `Descripcion` varchar(500) DEFAULT NULL,
   `Lugar` varchar(100) DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
@@ -272,7 +272,7 @@ INSERT INTO `tareas_empleado` (`id_tareas`, `id_empleado`) VALUES
 (67, 23);
 
 --
--- Índices para tablas volcadas
+-- Ã�ndices para tablas volcadas
 --
 
 --

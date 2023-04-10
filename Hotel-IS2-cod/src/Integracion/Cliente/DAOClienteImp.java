@@ -23,15 +23,14 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			
-			String c = "INSERT INTO cliente (Id, telefono, Correo, activo) VALUES (?, ?, ?, ?);";
+			String c = "INSERT INTO cliente (telefono, Correo, activo) VALUES (?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, tCliente.getId());
-			ps.setInt(2, tCliente.getTelefono());
-			ps.setString(3, tCliente.getCorreo());
-			ps.setBoolean(4, tCliente.getActivo());
+			ps.setInt(1, tCliente.getTelefono());
+			ps.setString(2, tCliente.getCorreo());
+			ps.setBoolean(3, tCliente.getActivo());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
