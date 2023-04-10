@@ -1,11 +1,15 @@
 package Presentacion.Controller;
 
 import Negocio.Empleados.SAEmpleado;
+
+import java.util.Collection;
+
 import Negocio.Clientes.SACliente;
 import Negocio.Tareas.SATarea;
 import Presentacion.VFactory.VFactory;
 import Negocio.Departamentos.SADepartamento;
 import Negocio.Habitaciones.SAHabitacion;
+import Negocio.Habitaciones.THabitaciones;
 import Negocio.NegocioFactory.SAFactory;
 import Negocio.Reserva.SAReserva;
 
@@ -62,6 +66,13 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.HABITACION_MOSTRAR_POR_EMPLEADO_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.HABITACION_MOSTRAR_POR_EMPLEADO_VISTA, null);
+			break;
+		case Events.HABITACION_MOSTRAR_TODAS:
+			Collection<THabitaciones> collection = saHabitacion.mostrarTodos();
+			if(collection != null)
+				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_SUCCESS, collection);
+			else
+				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_ERROR, collection);
 			break;
 
 		}

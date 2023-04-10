@@ -1,5 +1,6 @@
 package Presentacion.Habitacion.VHabitacionCasosUso;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,10 +8,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
 import Negocio.Habitaciones.THabitaciones;
@@ -19,8 +25,9 @@ import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
 
 public class VMostrarTodasHabitacion extends JFrame implements IGUI{
-	Controller ctrl;
-	
+	private Controller ctrl;
+	private String title = "Mostrar todas las habitaciones";
+	private habitacionesTableModel tableModel;
 	public VMostrarTodasHabitacion(){
 		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable() {
@@ -33,13 +40,19 @@ public class VMostrarTodasHabitacion extends JFrame implements IGUI{
 	protected void initGUI() {
 		JPanel mainPanel = new JPanel();
 		setContentPane(mainPanel);
+		setTitle(title);
 		
 		
 		JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		cancelButtonPanel.add(cancelButton());
 		
+		tableModel = new habitacionesTableModel();
+		mainPanel.add(tableModel.transformTableToPanel());
 		mainPanel.add(cancelButtonPanel);
 		
+		
+		Controller.getInstance().carryAction(Events.HABITACION_MOSTRAR_TODAS, null);
+
 		pack();
 		setLocationRelativeTo(getParent());
 		setVisible(true);
@@ -62,6 +75,7 @@ public class VMostrarTodasHabitacion extends JFrame implements IGUI{
 		public void setList(Collection<THabitaciones> collection)
 		{
 			habitaciones = new ArrayList<>(collection);
+			fireTableDataChanged();
 		}
 		@Override
 		public int getColumnCount() {
@@ -88,6 +102,19 @@ public class VMostrarTodasHabitacion extends JFrame implements IGUI{
 				return habitaciones.get(rowIndex).getOcupada();
 			return null;
 		}
+		public JPanel transformTableToPanel()
+		{
+			JPanel tablaPanel = new JPanel(new BorderLayout());
+			JTable hTable = new JTable(this); 
+			
+			tablaPanel.add(hTable);
+			TitledBorder titleBorder = BorderFactory.createTitledBorder(title);
+			tablaPanel.setBorder(titleBorder);
+			
+			JScrollPane sPanel = new JScrollPane(hTable);
+			tablaPanel.add(sPanel, BorderLayout.CENTER);
+			return tablaPanel;
+		}
 		
 	}
 	public JButton cancelButton()
@@ -106,7 +133,15 @@ public class VMostrarTodasHabitacion extends JFrame implements IGUI{
 	}
 	@Override
 	public void update(int event, Object datos) {
-		// TODO Auto-generated method stub
+		if(event == Events.HABITACION_MOSTRAR_TODAS_SUCCESS)
+		{
+			tableModel.setList((Collection<THabitaciones>) datos);
+		}
+		else if(event == Events.HABITACION_MOSTRAR_TODAS_ERROR)
+		{
+			JOptionPane.showMessageDialog(this, "ERROR: No hay ninguna habitación por mostrar");
+
+		}
 		
 	}
 

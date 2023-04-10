@@ -72,6 +72,9 @@ public class Events {
 	
 	public static final int HABITACION_MOSTRAR_TODAS = 450;
 	public static final int HABITACION_MOSTRAR_TODAS_VISTA = 451;
+	public static final int HABITACION_MOSTRAR_TODAS_SUCCESS = 452;
+	
+	public static final int HABITACION_MOSTRAR_TODAS_ERROR = 453;
 	
 	public static final int HABITACION_MOSTRAR_DISPONIBLES = 460;
 	public static final int HABITACION_MOSTRAR_DISPONIBLES_VISTA = 461;
