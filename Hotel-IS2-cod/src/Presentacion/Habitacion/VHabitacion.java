@@ -20,6 +20,7 @@ public class VHabitacion extends JFrame implements IGUI {
 	
 	public VHabitacion()
 	{
+		super("Habitacion");
 		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable()
 		{
@@ -45,7 +46,8 @@ public class VHabitacion extends JFrame implements IGUI {
 		mainPanel.add(mostrarPorEmpleadoButton());
 		
 		pack();
-		
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	

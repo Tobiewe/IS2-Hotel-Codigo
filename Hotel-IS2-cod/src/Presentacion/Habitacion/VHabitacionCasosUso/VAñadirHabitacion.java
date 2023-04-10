@@ -2,6 +2,7 @@ package Presentacion.Habitacion.VHabitacionCasosUso;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -44,6 +45,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 
 	public void initGUI() 
 	{
+		setTitle("Añadir Habitación");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
@@ -138,10 +140,15 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	public JButton crearButton(JTextField textField)
 	{
 		JButton crearButton = new JButton("Crear");
-		crearButton.addActionListener((e)->
+		crearButton.addActionListener(new ActionListener()
 		{
-			THabitaciones tHabitacion = new THabitaciones(null,piso,tamanyo,Float.parseFloat(textField.getText()),false,null);
-			ctrl.carryAction(Events.HABITACION_CREAR, tHabitacion);
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				THabitaciones tHabitacion = new THabitaciones(null,piso,tamanyo,Float.parseFloat(textField.getText()),false,null);
+				ctrl.carryAction(Events.HABITACION_CREAR, tHabitacion);
+			}
+			
 			
 		});
 		return crearButton;
@@ -149,10 +156,14 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	public JButton cancelButton()
 	{
 		JButton cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener((e)->
+		cancelButton.addActionListener(new ActionListener()
 		{
-			setVisible(false);
-			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+			}
+		
 		});
 		return cancelButton;
 	}
