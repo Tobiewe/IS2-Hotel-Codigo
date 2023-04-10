@@ -34,6 +34,19 @@ public class VHabitacion extends JFrame implements IGUI {
 	protected void initGUI() {
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
+		
+		mainPanel.add(crearHabitacionButton());
+		mainPanel.add(modificarHabitacionButton());
+		mainPanel.add(eliminarHabitacionButton());
+		mainPanel.add(mostrarUnaHabitacionButton());
+		mainPanel.add(mostrarTodasHabitacionesButton());
+		mainPanel.add(mostrarDisponiblesButton());
+		mainPanel.add(mostrarPorEmpleadoButton());
+		
+		pack();
+		
+		setVisible(true);
 	}
 	
 	//Crear Departamento
@@ -45,7 +58,7 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_CREAR, null);
+						ctrl.carryAction(Events.HABITACION_CREAR_VISTA, null);
 						setVisible(false);
 					}
 				});
@@ -60,14 +73,14 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_MODIFICAR, null);
+						ctrl.carryAction(Events.HABITACION_MODIFICAR_VISTA, null);
 						setVisible(false);
 					}
 				});
 				return modificarDepartamentoButton;
 			}
 			//Eliminar Departamento
-			public JButton eliminarDepartamentoButton()
+			public JButton eliminarHabitacionButton()
 			{
 				JButton eliminarDepartamentoButton = new JButton("Eliminar");
 				eliminarDepartamentoButton.setSize(buttonDimension);
@@ -75,14 +88,14 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_ELIMINAR, null);
+						ctrl.carryAction(Events.HABITACION_ELIMINAR_VISTA, null);
 						setVisible(false);
 					}
 				});
 				return eliminarDepartamentoButton;
 			}
 			//Mostrar uno Departamento 
-			public JButton mostrarUnoDepartamentoButton()
+			public JButton mostrarUnaHabitacionButton()
 			{
 				JButton mostrarUnoDepartamentoButton = new JButton("Mostrar Uno");
 				mostrarUnoDepartamentoButton.setSize(buttonDimension);
@@ -90,26 +103,54 @@ public class VHabitacion extends JFrame implements IGUI {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_UNO, null);
+						ctrl.carryAction(Events.HABITACION_MOSTRAR_UNA_VISTA, null);
 						setVisible(false);
 					}
 				});
 				return mostrarUnoDepartamentoButton;
 			}
 			//Mostrar todos Departamento
-			public JButton mostrarTodosDepartamentoButton()
+			public JButton mostrarTodasHabitacionesButton()
 			{
-				JButton mostrarTodosDepartamentoButton = new JButton("Mostrar Todo");
+				JButton mostrarTodosDepartamentoButton = new JButton("Mostrar Todas");
 				mostrarTodosDepartamentoButton.setSize(buttonDimension);
 				mostrarTodosDepartamentoButton.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_TODOS, null);
+						ctrl.carryAction(Events.HABITACION_MOSTRAR_TODAS_VISTA , null);
 						setVisible(false);
 					}
 				});
 				return mostrarTodosDepartamentoButton;
+			}
+			public JButton mostrarDisponiblesButton()
+			{
+				JButton mostrarUnoDepartamentoButton = new JButton("Mostrar Disponibles");
+				mostrarUnoDepartamentoButton.setSize(buttonDimension);
+				mostrarUnoDepartamentoButton.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						ctrl.carryAction(Events.HABITACION_MOSTRAR_DISPONIBLES_VISTA, null);
+						setVisible(false);
+					}
+				});
+				return mostrarUnoDepartamentoButton;
+			}
+			public JButton mostrarPorEmpleadoButton()
+			{
+				JButton mostrarUnoDepartamentoButton = new JButton("Mostrar Por Empleado");
+				mostrarUnoDepartamentoButton.setSize(buttonDimension);
+				mostrarUnoDepartamentoButton.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						ctrl.carryAction(Events.HABITACION_MOSTRAR_POR_EMPLEADO_VISTA, null);
+						setVisible(false);
+					}
+				});
+				return mostrarUnoDepartamentoButton;
 			}
 
 			@Override

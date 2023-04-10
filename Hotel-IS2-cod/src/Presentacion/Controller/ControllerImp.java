@@ -38,6 +38,24 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.VENTANA_PRINCIPAL:
 			cIGUI = VFactory.getInstance().newView(Events.VENTANA_PRINCIPAL_INSTANCE, null);
+			break;
+		case Events.HABITACION_NUEVA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_VISTA, null);
+		case Events.HABITACION_CREAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_CREAR_VISTA, null);
+		case Events.HABITACION_MODIFICAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_MODIFICAR_VISTA, null);
+		case Events.HABITACION_ELIMINAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_ELIMINAR_VISTA, null);
+		case Events.HABITACION_MOSTRAR_UNA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_MOSTRAR_UNA_VISTA, null);
+		case Events.HABITACION_MOSTRAR_TODAS_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_MOSTRAR_TODAS_VISTA, null);
+		case Events.HABITACION_MOSTRAR_DISPONIBLES_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_MOSTRAR_DISPONIBLES_VISTA, null);
+		case Events.HABITACION_MOSTRAR_POR_EMPLEADO_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_MOSTRAR_POR_EMPLEADO_VISTA, null);
+
 		}
 		
 	}

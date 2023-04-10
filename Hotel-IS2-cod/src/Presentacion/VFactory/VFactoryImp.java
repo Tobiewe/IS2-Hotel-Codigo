@@ -36,9 +36,9 @@ public class VFactoryImp extends VFactory {
 			return new VTarea();
 		case Events.RESERVA_VISTA:
 			return new VReserva();
-			
 		case Events.HABITACION_VISTA:
 			return new VHabitacion();
+			
 		case Events.HABITACION_CREAR_VISTA:
 			return new VAñadirHabitacion();
 		case Events.HABITACION_ELIMINAR_VISTA:

@@ -6,8 +6,14 @@ public class Events {
 	public static final int VENTANA_PRINCIPAL_INSTANCE = 2;
 	//Empleado
 	public static final int EMPLEADO_VISTA = 100;
+	public static final int EMPLEADO_NUEVA_VISTA = 101;
+
+
+
+
 	
 	public static final int EMPLEADO_CREAR_VISTA = 110;
+	
 	public static final int EMPLEADO_CREAR = 111;
 	public static final int EMPLEADO_CREAR_PARAMETROS_INCORRECTOS = 112;
 //	public static final int EMPLEADO_CREAR
@@ -25,6 +31,8 @@ public class Events {
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO = 160;
 	
 	public static final int CLIENTE_VISTA = 200;
+	public static final int CLIENTE_NUEVA_VISTA = 201;
+
 	public static final int CLIENTE_CREAR = 210;
 	public static final int CLIENTE_MODIFICAR = 220;
 	public static final int CLIENTE_ELIMINAR = 230;
@@ -32,6 +40,8 @@ public class Events {
 	public static final int CLIENTE_MOSTRAR_TODOS = 250;
 	
 	public static final int RESERVA_VISTA = 300;
+	public static final int RESERVA_NUEVA_VISTA = 301 ;
+
 	public static final int RESERVA_ABRIR = 310;
 	public static final int RESERVA_MODIFICAR = 320;
 	public static final int RESERVA_ELIMINAR = 330;
@@ -43,25 +53,32 @@ public class Events {
 	public static final int RESERVA_MOSTRAR_POR_CLIENTE = 390;
 	
 	public static final int HABITACION_VISTA = 400;
+	public static final int HABITACION_NUEVA_VISTA = 401;
 	
-;
 	public static final int HABITACION_CREAR = 410;
 	public static final int HABITACION_CREAR_VISTA = 411;
 	
 	public static final int HABITACION_ELIMINAR = 420;
 	public static final int HABITACION_ELIMINAR_VISTA = 421;
+	
 	public static final int HABITACION_MODIFICAR = 430;
 	public static final int HABITACION_MODIFICAR_VISTA = 431;
+	
 	public static final int HABITACION_MOSTRAR_UNA = 440;
 	public static final int HABITACION_MOSTRAR_UNA_VISTA = 441;
+	
 	public static final int HABITACION_MOSTRAR_TODAS = 450;
 	public static final int HABITACION_MOSTRAR_TODAS_VISTA = 451;
+	
 	public static final int HABITACION_MOSTRAR_DISPONIBLES = 460;
 	public static final int HABITACION_MOSTRAR_DISPONIBLES_VISTA = 461;
+	
 	public static final int HABITACION_MOSTRAR_POR_EMPLEADO = 470;
 	public static final int HABITACION_MOSTRAR_POR_EMPLEADO_VISTA = 471;
 	
 	public static final int TAREA_VISTA = 500;
+	public static final int TAREA_NUEVA_VISTA = 501 ;
+
 	public static final int TAREA_CREAR = 510;
 	public static final int TAREA_MODIFICAR = 520;
 	public static final int TAREA_ELIMINAR = 530;
@@ -71,6 +88,8 @@ public class Events {
 	public static final int TAREA_VINCULAR = 570;
 	
 	public static final int DEPARTAMENTO_VISTA = 600;
+	public static final int DEPARTAMENTO_NUEVA_VISTA = 601;
+
 	public static final int DEPARTAMENTO_CREAR = 610;
 	public static final int DEPARTAMENTO_MODIFICAR = 620;
 	public static final int DEPARTAMENTO_ELIMINAR = 630;

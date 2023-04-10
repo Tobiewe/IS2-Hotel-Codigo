@@ -47,12 +47,23 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
+
+		JTextField precioText = new JTextField("0");
 		
+		mainPanel.add(panelPiso());
+		mainPanel.add(tamanyoPanel());
+		mainPanel.add(precioPanel(precioText));
 		
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		buttonPanel.add(crearButton(precioText));
+		buttonPanel.add(cancelButton());
+		
+		mainPanel.add(buttonPanel);
 		
 		
 		pack();
-		setLocationRelativeTo(getParent());
 		setVisible(true);
 	}
 	
@@ -124,7 +135,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		return precioPanel;
 	}
 	
-	public JButton CrearButton(JTextField textField)
+	public JButton crearButton(JTextField textField)
 	{
 		JButton crearButton = new JButton("Crear");
 		crearButton.addActionListener((e)->
@@ -134,6 +145,16 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 			
 		});
 		return crearButton;
+	}
+	public JButton cancelButton()
+	{
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener((e)->
+		{
+			setVisible(false);
+			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+		});
+		return cancelButton;
 	}
 	@Override
 	public void update(int event, Object datos) {
