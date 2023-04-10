@@ -52,7 +52,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.RESERVA_VISTA, null);
+				ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
 			}
 			
 		});
@@ -65,7 +65,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.HABITACION_VISTA, null);
+				ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
 			}
 			
 		});
@@ -79,7 +79,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.CLIENTE_VISTA, null);
+				ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
 			}
 			
 		});
@@ -92,7 +92,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.EMPLEADO_VISTA, null);
+				ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
 			}
 			
 		});
@@ -106,7 +106,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.TAREA_VISTA, null);
+				ctrl.carryAction(Events.TAREA_NUEVA_VISTA, null);
 			}
 			
 		});
@@ -119,7 +119,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.DEPARTAMENTO_VISTA, null);
+				ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
 			}
 			
 		});
