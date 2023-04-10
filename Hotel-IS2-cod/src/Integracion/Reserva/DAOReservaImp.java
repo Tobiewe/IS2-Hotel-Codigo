@@ -25,18 +25,17 @@ public class DAOReservaImp implements DAOReserva {
 		
 		try {
 			
-			String c = "INSERT INTO reserva (Id, total, Fecha_entrada, nombre, noches, cliente_Id, activo) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO reserva (total, Fecha_entrada, nombre, noches, cliente_Id, activo) VALUES (?, ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, tReserva.getId());
-			ps.setFloat(2, tReserva.getTotal());
-			ps.setDate(3, (Date) tReserva.getFecha_entrada());
-			ps.setString(4, tReserva.getNombre());
-			ps.setInt(5, tReserva.getNoches());
-			ps.setInt(6, tReserva.getId_cliente());
-			ps.setBoolean(7, tReserva.getActivo());
+			ps.setFloat(1, tReserva.getTotal());
+			ps.setDate(2, (Date) tReserva.getFecha_entrada());
+			ps.setString(3, tReserva.getNombre());
+			ps.setInt(4, tReserva.getNoches());
+			ps.setInt(5, tReserva.getId_cliente());
+			ps.setBoolean(6, tReserva.getActivo());
 			ps.executeUpdate();
 			
 			

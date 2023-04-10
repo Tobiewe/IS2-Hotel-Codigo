@@ -23,17 +23,16 @@ public class DAOTareasImp implements DAOTareas{
 		
 		try {
 			
-			String c = "INSERT INTO tareas (id, Descripcion, Lugar, Nombre, empleado_Id, activa) VALUES (?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO tareas (Descripcion, Lugar, Nombre, empleado_Id, activa) VALUES (?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, tTareas.getId());
-			ps.setString(2, tTareas.getDescripcion());
-			ps.setString(3, tTareas.getLugar());
-			ps.setString(4, tTareas.getNombre());
-			ps.setInt(5, tTareas.getId_empleado());
-			ps.setBoolean(6, tTareas.getActiva());
+			ps.setString(1, tTareas.getDescripcion());
+			ps.setString(2, tTareas.getLugar());
+			ps.setString(3, tTareas.getNombre());
+			ps.setInt(4, tTareas.getId_empleado());
+			ps.setBoolean(5, tTareas.getActiva());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();

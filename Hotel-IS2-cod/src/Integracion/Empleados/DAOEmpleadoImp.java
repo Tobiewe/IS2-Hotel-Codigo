@@ -25,18 +25,17 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		
 		try {
 			
-			String c = "INSERT INTO empleado (Id, sueldo, nombre, apellidos, activo, correo, telefono) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO empleado (sueldo, nombre, apellidos, activo, correo, telefono) VALUES (?, ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, tEmpleados.getId());
-			ps.setFloat(2, tEmpleados.getSueldo());
-			ps.setString(3, tEmpleados.getNombre());
-			ps.setString(4, tEmpleados.getApellidos());
-			ps.setBoolean(5, tEmpleados.getActivo());
-			ps.setString(6, tEmpleados.getCorreo());
-			ps.setInt(7, tEmpleados.getTelefono());
+			ps.setFloat(1, tEmpleados.getSueldo());
+			ps.setString(2, tEmpleados.getNombre());
+			ps.setString(3, tEmpleados.getApellidos());
+			ps.setBoolean(4, tEmpleados.getActivo());
+			ps.setString(5, tEmpleados.getCorreo());
+			ps.setInt(6, tEmpleados.getTelefono());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();

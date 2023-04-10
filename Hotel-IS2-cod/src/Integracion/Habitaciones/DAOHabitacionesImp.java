@@ -22,17 +22,16 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		
 		try {
 			
-			String c = "INSERT INTO habitacion (numero, piso, tamaño, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO habitacion (piso, tamaño, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, tHabitaciones.getNumero());
-			ps.setInt(2, tHabitaciones.getPiso());
-			ps.setFloat(3, tHabitaciones.getTamaño());
-			ps.setFloat(4, tHabitaciones.getPrecio());
-			ps.setBoolean(5, tHabitaciones.getOcupada());
-			ps.setInt(6, tHabitaciones.getId_empledo());
+			ps.setInt(1, tHabitaciones.getPiso());
+			ps.setFloat(2, tHabitaciones.getTamaño());
+			ps.setFloat(3, tHabitaciones.getPrecio());
+			ps.setBoolean(4, tHabitaciones.getOcupada());
+			ps.setInt(5, tHabitaciones.getId_empledo());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();

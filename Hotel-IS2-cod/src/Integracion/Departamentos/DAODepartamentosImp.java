@@ -23,15 +23,14 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		try {
 			
 			
-			String c = "INSERT INTO departamentos (Id, jefe, nombre, activo) VALUES (?, ?, ?, ?);";
+			String c = "INSERT INTO departamentos (jefe, nombre, activo) VALUES (?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, tDepartamento.getId());
-			ps.setString(2, tDepartamento.getJefe());
-			ps.setString(3, tDepartamento.getNombre());
-			ps.setBoolean(4, tDepartamento.getActivado());
+			ps.setString(1, tDepartamento.getJefe());
+			ps.setString(2, tDepartamento.getNombre());
+			ps.setBoolean(3, tDepartamento.getActivado());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
