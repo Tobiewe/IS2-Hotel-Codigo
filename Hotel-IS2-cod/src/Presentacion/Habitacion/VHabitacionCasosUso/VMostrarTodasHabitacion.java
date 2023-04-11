@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,6 +40,7 @@ public class VMostrarTodasHabitacion extends JFrame implements IGUI{
 	}
 	protected void initGUI() {
 		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setTitle(title);
 		
@@ -48,7 +50,9 @@ public class VMostrarTodasHabitacion extends JFrame implements IGUI{
 		
 		tableModel = new habitacionesTableModel();
 		mainPanel.add(tableModel.transformTableToPanel());
-		mainPanel.add(cancelButtonPanel);
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		buttonPanel.add(cancelButtonPanel);
+		mainPanel.add(buttonPanel);
 		
 		
 		Controller.getInstance().carryAction(Events.HABITACION_MOSTRAR_TODAS, null);

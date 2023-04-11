@@ -78,6 +78,9 @@ public class Events {
 	
 	public static final int HABITACION_MOSTRAR_DISPONIBLES = 460;
 	public static final int HABITACION_MOSTRAR_DISPONIBLES_VISTA = 461;
+	public static final int HABITACION_MOSTRAR_DISPONIBLES_SUCCESS = 462;
+	public static final int HABITACION_MOSTRAR_DISPONIBLES_ERROR = 462;
+
 	
 	public static final int HABITACION_MOSTRAR_POR_EMPLEADO = 470;
 	public static final int HABITACION_MOSTRAR_POR_EMPLEADO_VISTA = 471;

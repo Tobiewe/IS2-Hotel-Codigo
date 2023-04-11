@@ -68,12 +68,19 @@ public class ControllerImp extends Controller {
 			cIGUI = VFactory.getInstance().newView(Events.HABITACION_MOSTRAR_POR_EMPLEADO_VISTA, null);
 			break;
 		case Events.HABITACION_MOSTRAR_TODAS:
-			Collection<THabitaciones> collection = saHabitacion.mostrarTodos();
-			if(collection == null)
+			Collection<THabitaciones> collectionHabTodas = saHabitacion.mostrarTodos();
+			if(collectionHabTodas == null)
 				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_ERROR, null);
 			else
-				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_SUCCESS, collection);
+				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_SUCCESS, collectionHabTodas);
 			break;
+		case Events.HABITACION_MOSTRAR_DISPONIBLES:
+			Collection<THabitaciones> collectionHabDisponibles = saHabitacion.MostrarTodasDisponibles();
+			if(collectionHabDisponibles == null)
+				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_ERROR, null);
+			else
+				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_SUCCESS, collectionHabDisponibles);
+		break;
 
 		}
 		
