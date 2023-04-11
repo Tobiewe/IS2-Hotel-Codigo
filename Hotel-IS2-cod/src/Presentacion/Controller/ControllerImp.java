@@ -22,7 +22,7 @@ public class ControllerImp extends Controller {
 	private SADepartamento saDepartamento;
 	private SAHabitacion saHabitacion;
 	private SAReserva saReserva;
-	
+
 	public ControllerImp() {
 		saEmpleado = SAFactory.getInstance().newSAEmpleado();
 		saCliente = SAFactory.getInstance().newSACliente();
@@ -69,10 +69,10 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.HABITACION_MOSTRAR_TODAS:
 			Collection<THabitaciones> collection = saHabitacion.mostrarTodos();
-			if(collection != null)
-				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_SUCCESS, collection);
+			if(collection == null)
+				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_ERROR, null);
 			else
-				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_ERROR, collection);
+				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_SUCCESS, collection);
 			break;
 
 		}
