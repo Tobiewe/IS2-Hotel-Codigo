@@ -38,6 +38,7 @@ public class VEmpleado extends JFrame implements IGUI{
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		
+		mainPanel.add(volverButton());
 		mainPanel.add(crearEmpleadoButton());
 		mainPanel.add(modificarEmpleadoButton());
 		mainPanel.add(eliminarEmpleadoButton());
@@ -48,6 +49,20 @@ public class VEmpleado extends JFrame implements IGUI{
 		setLocationRelativeTo(getParent());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+	public JButton volverButton()
+	{
+		JButton volverButton = new JButton("Volver");
+		volverButton.setSize(buttonDimension);
+		volverButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ctrl.carryAction(Events.VENTANA_PRINCIPAL, null);
+				setVisible(false);
+			}
+		});
+		return volverButton;
 	}
 	
 	//Crear cliente

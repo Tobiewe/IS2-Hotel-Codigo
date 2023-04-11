@@ -44,6 +44,7 @@ public class VCliente extends JFrame implements IGUI {
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		
+		mainPanel.add(volverButton());
 		mainPanel.add(crearClienteButton());
 		mainPanel.add(modificarClienteButton());
 		mainPanel.add(eliminarClienteButton());
@@ -55,6 +56,21 @@ public class VCliente extends JFrame implements IGUI {
 		setVisible(true);
 		
 		
+	}
+	
+	public JButton volverButton()
+	{
+		JButton volverButton = new JButton("Volver");
+		volverButton.setSize(buttonDimension);
+		volverButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ctrl.carryAction(Events.VENTANA_PRINCIPAL, null);
+				setVisible(false);
+			}
+		});
+		return volverButton;
 	}
 	//Crear cliente
 	public JButton crearClienteButton()

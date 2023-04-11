@@ -34,7 +34,8 @@ public class VReserva extends JFrame implements IGUI {
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
-		
+		mainPanel.add(volverButton());
+
 		mainPanel.add(crearReservaButton());
 		mainPanel.add(modificarReservaButton());
 		mainPanel.add(eliminarReservaButton());
@@ -49,6 +50,20 @@ public class VReserva extends JFrame implements IGUI {
 		setLocationRelativeTo(getParent());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+	public JButton volverButton()
+	{
+		JButton volverButton = new JButton("Volver");
+		volverButton.setSize(buttonDimension);
+		volverButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ctrl.carryAction(Events.VENTANA_PRINCIPAL, null);
+				setVisible(false);
+			}
+		});
+		return volverButton;
 	}
 	public JButton crearReservaButton()
 	{

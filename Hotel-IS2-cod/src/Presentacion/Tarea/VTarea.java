@@ -36,6 +36,7 @@ public class VTarea extends JFrame implements IGUI{
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		
+		mainPanel.add(volverButton());
 		mainPanel.add(crearTareaButton());
 		mainPanel.add(modificarTareaButton());
 		mainPanel.add(eliminarTareaButton());
@@ -49,7 +50,20 @@ public class VTarea extends JFrame implements IGUI{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-	
+	public JButton volverButton()
+	{
+		JButton volverButton = new JButton("Volver");
+		volverButton.setSize(buttonDimension);
+		volverButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ctrl.carryAction(Events.VENTANA_PRINCIPAL, null);
+				setVisible(false);
+			}
+		});
+		return volverButton;
+	}
 	//Crear cliente
 		public JButton crearTareaButton()
 		{

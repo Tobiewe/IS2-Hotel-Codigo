@@ -68,7 +68,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		pack();
 		setVisible(true);
 	}
-	
+
 	public JPanel panelPiso()
 	{
 		JPanel panelPiso = new JPanel();

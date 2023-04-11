@@ -36,6 +36,7 @@ public class VDepartamento extends JFrame implements IGUI{
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		
+		mainPanel.add(volverButton());
 		mainPanel.add(crearDepartamentoButton());
 		mainPanel.add(modificarDepartamentoButton());
 		mainPanel.add(eliminarDepartamentoButton());
@@ -48,6 +49,20 @@ public class VDepartamento extends JFrame implements IGUI{
 		setVisible(true);
 	}
 	
+	public JButton volverButton()
+	{
+		JButton volverButton = new JButton("Volver");
+		volverButton.setSize(buttonDimension);
+		volverButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ctrl.carryAction(Events.VENTANA_PRINCIPAL, null);
+				setVisible(false);
+			}
+		});
+		return volverButton;
+	}
 	//Crear Departamento
 			public JButton crearDepartamentoButton()
 			{
