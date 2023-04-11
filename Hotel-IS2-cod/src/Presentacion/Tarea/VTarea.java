@@ -1,11 +1,13 @@
 package Presentacion.Tarea;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Presentacion.Controller.Controller;
@@ -30,15 +32,30 @@ public class VTarea extends JFrame implements IGUI{
 	}
 
 	protected void initGUI() {
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
 		
+		mainPanel.add(crearTareaButton());
+		mainPanel.add(modificarTareaButton());
+		mainPanel.add(eliminarTareaButton());
+		mainPanel.add(mostrarUnoTareaButton());
+		mainPanel.add(mostrarTodosTareaButton());
+		mainPanel.add(vincularTareaButton());
+		mainPanel.add(desvincularTareaButton());
+		
+		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 	
 	//Crear cliente
 		public JButton crearTareaButton()
 		{
-			JButton crearTAREAButton = new JButton("Crear");
-			crearTAREAButton.setSize(buttonDimension);
-			crearTAREAButton.addActionListener(new ActionListener()
+			JButton crearTareaButton = new JButton("Crear");
+			crearTareaButton.setSize(buttonDimension);
+			crearTareaButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
@@ -46,14 +63,14 @@ public class VTarea extends JFrame implements IGUI{
 					setVisible(false);
 				}
 			});
-			return crearTAREAButton;
+			return crearTareaButton;
 		}
 		//Modificar cliente
-		public JButton modificarTAREAButton()
+		public JButton modificarTareaButton()
 		{
-			JButton modificarTAREAButton = new JButton("Modificar");
-			modificarTAREAButton.setSize(buttonDimension);
-			modificarTAREAButton.addActionListener(new ActionListener()
+			JButton modificarTareaButton = new JButton("Modificar");
+			modificarTareaButton.setSize(buttonDimension);
+			modificarTareaButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
@@ -61,14 +78,14 @@ public class VTarea extends JFrame implements IGUI{
 					setVisible(false);
 				}
 			});
-			return modificarTAREAButton;
+			return modificarTareaButton;
 		}
 		//Eliminar cliente
-		public JButton eliminarTAREAButton()
+		public JButton eliminarTareaButton()
 		{
-			JButton eliminarTAREAButton = new JButton("Eliminar");
-			eliminarTAREAButton.setSize(buttonDimension);
-			eliminarTAREAButton.addActionListener(new ActionListener()
+			JButton eliminarTareaButton = new JButton("Eliminar");
+			eliminarTareaButton.setSize(buttonDimension);
+			eliminarTareaButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
@@ -76,14 +93,14 @@ public class VTarea extends JFrame implements IGUI{
 					setVisible(false);
 				}
 			});
-			return eliminarTAREAButton;
+			return eliminarTareaButton;
 		}
 		//Mostrar uno 
-		public JButton mostrarUnoTAREAButton()
+		public JButton mostrarUnoTareaButton()
 		{
-			JButton mostrarUnoTAREAButton = new JButton("Mostrar Uno");
-			mostrarUnoTAREAButton.setSize(buttonDimension);
-			mostrarUnoTAREAButton.addActionListener(new ActionListener()
+			JButton mostrarUnoTareaButton = new JButton("Mostrar Una");
+			mostrarUnoTareaButton.setSize(buttonDimension);
+			mostrarUnoTareaButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
@@ -91,16 +108,13 @@ public class VTarea extends JFrame implements IGUI{
 					setVisible(false);
 				}
 			});
-			return mostrarUnoTAREAButton;
+			return mostrarUnoTareaButton;
 		}
-		public static final int TAREA_DESVINCULAR = 560;
-		public static final int TAREA_VINCULAR = 570;
-		//Mostrar todos
-		public JButton mostrarTodosTAREAButton()
+		public JButton mostrarTodosTareaButton()
 		{
-			JButton mostrarTodosTAREAButton = new JButton("Mostrar Todo");
-			mostrarTodosTAREAButton.setSize(buttonDimension);
-			mostrarTodosTAREAButton.addActionListener(new ActionListener()
+			JButton mostrarTodosTareaButton = new JButton("Mostrar Todas");
+			mostrarTodosTareaButton.setSize(buttonDimension);
+			mostrarTodosTareaButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
@@ -108,17 +122,31 @@ public class VTarea extends JFrame implements IGUI{
 					setVisible(false);
 				}
 			});
-			return mostrarTodosTAREAButton;
+			return mostrarTodosTareaButton;
 		}
-		public JButton mostrarPorDepartamentoButton()
+		public JButton vincularTareaButton()
 		{
-			JButton mostrarPorDepartamentoButton = new JButton("Mostrar Todo");
+			JButton mostrarPorDepartamentoButton = new JButton("Vincular");
 			mostrarPorDepartamentoButton.setSize(buttonDimension);
 			mostrarPorDepartamentoButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					//ctrl.carryAction(Events.TAREA_MOSTRAR_POR_DEPARTAMENTO, null);
+					ctrl.carryAction(Events.TAREA_VINCULAR, null);
+					setVisible(false);
+				}
+			});
+			return mostrarPorDepartamentoButton;
+		}
+		public JButton desvincularTareaButton()
+		{
+			JButton mostrarPorDepartamentoButton = new JButton("Desvincular");
+			mostrarPorDepartamentoButton.setSize(buttonDimension);
+			mostrarPorDepartamentoButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					ctrl.carryAction(Events.TAREA_DESVINCULAR, null);
 					setVisible(false);
 				}
 			});

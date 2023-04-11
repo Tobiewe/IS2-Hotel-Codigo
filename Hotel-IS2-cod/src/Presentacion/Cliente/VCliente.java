@@ -2,6 +2,7 @@ package Presentacion.Cliente;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,11 +39,20 @@ public class VCliente extends JFrame implements IGUI {
 	}
 
 	protected void initGUI() {
-		JPanel mainPanel = new JPanel(new BorderLayout());
-		Dimension mainDimension = new Dimension(700,300);
-		setPreferredSize(mainDimension);
 		setTitle("Cliente");
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
+		
+		mainPanel.add(crearClienteButton());
+		mainPanel.add(modificarClienteButton());
+		mainPanel.add(eliminarClienteButton());
+		mainPanel.add(mostrarUnoClienteButton());
+		mainPanel.add(mostrarTodosClienteButton());
+		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 		
 		
 	}
@@ -55,7 +65,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_CLIENTE_CREAR, null);
+				ctrl.carryAction(Events.CLIENTE_CREAR, null);
 				setVisible(false);
 			}
 		});
@@ -70,7 +80,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_CLIENTE_MODIFICAR, null);
+				ctrl.carryAction(Events.CLIENTE_MODIFICAR, null);
 				setVisible(false);
 			}
 		});
@@ -85,7 +95,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_CLIENTE_ELIMINAR, null);
+				ctrl.carryAction(Events.CLIENTE_ELIMINAR, null);
 				setVisible(false);
 			}
 		});
@@ -100,7 +110,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_CLIENTE_MOSTRAR_UNO, null);
+				ctrl.carryAction(Events.CLIENTE_MOSTRAR_UNO, null);
 				setVisible(false);
 			}
 		});
@@ -115,7 +125,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.EVENT_CLIENTE_MOSTRAR_TODOS, null);
+				ctrl.carryAction(Events.CLIENTE_MOSTRAR_TODOS, null);
 				setVisible(false);
 			}
 		});

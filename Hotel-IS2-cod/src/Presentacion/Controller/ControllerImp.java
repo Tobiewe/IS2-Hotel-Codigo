@@ -43,6 +43,19 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.DEPARTAMENTO_NUEVA_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_VISTA, null);
+			break;
+		case Events.TAREA_NUEVA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.TAREA_VISTA, null);
+			break;
+		case Events.CLIENTE_NUEVA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_VISTA, null);
+			break;
+		case Events.EMPLEADO_NUEVA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_VISTA, null);
+			break;
+		case Events.RESERVA_NUEVA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_VISTA, null);
+			break;
 		case Events.HABITACION_CREAR:
 			cIGUI = VFactory.getInstance().newView(Events.HABITACION_CREAR, null);
 			break;

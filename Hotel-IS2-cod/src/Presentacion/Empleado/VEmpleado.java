@@ -2,6 +2,7 @@ package Presentacion.Empleado;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,17 +33,21 @@ public class VEmpleado extends JFrame implements IGUI{
 	}
 
 	protected void initGUI() {
-		JPanel mainPanel = new JPanel(new BorderLayout());
-		Dimension dimension = new Dimension(700,500);
-		setPreferredSize(dimension);
-		setContentPane(mainPanel);
 		setTitle("Empleado");
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
 		
-		JPanel buttonsPanel = new JPanel();
+		mainPanel.add(crearEmpleadoButton());
+		mainPanel.add(modificarEmpleadoButton());
+		mainPanel.add(eliminarEmpleadoButton());
+		mainPanel.add(mostrarUnoEmpleadoButton());
+		mainPanel.add(mostrarTodosEmpleadoButton());
 		
-		buttonsPanel.add(crearEmpleadoButton());
-		
-		mainPanel.add(buttonsPanel);
+		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 	
 	//Crear cliente
