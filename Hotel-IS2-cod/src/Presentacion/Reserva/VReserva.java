@@ -1,11 +1,13 @@
 package Presentacion.Reserva;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Presentacion.Controller.Controller;
@@ -29,9 +31,26 @@ public class VReserva extends JFrame implements IGUI {
 		});
 	}
 	protected void initGUI(){
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
 		
+		mainPanel.add(crearReservaButton());
+		mainPanel.add(modificarReservaButton());
+		mainPanel.add(eliminarReservaButton());
+		mainPanel.add(mostrarunaReservaButton());
+		mainPanel.add(mostrartodasReservaButton());
+		mainPanel.add(cerrarReservaButton());
+		mainPanel.add(quitarhabitacionesReservaButton());
+		mainPanel.add(annadirhabitacionesReservaButton());
+		mainPanel.add(mostrarporclienteReservaButton());
+		
+		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
-	public JButton abrirReservaButton()
+	public JButton crearReservaButton()
 	{
 		JButton crearReservaButton = new JButton("Abrir Reserva");
 		crearReservaButton.setSize(buttonDimension);
@@ -39,7 +58,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.RESERVA_ABRIR, null);
+				ctrl.carryAction(Events.RESERVA_CREAR, null);
 				setVisible(false);
 			}
 		});

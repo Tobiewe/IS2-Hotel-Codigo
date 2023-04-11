@@ -42,7 +42,7 @@ public class Events {
 	public static final int RESERVA_VISTA = 300;
 	public static final int RESERVA_NUEVA_VISTA = 301 ;
 
-	public static final int RESERVA_ABRIR = 310;
+	public static final int RESERVA_CREAR = 310;
 	public static final int RESERVA_MODIFICAR = 320;
 	public static final int RESERVA_ELIMINAR = 330;
 	public static final int RESERVA_MOSTRAR_UNA = 340;

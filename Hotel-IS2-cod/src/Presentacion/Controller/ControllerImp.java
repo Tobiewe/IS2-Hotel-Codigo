@@ -37,11 +37,14 @@ public class ControllerImp extends Controller {
 		
 		switch(event)
 		{
-		case Events.HABITACION_CREAR:
-			cIGUI = VFactory.getInstance().newView(Events.HABITACION_CREAR, null);
-			break;
+		
 		case Events.VENTANA_PRINCIPAL:
 			cIGUI = VFactory.getInstance().newView(Events.VENTANA_PRINCIPAL_INSTANCE, null);
+			break;
+		case Events.DEPARTAMENTO_NUEVA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_VISTA, null);
+		case Events.HABITACION_CREAR:
+			cIGUI = VFactory.getInstance().newView(Events.HABITACION_CREAR, null);
 			break;
 		case Events.HABITACION_NUEVA_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.HABITACION_VISTA, null);
