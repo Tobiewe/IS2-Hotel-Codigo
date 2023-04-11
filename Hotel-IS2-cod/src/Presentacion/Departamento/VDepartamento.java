@@ -1,11 +1,13 @@
 package Presentacion.Departamento;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Presentacion.Controller.Controller;
@@ -30,7 +32,20 @@ public class VDepartamento extends JFrame implements IGUI{
 	}
 
 	protected void initGUI() {
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
 		
+		mainPanel.add(crearDepartamentoButton());
+		mainPanel.add(modificarDepartamentoButton());
+		mainPanel.add(eliminarDepartamentoButton());
+		mainPanel.add(mostrarUnoDepartamentoButton());
+		mainPanel.add(mostrarTodosDepartamentoButton());
+		
+		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 	
 	//Crear Departamento
@@ -42,14 +57,14 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_CREAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_CREAR, null);
 						setVisible(false);
 					}
 				});
 				return crearDepartamentoButton;
 			}
 			//Modificar Departamento
-			public JButton modificarClienteButton()
+			public JButton modificarDepartamentoButton()
 			{
 				JButton modificarDepartamentoButton = new JButton("Modificar");
 				modificarDepartamentoButton.setSize(buttonDimension);
@@ -57,7 +72,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_MODIFICAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MODIFICAR, null);
 						setVisible(false);
 					}
 				});
@@ -72,7 +87,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_ELIMINAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_ELIMINAR, null);
 						setVisible(false);
 					}
 				});
@@ -87,7 +102,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_MOSTRAR_UNO, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_UNO, null);
 						setVisible(false);
 					}
 				});
@@ -102,7 +117,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.EVENT_DEPARTAMENTO_MOSTRAR_TODOS, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_TODOS, null);
 						setVisible(false);
 					}
 				});
