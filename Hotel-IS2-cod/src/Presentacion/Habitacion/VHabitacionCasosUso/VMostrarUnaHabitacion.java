@@ -126,6 +126,7 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 		public void addElement(THabitaciones element)
 		{
 			habitaciones.add(element);
+			fireTableDataChanged();
 		}
 		@Override
 		public int getColumnCount() {
