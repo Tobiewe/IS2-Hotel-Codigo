@@ -265,7 +265,7 @@ public class VCrearEmpleado extends JFrame {
 			
 			@Override
 			public void insertUpdate(DocumentEvent e){
-				nombre = apellidosField.getText();
+				nombre = sueldoField.getText();
 			}
 
 			@Override

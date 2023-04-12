@@ -131,6 +131,18 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_SUCCESS, collectionHabDisponibles);
 		break;
+		case Events.HABITACION_ELIMINAR:
+			saSolution = saHabitacion.eliminar((Integer) data);
+			
+			if(saSolution == -2)
+				cIGUI.update(Events.HABITACION_ELIMINAR_NOTFOUND, data);
+			else
+				cIGUI.update(Events.HABITACION_ELIMINAR_SUCCESS, data);
+
+		
+		
+	}
+
 
 		}
 		

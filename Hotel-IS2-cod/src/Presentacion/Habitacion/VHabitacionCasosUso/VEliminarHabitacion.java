@@ -1,6 +1,7 @@
 package Presentacion.Habitacion.VHabitacionCasosUso;
 
 import javax.swing.SwingUtilities;
+import Presentacion.Controller.Events;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,13 +15,17 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.SwingUtilities;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.UIManager;
@@ -30,6 +35,7 @@ import Presentacion.Controller.IGUI;
 
 public class VEliminarHabitacion extends JFrame implements IGUI{
 	private Controller ctrl;
+	private Integer id;
 	boolean eliminado =false;
 	
 	public VEliminarHabitacion(){
@@ -53,24 +59,28 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 		mainPanel.add(numPanel);
 		numPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		numPanel.add(new JLabel("Numero de Habitacion: "));
+		JSpinner numField = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
+		id=(Integer) numField.getValue();
+		
+		numField.addChangeListener(new ChangeListener()
+		{
 
-		JTextField numField = new JTextField(10);
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				id=(Integer) numField.getValue();
+			}
+			
+		});
 		numPanel.add(numField);
 
-		JButton buscarButton = new JButton("Buscar");
-		buscarButton.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String numHabitacion = numField.getText();
-		        // Verificar si la habitacion existe y eliminarla si es necesario
-		        // Mostrar mensaje x pantalla
-		    }
-		});
-		numPanel.add(buscarButton);
+		
+		
 		
 		JPanel okPanel = new JPanel();
 		mainPanel.add(okPanel);
 		okPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		okPanel.add(okButton(numField.getText()));
+		okPanel.add(okButton(numField.getValue()));
 		
 		
 		
@@ -81,27 +91,31 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 		
 	}
 	
-	JButton okButton(String string){
+	JButton okButton(Object object){
 		
 		JButton okButton=new JButton("Buscar");
 		 
 		 
 		okButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				if(!eliminado){
-					JOptionPane.showMessageDialog(VEliminarHabitacion.this, "Numero de habitacion inexistente");
-				}
-				else{
-					JOptionPane.showMessageDialog(VEliminarHabitacion.this, "Habitacion eliminada correctamente");
-				}
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ctrl.carryAction(Events.HABITACION_ELIMINAR, id);
 			}
+	
 		});
 		return okButton;
 	}
+	
 
 	@Override
 	public void update(int event, Object datos) {
-		// TODO Auto-generated method stub
+		if (event == Events.HABITACION_ELIMINAR_SUCCESS) 
+			JOptionPane.showMessageDialog(null, "La Habitacion de id " + (Integer) datos + " ha sido dado de baja");
+		else if(event == Events.HABITACION_ELIMINAR_NOTFOUND)
+			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " no esta registrado");
+		
 		
 	}
 
