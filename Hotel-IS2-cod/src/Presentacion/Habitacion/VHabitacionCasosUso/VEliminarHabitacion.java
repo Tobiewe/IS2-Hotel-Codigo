@@ -51,12 +51,14 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 	
 	public void initGUI(){
 		
+		setTitle("Añadir Habitación");
 		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
 
 		JPanel numPanel = new JPanel();
-		mainPanel.add(numPanel);
+		
 		numPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		numPanel.add(new JLabel("Numero de Habitacion: "));
 		JSpinner numField = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
@@ -74,19 +76,16 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 		});
 		numPanel.add(numField);
 
-		
+		mainPanel.add(numPanel);
 		
 		
 		JPanel okPanel = new JPanel();
-		mainPanel.add(okPanel);
 		okPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		okPanel.add(okButton(numField.getValue()));
-		
-		
-		
-		
-		
-		
+		mainPanel.add(okPanel);
+
+		pack();
+		setVisible(true);
 		
 		
 	}
