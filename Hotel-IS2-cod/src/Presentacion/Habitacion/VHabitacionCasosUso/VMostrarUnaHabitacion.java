@@ -22,6 +22,8 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
 
 import Negocio.Habitaciones.THabitaciones;
@@ -68,7 +70,17 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 		
 		JLabel idLabel = new JLabel("Id: ");
 		
-		JSpinner idSpinner = new JSpinner( new SpinnerNumberModel(1, 1, 100, 1));
+		JSpinner idSpinner = new JSpinner( new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+		id = (Integer) idSpinner.getValue();
+		idSpinner.addChangeListener(new ChangeListener()
+		{
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				id = (Integer) idSpinner.getValue();
+			}
+			
+		});
 		
 		idPanel.add(idLabel);
 		idPanel.add(idSpinner);
