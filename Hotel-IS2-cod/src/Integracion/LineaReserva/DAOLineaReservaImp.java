@@ -1,4 +1,4 @@
-package Integracion.LineaPedido;
+package Integracion.LineaReserva;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.util.Collection;
 
 import Negocio.Reserva.TLineaPedido;
 
-public class DAOLineaPedidoImp implements DAOLineaPedido {
+public class DAOLineaReservaImp implements DAOLineaReserva {
 	
 	String url = "jdbc:mysql://localhost:3306/hotel-is2";
     String usuario = "root";

@@ -1,11 +1,11 @@
-package Integracion.LineaPedido;
+package Integracion.LineaReserva;
 
 import Negocio.Reserva.TLineaPedido;
 
 import java.util.Collection;
 
 
-public interface DAOLineaPedido {
+public interface DAOLineaReserva {
 	
 	public Integer crear(TLineaPedido tLineaPedido);
 
