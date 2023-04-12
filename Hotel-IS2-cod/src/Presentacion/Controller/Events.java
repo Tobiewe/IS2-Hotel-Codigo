@@ -57,6 +57,11 @@ public class Events {
 	
 	public static final int HABITACION_CREAR = 410;
 	public static final int HABITACION_CREAR_VISTA = 411;
+	public static final int HABITACION_CREAR_ERROR = 412;
+	public static final int HABITACION_CREAR_REPEATED = 413;
+	public static final int HABITACION_CREAR_WRONG_PARAMETERS= 414;
+	public static final int HABITACION_CREAR_SUCCESS = 415;
+
 	
 	public static final int HABITACION_ELIMINAR = 420;
 	public static final int HABITACION_ELIMINAR_VISTA = 421;

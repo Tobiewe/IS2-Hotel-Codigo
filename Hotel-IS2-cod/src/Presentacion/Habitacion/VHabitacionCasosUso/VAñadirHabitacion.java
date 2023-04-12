@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -33,6 +34,8 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	private Integer piso;
 	private float precio;
 	
+	
+	
 	public VAñadirHabitacion(){
 		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable() {
@@ -52,6 +55,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		setLocationRelativeTo(getParent());
 
 		JTextField precioText = new JTextField("0");
+		precioText.setSize(1000, 50);
 		
 		mainPanel.add(panelPiso());
 		mainPanel.add(tamanyoPanel());
@@ -169,7 +173,13 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	}
 	@Override
 	public void update(int event, Object datos) {
-		// TODO Auto-generated method stub
-		
+		if(event == Events.HABITACION_CREAR_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear la habitación");
+		else if(event == Events.HABITACION_CREAR_REPEATED)
+			JOptionPane.showMessageDialog(this, "ERROR: Ya existe una habitación con el id " + (Integer) datos);
+		else if(event == Events.HABITACION_CREAR_WRONG_PARAMETERS)
+			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
+		else if(event == Events.HABITACION_CREAR_SUCCESS)
+			JOptionPane.showMessageDialog(this, "La habitación con id " +(Integer) datos +" se ha creado correctamente");
 	}
 }

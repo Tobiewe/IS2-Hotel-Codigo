@@ -1,20 +1,27 @@
 package Presentacion.Controller;
 
 import Negocio.Empleados.SAEmpleado;
+import Negocio.Empleados.TEmpleados;
 
 import java.util.Collection;
 
 import Negocio.Clientes.SACliente;
+import Negocio.Clientes.TCliente;
 import Negocio.Tareas.SATarea;
+import Negocio.Tareas.TTareas;
+import Negocio.Departamentos.TDepartamento;
 import Presentacion.VFactory.VFactory;
 import Negocio.Departamentos.SADepartamento;
 import Negocio.Habitaciones.SAHabitacion;
 import Negocio.Habitaciones.THabitaciones;
+import Negocio.Mesa.TMesa;
 import Negocio.NegocioFactory.SAFactory;
 import Negocio.Reserva.SAReserva;
+import Negocio.Reserva.TReserva;
 
 public class ControllerImp extends Controller {
 	private IGUI cIGUI;
+	
 	
 	private SAEmpleado saEmpleado;
 	private SACliente saCliente;
@@ -22,7 +29,15 @@ public class ControllerImp extends Controller {
 	private SADepartamento saDepartamento;
 	private SAHabitacion saHabitacion;
 	private SAReserva saReserva;
+	private Integer saSolution;
 
+	private THabitaciones tHabitacion;
+	private TReserva tReserva;
+	private TEmpleados tEmpleado;
+	private TTareas tTarea;
+	private TCliente tCliente;
+	private TDepartamento tDepartamento;
+	
 	public ControllerImp() {
 		saEmpleado = SAFactory.getInstance().newSAEmpleado();
 		saCliente = SAFactory.getInstance().newSACliente();
@@ -57,7 +72,16 @@ public class ControllerImp extends Controller {
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_VISTA, null);
 			break;
 		case Events.HABITACION_CREAR:
-			cIGUI = VFactory.getInstance().newView(Events.HABITACION_CREAR, null);
+			tHabitacion = (THabitaciones)data;
+			saSolution = saHabitacion.crear(tHabitacion);
+			if(saSolution == -1)
+				cIGUI.update(Events.HABITACION_CREAR_ERROR, null);
+			else if(saSolution == -2)
+				cIGUI.update(Events.HABITACION_CREAR_REPEATED,  tHabitacion.getNumero());
+			else if(saSolution == -5)
+				cIGUI.update(Events.HABITACION_CREAR_WRONG_PARAMETERS, saSolution);
+			else if(saSolution > 0)
+				cIGUI.update(Events.HABITACION_CREAR_SUCCESS, tHabitacion.getNumero());
 			break;
 		case Events.HABITACION_NUEVA_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.HABITACION_VISTA, null);
