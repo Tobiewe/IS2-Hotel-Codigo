@@ -6,7 +6,7 @@ public class SAEmpleadoIMP implements SAEmpleado {
 
 	
 	public Integer crear(TEmpleados empleado) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
