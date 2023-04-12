@@ -147,10 +147,12 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.HABITACION_MOSTRAR_UNA_NO_ID, null);
 			else
 				cIGUI.update(Events.HABITACION_MOSTRAR_UNA_SI_ID, tHabitacion);
+			break;
 
 		}
 		//h
 		
 	}
+}
 
 
