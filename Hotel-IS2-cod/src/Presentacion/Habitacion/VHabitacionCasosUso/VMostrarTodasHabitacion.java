@@ -138,15 +138,9 @@ public class VMostrarTodasHabitacion extends JFrame implements IGUI{
 	@Override
 	public void update(int event, Object datos) {
 		if(event == Events.HABITACION_MOSTRAR_TODAS_SUCCESS)
-		{
 			tableModel.setList((Collection<THabitaciones>) datos);
-		}
 		else if(event == Events.HABITACION_MOSTRAR_TODAS_ERROR)
-		{
 			JOptionPane.showMessageDialog(this, "ERROR: No hay ninguna habitación por mostrar");
-
-		}
-		
 	}
 
 }

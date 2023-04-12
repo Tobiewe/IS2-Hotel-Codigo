@@ -148,7 +148,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		JLabel idEmpleadoLabel = new JLabel("Id empleado: ");
-		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1,1,5,1));
+		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
 		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 15));
 		idEmpleado = (Integer) idEmpleadoSpinner.getValue();
 		idEmpleadoSpinner.addChangeListener(new ChangeListener()
