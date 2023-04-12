@@ -19,6 +19,11 @@ public class Events {
 	
 	
 	public static final int EMPLEADO_MODIFICAR = 120; 
+	public static final int EMPLEADO_MODIFICAR_VISTA = 121;
+	public static final int EMPLEADO_MODIFICAR_WRONG_PARAMETERS = 122;
+	public static final int EMPLEADO_MODIFICAR_NOTFOUND = 123;
+	public static final int EMPLEADO_MODIFICAR_FOUND = 124;
+	public static final int EMPLEADO_MODIFICAR_SUCCESS = 125;
 	
 	public static final int EMPLEADO_ELIMINAR = 130;
 	public static final int EMPLEADO_ELIMINAR_VISTA = 131;
@@ -44,6 +49,11 @@ public class Events {
 	
 	
 	public static final int CLIENTE_MODIFICAR = 220;
+	public static final int CLIENTE_MODIFICAR_VISTA = 221;
+	public static final int CLIENTE_MODIFICAR_WRONG_PARAMETERS = 222;
+	public static final int CLIENTE_MODIFICAR_NOTFOUND = 223;
+	public static final int CLIENTE_MODIFICAR_FOUND = 224;
+	public static final int CLIENTE_MODIFICAR_SUCCESS = 225;
 	
 	public static final int CLIENTE_ELIMINAR = 230;
 	public static final int CLIENTE_ELIMINAR_VISTA = 231;
@@ -66,6 +76,11 @@ public class Events {
 	public static final int RESERVA_CREAR_SUCCESS = 315;
 	
 	public static final int RESERVA_MODIFICAR = 320;
+	public static final int RESERVA_MODIFICAR_VISTA = 321;
+	public static final int RESERVA_MODIFICAR_WRONG_PARAMETERS = 322;
+	public static final int RESERVA_MODIFICAR_NOTFOUND = 323;
+	public static final int RESERVA_MODIFICAR_FOUND = 324;
+	public static final int RESERVA_MODIFICAR_SUCCESS = 325;
 	
 	public static final int RESERVA_ELIMINAR = 330;
 	public static final int RESERVA_ELIMINAR_VISTA = 331;
@@ -99,7 +114,11 @@ public class Events {
 	public static final int HABITACION_ELIMINAR_SUCCESS = 424;
 		
 	public static final int HABITACION_MODIFICAR = 430;
-	public static final int HABITACION_MODIFICAR_VISTA = 431;
+	public static final int HABITACION_MODIFICAR_VISTA = 421;
+	public static final int HABITACION_MODIFICAR_WRONG_PARAMETERS = 422;
+	public static final int HABITACION_MODIFICAR_NOTFOUND = 423;
+	public static final int HABITACION_MODIFICAR_FOUND = 424;
+	public static final int HABITACION_MODIFICAR_SUCCESS = 425;
 	
 	public static final int HABITACION_MOSTRAR_UNA = 440;
 	public static final int HABITACION_MOSTRAR_UNA_VISTA = 441;
@@ -135,6 +154,11 @@ public class Events {
 	
 	
 	public static final int TAREA_MODIFICAR = 520;
+	public static final int TAREA_MODIFICAR_VISTA = 521;
+	public static final int TAREA_MODIFICAR_WRONG_PARAMETERS = 522;
+	public static final int TAREA_MODIFICAR_NOTFOUND = 523;
+	public static final int TAREA_MODIFICAR_FOUND = 524;
+	public static final int TAREA_MODIFICAR_SUCCESS = 525;
 	
 	public static final int TAREA_ELIMINAR = 530;
 	public static final int TAREA_ELIMINAR_VISTA = 531;
@@ -159,6 +183,11 @@ public class Events {
 	
 	
 	public static final int DEPARTAMENTO_MODIFICAR = 620;
+	public static final int DEPARTAMENTO_MODIFICAR_VISTA = 621;
+	public static final int DEPARTAMENTO_MODIFICAR_WRONG_PARAMETERS = 622;
+	public static final int DEPARTAMENTO_MODIFICAR_NOTFOUND = 623;
+	public static final int DEPARTAMENTO_MODIFICAR_FOUND = 624;
+	public static final int DEPARTAMENTO_MODIFICAR_SUCCESS = 625;
 	
 	public static final int DEPARTAMENTO_ELIMINAR = 630;
 	public static final int DEPARTAMENTO_ELIMINAR_VISTA = 631;
