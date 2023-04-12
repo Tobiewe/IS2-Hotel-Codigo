@@ -82,6 +82,17 @@ public class ControllerImp extends Controller {
 			else if(saSolution > 0)
 				cIGUI.update(Events.HABITACION_CREAR_SUCCESS, tHabitacion.getNumero());
 			break;
+			
+		case Events.HABITACION_MODIFICAR:
+			tHabitacion = (THabitaciones)data;
+			saSolution = saHabitacion.modificar(tHabitacion);
+			if(saSolution == -2)
+				cIGUI.update(Events.HABITACION_MODIFICAR_NOTFOUND, tHabitacion.getNumero());
+			else if(saSolution == -5)
+				cIGUI.update(Events.HABITACION_MODIFICAR_WRONG_PARAMETERS, tHabitacion.getNumero());
+			else if(saSolution > 0)
+				cIGUI.update(Events.HABITACION_MODIFICAR_SUCCESS, tHabitacion.getNumero());
+			
 		case Events.HABITACION_NUEVA_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.HABITACION_VISTA, null);
 			break;

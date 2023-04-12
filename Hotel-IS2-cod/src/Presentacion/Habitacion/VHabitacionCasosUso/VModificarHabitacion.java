@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -249,8 +250,15 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 	}
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.)
-		
+		if(event == Events.HABITACION_MODIFICAR_WRONG_PARAMETERS)
+			JOptionPane.showMessageDialog(this, "ERROR: Los parámetros introducidos son erróneos");
+//		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
+//			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
+		else if(event == Events.HABITACION_MODIFICAR_NOTFOUND) 
+			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + " no se ha encontrado");
+		else if(event == Events.HABITACION_MODIFICAR_SUCCESS) 
+			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + "se ha registrado correctamente");
+
 	}
 
 }
