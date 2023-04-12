@@ -70,7 +70,7 @@ public class SAHabitacionIMP implements SAHabitacion {
 		
 		for(TLineaPedido tl : lista){
 			if(tl.getActiva()){
-				return -2;
+				return -1; //que no pertenece a ninguna reserva
 			}
 		}
 		
