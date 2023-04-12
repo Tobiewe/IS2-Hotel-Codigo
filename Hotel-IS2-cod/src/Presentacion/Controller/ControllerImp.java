@@ -130,7 +130,7 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_ERROR, null);
 			else
 				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_SUCCESS, collectionHabDisponibles);
-		break;
+			break;
 		case Events.HABITACION_ELIMINAR:
 			saSolution = saHabitacion.eliminar((Integer) data);
 			
@@ -140,8 +140,20 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.HABITACION_ELIMINAR_SUCCESS, data);
 			break;
 
+			
+		case Events.HABITACION_MOSTRAR_UNA:
+			tHabitacion = saHabitacion.mostrarUno((Integer) data);
+			
+			if(tHabitacion== null)
+				cIGUI.update(Events.HABITACION_MOSTRAR_UNA_NO_ID, null);
+			else
+				cIGUI.update(Events.HABITACION_MOSTRAR_UNA_SI_ID, tHabitacion);
+			break;
+
 		}
+		//j
 		
 	}
-
 }
+
+
