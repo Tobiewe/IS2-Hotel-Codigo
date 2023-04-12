@@ -14,7 +14,6 @@ import Presentacion.VFactory.VFactory;
 import Negocio.Departamentos.SADepartamento;
 import Negocio.Habitaciones.SAHabitacion;
 import Negocio.Habitaciones.THabitaciones;
-import Negocio.Mesa.TMesa;
 import Negocio.NegocioFactory.SAFactory;
 import Negocio.Reserva.SAReserva;
 import Negocio.Reserva.TReserva;
