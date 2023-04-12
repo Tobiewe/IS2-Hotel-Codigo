@@ -138,6 +138,7 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.HABITACION_ELIMINAR_NOTFOUND, data);
 			else
 				cIGUI.update(Events.HABITACION_ELIMINAR_SUCCESS, data);
+			break;
 
 		}
 		
