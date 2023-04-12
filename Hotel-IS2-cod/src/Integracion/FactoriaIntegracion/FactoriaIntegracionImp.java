@@ -9,8 +9,8 @@ import Integracion.Empleados.DAOEmpleadoImp;
 import Integracion.Empleados.DAOEmpleados;
 import Integracion.Habitaciones.DAOHabitaciones;
 import Integracion.Habitaciones.DAOHabitacionesImp;
-import Integracion.LineaPedido.DAOLineaPedido;
-import Integracion.LineaPedido.DAOLineaPedidoImp;
+import Integracion.LineaReserva.DAOLineaReservaImp;
+import Integracion.LineaReserva.DAOLineaReserva;
 import Integracion.Reserva.DAOReserva;
 import Integracion.Reserva.DAOReservaImp;
 import Integracion.Tareas.DAOTareas;
@@ -41,8 +41,8 @@ public class FactoriaIntegracionImp  extends FactoriaIntegracion{
 	}
 
 	
-	public DAOLineaPedido newLineaPedido() {
-		return new DAOLineaPedidoImp();
+	public DAOLineaReserva newLineaPedido() {
+		return new DAOLineaReservaImp();
 	}
 
 	

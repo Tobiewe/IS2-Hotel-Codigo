@@ -4,7 +4,7 @@ import Integracion.Cliente.DAOCliente;
 import Integracion.Departamentos.DAODepartamentos;
 import Integracion.Empleados.DAOEmpleados;
 import Integracion.Habitaciones.DAOHabitaciones;
-import Integracion.LineaPedido.DAOLineaPedido;
+import Integracion.LineaReserva.DAOLineaReserva;
 import Integracion.Reserva.DAOReserva;
 import Integracion.Tareas.DAOTareas;
 import Integracion.TareasDelEmpleado.DAOTareasDelEmpleado;
@@ -27,7 +27,7 @@ public abstract  class FactoriaIntegracion {
 	
 	public abstract DAOCliente newDAOCliente();
 	
-	public abstract DAOLineaPedido newLineaPedido();
+	public abstract DAOLineaReserva newLineaPedido();
 	
 	public abstract DAOTareasDelEmpleado newDAOTareasDelEmpleado();
 	

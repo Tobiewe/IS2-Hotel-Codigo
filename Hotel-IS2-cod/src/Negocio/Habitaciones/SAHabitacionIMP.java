@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 import Integracion.Habitaciones.DAOHabitaciones;
-import Integracion.LineaPedido.DAOLineaPedido;
+import Integracion.LineaReserva.DAOLineaReserva;
 import Negocio.Reserva.TLineaPedido;
 
 public class SAHabitacionIMP implements SAHabitacion {
@@ -65,7 +65,7 @@ public class SAHabitacionIMP implements SAHabitacion {
 			return -2;		
 		}
 		
-		DAOLineaPedido daolinea = FactoriaIntegracion.getInstance().newLineaPedido();
+		DAOLineaReserva daolinea = FactoriaIntegracion.getInstance().newLineaPedido();
 		Collection<TLineaPedido> lista = daolinea.LeerLineasPedidoPorHabitacion(idHabitacion);
 		
 		for(TLineaPedido tl : lista){

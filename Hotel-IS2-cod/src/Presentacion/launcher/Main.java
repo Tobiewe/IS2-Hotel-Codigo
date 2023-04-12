@@ -5,8 +5,8 @@ import java.sql.Date;
 
 import Integracion.Departamentos.DAODepartamentos;
 import Integracion.Departamentos.DAODepartamentosImp;
-import Integracion.LineaPedido.DAOLineaPedido;
-import Integracion.LineaPedido.DAOLineaPedidoImp;
+import Integracion.LineaReserva.DAOLineaReservaImp;
+import Integracion.LineaReserva.DAOLineaReserva;
 import Integracion.Reserva.DAOReserva;
 import Integracion.Reserva.DAOReservaImp;
 import Integracion.TareasDelEmpleado.DAOTareasDelEmpleado;

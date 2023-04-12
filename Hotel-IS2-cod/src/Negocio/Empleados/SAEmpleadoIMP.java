@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public class SAEmpleadoIMP implements SAEmpleado {
 
-	@Override
+	
 	public Integer crear(TEmpleados empleado) {
 		// TODO Auto-generated method stub
 		return null;
