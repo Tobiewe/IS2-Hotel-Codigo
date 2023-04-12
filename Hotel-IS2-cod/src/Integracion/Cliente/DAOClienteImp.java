@@ -177,7 +177,7 @@ public class DAOClienteImp implements DAOCliente {
 	}
 
 	
-	public TCliente MostrarUno(Integer id) { //pendiente de revision
+	public TCliente MostrarUno(Integer id) { 
 		
 		TCliente tCliente = null;
 		

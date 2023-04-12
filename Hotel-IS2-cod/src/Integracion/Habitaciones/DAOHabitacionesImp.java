@@ -22,7 +22,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		
 		try {
 			
-			String c = "INSERT INTO habitacion (piso, tamaño, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?);";
+			String c = "INSERT INTO habitacion (piso, tamanyo, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);

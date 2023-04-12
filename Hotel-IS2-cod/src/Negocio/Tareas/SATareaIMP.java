@@ -16,23 +16,27 @@ public class SATareaIMP implements SATarea {
 		}
 		
 		DAOTareas daoTareas = FactoriaIntegracion.getInstance().newDAOTarea();
-		TTareas t = daoTareas.leerUno(tTareas.getId());
 		
-		if(t != null){
-			if(t.getActiva()){
-				return -2;
-			}
-			else{
-				tTareas.setActiva(true);
-				tTareas.setId(t.getId());
-				if(daoTareas.modificar(tTareas) <= 0){
-					return -1;
+		if(tTareas.getId() != null){
+			
+			TTareas t = daoTareas.leerUno(tTareas.getId());
+			
+			if(t != null){
+				if(t.getActiva()){
+					return -2;
 				}
 				else{
-					return tTareas.getId();
+					tTareas.setActiva(true);
+					tTareas.setId(t.getId());
+					if(daoTareas.modificar(tTareas) <= 0){
+						return -1;
+					}
+					else{
+						return tTareas.getId();
+					}
 				}
+					
 			}
-				
 		}
 		
 		return daoTareas.crear(tTareas);

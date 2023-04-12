@@ -47,33 +47,6 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			ps.close();
 			rs.close();
 			
-			if(tEmpleados.getEspecialidad() != null){
-				String cE = "INSERT INTO empleado_mantenimiento (especialidad, id_empleado) VALUES (?, ?);";
-
-				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
-				PreparedStatement psE = CnxE.prepareStatement(cE);
-
-				psE.setString(1, tEmpleados.getEspecialidad());
-				psE.setInt(2, tEmpleados.getId());
-				psE.executeUpdate();
-
-				CnxE.close();
-				psE.close();
-			}
-			else{
-				String cP = "INSERT INTO empleado_limpieza (lugar, id_empleado) VALUES (?, ?);";
-
-				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
-				PreparedStatement psP = CnxP.prepareStatement(cP);
-
-				psP.setString(1, tEmpleados.getLugar());
-				psP.setInt(2, tEmpleados.getId());;
-				psP.executeUpdate();
-					
-				CnxP.close();
-				psP.close();
-			}
-			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -134,38 +107,6 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			ps.setInt(5, tEmpleados.getTelefono());
 			ps.setInt(6, tEmpleados.getId());
 			ps.executeUpdate();
-
-			if(ps.executeUpdate() == 1) key = tEmpleados.getId();
-
-			Cnx.close();
-			ps.close();
-			
-			if(tEmpleados.getEspecialidad() != null){
-				String cE = "UPDATE empleado_mantenimiento set especialidad = ? WHERE id_empleado = ?;";
-
-				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
-				PreparedStatement psE = CnxE.prepareStatement(cE);
-
-				psE.setString(1, tEmpleados.getEspecialidad());
-				psE.setInt(2, tEmpleados.getId());
-				psE.executeUpdate();
-
-				CnxE.close();
-				psE.close();
-			}
-			else{
-				String cP = "UPDATE empleado_limpieza SET lugar = ? WHERE id_empleado = ?;";
-
-				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
-				PreparedStatement psP = CnxP.prepareStatement(cP);
-
-				psP.setString(1, tEmpleados.getLugar());
-				psP.setInt(2, tEmpleados.getId());;
-				psP.executeUpdate();
-					
-				CnxP.close();
-				psP.close();
-			}
 			
 		} catch (SQLException e) {
 			
@@ -193,7 +134,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			if (Rs.next()){
 				
 				tEmpleados = new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
-						 ,Rs.getString("correo"),  Rs.getInt("telefono"),  Rs.getString("lugar"), Rs.getString("especialidad"), Rs.getInt("id_Departamento"));
+						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("id_Departamento"));
 				
 			}
 	
@@ -224,7 +165,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			while (Rs.next()){
 				
 				lista.add(new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
-						 ,Rs.getString("correo"),  Rs.getInt("telefono"),  Rs.getString("lugar"), Rs.getString("especialidad"), Rs.getInt("id_Departamento")));
+						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("id_Departamento")));
 				
 			}
 						

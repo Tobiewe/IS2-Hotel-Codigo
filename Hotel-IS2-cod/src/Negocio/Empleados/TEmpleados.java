@@ -9,14 +9,11 @@ public class TEmpleados {
 	private Boolean activo;
 	private String correo;
 	private Integer telefono;
-	protected String lugar;
-	protected String especialidad;
 	private Integer id_Departamento;
 
 
 	
-	public TEmpleados(Integer id, Float sueldo, String nombre, String apellidos, Boolean activo , String correo, Integer telefono,
-			String lugar, String especialidad, Integer id_Departamento){
+	public TEmpleados(Integer id, Float sueldo, String nombre, String apellidos, Boolean activo , String correo, Integer telefono, Integer id_Departamento){
 		
 		this.id = id;
 		this.sueldo = sueldo;
@@ -25,8 +22,6 @@ public class TEmpleados {
 		this.activo = activo;
 		this.correo = correo;
 		this.telefono = telefono;
-		this.lugar = lugar;
-		this.especialidad = especialidad;
 		this.id_Departamento = id_Departamento;
 		
 	}
@@ -94,26 +89,6 @@ public class TEmpleados {
 
 	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
-	}
-
-
-	public String getLugar() {
-		return lugar;
-	}
-
-
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
-	}
-
-
-	public String getEspecialidad() {
-		return especialidad;
-	}
-
-
-	public void setEspecialidad(String especialidad) {
-		this.especialidad = especialidad;
 	}
 
 

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generaciÃ³n: 09-04-2023 a las 19:27:29
--- VersiÃ³n del servidor: 10.4.27-MariaDB
--- VersiÃ³n de PHP: 8.2.0
+-- Tiempo de generación: 12-04-2023 a las 17:14:08
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cliente` (
-  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `Id` int(11) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `Correo` varchar(100) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT 0
@@ -40,7 +40,8 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`Id`, `telefono`, `Correo`, `activo`) VALUES
 (3, '123456789', 'alvaro@gmail.com', 0),
-(4, '65478978', 'pepe@gmail.com', 1);
+(4, '65478978', 'pepe@gmail.com', 1),
+(5, '66666666', 'hola@fgaihd', 1);
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,7 @@ INSERT INTO `cliente_particular` (`nombre`, `apellidos`, `NIF`, `cliente_Id`) VA
 --
 
 CREATE TABLE `departamentos` (
-  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `Id` int(11) NOT NULL,
   `jefe` varchar(100) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT NULL
@@ -100,7 +101,8 @@ CREATE TABLE `departamentos` (
 
 INSERT INTO `departamentos` (`Id`, `jefe`, `nombre`, `activo`) VALUES
 (2, 'ana', 'reparar', 0),
-(23, 'alvaro', 'limpieza', 0);
+(23, 'alvaro', 'limpieza', 0),
+(24, '12345678P', 'JuanAlberto', 1);
 
 -- --------------------------------------------------------
 
@@ -109,7 +111,7 @@ INSERT INTO `departamentos` (`Id`, `jefe`, `nombre`, `activo`) VALUES
 --
 
 CREATE TABLE `empleado` (
-  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `Id` int(11) NOT NULL,
   `sueldo` decimal(10,2) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `apellidos` varchar(100) DEFAULT NULL,
@@ -170,9 +172,9 @@ INSERT INTO `empleado_mantenimiento` (`especialidad`, `id_empleado`) VALUES
 --
 
 CREATE TABLE `habitacion` (
-  `numero` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `numero` int(11) NOT NULL,
   `piso` int(11) NOT NULL,
-  `tamaÃ±o` varchar(20) NOT NULL,
+  `tamanyo` varchar(20) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `ocupada` tinyint(1) DEFAULT 0,
   `id_empleado` int(11) DEFAULT NULL
@@ -182,9 +184,10 @@ CREATE TABLE `habitacion` (
 -- Volcado de datos para la tabla `habitacion`
 --
 
-INSERT INTO `habitacion` (`numero`, `piso`, `tamaÃ±o`, `precio`, `ocupada`, `id_empleado`) VALUES
+INSERT INTO `habitacion` (`numero`, `piso`, `tamanyo`, `precio`, `ocupada`, `id_empleado`) VALUES
 (4, 5, '50.43', '5678.76', 1, 23),
-(6, 1, '30.5', '1030.54', 0, 23);
+(6, 1, '30.5', '1030.54', 0, 23),
+(8, 1, '1.0', '22220.00', 0, 23);
 
 -- --------------------------------------------------------
 
@@ -213,7 +216,7 @@ INSERT INTO `linea_pedidos` (`id_Reserva`, `id_Cliente`, `id_Habitacion`, `activ
 --
 
 CREATE TABLE `reserva` (
-  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `Id` int(11) NOT NULL,
   `Total` decimal(10,2) DEFAULT NULL,
   `Fecha_entrada` date DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
@@ -237,7 +240,7 @@ INSERT INTO `reserva` (`Id`, `Total`, `Fecha_entrada`, `Nombre`, `cliente_Id`, `
 --
 
 CREATE TABLE `tareas` (
-  `Id` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `Id` int(11) NOT NULL,
   `Descripcion` varchar(500) DEFAULT NULL,
   `Lugar` varchar(100) DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
@@ -272,7 +275,7 @@ INSERT INTO `tareas_empleado` (`id_tareas`, `id_empleado`) VALUES
 (67, 23);
 
 --
--- Ã�ndices para tablas volcadas
+-- Índices para tablas volcadas
 --
 
 --
@@ -322,7 +325,7 @@ ALTER TABLE `empleado_mantenimiento`
 --
 ALTER TABLE `habitacion`
   ADD PRIMARY KEY (`numero`),
-  ADD KEY `id_empleado` (`id_empleado`);
+  ADD KEY `habitacion_ibfk_1` (`id_empleado`);
 
 --
 -- Indices de la tabla `linea_pedidos`
@@ -337,14 +340,14 @@ ALTER TABLE `linea_pedidos`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `cliente_Id` (`cliente_Id`);
+  ADD KEY `reserva_ibfk_1` (`cliente_Id`);
 
 --
 -- Indices de la tabla `tareas`
 --
 ALTER TABLE `tareas`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `empleado_Id` (`empleado_Id`);
+  ADD KEY `tareas_ibfk_1` (`empleado_Id`);
 
 --
 -- Indices de la tabla `tareas_empleado`
@@ -352,6 +355,46 @@ ALTER TABLE `tareas`
 ALTER TABLE `tareas_empleado`
   ADD PRIMARY KEY (`id_tareas`,`id_empleado`),
   ADD KEY `id_empleado` (`id_empleado`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT de la tabla `habitacion`
+--
+ALTER TABLE `habitacion`
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `reserva`
+--
+ALTER TABLE `reserva`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT de la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- Restricciones para tablas volcadas
@@ -406,13 +449,6 @@ ALTER TABLE `reserva`
 --
 ALTER TABLE `tareas`
   ADD CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`empleado_Id`) REFERENCES `empleado` (`Id`);
-
---
--- Filtros para la tabla `tareas_empleado`
---
-ALTER TABLE `tareas_empleado`
-  ADD CONSTRAINT `tareas_empleado_ibfk_1` FOREIGN KEY (`id_tareas`) REFERENCES `tareas` (`Id`),
-  ADD CONSTRAINT `tareas_empleado_ibfk_2` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
