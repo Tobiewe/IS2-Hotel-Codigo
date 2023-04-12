@@ -10,9 +10,9 @@ public interface SAHabitacion {
 	
 	public Integer modificar(THabitaciones habitacion);
 
-	public Integer eliminar(int idHabitacion);
+	public Integer eliminar(Integer idHabitacion);
 
-	public THabitaciones mostrarUno(int idHabitacion);
+	public THabitaciones mostrarUno(Integer idHabitacion);
 	
 	public Collection<THabitaciones> mostrarTodos();
 	

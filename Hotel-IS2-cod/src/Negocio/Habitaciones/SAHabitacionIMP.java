@@ -56,7 +56,7 @@ public class SAHabitacionIMP implements SAHabitacion {
 	}
 
 	
-	public Integer eliminar(int idHabitacion) {
+	public Integer eliminar(Integer idHabitacion) {
 		
 		DAOHabitaciones daoHab = FactoriaIntegracion.getInstance().newDAOHabitaciones();
 		THabitaciones th = daoHab.MostrarUna(idHabitacion);
@@ -70,7 +70,7 @@ public class SAHabitacionIMP implements SAHabitacion {
 		
 		for(TLineaPedido tl : lista){
 			if(tl.getActiva()){
-				return -1; //que no pertenece a ninguna reserva
+				return -2;
 			}
 		}
 		
@@ -78,7 +78,7 @@ public class SAHabitacionIMP implements SAHabitacion {
 	}
 
 	
-	public THabitaciones mostrarUno(int idHabitacion) {
+	public THabitaciones mostrarUno(Integer idHabitacion) {
 		
 		DAOHabitaciones daoHab = FactoriaIntegracion.getInstance().newDAOHabitaciones();
 		THabitaciones th = daoHab.MostrarUna(idHabitacion);

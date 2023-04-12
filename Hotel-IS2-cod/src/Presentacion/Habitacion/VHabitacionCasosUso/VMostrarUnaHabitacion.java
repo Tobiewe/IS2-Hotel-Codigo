@@ -1,19 +1,28 @@
 package Presentacion.Habitacion.VHabitacionCasosUso;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.AbstractTableModel;
 
 import Negocio.Habitaciones.THabitaciones;
 import Presentacion.Controller.Controller;
@@ -23,6 +32,7 @@ import Presentacion.Controller.IGUI;
 public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 	
 	Controller ctrl;
+	private habitacionesTableModel tableModel;
 	
 	private Integer id;
 	public VMostrarUnaHabitacion(){
@@ -94,11 +104,75 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 		});
 		return cancelButton;
 	}
+	class habitacionesTableModel extends AbstractTableModel
+	{
+		String[] columnValues = {"Id", "Piso", "Tamaño", "Precio","Empleado Id", "Ocupada"};
+		List<THabitaciones> habitaciones;
+		
+		public habitacionesTableModel()
+		{
+			habitaciones =  new ArrayList<>();
+		}
+		
+		@Override
+		public int getRowCount() {
+			return habitaciones.size();
+		}
+		public void setList(Collection<THabitaciones> collection)
+		{
+			habitaciones = new ArrayList<>(collection);
+			fireTableDataChanged();
+		}
+		public void addElement(THabitaciones element)
+		{
+			habitaciones.add(element);
+			fireTableDataChanged();
+		}
+		@Override
+		public int getColumnCount() {
+			return columnValues.length;
+		}
+		@Override 
+		public String getColumnName(int columnIndex) 
+		{
+			return columnValues[columnIndex];
+		}
+		@Override
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			if(columnIndex == 0)
+				return habitaciones.get(rowIndex).getNumero();
+			else if(columnIndex == 1)
+				return habitaciones.get(rowIndex).getPiso();
+			else if(columnIndex == 2)
+				return habitaciones.get(rowIndex).getTamaño();
+			else if(columnIndex == 3)
+				return habitaciones.get(rowIndex).getPrecio();
+			else if(columnIndex == 4)
+				return habitaciones.get(rowIndex).getId_empledo();
+			else if(columnIndex == 5)
+				return habitaciones.get(rowIndex).getOcupada();
+			return null;
+		}
+		public JPanel transformTableToPanel()
+		{
+			JPanel tablaPanel = new JPanel(new BorderLayout());
+			JTable hTable = new JTable(this); 
+			
+			tablaPanel.add(hTable);
+			TitledBorder titleBorder = BorderFactory.createTitledBorder(title);
+			tablaPanel.setBorder(titleBorder);
+			
+			JScrollPane sPanel = new JScrollPane(hTable);
+			tablaPanel.add(sPanel, BorderLayout.CENTER);
+			return tablaPanel;
+		}
+		
+	}
 	@Override
 	public void update(int event, Object datos) {
 		if(event == Events.HABITACION_MOSTRAR_UNA_SI_ID)
 		{
-			THabitaciones auxHabitacion = (THabitaciones) datos;
+			tableModel.addElement((THabitaciones)datos);
 		}
 		else if(event == Events.HABITACION_MOSTRAR_UNA_NO_ID)
 		{
