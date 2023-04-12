@@ -18,16 +18,18 @@ public class SAHabitacionIMP implements SAHabitacion {
 		}
 		
 		DAOHabitaciones daoHab = FactoriaIntegracion.getInstance().newDAOHabitaciones();
-		THabitaciones th = daoHab.MostrarUna(habitacion.getNumero());
-		
-		if(th != null){
-			habitacion.setNumero(habitacion.getNumero());
+		if(habitacion.getNumero() != null){
+			THabitaciones th = daoHab.MostrarUna(habitacion.getNumero());
 			
-			if(!habitacion.getOcupada()){
-				daoHab.modificar(habitacion);
+			if(th != null){
+				habitacion.setNumero(habitacion.getNumero());
+				
+				if(!habitacion.getOcupada()){
+					daoHab.modificar(habitacion);
+				}
+				
+				return th.getOcupada() ? -2 : habitacion.getNumero();
 			}
-			
-			return th.getOcupada() ? -2 : habitacion.getNumero();
 		}
 		
 		habitacion.setNumero(daoHab.añadir(habitacion));
