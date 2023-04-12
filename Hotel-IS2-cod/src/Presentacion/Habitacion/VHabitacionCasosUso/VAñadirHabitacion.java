@@ -174,7 +174,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				THabitaciones tHabitacion = new THabitaciones(null,piso,tamanyo,Float.parseFloat(textField.getText()),false,null);
+				THabitaciones tHabitacion = new THabitaciones(null,piso,tamanyo,Float.parseFloat(textField.getText()),false,idEmpleado);
 				ctrl.carryAction(Events.HABITACION_CREAR, tHabitacion);
 			}
 			
