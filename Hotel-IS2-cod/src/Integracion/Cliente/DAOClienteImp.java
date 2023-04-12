@@ -38,39 +38,35 @@ public class DAOClienteImp implements DAOCliente {
 				key = rs.getInt(1);
 			}
 				
+
+			
+			if(tCliente.getCIF() != null){
+				c = "INSERT INTO cliente_empresa (nombre, CIF, cliente_id) VALUES (?, ?, ?);";
+
+				ps = Cnx.prepareStatement(c);
+
+				ps.setString(1, tCliente.getNombre());
+				ps.setString(2, tCliente.getCIF());
+				ps.setInt(3, tCliente.getId());
+				ps.executeUpdate();
+
+			}
+			else{
+				c = "INSERT INTO cliente_particular (nombre, apellidos, NIF, cliente_id) VALUES (?, ?, ?, ?);";
+
+				ps = Cnx.prepareStatement(c);
+
+				ps.setString(1, tCliente.getNombre());
+				ps.setString(2, tCliente.getApellidos());
+				ps.setString(3, tCliente.getNIF());
+				ps.setInt(4, tCliente.getId());;
+				ps.executeUpdate();
+					
+			}
+			
 			Cnx.close();
 			ps.close();
 			rs.close();
-			
-			if(tCliente.getCIF() != null){
-				String cE = "INSERT INTO cliente_empresa (nombre, CIF, cliente_id) VALUES (?, ?, ?);";
-
-				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
-				PreparedStatement psE = CnxE.prepareStatement(cE);
-
-				psE.setString(1, tCliente.getNombre());
-				psE.setString(2, tCliente.getCIF());
-				psE.setInt(3, tCliente.getId());
-				psE.executeUpdate();
-
-				CnxE.close();
-				psE.close();
-			}
-			else{
-				String cP = "INSERT INTO cliente_particular (nombre, apellidos, NIF, cliente_id) VALUES (?, ?, ?, ?);";
-
-				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
-				PreparedStatement psP = CnxP.prepareStatement(cP);
-
-				psP.setString(1, tCliente.getNombre());
-				psP.setString(2, tCliente.getApellidos());
-				psP.setString(3, tCliente.getNIF());
-				psP.setInt(4, tCliente.getId());;
-				psP.executeUpdate();
-					
-				CnxP.close();
-				psP.close();
-			}
 			
 		} catch (SQLException e) {
 			
@@ -130,41 +126,34 @@ public class DAOClienteImp implements DAOCliente {
 			
 			if(ps.executeUpdate()==1) ok= tCliente.getId();
 			
-			Cnx.close();
-			ps.close();
 			
 			if(tCliente.getCIF() != null){
 				
-				String cE = "UPDATE cliente_empresa SET Nombre = ?, CIF = ? WHERE cliente_id = ?;";
+				c = "UPDATE cliente_empresa SET Nombre = ?, CIF = ? WHERE cliente_id = ?;";
 
-				Connection CnxE = DriverManager.getConnection(url, usuario, clave);
-				PreparedStatement psE = CnxE.prepareStatement(cE);
+				
+				ps = Cnx.prepareStatement(c);
 
-				psE.setString(1, tCliente.getNombre());
-				psE.setString(2, tCliente.getCIF());
-				psE.setInt(3, tCliente.getId());
-				psE.executeUpdate();
+				ps.setString(1, tCliente.getNombre());
+				ps.setString(2, tCliente.getCIF());
+				ps.setInt(3, tCliente.getId());
+				ps.executeUpdate();
 
-				CnxE.close();
-				psE.close();
 			}
 			else if (tCliente.getNIF() != null){
-				String cP = "UPDATE cliente_particular SET nombre = ?, apellidos = ?, NIF = ? WHERE cliente_id = ?;";
+				c = "UPDATE cliente_particular SET nombre = ?, apellidos = ?, NIF = ? WHERE cliente_id = ?;";
 
-				Connection CnxP = DriverManager.getConnection(url, usuario, clave);
-				PreparedStatement psP = CnxP.prepareStatement(cP);
+				ps = Cnx.prepareStatement(c);
 
-				psP.setString(1, tCliente.getNombre());
-				psP.setString(2, tCliente.getApellidos());
-				psP.setString(3, tCliente.getNIF());
-				psP.setInt(4, tCliente.getId());;
-				
-				psP.executeUpdate();
-					
-				CnxP.close();
-				psP.close();
+				ps.setString(1, tCliente.getNombre());
+				ps.setString(2, tCliente.getApellidos());
+				ps.setString(3, tCliente.getNIF());
+				ps.setInt(4, tCliente.getId());;
+				ps.executeUpdate();
 			}
 			
+			Cnx.close();
+			ps.close();
 			
 		} catch (SQLException e) {
 			
@@ -180,22 +169,48 @@ public class DAOClienteImp implements DAOCliente {
 	public TCliente MostrarUno(Integer id) { 
 		
 		TCliente tCliente = null;
+		String nombre = null, CIF = null, apellidos = null, NIF = null;
 		
 		try {
-			String c = "SELECT * FROM cliente WHERE Id = ?;";
-
+			
+			
+			String cE = "SELECT * FROM cliente_empresa WHERE Id = ?;";
+			
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
-			PreparedStatement ps = Cnx.prepareStatement(c);
-
+			PreparedStatement ps = Cnx.prepareStatement(cE);
+			
 			ps.setInt(1, id);
 			ResultSet Rs = ps.executeQuery();
+			
+			if(Rs.getString("CIF") != null){
+				nombre = Rs.getString("nombre");
+				CIF = Rs.getString("CIF");
+			}
+			
+			else{
+				String cP = "SELECT * FROM cliente_particular WHERE Id = ?;";
+				 Cnx.prepareStatement(cP);
+				
+				 ps.setInt(1, id);
+				 Rs = ps.executeQuery();
+				 nombre = Rs.getString("nombre");
+				 apellidos = Rs.getString("apellidos");
+				 NIF = Rs.getString("NIF");
+			}
+			
+			
+			String c = "SELECT * FROM cliente WHERE Id = ?;";
+
+			Cnx.prepareStatement(c);
+
+			ps.setInt(1, id);
+			Rs = ps.executeQuery();
 
 			if (Rs.next()){
 				
 				
 				tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-						Rs.getInt("telefono"), Rs.getString("nombre"),  Rs.getString("CIF"),  Rs.getString("apellidos")
-						,Rs.getString("NIF"),  Rs.getBoolean("activo"));
+						Rs.getInt("telefono"), nombre,  CIF,  apellidos ,NIF ,  Rs.getBoolean("activo"));
 				
 			}
 	
