@@ -139,11 +139,6 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.HABITACION_ELIMINAR_SUCCESS, data);
 
-		
-		
-	}
-
-
 		}
 		
 	}

@@ -33,6 +33,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	private Integer tamanyo;
 	private Integer piso;
 	private float precio;
+	private Integer idEmpleado;
 	
 	
 	
@@ -60,6 +61,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		mainPanel.add(panelPiso());
 		mainPanel.add(tamanyoPanel());
 		mainPanel.add(precioPanel(precioText));
+		mainPanel.add(idEmpleadoPanel());
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
@@ -140,7 +142,30 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		
 		return precioPanel;
 	}
-	
+	public JPanel idEmpleadoPanel()
+	{
+		JPanel panelIdEmpleado = new JPanel();
+		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel idEmpleadoLabel = new JLabel("Id empleado: ");
+		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1,1,5,1));
+		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 15));
+		idEmpleado = (Integer) idEmpleadoSpinner.getValue();
+		idEmpleadoSpinner.addChangeListener(new ChangeListener()
+		{
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				idEmpleado = (Integer) idEmpleadoSpinner.getValue();
+			}
+			
+		});
+		
+		panelIdEmpleado.add(idEmpleadoLabel);
+		panelIdEmpleado.add(idEmpleadoSpinner);
+		
+		return panelIdEmpleado;
+	}
 	public JButton crearButton(JTextField textField)
 	{
 		JButton crearButton = new JButton("Crear");
@@ -171,6 +196,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		});
 		return cancelButton;
 	}
+	
 	@Override
 	public void update(int event, Object datos) {
 		if(event == Events.HABITACION_CREAR_ERROR)
