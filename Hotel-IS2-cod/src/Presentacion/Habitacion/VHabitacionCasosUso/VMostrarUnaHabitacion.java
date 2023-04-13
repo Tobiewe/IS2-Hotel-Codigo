@@ -60,7 +60,7 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 		buttonsPanel.add(cancelButton());
 		
 		mainPanel.add(buttonsPanel);
-		
+		//Commit
 		mainPanel.add(tableModel.transformTableToPanel());
 		
 		pack();
