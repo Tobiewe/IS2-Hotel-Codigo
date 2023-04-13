@@ -54,8 +54,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
-		JTextField precioText = new JTextField("1");
-		precioText.setSize(1000, 50);
+		JTextField precioText = new JTextField("1000");
 		
 		mainPanel.add(panelPiso());
 		mainPanel.add(tamanyoPanel());

@@ -29,9 +29,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 
 	private Controller ctrl;
 
-	private Integer tamanyo;
-	private Integer piso;
-	private Integer idEmpleado;
+	private String nombre;
 
 	public VCrearDepartamento() {
 		ctrl = Controller.getInstance();
@@ -50,17 +48,14 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
-		JTextField precioText = new JTextField("1");
-		precioText.setSize(1000, 50);
-
-		mainPanel.add(panelPiso());
-		mainPanel.add(tamanyoPanel());
-		mainPanel.add(precioPanel(precioText));
-		mainPanel.add(idEmpleadoPanel());
+		JTextField nombreText = new JTextField("Ingrese aqui el nombre del departamento");
+		nombreText.setSize(1000, 50);
+		mainPanel.add(precioPanel(nombreText));
+		
 
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		buttonPanel.add(crearButton(precioText));
+		buttonPanel.add(crearButton(nombreText));
 		buttonPanel.add(cancelButton());
 
 		mainPanel.add(buttonPanel);
@@ -69,91 +64,18 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 		setVisible(true);
 	}
 
-	public JPanel panelPiso() {
-		JPanel panelPiso = new JPanel();
-		panelPiso.setLayout(new FlowLayout(FlowLayout.CENTER));
+	public JPanel nombrePanel(JTextField nombreText) {
+		JPanel nombrePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		JLabel pisoLabel = new JLabel("Piso: ");
-		JSpinner pisoSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 5, 1));
-		pisoSpinner.setPreferredSize(new Dimension(40, 15));
-		piso = (Integer) pisoSpinner.getValue();
-		pisoSpinner.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				piso = (Integer) pisoSpinner.getValue();
-			}
-
-		});
-
-		panelPiso.add(pisoLabel);
-		panelPiso.add(pisoSpinner);
-
-		return panelPiso;
-	}
-
-	public JPanel tamanyoPanel() {
-		JPanel tamanyoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-		JLabel tamanyoLabel = new JLabel("Tamaño: ");
-		JComboBox<Integer> tamanyoCombo = new JComboBox<Integer>();
-
-		tamanyoCombo.addItem(1);
-		tamanyoCombo.addItem(2);
-		tamanyoCombo.addItem(3);
-		tamanyoCombo.addItem(4);
-
-		tamanyo = (Integer) tamanyoCombo.getSelectedItem();
-
-		tamanyoCombo.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				tamanyo = (Integer) tamanyoCombo.getSelectedItem();
-			}
-
-		});
-
-		tamanyoPanel.add(tamanyoLabel);
-		tamanyoPanel.add(tamanyoCombo);
-
-		return tamanyoPanel;
-	}
-
-	public JPanel precioPanel(JTextField precioText) {
-		JPanel precioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-		JLabel precioLabel = new JLabel("Precio: ");
+		JLabel nombreLabel = new JLabel("Nombre: ");
 		Dimension d = new Dimension(1000, 1000);
-		precioText.setSize(d);
-		precioPanel.add(precioLabel);
-		precioPanel.add(precioText);
+		nombreText.setSize(d);
+		nombrePanel.add(nombreLabel);
+		nombrePanel.add(nombreText);
 
-		return precioPanel;
+		return nombrePanel;
 	}
 
-	public JPanel idEmpleadoPanel() {
-		JPanel panelIdEmpleado = new JPanel();
-		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-		JLabel idEmpleadoLabel = new JLabel("Id empleado: ");
-		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
-		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 15));
-		idEmpleado = (Integer) idEmpleadoSpinner.getValue();
-		idEmpleadoSpinner.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				idEmpleado = (Integer) idEmpleadoSpinner.getValue();
-			}
-
-		});
-
-		panelIdEmpleado.add(idEmpleadoLabel);
-		panelIdEmpleado.add(idEmpleadoSpinner);
-
-		return panelIdEmpleado;
-	}
 
 	public JButton crearButton(JTextField textField) {
 		JButton crearButton = new JButton("Crear");
