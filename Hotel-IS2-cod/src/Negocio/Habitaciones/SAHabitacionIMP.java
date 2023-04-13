@@ -65,7 +65,7 @@ public class SAHabitacionIMP implements SAHabitacion {
 			return -2;		
 		}
 		
-		DAOLineaReserva daolinea = FactoriaIntegracion.getInstance().newLineaPedido();
+		DAOLineaReserva daolinea = FactoriaIntegracion.getInstance().newLineaReserva();
 		Collection<TLineaReserva> lista = daolinea.LeerLineasPedidoPorHabitacion(idHabitacion);
 		
 		for(TLineaReserva tl : lista){
