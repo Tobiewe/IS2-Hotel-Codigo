@@ -21,6 +21,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Negocio.Departamentos.TDepartamento;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
@@ -50,7 +51,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 
 		JTextField nombreText = new JTextField("Ingrese aqui el nombre del departamento");
 		nombreText.setSize(1000, 50);
-		mainPanel.add(precioPanel(nombreText));
+		mainPanel.add(nombrePanel(nombreText));
 		
 
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -77,15 +78,14 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 	}
 
 
-	public JButton crearButton(JTextField textField) {
+	public JButton crearButton(JTextField nombreTextField) {
 		JButton crearButton = new JButton("Crear");
 		crearButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Tdepartamentoes tdepartamento = new Tdepartamentoes(null, piso, tamanyo,
-						Float.parseFloat(textField.getText()), false, idEmpleado);
-				ctrl.carryAction(Events.departamento_CREAR, tdepartamento);
+				TDepartamento tDepartamento = new TDepartamento(null,"",(String)nombreTextField.getText(),false);
+				ctrl.carryAction(Events.DEPARTAMENTO_CREAR, tDepartamento);
 			}
 
 		});
@@ -98,7 +98,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ctrl.carryAction(Events.departamento_NUEVA_VISTA, null);
+				ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
 			}
 
 		});
@@ -107,15 +107,15 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 
 	@Override
 	public void update(int event, Object datos) {
-		if (event == Events.departamento_CREAR_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear la habitación");
-		else if (event == Events.departamento_CREAR_REPEATED)
-			JOptionPane.showMessageDialog(this, "ERROR: Ya existe una habitación con el id " + (Integer) datos);
-		else if (event == Events.departamento_CREAR_WRONG_PARAMETERS)
+		if (event == Events.DEPARTAMENTO_CREAR_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear el departamento");
+		else if (event == Events.DEPARTAMENTO_CREAR_REPEATED)
+			JOptionPane.showMessageDialog(this, "ERROR: Ya existe un departamento con el nombre " + (String) datos);
+		else if (event == Events.DEPARTAMENTO_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
-		else if (event == Events.departamento_CREAR_SUCCESS)
+		else if (event == Events.DEPARTAMENTO_CREAR_SUCCESS)
 			JOptionPane.showMessageDialog(this,
-					"La habitación con id " + (Integer) datos + " se ha creado correctamente");
+					"El departamento " + (String) datos + " ha sido creado correctamente");
 	}
 
 }

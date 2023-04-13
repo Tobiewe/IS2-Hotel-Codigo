@@ -89,6 +89,23 @@ public class ControllerImp extends Controller {
 		case Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA, null);
 			break;
+		case Events.DEPARTAMENTO_CREAR:
+			tDepartamento = (TDepartamento) data;
+			saSolution = saDepartamento.crear(tDepartamento);
+			if(saSolution == -2)
+				cIGUI.update(Events.DEPARTAMENTO_CREAR_REPEATED, tDepartamento.getNombre());
+			else if(saSolution == -5)
+				cIGUI.update(Events.DEPARTAMENTO_CREAR_WRONG_PARAMETERS, null);
+			else if(saSolution > 0)
+				cIGUI.update(Events.DEPARTAMENTO_CREAR_SUCCESS, tDepartamento.getNombre());
+			break;
+		case Events.DEPARTAMENTO_ELIMINAR:
+			saSolution = saDepartamento.eliminar((Integer) data);
+			if(saSolution == -2)
+				cIGUI.update(Events.DEPARTAMENTO_ELIMINAR_NOTFOUND, data);
+			else
+				cIGUI.update(Events.DEPARTAMENTO_ELIMINAR_SUCCESS, data);
+			break;
 		case Events.HABITACION_CREAR:
 			tHabitacion = (THabitaciones)data;
 			saSolution = saHabitacion.crear(tHabitacion);
