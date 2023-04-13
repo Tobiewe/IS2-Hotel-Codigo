@@ -1,5 +1,15 @@
 package Presentacion.Departamento.VDepartamentoCasosUso;
 
-public class VLeerTodosDepartamento {
+import javax.swing.JFrame;
+
+import Presentacion.Controller.IGUI;
+
+public class VLeerTodosDepartamento extends JFrame implements IGUI{
+
+	@Override
+	public void update(int event, Object datos) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

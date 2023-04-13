@@ -4,6 +4,11 @@ import Presentacion.Cliente.VCliente;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
 import Presentacion.Departamento.VDepartamento;
+import Presentacion.Departamento.VDepartamentoCasosUso.VCrearDepartamento;
+import Presentacion.Departamento.VDepartamentoCasosUso.VEditarDepartamento;
+import Presentacion.Departamento.VDepartamentoCasosUso.VEliminarDepartamento;
+import Presentacion.Departamento.VDepartamentoCasosUso.VLeerTodosDepartamento;
+import Presentacion.Departamento.VDepartamentoCasosUso.VLeerUnoDepartamento;
 import Presentacion.Empleado.VEmpleado;
 import Presentacion.Habitacion.VHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VAñadirHabitacion;
@@ -32,10 +37,22 @@ public class VFactoryImp extends VFactory {
 			return new VEmpleado();
 		case Events.DEPARTAMENTO_VISTA:
 			return new VDepartamento();
+		case Events.DEPARTAMENTO_CREAR_VISTA:
+			return new VCrearDepartamento();
+		case Events.DEPARTAMENTO_ELIMINAR_VISTA:
+			return new VEliminarDepartamento();
+		case Events.DEPARTAMENTO_MODIFICAR_VISTA:
+			return new VEditarDepartamento();
+		case Events.DEPARTAMENTO_MOSTRAR_UNO_VISTA:
+			return new VLeerUnoDepartamento();
+		case Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA:
+			return new VLeerTodosDepartamento();
 		case Events.TAREA_VISTA:
 			return new VTarea();
 		case Events.RESERVA_VISTA:
 			return new VReserva();
+			
+			
 		case Events.HABITACION_VISTA:
 			return new VHabitacion();
 			

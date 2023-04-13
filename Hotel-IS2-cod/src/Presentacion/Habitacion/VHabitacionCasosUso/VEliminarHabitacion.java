@@ -112,7 +112,7 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 	@Override
 	public void update(int event, Object datos) {
 		if (event == Events.HABITACION_ELIMINAR_SUCCESS) 
-			JOptionPane.showMessageDialog(null, "La Habitacion de id " + (Integer) datos + " ha sido dado de baja");
+			JOptionPane.showMessageDialog(null, "La Habitacion de id " + (Integer) datos + " ha sido dada de baja");
 		else if(event == Events.HABITACION_ELIMINAR_NOTFOUND)
 			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " no esta registrado");
 		

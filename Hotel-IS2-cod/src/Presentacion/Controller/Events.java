@@ -196,7 +196,9 @@ public class Events {
 	public static final int DEPARTAMENTO_ELIMINAR_SUCCESS = 634;
 	
 	public static final int DEPARTAMENTO_MOSTRAR_UNO = 640;
+	public static final int DEPARTAMENTO_MOSTRAR_UNO_VISTA = 641;
 	public static final int DEPARTAMENTO_MOSTRAR_TODOS = 650;
+	public static final int DEPARTAMENTO_MOSTRAR_TODOS_VISTA = 651;
 
 	
 }

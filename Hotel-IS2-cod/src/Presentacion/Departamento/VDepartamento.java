@@ -72,7 +72,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_CREAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_CREAR_VISTA, null);
 						setVisible(false);
 					}
 				});
@@ -87,7 +87,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_MODIFICAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MODIFICAR_VISTA, null);
 						setVisible(false);
 					}
 				});
@@ -102,7 +102,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_ELIMINAR, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_ELIMINAR_VISTA, null);
 						setVisible(false);
 					}
 				});
@@ -117,7 +117,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_UNO, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_UNO_VISTA, null);
 						setVisible(false);
 					}
 				});
@@ -132,7 +132,7 @@ public class VDepartamento extends JFrame implements IGUI{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_TODOS, null);
+						ctrl.carryAction(Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA, null);
 						setVisible(false);
 					}
 				});

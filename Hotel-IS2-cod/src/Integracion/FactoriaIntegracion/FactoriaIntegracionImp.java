@@ -59,5 +59,11 @@ public class FactoriaIntegracionImp  extends FactoriaIntegracion{
 	public DAOEmpleados newDAOEmpleado() {
 		return new DAOEmpleadoImp();
 	}
+
+
+	@Override
+	public DAOLineaReserva newLineaReserva() {
+		return new DAOLineaReservaImp();
+	}
 		
 }

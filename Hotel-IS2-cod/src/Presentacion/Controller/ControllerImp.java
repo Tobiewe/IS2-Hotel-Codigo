@@ -70,6 +70,25 @@ public class ControllerImp extends Controller {
 		case Events.RESERVA_NUEVA_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_VISTA, null);
 			break;
+		case Events.DEPARTAMENTO_CREAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_CREAR_VISTA, null);
+			break;
+		case Events.DEPARTAMENTO_MODIFICAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_MODIFICAR_VISTA, null);
+
+			break;
+		case Events.DEPARTAMENTO_ELIMINAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_ELIMINAR_VISTA, null);
+
+			break;
+			
+		case Events.DEPARTAMENTO_MOSTRAR_UNO_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_MOSTRAR_UNO_VISTA, null);
+
+			break;
+		case Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA, null);
+			break;
 		case Events.HABITACION_CREAR:
 			tHabitacion = (THabitaciones)data;
 			saSolution = saHabitacion.crear(tHabitacion);
