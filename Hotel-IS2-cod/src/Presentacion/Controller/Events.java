@@ -9,14 +9,11 @@ public class Events {
 	public static final int EMPLEADO_NUEVA_VISTA = 101;
 	
 	public static final int EMPLEADO_CREAR_VISTA = 110;
-	
 	public static final int EMPLEADO_CREAR = 111;
 	public static final int EMPLEADO_CREAR_ERROR = 112;
 	public static final int EMPLEADO_CREAR_REPEATED = 113;
 	public static final int EMPLEADO_CREAR_WRONG_PARAMETERS= 114;
-	public static final int EMPLEADO_CREAR_SUCCESS = 115;
-//	
-	
+	public static final int EMPLEADO_CREAR_SUCCESS = 115;	
 	
 	public static final int EMPLEADO_MODIFICAR = 120; 
 	public static final int EMPLEADO_MODIFICAR_VISTA = 121;
@@ -33,7 +30,15 @@ public class Events {
 	
 	
 	public static final int EMPLEADO_MOSTRAR_UNO = 140;
+	public static final int EMPLEADO_MOSTRAR_UNO_VISTA = 141;
+	public static final int EMPLEADO_MOSTRAR_UNO_SI_ID = 143;
+	public static final int EMPLEADO_MOSTRAR_UNO_NO_ID = 142;
+	
 	public static final int EMPLEADO_MOSTRAR_TODOS = 150;
+	public static final int EMPLEADO_MOSTRAR_TODOS_VISTA = 151;
+	public static final int EMPLEADO_MOSTRAR_TODOS_SUCCESS = 152;
+	public static final int EMPLEADO_MOSTRAR_TODOS_ERROR = 153;
+	
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO = 160;
 	
 	//CLIENTE
@@ -62,7 +67,14 @@ public class Events {
 	public static final int CLIENTE_ELIMINAR_SUCCESS = 234;
 	
 	public static final int CLIENTE_MOSTRAR_UNO = 240;
+	public static final int CLIENTE_MOSTRAR_UNO_VISTA = 241;
+	public static final int CLIENTE_MOSTRAR_UNO_SI_ID = 243;
+	public static final int CLIENTE_MOSTRAR_UNO_NO_ID = 242;
+	
 	public static final int CLIENTE_MOSTRAR_TODOS = 250;
+	public static final int CLIENTE_MOSTRAR_TODOS_VISTA = 251;
+	public static final int CLIENTE_MOSTRAR_TODOS_SUCCESS = 252;
+	public static final int CLIENTE_MOSTRAR_TODOS_ERROR = 253;
 	
 	//RESERVA
 	public static final int RESERVA_VISTA = 300;
@@ -89,7 +101,15 @@ public class Events {
 	public static final int RESERVA_ELIMINAR_SUCCESS = 334;
 	
 	public static final int RESERVA_MOSTRAR_UNA = 340;
+	public static final int RESERVA_MOSTRAR_UNA_VISTA = 341;
+	public static final int RESERVA_MOSTRAR_UNA_SI_ID = 343;
+	public static final int RESERVA_MOSTRAR_UNA_NO_ID = 342;
+	
 	public static final int RESERVA_MOSTRAR_TODAS = 350;
+	public static final int RESERVA_MOSTRAR_TODAS_VISTA = 351;
+	public static final int RESERVA_MOSTRAR_TODAS_SUCCESS = 352;
+	public static final int RESERVA_MOSTRAR_TODAS_ERROR = 353;
+	
 	public static final int RESERVA_CERRAR = 360;
 	public static final int RESERVA_QUITAR_HABITACIONES = 370;
 	public static final int RESERVA_AÑADIR_HABITACIONES = 380;
@@ -122,14 +142,12 @@ public class Events {
 	
 	public static final int HABITACION_MOSTRAR_UNA = 440;
 	public static final int HABITACION_MOSTRAR_UNA_VISTA = 441;
-	
 	public static final int HABITACION_MOSTRAR_UNA_SI_ID = 443;
 	public static final int HABITACION_MOSTRAR_UNA_NO_ID = 442;
 	
 	public static final int HABITACION_MOSTRAR_TODAS = 450;
 	public static final int HABITACION_MOSTRAR_TODAS_VISTA = 451;
 	public static final int HABITACION_MOSTRAR_TODAS_SUCCESS = 452;
-	
 	public static final int HABITACION_MOSTRAR_TODAS_ERROR = 453;
 	
 	public static final int HABITACION_MOSTRAR_DISPONIBLES = 460;
@@ -167,7 +185,14 @@ public class Events {
 	public static final int TAREA_ELIMINAR_SUCCESS = 534;
 	
 	public static final int TAREA_MOSTRAR_UNO = 540;
+	public static final int TAREA_MOSTRAR_UNA_SI_ID = 543;
+	public static final int TAREA_MOSTRAR_UNA_NO_ID = 542;
+	
 	public static final int TAREA_MOSTRAR_TODOS = 550;
+	public static final int TAREA_MOSTRAR_TODAS_VISTA = 551;
+	public static final int TAREA_MOSTRAR_TODAS_SUCCESS = 552;
+	public static final int TAREA_MOSTRAR_TODAS_ERROR = 553;
+	
 	public static final int TAREA_DESVINCULAR = 560;
 	public static final int TAREA_VINCULAR = 570;
 	//DEPARTAMENTO
@@ -197,8 +222,15 @@ public class Events {
 	
 	public static final int DEPARTAMENTO_MOSTRAR_UNO = 640;
 	public static final int DEPARTAMENTO_MOSTRAR_UNO_VISTA = 641;
+	public static final int DEPARTAMENTO_MOSTRAR_UNO_SI_ID = 643;
+	public static final int DEPARTAMENTO_MOSTRAR_UNO_NO_ID = 642;
+	
 	public static final int DEPARTAMENTO_MOSTRAR_TODOS = 650;
 	public static final int DEPARTAMENTO_MOSTRAR_TODOS_VISTA = 651;
+	public static final int DEPARTAMENTO_MOSTRAR_TODOS_SUCCESS = 652;
+	public static final int DEPARTAMENTO_MOSTRAR_TODOS_ERROR = 653;
+	
+	
 
 	
 }

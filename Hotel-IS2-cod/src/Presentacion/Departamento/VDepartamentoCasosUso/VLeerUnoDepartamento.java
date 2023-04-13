@@ -26,7 +26,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
 
 import Negocio.Departamentos.TDepartamento;
-import Negocio.departamentoes.Tdepartamentoes;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
@@ -180,14 +179,14 @@ public class VLeerUnoDepartamento extends JFrame implements IGUI {
 	}
 	@Override
 	public void update(int event, Object datos) {
-//		if(event == Events.departamento_MOSTRAR_UNA_SI_ID)
-//		{
-//			tableModel.addElement((Tdepartamentoes)datos);
-//		}
-//		else if(event == Events.departamento_MOSTRAR_UNA_NO_ID)
-//		{
-//			JOptionPane.showMessageDialog(this, "ERROR: No se ha registrado el id " + id);
-//		}
+		if(event == Events.DEPARTAMENTO_MOSTRAR_UNO_SI_ID)
+		{
+			tableModel.addElement((TDepartamento)datos);
+		}
+		else if(event == Events.DEPARTAMENTO_MOSTRAR_UNO_NO_ID)
+		{
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha registrado el id " + id);
+		}
 	}
 
 }

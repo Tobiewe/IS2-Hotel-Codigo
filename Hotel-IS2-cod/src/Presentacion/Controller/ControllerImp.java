@@ -106,6 +106,21 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.DEPARTAMENTO_ELIMINAR_SUCCESS, data);
 			break;
+		case Events.DEPARTAMENTO_MOSTRAR_UNO:
+			tDepartamento = saDepartamento.mostrarUno((Integer) data);
+			
+			if(tDepartamento == null)
+				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_UNO_NO_ID, null);
+			else
+				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_UNO_SI_ID, tDepartamento);
+			break;
+		case Events.DEPARTAMENTO_MOSTRAR_TODOS:
+			Collection<TDepartamento> collectionDep= saDepartamento.mostrarTodos();
+			if(collectionDep == null)
+				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_TODOS_ERROR, null);
+			else
+				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_TODOS_SUCCESS, collectionDep);
+			break;
 		case Events.HABITACION_CREAR:
 			tHabitacion = (THabitaciones)data;
 			saSolution = saHabitacion.crear(tHabitacion);

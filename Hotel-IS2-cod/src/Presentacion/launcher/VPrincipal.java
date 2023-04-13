@@ -42,6 +42,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		mainPanel.add(empleadoButton());
 		
 		pack();
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 	
