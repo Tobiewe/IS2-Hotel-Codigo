@@ -16,5 +16,5 @@ public interface SAEmpleado {
 	
 	public Collection<TEmpleados> mostrarTodos();
 	
-	public Collection<TEmpleados> mostrarPorDepartamento();
+	public Collection<TEmpleados> mostrarPorDepartamento(Integer idDepartamento);
 }

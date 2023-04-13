@@ -97,10 +97,10 @@ public class SAEmpleadoIMP implements SAEmpleado {
 	}
 
 	
-	public Collection<TEmpleados> mostrarPorDepartamento() {
-		/*
+	public Collection<TEmpleados> mostrarPorDepartamento(Integer idDepartamento) {
+		
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
-		Collection<TEmpleados> lista = daoEmpl.
+		Collection<TEmpleados> lista = daoEmpl.mostrarPorDepartamento(idDepartamento);
 		Collection<TEmpleados> dev = new ArrayList<TEmpleados>();
 		
 		for(TEmpleados te : lista){
@@ -109,8 +109,8 @@ public class SAEmpleadoIMP implements SAEmpleado {
 				dev.add(te);
 			}
 		}
-		*/
-		return null;
+		
+		return dev;
 	}
 
 }

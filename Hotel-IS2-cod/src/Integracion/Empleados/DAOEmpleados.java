@@ -16,4 +16,6 @@ public interface DAOEmpleados {
 
 	public Collection<TEmpleados> MostrarTodos();
 	
+	public Collection<TEmpleados> mostrarPorDepartamento(Integer idDepartamento);
+	
 }
