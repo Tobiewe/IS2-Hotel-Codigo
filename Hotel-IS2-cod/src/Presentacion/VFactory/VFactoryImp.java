@@ -19,6 +19,11 @@ import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarTodasDisponiblesHabit
 import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarTodasHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarUnaHabitacion;
 import Presentacion.Reserva.VReserva;
+import Presentacion.Reserva.VReservaCasosUso.VAñadirReserva;
+import Presentacion.Reserva.VReservaCasosUso.VModificarReserva;
+import Presentacion.Reserva.VReservaCasosUso.VMostrarTodasReserva;
+import Presentacion.Reserva.VReservaCasosUso.VMostrarUnaReserva;
+import Presentacion.Reserva.VReservaCasosUso.VQuitarReserva;
 import Presentacion.Tarea.VTarea;
 import Presentacion.Tarea.VTareaCasosUso.VCrearTarea;
 import Presentacion.launcher.VPrincipal;
@@ -51,6 +56,16 @@ public class VFactoryImp extends VFactory {
 			return new VTarea();
 		case Events.RESERVA_VISTA:
 			return new VReserva();
+		case Events.RESERVA_CREAR_VISTA:
+			return new VAñadirReserva();
+		case Events.RESERVA_ELIMINAR_VISTA:
+			return new VQuitarReserva();
+		case Events.RESERVA_MODIFICAR_VISTA:
+			return new VModificarReserva();
+		case Events.RESERVA_MOSTRAR_UNA_VISTA:
+			return new VMostrarUnaReserva();
+		case Events.RESERVA_MOSTRAR_TODAS_VISTA:
+			return new VMostrarTodasReserva();
 			
 			
 		case Events.HABITACION_VISTA:

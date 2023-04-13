@@ -106,7 +106,7 @@ public class DAOReservaImp implements DAOReserva {
 
 			if (Rs.next()){
 				
-				tReserva = new TReserva(Rs.getInt("Id"), Rs.getFloat("total"),Rs.getDate("Fecha_entrada"), Rs.getString("nombre"), Rs.getInt("id_cliente"), 
+				tReserva = new TReserva(Rs.getInt("Id"), Rs.getFloat("total"),Rs.getDate("Fecha_entrada"), Rs.getString("nombre"), Rs.getInt("cliente_Id"), 
 						Rs.getInt("noches"), Rs.getBoolean("activo"));
 				
 			}
@@ -138,7 +138,7 @@ public class DAOReservaImp implements DAOReserva {
 
 			while (Rs.next()){
 				
-				lista.add(new TReserva(Rs.getInt("Id"), Rs.getFloat("total"),Rs.getDate("Fecha_entrada"), Rs.getString("nombre"), Rs.getInt("id_cliente"), 
+				lista.add(new TReserva(Rs.getInt("Id"), Rs.getFloat("total"),Rs.getDate("Fecha_entrada"), Rs.getString("nombre"), Rs.getInt("cliente_Id"), 
 						Rs.getInt("noches"), Rs.getBoolean("activo")));
 				
 			}
