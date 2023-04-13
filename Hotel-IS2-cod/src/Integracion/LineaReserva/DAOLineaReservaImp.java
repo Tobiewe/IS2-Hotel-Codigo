@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import Negocio.Reserva.TLineaPedido;
+import Negocio.Reserva.TLineaReserva;
 
 public class DAOLineaReservaImp implements DAOLineaReserva {
 	
@@ -18,7 +18,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
     String clave = "";
 
 	
-	public Integer crear(TLineaPedido tLineaPedido) {
+	public Integer crear(TLineaReserva tLineaPedido) {
 		int key = -1;
 		
 		try {
@@ -87,7 +87,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 
 	
-	public Integer modificar(TLineaPedido tLineaPedido) {
+	public Integer modificar(TLineaReserva tLineaPedido) {
 
 		int key = -1;
 
@@ -119,9 +119,9 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 
 	
-	public Collection<TLineaPedido> Leertodos() {
+	public Collection<TLineaReserva> Leertodos() {
 
-		ArrayList<TLineaPedido> lista = new ArrayList<TLineaPedido>();
+		ArrayList<TLineaReserva> lista = new ArrayList<TLineaReserva>();
 		
 		try {
 			String c = "SELECT * FROM linea_pedidos;";
@@ -132,7 +132,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 			while (Rs.next()){
 				
-				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
+				lista.add(new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
 				
 			}
 						
@@ -153,9 +153,9 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 
 	
-	public TLineaPedido LeerUno(Integer idReserva, Integer idCliente) {
+	public TLineaReserva LeerUno(Integer idReserva, Integer idCliente) {
 		
-		TLineaPedido tLineaPedido = null;
+		TLineaReserva tLineaPedido = null;
 		
 		try {
 			String c = "SELECT * FROM linea_pedidos WHERE id_Reserva = ? AND id_Cliente = ?;";
@@ -169,7 +169,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 			if (Rs.next()){
 				
-				tLineaPedido = new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo"));
+				tLineaPedido = new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo"));
 				
 			}
 	
@@ -189,9 +189,9 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 
 	
-	public Collection<TLineaPedido> LeerLineasPedidoPorReserva(Integer idReserva) {
+	public Collection<TLineaReserva> LeerLineasPedidoPorReserva(Integer idReserva) {
 		
-		ArrayList<TLineaPedido> lista = new ArrayList<TLineaPedido>();
+		ArrayList<TLineaReserva> lista = new ArrayList<TLineaReserva>();
 		
 		try {
 			String c = "SELECT * FROM linea_pedidos WHERE id_Reserva = ?;";
@@ -204,7 +204,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 			while (Rs.next()){
 				
-				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
+				lista.add(new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
 				
 			}
 						
@@ -224,9 +224,9 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 
 	
-	public Collection<TLineaPedido> LeerLineasPedidoPorHabitacion(Integer idHabitacion) {
+	public Collection<TLineaReserva> LeerLineasPedidoPorHabitacion(Integer idHabitacion) {
 
-		ArrayList<TLineaPedido> lista = new ArrayList<TLineaPedido>();
+		ArrayList<TLineaReserva> lista = new ArrayList<TLineaReserva>();
 		
 		try {
 			String c = "SELECT * FROM linea_pedidos WHERE id_Habitacion = ?;";
@@ -239,7 +239,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 			while (Rs.next()){
 				
-				lista.add(new TLineaPedido(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
+				lista.add(new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
 				
 			}
 						

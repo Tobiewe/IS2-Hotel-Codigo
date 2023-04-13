@@ -1,14 +1,14 @@
 package Negocio.Reserva;
 
 
-public class TLineaPedido {
+public class TLineaReserva {
 	
 	private Integer id_reserva;
 	private Integer id_cliente;
 	private Integer id_habitacion;
 	private Boolean activa;
 	
-	public TLineaPedido(Integer id_reserva, Integer id_cliente, Integer id_habitacion, Boolean activa){
+	public TLineaReserva(Integer id_reserva, Integer id_cliente, Integer id_habitacion, Boolean activa){
 		
 		this.id_reserva = id_reserva;
 		this.id_cliente = id_cliente;

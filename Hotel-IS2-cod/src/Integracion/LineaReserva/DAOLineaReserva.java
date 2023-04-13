@@ -1,24 +1,24 @@
 package Integracion.LineaReserva;
 
-import Negocio.Reserva.TLineaPedido;
+import Negocio.Reserva.TLineaReserva;
 
 import java.util.Collection;
 
 
 public interface DAOLineaReserva {
 	
-	public Integer crear(TLineaPedido tLineaPedido);
+	public Integer crear(TLineaReserva tLineaPedido);
 
 	public Integer eliminar(Integer idReserva, Integer idCliente, Integer idHabitacion);
 
-	public Integer modificar(TLineaPedido tLineaPedido);
+	public Integer modificar(TLineaReserva tLineaPedido);
 
-	public TLineaPedido LeerUno(Integer idReserva, Integer idCliente);
+	public TLineaReserva LeerUno(Integer idReserva, Integer idCliente);
 	
-	public Collection<TLineaPedido> Leertodos();
+	public Collection<TLineaReserva> Leertodos();
 
-	public Collection<TLineaPedido> LeerLineasPedidoPorReserva(Integer idReserva);
+	public Collection<TLineaReserva> LeerLineasPedidoPorReserva(Integer idReserva);
 	
-	public Collection<TLineaPedido> LeerLineasPedidoPorHabitacion(Integer idHabitacion);
+	public Collection<TLineaReserva> LeerLineasPedidoPorHabitacion(Integer idHabitacion);
 
 }

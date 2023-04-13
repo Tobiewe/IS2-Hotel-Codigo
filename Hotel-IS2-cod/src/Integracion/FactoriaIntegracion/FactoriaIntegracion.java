@@ -27,7 +27,7 @@ public abstract  class FactoriaIntegracion {
 	
 	public abstract DAOCliente newDAOCliente();
 	
-	public abstract DAOLineaReserva newLineaPedido();
+	public abstract DAOLineaReserva newLineaReserva();
 	
 	public abstract DAOTareasDelEmpleado newDAOTareasDelEmpleado();
 	

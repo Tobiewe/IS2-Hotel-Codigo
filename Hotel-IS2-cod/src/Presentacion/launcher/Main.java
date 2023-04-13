@@ -13,7 +13,7 @@ import Integracion.TareasDelEmpleado.DAOTareasDelEmpleado;
 import Integracion.TareasDelEmpleado.DAOTareasDelEmpleadoImp;
 import Negocio.Departamentos.TDepartamento;
 import Negocio.Empleados.TTareasDelEmpleado;
-import Negocio.Reserva.TLineaPedido;
+import Negocio.Reserva.TLineaReserva;
 import Negocio.Reserva.TReserva;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
