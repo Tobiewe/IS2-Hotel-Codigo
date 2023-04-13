@@ -1,7 +1,9 @@
 package Presentacion.launcher;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,27 +31,30 @@ public class VPrincipal extends JFrame implements IGUI{
 	{
 		setTitle("UHotel");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		Dimension d = new Dimension(600,400);
+		Dimension d = new Dimension(700,300);
 		mainPanel.setPreferredSize(d);
 		setLocationRelativeTo(null);
 		setContentPane(mainPanel);
 		
-		mainPanel.add(reservaButton());
-		mainPanel.add(habitacionButton());
-		mainPanel.add(tareaButton());
-		mainPanel.add(clienteButton());
-		mainPanel.add(departamentoButton());
-		mainPanel.add(empleadoButton());
+		mainPanel.add(Botongeneral(), BorderLayout.CENTER);
+		mainPanel.add(habitacionButton(), BorderLayout.CENTER);
+		mainPanel.add(tareaButton(), BorderLayout.CENTER);
+		mainPanel.add(clienteButton(), BorderLayout.CENTER);
+		mainPanel.add(departamentoButton(), BorderLayout.CENTER);
+		mainPanel.add(empleadoButton(), BorderLayout.CENTER);
 		
+		
+		setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/2 - 350,Toolkit.getDefaultToolkit().getScreenSize().height/2 - 100);
 		pack();
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 	
-	public JButton reservaButton()
+	public JButton Botongeneral()
 	{
-		JButton reservaButton = new JButton("Reservar");
-		reservaButton.addActionListener(new ActionListener()
+		JButton Botongeneral = new JButton("Reservar");
+		Botongeneral.setPreferredSize(new Dimension(100, 50));
+		Botongeneral.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -57,12 +62,13 @@ public class VPrincipal extends JFrame implements IGUI{
 			}
 			
 		});
-		return reservaButton;
+		return Botongeneral;
 	}
 	public JButton habitacionButton()
 	{
-		JButton reservaButton = new JButton("Habitacion");
-		reservaButton.addActionListener(new ActionListener()
+		JButton Botongeneral = new JButton("Habitacion");
+		Botongeneral.setPreferredSize(new Dimension(100, 50));
+		Botongeneral.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -70,13 +76,14 @@ public class VPrincipal extends JFrame implements IGUI{
 			}
 			
 		});
-		return reservaButton;
+		return Botongeneral;
 	}
 	
 	public JButton clienteButton()
 	{
-		JButton reservaButton = new JButton("Cliente");
-		reservaButton.addActionListener(new ActionListener()
+		JButton Botongeneral = new JButton("Cliente");
+		Botongeneral.setPreferredSize(new Dimension(100, 50));
+		Botongeneral.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -84,12 +91,13 @@ public class VPrincipal extends JFrame implements IGUI{
 			}
 			
 		});
-		return reservaButton;
+		return Botongeneral;
 	}
 	public JButton empleadoButton()
 	{
-		JButton reservaButton = new JButton("Empleado");
-		reservaButton.addActionListener(new ActionListener()
+		JButton Botongeneral = new JButton("Empleado");
+		Botongeneral.setPreferredSize(new Dimension(100, 50));
+		Botongeneral.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -97,13 +105,14 @@ public class VPrincipal extends JFrame implements IGUI{
 			}
 			
 		});
-		return reservaButton;
+		return Botongeneral;
 	}
 	
 	public JButton tareaButton()
 	{
-		JButton reservaButton = new JButton("Tarea");
-		reservaButton.addActionListener(new ActionListener()
+		JButton Botongeneral = new JButton("Tarea");
+		Botongeneral.setPreferredSize(new Dimension(100, 50));
+		Botongeneral.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -111,12 +120,13 @@ public class VPrincipal extends JFrame implements IGUI{
 			}
 			
 		});
-		return reservaButton;
+		return Botongeneral;
 	}
 	public JButton departamentoButton()
 	{
-		JButton reservaButton = new JButton("Departamento");
-		reservaButton.addActionListener(new ActionListener()
+		JButton Botongeneral = new JButton("Departamento");
+		Botongeneral.setPreferredSize(new Dimension(100, 50));
+		Botongeneral.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -124,7 +134,7 @@ public class VPrincipal extends JFrame implements IGUI{
 			}
 			
 		});
-		return reservaButton;
+		return Botongeneral;
 	}
 	
 	@Override
