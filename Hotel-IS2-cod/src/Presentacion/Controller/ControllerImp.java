@@ -121,6 +121,65 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_TODOS_SUCCESS, collectionDep);
 			break;
+		case Events.EMPLEADO_MOSTRAR_UNO:
+			tEmpleado = saEmpleado.mostrarUno((Integer) data);
+			
+			if(tEmpleado== null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_UNO_NO_ID, null);
+			else
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_UNO_SI_ID, tEmpleado);
+			break;
+		case Events.EMPLEADO_MOSTRAR_TODOS:
+			Collection<TEmpleados> collectionEmpleado = saEmpleado.mostrarTodos();
+			if(collectionEmpleado == null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_TODOS_ERROR, null);
+			else
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_TODOS_SUCCESS, collectionEmpleado);
+			break;
+		case Events.RESERVA_MOSTRAR_UNA:
+			tReserva = saReserva.mostrarUno((Integer) data);
+			if(tReserva == null)
+				cIGUI.update(Events.RESERVA_MOSTRAR_UNA_NO_ID, null);
+			else
+				cIGUI.update(Events.RESERVA_MOSTRAR_UNA_SI_ID, tReserva);
+			break;
+		case Events.RESERVA_MOSTRAR_TODAS:
+			Collection<TReserva> collectionReserva = saReserva.mostrarTodos();
+			if(collectionReserva == null)
+				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_ERROR, null);
+			else
+				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_SUCCESS, collectionReserva);
+			break;
+		case Events.TAREA_MOSTRAR_TODOS:
+			Collection<TTareas> collectionTarea= saTarea.leerTodos();
+			if(collectionTarea == null)
+				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_ERROR, null);
+			else
+				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_SUCCESS, collectionTarea);
+			break;
+		case Events.TAREA_MOSTRAR_UNO:
+			tTarea = saTarea.leerUno((Integer) data);
+			
+			if(tTarea == null)
+				cIGUI.update(Events.TAREA_MOSTRAR_UNA_NO_ID, null);
+			else
+				cIGUI.update(Events.TAREA_MOSTRAR_UNA_SI_ID, tTarea);
+			break;
+		case Events.CLIENTE_MOSTRAR_TODOS:
+			Collection<TCliente> collectionCliente = saCliente.mostrarTodos();
+			if(collectionCliente == null)
+				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_ERROR, null);
+			else
+				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_SUCCESS, collectionCliente);
+			break;
+		case Events.CLIENTE_MOSTRAR_UNO:
+			tCliente = saCliente.mostrarUno((Integer) data);
+			
+			if(tCliente == null)
+				cIGUI.update(Events.CLIENTE_MOSTRAR_UNO_NO_ID, null);
+			else
+				cIGUI.update(Events.CLIENTE_MOSTRAR_UNO_SI_ID, tCliente);
+			break;
 		case Events.HABITACION_CREAR:
 			tHabitacion = (THabitaciones)data;
 			saSolution = saHabitacion.crear(tHabitacion);
