@@ -1,42 +1,115 @@
 package Negocio.Empleados;
 
+import java.util.ArrayList;
 import java.util.Collection;
+
+import Integracion.Empleados.DAOEmpleados;
+import Integracion.FactoriaIntegracion.FactoriaIntegracion;
+import Integracion.Habitaciones.DAOHabitaciones;
+import Negocio.Habitaciones.THabitaciones;
 
 public class SAEmpleadoIMP implements SAEmpleado {
 
 	
 	public Integer crear(TEmpleados empleado) {
 		
-		return null;
+		String numero = Integer.toString(empleado.getTelefono());
+		
+		if(empleado.getApellidos().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getSueldo() > 0 || numero.length() == 9){
+			return -5;
+		}
+		
+		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
+		if(empleado.getId() != null){
+			TEmpleados te = daoEmpl.MostrarUno(empleado.getId());
+			
+			if(te != null){
+				daoEmpl.modificar(empleado);
+				
+				return te.getActivo() ? -2 : empleado.getId();
+			}
+		}
+		
+		return daoEmpl.crear(empleado);
 	}
 
-	@Override
+	
 	public Integer modificar(TEmpleados empleado) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
+		TEmpleados te = daoEmpl.MostrarUno(empleado.getId());
+		
+		if(te == null){
+			return -2;
+		}
+		
+		String numero = Integer.toString(empleado.getTelefono());
+		
+		if(empleado.getApellidos().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getSueldo() > 0 || numero.length() == 9){
+			return -5;
+		}
+		
+		return daoEmpl.modificar(empleado);
+		
 	}
 
-	@Override
+	
 	public Integer eliminar(int idEmpleado) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
+		TEmpleados te = daoEmpl.MostrarUno(idEmpleado);
+		
+		if(te == null){
+			return -2;
+		}
+		
+		return daoEmpl.borrar(idEmpleado);
+		
 	}
 
-	@Override
+	
 	public TEmpleados mostrarUno(int idEmpleado) {
-		// TODO Auto-generated method stub
-		return null;
+		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
+		TEmpleados te = daoEmpl.MostrarUno(idEmpleado);
+		
+		if(te == null){
+			return null;
+		}
+		
+		return te;
 	}
 
-	@Override
+	
 	public Collection<TEmpleados> mostrarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
+		Collection<TEmpleados> lista = daoEmpl.MostrarTodos();
+		Collection<TEmpleados> dev = new ArrayList<TEmpleados>();
+		
+		for(TEmpleados te : lista){
+			
+			if(daoEmpl.MostrarUno(te.getId()) != null){
+				dev.add(te);
+			}
+		}
+		
+		return dev;
 	}
 
-	@Override
+	
 	public Collection<TEmpleados> mostrarPorDepartamento() {
-		// TODO Auto-generated method stub
+		/*
+		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
+		Collection<TEmpleados> lista = daoEmpl.
+		Collection<TEmpleados> dev = new ArrayList<TEmpleados>();
+		
+		for(TEmpleados te : lista){
+			
+			if(daoEmpl.MostrarUno(te.getId()) != null){
+				dev.add(te);
+			}
+		}
+		*/
 		return null;
 	}
 

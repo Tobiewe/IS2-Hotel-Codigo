@@ -32,8 +32,8 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 	private Integer piso;
 	private float precio;
 	private Integer id;
+	private Integer id_empleado;
 	private boolean ocupada;
-	private Integer idEmpleado;
 	
 	public VModificarHabitacion(){
 		ctrl = Controller.getInstance();
@@ -140,7 +140,7 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				id = (Integer) idEmpleadoSpinner.getValue();
+				id_empleado = (Integer) idEmpleadoSpinner.getValue();
 			}
 			
 		});
@@ -226,7 +226,7 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				THabitaciones tHabitacion = new THabitaciones(id,piso,tamanyo,Float.parseFloat(textField.getText()),ocupada,idEmpleado);
+				THabitaciones tHabitacion = new THabitaciones(id,piso,tamanyo,Float.parseFloat(textField.getText()),ocupada,id_empleado);
 				ctrl.carryAction(Events.HABITACION_MODIFICAR, tHabitacion);
 			}
 			
@@ -257,7 +257,7 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 		else if(event == Events.HABITACION_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + " no se ha encontrado");
 		else if(event == Events.HABITACION_MODIFICAR_SUCCESS) 
-			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + "se ha registrado correctamente");
+			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + "se ha modificado correctamente");
 
 	}
 
