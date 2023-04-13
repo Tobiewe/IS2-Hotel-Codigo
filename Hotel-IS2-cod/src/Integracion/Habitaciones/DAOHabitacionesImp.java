@@ -22,13 +22,13 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		
 		try {
 			
-			String c = "INSERT INTO habitacion (piso, tamanyo, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?);";
+			String c = "INSERT INTO habitacion (piso, tamaño, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setInt(1, tHabitaciones.getPiso());
-			ps.setFloat(2, tHabitaciones.gettamanyo());
+			ps.setFloat(2, tHabitaciones.getTamaño());
 			ps.setFloat(3, tHabitaciones.getPrecio());
 			ps.setBoolean(4, tHabitaciones.getOcupada());
 			ps.setInt(5, tHabitaciones.getId_empledo());

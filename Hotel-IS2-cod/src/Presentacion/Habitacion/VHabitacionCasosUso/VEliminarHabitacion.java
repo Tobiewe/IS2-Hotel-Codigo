@@ -39,6 +39,7 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 	boolean eliminado =false;
 	
 	public VEliminarHabitacion(){
+		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			@Override
@@ -62,7 +63,7 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 		numPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		numPanel.add(new JLabel("Numero de Habitacion: "));
 		JSpinner numField = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
-		id=(Integer) numField.getValue();
+		id = (Integer) numField.getValue();
 		
 		numField.addChangeListener(new ChangeListener()
 		{
