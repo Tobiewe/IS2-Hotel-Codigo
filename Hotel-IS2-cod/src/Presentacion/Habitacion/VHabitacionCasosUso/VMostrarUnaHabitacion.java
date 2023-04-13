@@ -160,7 +160,7 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 			else if(columnIndex == 1)
 				return habitaciones.get(rowIndex).getPiso();
 			else if(columnIndex == 2)
-				return habitaciones.get(rowIndex).getTamaño();
+				return habitaciones.get(rowIndex).gettamanyo();
 			else if(columnIndex == 3)
 				return habitaciones.get(rowIndex).getPrecio();
 			else if(columnIndex == 4)

@@ -22,13 +22,13 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		
 		try {
 			
-			String c = "INSERT INTO habitacion (piso, tamaño, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?);";
+			String c = "INSERT INTO habitacion (piso, tamanyo, precio, ocupada, id_empleado) VALUES (?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setInt(1, tHabitaciones.getPiso());
-			ps.setFloat(2, tHabitaciones.getTamaño());
+			ps.setFloat(2, tHabitaciones.gettamanyo());
 			ps.setFloat(3, tHabitaciones.getPrecio());
 			ps.setBoolean(4, tHabitaciones.getOcupada());
 			ps.setInt(5, tHabitaciones.getId_empledo());
@@ -126,7 +126,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 			if (Rs.next()){
 				
-				tHabitaciones = new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamaño"), Rs.getFloat("precio"), 
+				tHabitaciones = new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamanyo"), Rs.getFloat("precio"), 
 						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado"));
 				
 			}
@@ -158,7 +158,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 			while (Rs.next()){
 				
-				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamaño"), Rs.getFloat("precio"), 
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamanyo"), Rs.getFloat("precio"), 
 						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
 				
 			}
@@ -192,7 +192,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 			while (Rs.next()){
 				
-				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamaño"), Rs.getFloat("precio"), 
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamanyo"), Rs.getFloat("precio"), 
 						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
 				
 			}
@@ -226,7 +226,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 
 			while (Rs.next()){
 				
-				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamaño"), Rs.getFloat("precio"), 
+				lista.add(new THabitaciones( Rs.getInt("numero"), Rs.getInt("piso"), Rs.getInt("tamanyo"), Rs.getFloat("precio"), 
 						Rs.getBoolean("ocupada"), Rs.getInt("id_empleado")));
 				
 			}

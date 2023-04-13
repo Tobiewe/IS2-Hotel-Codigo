@@ -28,7 +28,7 @@ public class THabitaciones {
 		return piso;
 	}
 
-	public Integer getTamaño() {
+	public Integer gettamanyo() {
 		return tamaño;
 	}
 
