@@ -194,9 +194,5 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 		{
 			JOptionPane.showMessageDialog(this, "ERROR: No se ha registrado el id " + id);
 		}
-			
-			
-		
 	}
-
 }
