@@ -30,6 +30,7 @@ import Negocio.Habitaciones.THabitaciones;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
+import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarTodasHabitacion.habitacionesTableModel;
 
 public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 	
@@ -52,12 +53,15 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		
+		tableModel = new habitacionesTableModel();
 		mainPanel.add(idPanel());
 		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		buttonsPanel.add(mostrarButton());
 		buttonsPanel.add(cancelButton());
 		
 		mainPanel.add(buttonsPanel);
+		
+		mainPanel.add(tableModel.transformTableToPanel());
 		
 		pack();
 		setLocationRelativeTo(getParent());
@@ -171,7 +175,7 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 			JTable hTable = new JTable(this); 
 			
 			tablaPanel.add(hTable);
-			TitledBorder titleBorder = BorderFactory.createTitledBorder(title);
+			TitledBorder titleBorder = BorderFactory.createTitledBorder("Habitación");
 			tablaPanel.setBorder(titleBorder);
 			
 			JScrollPane sPanel = new JScrollPane(hTable);

@@ -32,7 +32,6 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	
 	private Integer tamanyo;
 	private Integer piso;
-	private float precio;
 	private Integer idEmpleado;
 	
 	
@@ -55,7 +54,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
-		JTextField precioText = new JTextField("0");
+		JTextField precioText = new JTextField("1");
 		precioText.setSize(1000, 50);
 		
 		mainPanel.add(panelPiso());
@@ -134,7 +133,8 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		JPanel precioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 		JLabel precioLabel = new JLabel("Precio: ");
-		
+		Dimension d = new Dimension(1000,1000);
+		precioText.setSize(d);
 		precioPanel.add(precioLabel);
 		precioPanel.add(precioText);
 		
