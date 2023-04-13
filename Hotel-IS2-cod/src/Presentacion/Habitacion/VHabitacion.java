@@ -1,5 +1,6 @@
 package Presentacion.Habitacion;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -31,18 +32,20 @@ public class VHabitacion extends JFrame implements IGUI {
 
 	protected void initGUI() {
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		Dimension d = new Dimension(500,150);
+		mainPanel.setPreferredSize(d);
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
 		mainPanel.add(volverButton());
 
-		mainPanel.add(crearHabitacionButton());
-		mainPanel.add(modificarHabitacionButton());
-		mainPanel.add(eliminarHabitacionButton());
-		mainPanel.add(mostrarUnaHabitacionButton());
-		mainPanel.add(mostrarTodasHabitacionesButton());
-		mainPanel.add(mostrarDisponiblesButton());
-		mainPanel.add(mostrarPorEmpleadoButton());
+		mainPanel.add(crearHabitacionButton(), BorderLayout.CENTER);
+		mainPanel.add(modificarHabitacionButton(), BorderLayout.CENTER);
+		mainPanel.add(eliminarHabitacionButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarUnaHabitacionButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarTodasHabitacionesButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarDisponiblesButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarPorEmpleadoButton(), BorderLayout.CENTER);
 
 		pack();
 		setLocationRelativeTo(getParent());

@@ -2,6 +2,8 @@ package Presentacion.Habitacion.VHabitacionCasosUso;
 
 import javax.swing.SwingUtilities;
 import Presentacion.Controller.Events;
+
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,13 +56,14 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 		
 		setTitle("Añadir Habitación");
 		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
 		JPanel numPanel = new JPanel();
 		
-		numPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		numPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		numPanel.add(new JLabel("Numero de Habitacion: "));
 		JSpinner numField = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
 		id = (Integer) numField.getValue();
@@ -80,10 +83,12 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 		mainPanel.add(numPanel);
 		
 		
-		JPanel okPanel = new JPanel();
-		okPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		okPanel.add(okButton(numField.getValue()));
-		mainPanel.add(okPanel);
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		buttonPanel.add(okButton(numField.getValue()));
+		buttonPanel.add(cancelButton());
+		
+		mainPanel.add(buttonPanel);
 
 		pack();
 		setVisible(true);
@@ -93,7 +98,7 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 	
 	JButton okButton(Object object){
 		
-		JButton okButton=new JButton("Buscar");
+		JButton okButton=new JButton("Eliminar");
 		 
 		 
 		okButton.addActionListener(new ActionListener(){
@@ -106,6 +111,21 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 	
 		});
 		return okButton;
+	}
+	
+	public JButton cancelButton()
+	{
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+			}
+		
+		});
+		return cancelButton;
 	}
 	
 

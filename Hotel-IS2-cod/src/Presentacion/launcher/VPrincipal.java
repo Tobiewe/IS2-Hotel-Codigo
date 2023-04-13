@@ -36,7 +36,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		setLocationRelativeTo(null);
 		setContentPane(mainPanel);
 		
-		mainPanel.add(Botongeneral(), BorderLayout.CENTER);
+		mainPanel.add(BotonReserva(), BorderLayout.CENTER);
 		mainPanel.add(habitacionButton(), BorderLayout.CENTER);
 		mainPanel.add(tareaButton(), BorderLayout.CENTER);
 		mainPanel.add(clienteButton(), BorderLayout.CENTER);
@@ -50,7 +50,7 @@ public class VPrincipal extends JFrame implements IGUI{
 		setVisible(true);
 	}
 	
-	public JButton Botongeneral()
+	public JButton BotonReserva()
 	{
 		JButton Botongeneral = new JButton("Reservar");
 		Botongeneral.setPreferredSize(new Dimension(100, 50));
@@ -59,6 +59,7 @@ public class VPrincipal extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
+				setVisible(false);
 			}
 			
 		});
@@ -73,6 +74,7 @@ public class VPrincipal extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+				setVisible(false);
 			}
 			
 		});
@@ -88,6 +90,7 @@ public class VPrincipal extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
+				setVisible(false);
 			}
 			
 		});
@@ -102,6 +105,7 @@ public class VPrincipal extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
+				setVisible(false);
 			}
 			
 		});
@@ -117,6 +121,7 @@ public class VPrincipal extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ctrl.carryAction(Events.TAREA_NUEVA_VISTA, null);
+				setVisible(false);
 			}
 			
 		});
@@ -131,6 +136,7 @@ public class VPrincipal extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
+				setVisible(false);
 			}
 			
 		});

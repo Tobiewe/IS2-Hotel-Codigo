@@ -47,11 +47,13 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 	public void initGUI() {
 		setTitle("Modificar Habitación");
 		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(500, 250));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
 		JTextField precioText = new JTextField("0");
+		precioText.setPreferredSize(new Dimension(70, 25));
 		
 		mainPanel.add(panelId());
 		mainPanel.add(panelPiso());

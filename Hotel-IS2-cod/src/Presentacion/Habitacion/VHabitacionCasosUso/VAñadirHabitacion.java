@@ -50,11 +50,13 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	{
 		setTitle("Añadir Habitación");
 		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
 		JTextField precioText = new JTextField("1000");
+		precioText.setPreferredSize(new Dimension(70, 25));
 		
 		mainPanel.add(panelPiso());
 		mainPanel.add(tamanyoPanel());
