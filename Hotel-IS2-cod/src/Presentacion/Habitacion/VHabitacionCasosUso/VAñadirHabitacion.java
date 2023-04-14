@@ -206,6 +206,11 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		else if(event == Events.HABITACION_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if(event == Events.HABITACION_CREAR_SUCCESS)
+		{
 			JOptionPane.showMessageDialog(this, "La habitación con id " +(Integer) datos +" se ha creado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+		}
+			
 	}
 }

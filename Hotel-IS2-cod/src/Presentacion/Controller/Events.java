@@ -158,6 +158,8 @@ public class Events {
 	
 	public static final int HABITACION_MOSTRAR_POR_EMPLEADO = 470;
 	public static final int HABITACION_MOSTRAR_POR_EMPLEADO_VISTA = 471;
+	public static final int HABITACION_MOSTRAR_POR_EMPLEADO_ID = 472;
+	public static final int HABITACION_MOSTRAR_POR_EMPLEADO_NOID= 473;
 	
 	//TAREA
 	public static final int TAREA_VISTA = 500;

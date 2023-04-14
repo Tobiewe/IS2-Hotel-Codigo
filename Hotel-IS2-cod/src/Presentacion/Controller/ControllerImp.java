@@ -116,7 +116,7 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.DEPARTAMENTO_MOSTRAR_TODOS:
 			Collection<TDepartamento> collectionDep= saDepartamento.mostrarTodos();
-			if(collectionDep == null)
+			if(collectionDep.isEmpty())
 				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_TODOS_ERROR, null);
 			else
 				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_TODOS_SUCCESS, collectionDep);
@@ -131,7 +131,7 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.EMPLEADO_MOSTRAR_TODOS:
 			Collection<TEmpleados> collectionEmpleado = saEmpleado.mostrarTodos();
-			if(collectionEmpleado == null)
+			if(collectionEmpleado.isEmpty())
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_TODOS_ERROR, null);
 			else
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_TODOS_SUCCESS, collectionEmpleado);
@@ -145,7 +145,7 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.RESERVA_MOSTRAR_TODAS:
 			Collection<TReserva> collectionReserva = saReserva.mostrarTodos();
-			if(collectionReserva == null)
+			if(collectionReserva.isEmpty())
 				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_ERROR, null);
 			else
 				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_SUCCESS, collectionReserva);
@@ -173,7 +173,7 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.TAREA_MOSTRAR_TODOS:
 			Collection<TTareas> collectionTarea= saTarea.leerTodos();
-			if(collectionTarea == null)
+			if(collectionTarea.isEmpty())
 				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_ERROR, null);
 			else
 				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_SUCCESS, collectionTarea);
@@ -190,7 +190,7 @@ public class ControllerImp extends Controller {
 			
 		case Events.CLIENTE_MOSTRAR_TODOS:
 			Collection<TCliente> collectionCliente = saCliente.mostrarTodos();
-			if(collectionCliente == null)
+			if(collectionCliente.isEmpty())
 				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_ERROR, null);
 			else
 				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_SUCCESS, collectionCliente);
@@ -252,7 +252,7 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.HABITACION_MOSTRAR_TODAS:
 			Collection<THabitaciones> collectionHabTodas = saHabitacion.mostrarTodos();
-			if(collectionHabTodas == null)
+			if(collectionHabTodas.isEmpty())
 				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_ERROR, null);
 			else
 				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_SUCCESS, collectionHabTodas);
@@ -282,8 +282,16 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.HABITACION_MOSTRAR_UNA_SI_ID, tHabitacion);
 			break;
+		case Events.HABITACION_MOSTRAR_POR_EMPLEADO:
+			Collection<THabitaciones> collectionHabPorEmpleado = saHabitacion.mostrarPorEmpleado((Integer)data);
+			if(collectionHabPorEmpleado.isEmpty())
+				cIGUI.update(Events.HABITACION_MOSTRAR_POR_EMPLEADO_NOID, (Integer) data);
+			else
+				cIGUI.update(Events.HABITACION_MOSTRAR_POR_EMPLEADO_ID, collectionHabPorEmpleado);
+			break;
 
 		}
+		
 		//j
 		
 	}
