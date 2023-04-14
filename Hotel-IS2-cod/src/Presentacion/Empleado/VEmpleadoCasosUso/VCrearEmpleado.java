@@ -28,11 +28,12 @@ import Negocio.Habitaciones.THabitaciones;
 import javax.swing.UIManager;
 import java.awt.FlowLayout;
 import Presentacion.Controller.Controller;
-import Presentacion.Controller.Events;;
+import Presentacion.Controller.Events;
+import Presentacion.Controller.IGUI;;
 
-public class VCrearEmpleado extends JFrame {
+public class VCrearEmpleado extends JFrame implements IGUI {
 	private Controller ctrl;
-	private String tipoEmpleado="Limpieza", nombre, apellidos,email,tlf,sueldo;
+	private String tipoEmpleado = "Limpieza", nombre, apellidos,email,tlf,sueldo;
 	private Boolean letras=false;
 
 	public VCrearEmpleado(){
@@ -374,6 +375,12 @@ public class VCrearEmpleado extends JFrame {
 		
 		});
 		return cancelButton;
+	}
+
+	@Override
+	public void update(int event, Object datos) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

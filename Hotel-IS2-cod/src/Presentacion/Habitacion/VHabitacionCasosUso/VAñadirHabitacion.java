@@ -35,7 +35,6 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	private Integer idEmpleado;
 	
 	
-	
 	public VAñadirHabitacion(){
 		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable() {
