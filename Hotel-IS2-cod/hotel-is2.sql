@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-04-2023 a las 17:14:08
+-- Tiempo de generación: 14-04-2023 a las 16:47:16
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -117,53 +117,18 @@ CREATE TABLE `empleado` (
   `apellidos` varchar(100) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT NULL,
   `correo` varchar(100) DEFAULT NULL,
-  `telefono` varchar(20) DEFAULT NULL
+  `telefono` varchar(20) DEFAULT NULL,
+  `iddepartamento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`Id`, `sueldo`, `nombre`, `apellidos`, `activo`, `correo`, `telefono`) VALUES
-(23, '400.00', 'juan', 'luis', 1, 'pepe@gmail.com', '66666666'),
-(58, '1250.00', 'alberto', 'sanchez', 0, 'sanchez@jag.com', '33333333'),
-(59, '1200.00', 'alberto', 'galdos', 1, 'abertto@jag.com', '123456789');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado_limpieza`
---
-
-CREATE TABLE `empleado_limpieza` (
-  `lugar` varchar(50) NOT NULL,
-  `id_empleado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `empleado_limpieza`
---
-
-INSERT INTO `empleado_limpieza` (`lugar`, `id_empleado`) VALUES
-('Planta 1', 59);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado_mantenimiento`
---
-
-CREATE TABLE `empleado_mantenimiento` (
-  `especialidad` varchar(50) NOT NULL,
-  `id_empleado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `empleado_mantenimiento`
---
-
-INSERT INTO `empleado_mantenimiento` (`especialidad`, `id_empleado`) VALUES
-('electronica', 58);
+INSERT INTO `empleado` (`Id`, `sueldo`, `nombre`, `apellidos`, `activo`, `correo`, `telefono`, `iddepartamento`) VALUES
+(23, '400.00', 'juan', 'luis', 1, 'pepe@gmail.com', '66666666', NULL),
+(58, '1250.00', 'alberto', 'sanchez', 0, 'sanchez@jag.com', '33333333', NULL),
+(59, '1200.00', 'alberto', 'galdos', 1, 'abertto@jag.com', '123456789', NULL);
 
 -- --------------------------------------------------------
 
@@ -185,9 +150,12 @@ CREATE TABLE `habitacion` (
 --
 
 INSERT INTO `habitacion` (`numero`, `piso`, `tamanyo`, `precio`, `ocupada`, `id_empleado`) VALUES
-(4, 5, '50.43', '5678.76', 1, 23),
+(4, 5, '50.43', '5678.76', 0, 23),
 (6, 1, '30.5', '1030.54', 0, 23),
-(8, 1, '1.0', '22220.00', 0, 23);
+(8, 1, '1.0', '22220.00', 0, 23),
+(11, 5, '3.0', '1300.00', 0, 23),
+(12, 1, '1.0', '150.00', 0, 23),
+(13, 4, '3.0', '300.00', 1, 23);
 
 -- --------------------------------------------------------
 
@@ -306,19 +274,8 @@ ALTER TABLE `departamentos`
 -- Indices de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`Id`);
-
---
--- Indices de la tabla `empleado_limpieza`
---
-ALTER TABLE `empleado_limpieza`
-  ADD PRIMARY KEY (`id_empleado`);
-
---
--- Indices de la tabla `empleado_mantenimiento`
---
-ALTER TABLE `empleado_mantenimiento`
-  ADD PRIMARY KEY (`id_empleado`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `iddepartamento` (`iddepartamento`);
 
 --
 -- Indices de la tabla `habitacion`
@@ -382,7 +339,7 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
@@ -413,16 +370,10 @@ ALTER TABLE `cliente_particular`
   ADD CONSTRAINT `cliente_particular_ibfk_1` FOREIGN KEY (`cliente_Id`) REFERENCES `cliente` (`Id`);
 
 --
--- Filtros para la tabla `empleado_limpieza`
+-- Filtros para la tabla `empleado`
 --
-ALTER TABLE `empleado_limpieza`
-  ADD CONSTRAINT `empleado_limpieza_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`Id`);
-
---
--- Filtros para la tabla `empleado_mantenimiento`
---
-ALTER TABLE `empleado_mantenimiento`
-  ADD CONSTRAINT `empleado_mantenimiento_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`Id`);
+ALTER TABLE `empleado`
+  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`iddepartamento`) REFERENCES `departamentos` (`Id`);
 
 --
 -- Filtros para la tabla `habitacion`
