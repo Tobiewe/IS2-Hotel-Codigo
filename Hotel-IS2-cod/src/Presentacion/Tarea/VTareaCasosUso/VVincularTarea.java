@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 import Presentacion.Controller.IGUI;
 
-public class VLeerUnaTarea extends JFrame implements IGUI{
+public class VVincularTarea extends JFrame implements IGUI {
 
 	@Override
 	public void update(int event, Object datos) {

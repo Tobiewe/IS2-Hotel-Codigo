@@ -1,5 +1,15 @@
 package Presentacion.Tarea.VTareaCasosUso;
 
-public class VEliminarTarea {
+import javax.swing.JFrame;
+
+import Presentacion.Controller.IGUI;
+
+public class VEliminarTarea extends JFrame implements IGUI{
+
+	@Override
+	public void update(int event, Object datos) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

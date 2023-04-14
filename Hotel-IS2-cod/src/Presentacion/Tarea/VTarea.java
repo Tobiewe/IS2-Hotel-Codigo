@@ -73,7 +73,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.TAREA_CREAR, null);
+					ctrl.carryAction(Events.TAREA_CREAR_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -88,7 +88,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.TAREA_MODIFICAR, null);
+					ctrl.carryAction(Events.TAREA_MODIFICAR_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -103,7 +103,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.TAREA_ELIMINAR, null);
+					ctrl.carryAction(Events.TAREA_ELIMINAR_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -118,7 +118,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.TAREA_MOSTRAR_UNO, null);
+					ctrl.carryAction(Events.TAREA_MOSTRAR_UNA_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -132,7 +132,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.TAREA_MOSTRAR_TODOS, null);
+					ctrl.carryAction(Events.TAREA_MOSTRAR_TODAS_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -146,7 +146,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.TAREA_VINCULAR, null);
+					ctrl.carryAction(Events.TAREA_VINCULAR_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -160,7 +160,7 @@ public class VTarea extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.TAREA_DESVINCULAR, null);
+					ctrl.carryAction(Events.TAREA_DESVINCULAR_VISTA, null);
 					setVisible(false);
 				}
 			});

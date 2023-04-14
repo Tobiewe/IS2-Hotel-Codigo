@@ -121,19 +121,7 @@ public class VLeerTodosDepartamento extends JFrame implements IGUI{
 		}
 		
 	}
-		public JPanel transformTableToPanel()
-		{
-			JPanel tablaPanel = new JPanel(new BorderLayout());
-			JTable hTable = new JTable(); 
-			
-			tablaPanel.add(hTable);
-			TitledBorder titleBorder = BorderFactory.createTitledBorder(title);
-			tablaPanel.setBorder(titleBorder);
-			
-			JScrollPane sPanel = new JScrollPane(hTable);
-			tablaPanel.add(sPanel, BorderLayout.CENTER);
-			return tablaPanel;
-		}
+
 		
 	public JButton cancelButton()
 	{

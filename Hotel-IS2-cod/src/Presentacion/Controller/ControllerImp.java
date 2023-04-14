@@ -150,6 +150,27 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_SUCCESS, collectionReserva);
 			break;
+		case Events.TAREA_CREAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.TAREA_CREAR_VISTA, null);
+			break;
+		case Events.TAREA_MODIFICAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.TAREA_MODIFICAR_VISTA, null);
+			break;
+		case Events.TAREA_ELIMINAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.TAREA_ELIMINAR_VISTA, null);
+			break;
+		case Events.TAREA_MOSTRAR_UNA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.TAREA_MOSTRAR_UNA_VISTA, null);
+			break;
+		case Events.TAREA_MOSTRAR_TODAS_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.TAREA_MOSTRAR_TODAS_VISTA, null);
+			break;
+		case Events.TAREA_VINCULAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.TAREA_VINCULAR_VISTA, null);
+			break;
+		case Events.TAREA_DESVINCULAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.TAREA_DESVINCULAR_VISTA, null);
+			break;
 		case Events.TAREA_MOSTRAR_TODOS:
 			Collection<TTareas> collectionTarea= saTarea.leerTodos();
 			if(collectionTarea == null)
@@ -157,6 +178,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_SUCCESS, collectionTarea);
 			break;
+			
 		case Events.TAREA_MOSTRAR_UNO:
 			tTarea = saTarea.leerUno((Integer) data);
 			
@@ -165,6 +187,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.TAREA_MOSTRAR_UNA_SI_ID, tTarea);
 			break;
+			
 		case Events.CLIENTE_MOSTRAR_TODOS:
 			Collection<TCliente> collectionCliente = saCliente.mostrarTodos();
 			if(collectionCliente == null)

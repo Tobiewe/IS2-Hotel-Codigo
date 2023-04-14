@@ -185,6 +185,8 @@ public class Events {
 	public static final int TAREA_ELIMINAR_SUCCESS = 534;
 	
 	public static final int TAREA_MOSTRAR_UNO = 540;
+	public static final int TAREA_MOSTRAR_UNA_VISTA = 541;
+
 	public static final int TAREA_MOSTRAR_UNA_SI_ID = 543;
 	public static final int TAREA_MOSTRAR_UNA_NO_ID = 542;
 	
@@ -194,7 +196,11 @@ public class Events {
 	public static final int TAREA_MOSTRAR_TODAS_ERROR = 553;
 	
 	public static final int TAREA_DESVINCULAR = 560;
+	public static final int TAREA_DESVINCULAR_VISTA = 561;
+
+	
 	public static final int TAREA_VINCULAR = 570;
+	public static final int TAREA_VINCULAR_VISTA = 571;
 	//DEPARTAMENTO
 	public static final int DEPARTAMENTO_VISTA = 600;
 	public static final int DEPARTAMENTO_NUEVA_VISTA = 601;
@@ -229,6 +235,7 @@ public class Events {
 	public static final int DEPARTAMENTO_MOSTRAR_TODOS_VISTA = 651;
 	public static final int DEPARTAMENTO_MOSTRAR_TODOS_SUCCESS = 652;
 	public static final int DEPARTAMENTO_MOSTRAR_TODOS_ERROR = 653;
+	
 	
 	
 

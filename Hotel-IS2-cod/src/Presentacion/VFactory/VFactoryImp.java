@@ -26,6 +26,12 @@ import Presentacion.Reserva.VReservaCasosUso.VMostrarUnaReserva;
 import Presentacion.Reserva.VReservaCasosUso.VQuitarReserva;
 import Presentacion.Tarea.VTarea;
 import Presentacion.Tarea.VTareaCasosUso.VCrearTarea;
+import Presentacion.Tarea.VTareaCasosUso.VDesvincularTarea;
+import Presentacion.Tarea.VTareaCasosUso.VEliminarTarea;
+import Presentacion.Tarea.VTareaCasosUso.VLeerTodasTareas;
+import Presentacion.Tarea.VTareaCasosUso.VLeerUnaTarea;
+import Presentacion.Tarea.VTareaCasosUso.VModificarTarea;
+import Presentacion.Tarea.VTareaCasosUso.VVincularTarea;
 import Presentacion.launcher.VPrincipal;
 
 public class VFactoryImp extends VFactory {
@@ -52,8 +58,26 @@ public class VFactoryImp extends VFactory {
 			return new VLeerUnoDepartamento();
 		case Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA:
 			return new VLeerTodosDepartamento();
+			
 		case Events.TAREA_VISTA:
 			return new VTarea();
+		case Events.TAREA_CREAR_VISTA:
+			return new VCrearTarea();
+		case Events.TAREA_ELIMINAR_VISTA:
+			return new VEliminarTarea();
+		case Events.TAREA_MODIFICAR_VISTA:
+			return new VModificarTarea();
+		case Events.TAREA_MOSTRAR_UNA_VISTA:
+			return new VLeerUnaTarea();
+		case Events.TAREA_MOSTRAR_TODAS_VISTA:
+			return new VLeerTodasTareas();
+		case Events.TAREA_VINCULAR_VISTA:
+			return new VVincularTarea();
+		case Events.TAREA_DESVINCULAR_VISTA:
+			return new VDesvincularTarea();
+			
+		
+		
 		case Events.RESERVA_VISTA:
 			return new VReserva();
 		case Events.RESERVA_CREAR_VISTA:
