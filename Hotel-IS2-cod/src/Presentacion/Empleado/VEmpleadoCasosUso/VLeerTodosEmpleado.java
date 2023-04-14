@@ -28,7 +28,7 @@ import Presentacion.Controller.IGUI;
 public class VLeerTodosEmpleado extends JFrame implements IGUI{
 
 	private Controller ctrl;
-	private String title = "Mostrar todas las empleado";
+	private String title = "Mostrar todos los empleados";
 	private empleadoTableModel tableModel;
 	
 	public VLeerTodosEmpleado(){
@@ -66,7 +66,7 @@ public class VLeerTodosEmpleado extends JFrame implements IGUI{
 	}
 	class empleadoTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Piso", "Tamaño", "Precio","Empleado Id", "Ocupada"};
+		String[] columnValues = {"Id", "Sueldo", "Nombre", "Apellidos","Activo", "Correo","Teléfono", "Id Departamento"};
 		List<TEmpleados> empleados;
 		
 		public empleadoTableModel()
@@ -106,6 +106,10 @@ public class VLeerTodosEmpleado extends JFrame implements IGUI{
 				return empleados.get(rowIndex).getActivo();
 			else if(columnIndex == 5)
 				return empleados.get(rowIndex).getCorreo();
+			else if(columnIndex == 6)
+				return empleados.get(rowIndex).getTelefono();
+			else if(columnIndex == 7)
+				return empleados.get(rowIndex).getId_Departamento();
 			return null;
 		}
 		public JPanel transformTableToPanel()
