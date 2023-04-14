@@ -9,6 +9,7 @@ import java.awt.event.ItemListener;
 import javax.swing.BoxLayout;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -20,14 +21,19 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import Negocio.Empleados.TEmpleados;
+import Negocio.Habitaciones.THabitaciones;
+
 import javax.swing.UIManager;
 import java.awt.FlowLayout;
-import Presentacion.Controller.Controller;;
+import Presentacion.Controller.Controller;
+import Presentacion.Controller.Events;;
 
 public class VCrearEmpleado extends JFrame {
 	private Controller ctrl;
-	private String tipoEmpleado="Limpieza", nombre, apellidos,email,tlf;
-	
+	private String tipoEmpleado="Limpieza", nombre, apellidos,email,tlf,sueldo;
+	private Boolean letras=false;
 
 	public VCrearEmpleado(){
 		
@@ -53,14 +59,14 @@ public class VCrearEmpleado extends JFrame {
 		mainPanel.add(nombrePanel);
 		nombrePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		nombrePanel.add(new JLabel("Nombre: "));
-		//nombrePanel.add(nombrefield());
+		nombrePanel.add(nombreField());
 		
 		//casilla Apellidos
 		JPanel apellidosPanel= new JPanel();
 		mainPanel.add(apellidosPanel);
 		apellidosPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		apellidosPanel.add(new JLabel("Apellidos: "));
-		//apellidosPanel.add(apellidosField());
+		apellidosPanel.add(apellidosField());
 		
 	
 		// casilla email
@@ -68,14 +74,14 @@ public class VCrearEmpleado extends JFrame {
 		mainPanel.add(emailPanel);
 		emailPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		emailPanel.add(new JLabel("Email: "));
-		//emailPanel.add(emailField());
+		emailPanel.add(emailField());
 		
 		// casilla TLF
 		JPanel tlfPanel = new JPanel();
 		mainPanel.add(tlfPanel);
 		tlfPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		tlfPanel.add(new JLabel("Telefono: "));
-		//tlfPanel.add(tlfField());
+		tlfPanel.add(tlfField());
 		
 		
 		
@@ -84,7 +90,7 @@ public class VCrearEmpleado extends JFrame {
 		mainPanel.add(sueldoPanel);
 		sueldoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		sueldoPanel.add(new JLabel("Sueldo: "));
-		//sueldoPanel.add(sueldoField());
+		sueldoPanel.add(sueldoField());
 		
 		/*comprobar si empleado esta activo para poner la casilla sueldo
 		activoBox.addActionListener(new ActionListener() {
@@ -133,7 +139,7 @@ public class VCrearEmpleado extends JFrame {
 				}
 			}
 		});
-		
+		//lugar y especialidad?
 		lugarPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		lugarPanel.add(new JLabel("Lugar: "));
 		//lugarPanel.add(lugarField())
@@ -141,9 +147,31 @@ public class VCrearEmpleado extends JFrame {
 		especialidadPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		especialidadPanel.add(new JLabel("Especialidad: "));
 		//especialidadPanel.add(especialidadField())
+		
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		buttonPanel.add(okButton());
+		buttonPanel.add(cancelButton());
+		
+		mainPanel.add(buttonPanel);
 				
+		pack();
+		setVisible(true);
 		
 	}
+	public static boolean isNumeric(String cadena) {
+
+        boolean resultado;
+
+        try {
+            Integer.parseInt(cadena);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
 	
 	JTextField nombreField(){
 		JTextField nombreField=new JTextField(10);
@@ -231,27 +259,41 @@ public class VCrearEmpleado extends JFrame {
 	}
 	JTextField tlfField(){
 		JTextField tlfField=new JTextField(9);
-		tlf=new String();
+		
 		
 		tlfField.getDocument().addDocumentListener(new DocumentListener(){
 			
 			@Override
 			public void insertUpdate(DocumentEvent e){
-				tlf = tlfField.getText();
+				if(isNumeric(tlfField.getText()) ==true){
+					sueldo = tlfField.getText();
+				    letras = false;
+				}
+				
+				else
+					letras=true;
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				tlf=tlfField.getText();
+				if(isNumeric(tlfField.getText()) ==true){
+					tlf = tlfField.getText();
+				    letras = false;
+				}
 				
+				else
+					letras=true;
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				tlf=tlfField.getText();
+				if(isNumeric(tlfField.getText()) ==true){
+					tlf = tlfField.getText();
+				    letras = false;
+				}
 				
+				else
+					letras=true;
 			}
 			
 		});
@@ -259,32 +301,81 @@ public class VCrearEmpleado extends JFrame {
 	}
 	JTextField sueldoField(){
 		JTextField sueldoField=new JTextField(5);
-		nombre=new String();
 		
-		apellidosField.getDocument().addDocumentListener(new DocumentListener(){
+		
+		sueldoField.getDocument().addDocumentListener(new DocumentListener(){
 			
 			@Override
 			public void insertUpdate(DocumentEvent e){
-				nombre = sueldoField.getText();
+				if(isNumeric(sueldoField.getText()) ==true){
+					sueldo = sueldoField.getText();
+					letras=false;
+				}
+				
+				else
+					letras=true;
+					
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				nombre=apellidosField.getText();
+				if(isNumeric(sueldoField.getText()) ==true){
+					sueldo = sueldoField.getText();
+				    letras = false;
+				}
+				
+				else
+					letras=true;
 				
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				nombre=apellidosField.getText();
+				if(isNumeric(sueldoField.getText()) ==true){
+					sueldo = sueldoField.getText();
+					letras=false;
+				}
+				
+				else
+					letras=true;
 				
 			}
 			
 		});
-		return apellidosField;
+		return sueldoField;
 	}
+	public JButton okButton()
+	{
+		JButton crearButton = new JButton("Crear");
+		crearButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//FALTAN LOS VALORES DE EMPLEADOS
+				//TEmpleados tEmpleado = new TEmpleados()
+				ctrl.carryAction(Events.EMPLEADO_CREAR, tEmpleado);
+			}
+			
+			
+		});
+		return crearButton;
+	}
+	public JButton cancelButton()
+	{
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
+			}
+		
+		});
+		return cancelButton;
+	}
+	
 
 	
 }
