@@ -25,18 +25,17 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
 
-import Negocio.Habitaciones.THabitaciones;
+import Negocio.Clientes.TCliente;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
-import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarUnaHabitacion.habitacionesTableModel;
 
 public class VMostrarUnoCliente extends JFrame implements IGUI{
 	Controller ctrl;
-	private habitacionesTableModel tableModel;
+	private clienteTableModel tableModel;
 	
 	private Integer id;
-	public VMostrarUnaHabitacion(){
+	public VMostrarUnoCliente(){
 		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -46,12 +45,12 @@ public class VMostrarUnoCliente extends JFrame implements IGUI{
 		});
 	}
 	public void initGUI() {
-		setTitle("Mostrar una habitación");
+		setTitle("Mostrar un Cliente");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		
-		tableModel = new habitacionesTableModel();
+		tableModel = new clienteTableModel();
 		mainPanel.add(idPanel());
 		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		buttonsPanel.add(mostrarButton());
@@ -97,7 +96,7 @@ public class VMostrarUnoCliente extends JFrame implements IGUI{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.HABITACION_MOSTRAR_UNA, id);
+				ctrl.carryAction(Events.CLIENTE_MOSTRAR_UNO, id);
 			}
 			
 			
@@ -112,34 +111,34 @@ public class VMostrarUnoCliente extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+				ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
 			}
 		
 		});
 		return cancelButton;
 	}
-	class habitacionesTableModel extends AbstractTableModel
+	class clienteTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Piso", "Tamaño", "Precio","Empleado Id", "Ocupada"};
-		List<THabitaciones> habitaciones;
+		String[] columnValues = {"Id", "Teléfono", "Correo", "Activo"};
+		List<TCliente> clientes;
 		
-		public habitacionesTableModel()
+		public clienteTableModel()
 		{
-			habitaciones =  new ArrayList<>();
+			clientes =  new ArrayList<>();
 		}
 		
 		@Override
 		public int getRowCount() {
-			return habitaciones.size();
+			return clientes.size();
 		}
-		public void setList(Collection<THabitaciones> collection)
+		public void setList(Collection<TCliente> collection)
 		{
-			habitaciones = new ArrayList<>(collection);
+			clientes = new ArrayList<>(collection);
 			fireTableDataChanged();
 		}
-		public void addElement(THabitaciones element)
+		public void addElement(TCliente element)
 		{
-			habitaciones.add(element);
+			clientes.add(element);
 			fireTableDataChanged();
 		}
 		@Override
@@ -154,17 +153,13 @@ public class VMostrarUnoCliente extends JFrame implements IGUI{
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			if(columnIndex == 0)
-				return habitaciones.get(rowIndex).getNumero();
+				return clientes.get(rowIndex).getId();
 			else if(columnIndex == 1)
-				return habitaciones.get(rowIndex).getPiso();
+				return clientes.get(rowIndex).getTelefono();
 			else if(columnIndex == 2)
-				return habitaciones.get(rowIndex).gettamanyo();
+				return clientes.get(rowIndex).getCorreo();
 			else if(columnIndex == 3)
-				return habitaciones.get(rowIndex).getPrecio();
-			else if(columnIndex == 4)
-				return habitaciones.get(rowIndex).getId_empledo();
-			else if(columnIndex == 5)
-				return habitaciones.get(rowIndex).getOcupada();
+				return clientes.get(rowIndex).getActivo();
 			return null;
 		}
 		public JPanel transformTableToPanel()
@@ -184,13 +179,13 @@ public class VMostrarUnoCliente extends JFrame implements IGUI{
 	}
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.HABITACION_MOSTRAR_UNA_SI_ID)
+		if(event == Events.CLIENTE_MOSTRAR_UNO_SI_ID)
 		{
-			tableModel.addElement((THabitaciones)datos);
+			tableModel.addElement((TCliente)datos);
 		}
-		else if(event == Events.HABITACION_MOSTRAR_UNA_NO_ID)
+		else if(event == Events.CLIENTE_MOSTRAR_UNO_NO_ID)
 		{
-			JOptionPane.showMessageDialog(this, "ERROR: No se ha registrado el id " + id);
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha registrado el cliente " + (Integer)id);
 		}
 	}
 }

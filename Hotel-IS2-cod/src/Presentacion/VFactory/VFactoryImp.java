@@ -66,9 +66,9 @@ public class VFactoryImp extends VFactory {
 		case Events.CLIENTE_MODIFICAR_VISTA:
 			return new VModificarCliente();
 		case Events.CLIENTE_MOSTRAR_UNO_VISTA:
-			return new VMostrarTodosClientes();
-		case Events.CLIENTE_MOSTRAR_TODOS_VISTA:
 			return new VMostrarUnoCliente();
+		case Events.CLIENTE_MOSTRAR_TODOS_VISTA:
+			return new VMostrarTodosClientes();
 		case Events.CLIENTE_MOSTRAR_PARTICULAR:
 			return new VMostrarClienteParticular();
 		case Events.CLIENTE_MOSTRAR_EMPRESA:
