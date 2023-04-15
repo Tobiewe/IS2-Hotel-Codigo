@@ -60,22 +60,24 @@ public class VModificarCliente extends JFrame implements IGUI{
 		setLocationRelativeTo(getParent());
 
 		//Text Feilds
-		JTextField correoText = new JTextField("                 ");
-		JTextField nombreText = new JTextField("                ");
-		JTextField apellidoText = new JTextField("                 ");
-		JTextField nifText = new JTextField("                  ");
-		JTextField cifText = new JTextField("                   ");
+		JTextField correoText = new JTextField("");
+		JTextField nombreText = new JTextField("");
+		JTextField apellidoText = new JTextField("");
+		JTextField nifText = new JTextField("");
+		JTextField cifText = new JTextField("");
 		
-		correoText.setPreferredSize(new Dimension(70, 25));
-		apellidoText.setPreferredSize(new Dimension(70, 25));
-		nifText.setPreferredSize(new Dimension(70, 25));
-		cifText.setPreferredSize(new Dimension(70, 25));
+		nombreText.setPreferredSize(new Dimension(150, 20));
+		correoText.setPreferredSize(new Dimension(200, 20));
+		apellidoText.setPreferredSize(new Dimension(150, 20));
+		nifText.setPreferredSize(new Dimension(150, 20));
+		cifText.setPreferredSize(new Dimension(150, 20));
 		
 		//ComboBox tipo
 		JComboBox<String> tipoCombo = new JComboBox<String>();
 		JPanel particularPanel = particularPanel(apellidoText,nifText);
 		JPanel empresaPanel = empresaPanel(cifText);
 		
+		mainPanel.add(panelId());
 		mainPanel.add(panelTelefono());
 		mainPanel.add(panelCorreo(correoText));
 		mainPanel.add(panelNombre(nombreText));
@@ -102,9 +104,9 @@ public class VModificarCliente extends JFrame implements IGUI{
 		JPanel panelTelefono = new JPanel();
 		panelTelefono.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
-		JLabel telefonoLabel = new JLabel("Teléfono: ");
+		JLabel telefonoLabel = new JLabel("Id: ");
 		JSpinner telefonoSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
-		telefonoSpinner.setPreferredSize(new Dimension(100, 20));
+		telefonoSpinner.setPreferredSize(new Dimension(70, 20));
 		id = (Integer) telefonoSpinner.getValue();
 		telefonoSpinner.addChangeListener(new ChangeListener()
 		{
@@ -299,12 +301,12 @@ public class VModificarCliente extends JFrame implements IGUI{
 			public void actionPerformed(ActionEvent e) {
 				if(tipo.equals("Particular"))
 				{
-					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true);
+					TCliente tCliente = new TCliente(id,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true);
 					ctrl.carryAction(Events.CLIENTE_MODIFICAR, tCliente);
 				}
 				else if (tipo.equals("Empresa"))
 				{
-					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true);
+					TCliente tCliente = new TCliente(id,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true);
 					ctrl.carryAction(Events.CLIENTE_MODIFICAR, tCliente);
 				}
 				else
@@ -335,13 +337,13 @@ public class VModificarCliente extends JFrame implements IGUI{
 	
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.HABITACION_MODIFICAR_WRONG_PARAMETERS)
+		if(event == Events.CLIENTE_MODIFICAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Los parámetros introducidos son erróneos");
 //		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
-		else if(event == Events.HABITACION_MODIFICAR_NOTFOUND) 
+		else if(event == Events.CLIENTE_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + " no se ha encontrado");
-		else if(event == Events.HABITACION_MODIFICAR_SUCCESS) 
+		else if(event == Events.CLIENTE_MODIFICAR_SUCCESS) 
 			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + "se ha modificado correctamente");
 			
 	}
