@@ -32,6 +32,7 @@ public class VTarea extends JFrame implements IGUI{
 	}
 
 	protected void initGUI() {
+		setTitle("Tareas");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());

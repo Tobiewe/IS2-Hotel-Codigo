@@ -67,10 +67,10 @@ public class VEliminarDepartamento extends JFrame implements IGUI {
 		mainPanel.add(numPanel);
 		
 		
-		JPanel okPanel = new JPanel();
-		okPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		okPanel.add(okButton(numField.getValue()));
-		mainPanel.add(okPanel);
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		buttonPanel.add(okPanel());
+		buttonPanel.add(cancelButton());
+		mainPanel.add(buttonPanel);
 
 		pack();
 		setVisible(true);
@@ -78,8 +78,10 @@ public class VEliminarDepartamento extends JFrame implements IGUI {
 		
 	}
 	
-	JButton okButton(Object object){
+	JPanel okPanel(){
 		
+		JPanel okPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
 		JButton okButton=new JButton("Eliminar");
 		 
 		 
@@ -91,9 +93,25 @@ public class VEliminarDepartamento extends JFrame implements IGUI {
 			}
 	
 		});
-		return okButton;
+		
+		okPanel.add(okButton);
+		
+		return okPanel;
 	}
-	
+	public JButton cancelButton()
+	{
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
+			}
+		
+		});
+		return cancelButton;
+	}
 
 	@Override
 	public void update(int event, Object datos) {
