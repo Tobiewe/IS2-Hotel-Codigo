@@ -122,7 +122,7 @@ public class VMostrarPorEmpleado extends JFrame implements IGUI{
 	}
 	class habitacionesTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Piso", "Tamaño", "Precio","Empleado Id", "Ocupada"};
+		String[] columnValues = {"Id", "Piso", "Tamaño", "Precio","Ocupada", "Empleado Id"};
 		List<THabitaciones> habitaciones;
 		
 		public habitacionesTableModel()
