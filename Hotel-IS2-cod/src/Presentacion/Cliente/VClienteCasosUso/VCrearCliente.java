@@ -20,6 +20,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Negocio.Clientes.TCliente;
 import Negocio.Habitaciones.THabitaciones;
 
 import javax.swing.JDialog;
@@ -58,18 +59,36 @@ public class VCrearCliente extends JFrame implements IGUI{
 	{
 		setTitle("Crear Cliente");
 		JPanel mainPanel = new JPanel();
-		mainPanel.setPreferredSize(new Dimension(400, 200));
+		mainPanel.setPreferredSize(new Dimension(400, 300));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
+		//Text Feilds
 		JTextField correoText = new JTextField("                 ");
+		JTextField nombreText = new JTextField("                ");
+		JTextField apellidoText = new JTextField("                 ");
+		JTextField nifText = new JTextField("                  ");
+		JTextField cifText = new JTextField("                   ");
+		
 		correoText.setPreferredSize(new Dimension(70, 25));
+		apellidoText.setPreferredSize(new Dimension(70, 25));
+		nifText.setPreferredSize(new Dimension(70, 25));
+		cifText.setPreferredSize(new Dimension(70, 25));
+		
+		//ComboBox tipo
+		JComboBox<String> tipoCombo = new JComboBox<String>();
+		JPanel particularPanel = particularPanel(apellidoText,nifText);
+		JPanel empresaPanel = empresaPanel(cifText);
 		
 		mainPanel.add(panelTelefono());
 		mainPanel.add(panelCorreo(correoText));
+		mainPanel.add(panelNombre(nombreText));
 		mainPanel.add(panelActivo());
-		mainPanel.add(panelTipo());
+		mainPanel.add(panelTipo(tipoCombo, particularPanel, empresaPanel));
+		mainPanel.add(particularPanel);
+		mainPanel.add(empresaPanel);
+		
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
@@ -149,17 +168,40 @@ public class VCrearCliente extends JFrame implements IGUI{
 		
 		return panelTipo;
 	}
-	public JPanel panelTipo()
+	
+	public JPanel panelNombre(JTextField nombreText)
+	{
+		JPanel nombrePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel nombreLabel = new JLabel("Nombre: ");
+		
+		nombrePanel.add(nombreLabel);
+		nombrePanel.add(nombreText);
+		
+		
+		
+		return nombrePanel;
+	}
+	public JPanel panelTipo(JComboBox<String> tipoCombo, JPanel particularPanel, JPanel empresaPanel)
 	{
 		JPanel panelTipo = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		JLabel tamanyoLabel = new JLabel("Tamaño: ");
-		JComboBox<String> tipoCombo = new JComboBox<String>();
+		JLabel tipoLabel = new JLabel("Tipo: ");
 		
 		tipoCombo.addItem("Particular");
 		tipoCombo.addItem("Empresa");
 		
 		tipo = (String) tipoCombo.getSelectedItem();
+		if(tipo.equals("Particular"))
+		{
+			empresaPanel.setVisible(false);
+			particularPanel.setVisible(true);
+		}
+		else if(tipo.equals("Empresa"))
+		{
+			particularPanel.setVisible(false);
+			empresaPanel.setVisible(true);
+		}
 		
 		tipoCombo.addItemListener(new ItemListener()
 		{
@@ -167,33 +209,90 @@ public class VCrearCliente extends JFrame implements IGUI{
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				tipo = (String) tipoCombo.getSelectedItem();
+				if(tipo.equals("Particular"))
+				{
+					empresaPanel.setVisible(false);
+					particularPanel.setVisible(true);
+				}
+				else if(tipo.equals("Empresa"))
+				{
+					particularPanel.setVisible(false);
+					empresaPanel.setVisible(true);
+				}
 			}
 			
 		});
 		
-		panelTipo.add(tamanyoLabel);
+		panelTipo.add(tipoLabel);
 		panelTipo.add(tipoCombo);
 		
 		return panelTipo;
 	}
-	public JPanel empresaPanel()
+	public JPanel empresaPanel(JTextField cifText)
 	{
+		JPanel empresaPanel = new JPanel();
+		empresaPanel.setLayout(new BoxLayout(empresaPanel, BoxLayout.Y_AXIS));
 		
+		JPanel cifPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel cifLabel = new JLabel("CIF: ");
+		
+		cifPanel.add(cifLabel);
+		cifPanel.add(cifText);
+		
+		empresaPanel.add(cifPanel);
+		return empresaPanel;
+
 	}
-	public JPanel particularPanel()
+	public JPanel particularPanel(JTextField apellidoText, JTextField nifText)
 	{
+		JPanel particularPanel = new JPanel();
+		particularPanel.setLayout(new BoxLayout(particularPanel, BoxLayout.Y_AXIS));
 		
+		JPanel apellidoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JPanel nifPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel apellidoLabel = new JLabel("Apellido: ");
+		JLabel nifLabel = new JLabel("NIF: ");
+		
+		apellidoPanel.add(apellidoLabel);
+		apellidoPanel.add(apellidoText);
+		
+		nifPanel.add(nifLabel);
+		nifPanel.add(nifText);
+		
+		particularPanel.add(apellidoPanel);
+		
+		particularPanel.add(nifPanel);
+		
+		return particularPanel;
+
 	}
-	public JButton crearButton(JTextField textField)
+	public JButton crearButton(String tipo, JTextField correoText,JTextField nombreText,JTextField apellidoText,JTextField niftext,JTextField cifText)
 	{
 		JButton crearButton = new JButton("Crear");
 		crearButton.addActionListener(new ActionListener()
 		{
+			//public TCliente(Integer id, String correo, Integer telefono, String nombre, String CIF, String apellidos,  String NIF, Boolean activo){
+			
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				THabitaciones tHabitacion = new THabitaciones(null,id,tamanyo,Float.parseFloat(textField.getText()),false,idEmpleado);
-				ctrl.carryAction(Events.HABITACION_CREAR, tHabitacion);
+				if(tipo.equals("Particular"))
+				{
+					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true);
+					ctrl.carryAction(Events.CLIENTE_CREAR, tCliente);
+				}
+				else if (tipo.equals("Empresa"))
+				{
+					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true);
+					ctrl.carryAction(Events.CLIENTE_CREAR, tCliente);
+				}
+				else
+				{
+					ctrl.carryAction(Events.HABITACION_CREAR, null);
+				} 
+				
 			}
 			
 			
