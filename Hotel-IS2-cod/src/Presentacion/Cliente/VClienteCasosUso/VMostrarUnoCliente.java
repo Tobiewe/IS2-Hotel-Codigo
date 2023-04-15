@@ -1,10 +1,12 @@
 package Presentacion.Cliente.VClienteCasosUso;
 
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import Presentacion.Controller.Controller;
+import Presentacion.Controller.IGUI;
 
-public class VMostrarUnoCliente {
+public class VMostrarUnoCliente extends JFrame implements IGUI{
 	private Controller ctrl;
 	public VMostrarUnoCliente()
 	{
@@ -19,6 +21,11 @@ public class VMostrarUnoCliente {
 	}
 	void initGUI()
 	{
+		
+	}
+	@Override
+	public void update(int event, Object datos) {
+		// TODO Auto-generated method stub
 		
 	}
 }

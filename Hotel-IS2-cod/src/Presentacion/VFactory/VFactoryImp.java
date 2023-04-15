@@ -1,6 +1,11 @@
 package Presentacion.VFactory;
 
 import Presentacion.Cliente.VCliente;
+import Presentacion.Cliente.VClienteCasosUso.VBorrarCliente;
+import Presentacion.Cliente.VClienteCasosUso.VCrearCliente;
+import Presentacion.Cliente.VClienteCasosUso.VModificarCliente;
+import Presentacion.Cliente.VClienteCasosUso.VMostrarTodosClientes;
+import Presentacion.Cliente.VClienteCasosUso.VMostrarUnoCliente;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
 import Presentacion.Departamento.VDepartamento;
@@ -15,6 +20,7 @@ import Presentacion.Empleado.VEmpleadoCasosUso.VEliminarEmpleado;
 import Presentacion.Empleado.VEmpleadoCasosUso.VLeerTodosEmpleado;
 import Presentacion.Empleado.VEmpleadoCasosUso.VLeerUnoEmpleado;
 import Presentacion.Empleado.VEmpleadoCasosUso.VModificarEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VMostrarPorDepartamento;
 import Presentacion.Habitacion.VHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VAñadirHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VEliminarHabitacion;
@@ -47,10 +53,42 @@ public class VFactoryImp extends VFactory {
 		{
 		case Events.VENTANA_PRINCIPAL_INSTANCE:
 			return new VPrincipal();
+			
+		//CLIENTE
 		case Events.CLIENTE_VISTA:
 			return new VCliente();
+		case Events.CLIENTE_CREAR_VISTA:
+			return new VCrearCliente();
+		case Events.CLIENTE_ELIMINAR_VISTA:
+			return new VBorrarCliente();
+		case Events.CLIENTE_MODIFICAR_VISTA:
+			return new VModificarCliente();
+		case Events.CLIENTE_MOSTRAR_UNO_VISTA:
+			return new VMostrarTodosClientes();
+		case Events.CLIENTE_MOSTRAR_TODOS_VISTA:
+			return new VMostrarUnoCliente();
+		case Events.CLIENTE_MOSTRAR_PARTICULAR:
+			return new VMostrarPorDepartamento();
+		case Events.CLIENTE_MOSTRAR_EMPRESA:
+			
+		
+			//EMPLEADO
 		case Events.EMPLEADO_VISTA:
 			return new VEmpleado();
+		case Events.EMPLEADO_CREAR_VISTA:
+			return new VCrearEmpleado();
+		case Events.EMPLEADO_ELIMINAR_VISTA:
+			return new VEliminarEmpleado();
+		case Events.EMPLEADO_MODIFICAR_VISTA:
+			return new VModificarEmpleado();
+		case Events.EMPLEADO_MOSTRAR_UNO_VISTA:
+			return new VLeerUnoEmpleado();
+		case Events.EMPLEADO_MOSTRAR_TODOS_VISTA:
+			return new VLeerTodosEmpleado();
+		case Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA:
+			return new VMostrarPorDepartamento();
+			
+		//DEPARTAMENTO
 		case Events.DEPARTAMENTO_VISTA:
 			return new VDepartamento();
 		case Events.DEPARTAMENTO_CREAR_VISTA:
@@ -63,7 +101,8 @@ public class VFactoryImp extends VFactory {
 			return new VLeerUnoDepartamento();
 		case Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA:
 			return new VLeerTodosDepartamento();
-			
+		
+		//TAREA
 		case Events.TAREA_VISTA:
 			return new VTarea();
 		case Events.TAREA_CREAR_VISTA:
@@ -81,8 +120,7 @@ public class VFactoryImp extends VFactory {
 		case Events.TAREA_DESVINCULAR_VISTA:
 			return new VDesvincularTarea();
 			
-		
-		
+		//RESERVA
 		case Events.RESERVA_VISTA:
 			return new VReserva();
 		case Events.RESERVA_CREAR_VISTA:
@@ -96,10 +134,9 @@ public class VFactoryImp extends VFactory {
 		case Events.RESERVA_MOSTRAR_TODAS_VISTA:
 			return new VMostrarTodasReserva();
 			
-			
+		//HABITACION
 		case Events.HABITACION_VISTA:
 			return new VHabitacion();
-			
 		case Events.HABITACION_CREAR_VISTA:
 			return new VAñadirHabitacion();
 		case Events.HABITACION_ELIMINAR_VISTA:
@@ -115,21 +152,8 @@ public class VFactoryImp extends VFactory {
 		case Events.HABITACION_MOSTRAR_TODAS_VISTA:
 			return new VMostrarTodasHabitacion();
 			
-		case Events.EMPLEADO_CREAR_VISTA:
-			return new VCrearEmpleado();
-		case Events.EMPLEADO_ELIMINAR_VISTA:
-			return new VEliminarEmpleado();
-		case Events.EMPLEADO_MODIFICAR_VISTA:
-			return new VModificarEmpleado();
-		case Events.EMPLEADO_MOSTRAR_UNO_VISTA:
-			return new VLeerTodosEmpleado();
-		case Events.EMPLEADO_MOSTRAR_TODOS_VISTA:
-			return new VLeerUnoEmpleado();
-
 		}
-	
-			
+		
 		return null;
 	}
-
 }

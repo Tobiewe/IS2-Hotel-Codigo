@@ -13,8 +13,9 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import Presentacion.Controller.Controller;
+import Presentacion.Controller.IGUI;
 
-public class VCrearCliente extends JFrame{
+public class VCrearCliente extends JFrame implements IGUI{
 	private Controller ctrl;
 	
 	public VCrearCliente()
@@ -53,5 +54,10 @@ public class VCrearCliente extends JFrame{
 				int election = comboEsp.getSelectedIndex();
 			}
 		});
+	}
+	@Override
+	public void update(int event, Object datos) {
+		// TODO Auto-generated method stub
+		
 	}
 }
