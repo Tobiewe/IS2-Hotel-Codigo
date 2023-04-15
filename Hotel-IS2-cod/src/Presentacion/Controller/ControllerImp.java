@@ -70,25 +70,26 @@ public class ControllerImp extends Controller {
 		case Events.RESERVA_NUEVA_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_VISTA, null);
 			break;
+			
+		//DEPARTAMENTO
+			//VISTAS
 		case Events.DEPARTAMENTO_CREAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_CREAR_VISTA, null);
 			break;
 		case Events.DEPARTAMENTO_MODIFICAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_MODIFICAR_VISTA, null);
-
 			break;
 		case Events.DEPARTAMENTO_ELIMINAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_ELIMINAR_VISTA, null);
-
 			break;
-			
 		case Events.DEPARTAMENTO_MOSTRAR_UNO_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_MOSTRAR_UNO_VISTA, null);
-
 			break;
 		case Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.DEPARTAMENTO_MOSTRAR_TODOS_VISTA, null);
 			break;
+			
+			//ACCIONES
 		case Events.DEPARTAMENTO_CREAR:
 			tDepartamento = (TDepartamento) data;
 			saSolution = saDepartamento.crear(tDepartamento);
@@ -99,6 +100,18 @@ public class ControllerImp extends Controller {
 			else if(saSolution > 0)
 				cIGUI.update(Events.DEPARTAMENTO_CREAR_SUCCESS, tDepartamento.getNombre());
 			break;
+			
+		case Events.DEPARTAMENTO_MODIFICAR:
+			tDepartamento = (TDepartamento)data;
+			saSolution = saDepartamento.modificar(tDepartamento);
+			if(saSolution == -2)
+				cIGUI.update(Events.DEPARTAMENTO_MODIFICAR_NOTFOUND, tDepartamento.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.DEPARTAMENTO_MODIFICAR_WRONG_PARAMETERS, tDepartamento.getId());
+			else if(saSolution > 0)
+				cIGUI.update(Events.DEPARTAMENTO_MODIFICAR_SUCCESS, tDepartamento.getId());
+			break;
+			
 		case Events.DEPARTAMENTO_ELIMINAR:
 			saSolution = saDepartamento.eliminar((Integer) data);
 			if(saSolution == -2)
@@ -106,6 +119,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.DEPARTAMENTO_ELIMINAR_SUCCESS, data);
 			break;
+			
 		case Events.DEPARTAMENTO_MOSTRAR_UNO:
 			tDepartamento = saDepartamento.mostrarUno((Integer) data);
 			
@@ -114,6 +128,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_UNO_SI_ID, tDepartamento);
 			break;
+			
 		case Events.DEPARTAMENTO_MOSTRAR_TODOS:
 			Collection<TDepartamento> collectionDep= saDepartamento.mostrarTodos();
 			if(collectionDep.isEmpty())
@@ -121,23 +136,46 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_TODOS_SUCCESS, collectionDep);
 			break;
+			
+		//EMPLEADO
+			//VISTAS
 		case Events.EMPLEADO_CREAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_CREAR_VISTA, null);
 			break;
+			
 		case Events.EMPLEADO_MODIFICAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MODIFICAR_VISTA, null);
 			break;
+			
 		case Events.EMPLEADO_ELIMINAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_ELIMINAR_VISTA, null);
 			break;
+			
 		case Events.EMPLEADO_MOSTRAR_UNO_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_UNO_VISTA, null);
 			break;
+			
 		case Events.EMPLEADO_MOSTRAR_TODOS_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_TODOS_VISTA, null);
 			break;
-		case Events.EMPLEADO_CREAR:
+		case Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA, null);
 			break;
+			
+			//ACCIONES
+		case Events.EMPLEADO_CREAR:
+			tEmpleado = (TEmpleados)data;
+			saSolution = saEmpleado.crear(tEmpleado);
+			if(saSolution == -1)
+				cIGUI.update(Events.EMPLEADO_CREAR_ERROR, null);
+			else if(saSolution == -2)
+				cIGUI.update(Events.EMPLEADO_CREAR_REPEATED,  tEmpleado.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.EMPLEADO_CREAR_WRONG_PARAMETERS, null);
+			else if(saSolution > 0)
+				cIGUI.update(Events.EMPLEADO_CREAR_SUCCESS, tEmpleado.getId());
+			break;
+			
 		case Events.EMPLEADO_MODIFICAR:
 			tEmpleado = (TEmpleados)data;
 			saSolution = saEmpleado.modificar(tEmpleado);
@@ -148,8 +186,16 @@ public class ControllerImp extends Controller {
 			else if(saSolution > 0)
 				cIGUI.update(Events.EMPLEADO_MODIFICAR_SUCCESS, tEmpleado.getId());
 			break;
+			
 		case Events.EMPLEADO_ELIMINAR:
-				break;
+			saSolution = saEmpleado.eliminar((Integer) data);
+			
+			if(saSolution == -2)
+				cIGUI.update(Events.EMPLEADO_ELIMINAR_NOTFOUND, data);
+			else
+				cIGUI.update(Events.EMPLEADO_ELIMINAR_SUCCESS, data);
+			break;
+				
 		case Events.EMPLEADO_MOSTRAR_UNO:
 			tEmpleado = saEmpleado.mostrarUno((Integer) data);
 			
@@ -158,6 +204,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_UNO_SI_ID, tEmpleado);
 			break;
+			
 		case Events.EMPLEADO_MOSTRAR_TODOS:
 			Collection<TEmpleados> collectionEmpleado = saEmpleado.mostrarTodos();
 			if(collectionEmpleado.isEmpty())
@@ -165,6 +212,39 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_TODOS_SUCCESS, collectionEmpleado);
 			break;
+			
+		case Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO:
+			Collection<TEmpleados> collectionEmpleadoPorDep = saEmpleado.mostrarPorDepartamento((Integer) data);
+			if(collectionEmpleadoPorDep.isEmpty())
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_NOID, null);
+			else
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_ID, collectionEmpleadoPorDep);
+			break;
+			
+			
+			//RESERVA
+		case Events.RESERVA_CREAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_CREAR_VISTA, null);
+			break;
+		case Events.RESERVA_MODIFICAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MODIFICAR_VISTA, null);
+			break;
+		case Events.RESERVA_ELIMINAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_ELIMINAR_VISTA, null);
+			break;
+		case Events.RESERVA_MOSTRAR_UNA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_UNA_VISTA, null);
+			break;
+		case Events.RESERVA_MOSTRAR_TODAS_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_TODAS_VISTA, null);
+			break;
+//		case Events.RESERVA_VINCULAR_VISTA:
+//			cIGUI = VFactory.getInstance().newView(Events.TAREA_VINCULAR_VISTA, null);
+//			break;
+//		case Events.RESERVA_DESVINCULAR_VISTA:
+//			cIGUI = VFactory.getInstance().newView(Events.TAREA_DESVINCULAR_VISTA, null);
+//			break;
+			
 		case Events.RESERVA_MOSTRAR_UNA:
 			tReserva = saReserva.mostrarUno((Integer) data);
 			if(tReserva == null)
@@ -172,6 +252,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.RESERVA_MOSTRAR_UNA_SI_ID, tReserva);
 			break;
+			
 		case Events.RESERVA_MOSTRAR_TODAS:
 			Collection<TReserva> collectionReserva = saReserva.mostrarTodos();
 			if(collectionReserva.isEmpty())
@@ -179,6 +260,8 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_SUCCESS, collectionReserva);
 			break;
+			
+			//TAREA
 		case Events.TAREA_CREAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.TAREA_CREAR_VISTA, null);
 			break;
@@ -200,12 +283,38 @@ public class ControllerImp extends Controller {
 		case Events.TAREA_DESVINCULAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.TAREA_DESVINCULAR_VISTA, null);
 			break;
-		case Events.TAREA_MOSTRAR_TODOS:
-			Collection<TTareas> collectionTarea= saTarea.leerTodos();
-			if(collectionTarea.isEmpty())
-				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_ERROR, null);
+			
+			//ACCIONES
+		case Events.TAREA_CREAR:
+			tTarea = (TTareas)data;
+			saSolution = saTarea.crear(tTarea);
+			if(saSolution == -1)
+				cIGUI.update(Events.TAREA_CREAR_ERROR, null);
+			else if(saSolution == -2)
+				cIGUI.update(Events.TAREA_CREAR_REPEATED,  tTarea.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.TAREA_CREAR_WRONG_PARAMETERS, saSolution);
+			else if(saSolution > 0)
+				cIGUI.update(Events.TAREA_CREAR_SUCCESS, tTarea.getId());
+			break;
+			
+		case Events.TAREA_MODIFICAR:
+			tTarea = (TTareas)data;
+			saSolution = saTarea.modificar(tTarea);
+			if(saSolution == -2)
+				cIGUI.update(Events.TAREA_MODIFICAR_NOTFOUND, tTarea.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.TAREA_MODIFICAR_WRONG_PARAMETERS, tTarea.getId());
+			else if(saSolution > 0)
+				cIGUI.update(Events.TAREA_MODIFICAR_SUCCESS, tTarea.getId());
+			
+		case Events.TAREA_ELIMINAR:
+			saSolution = saTarea.eliminar((Integer) data);
+			
+			if(saSolution == -2)
+				cIGUI.update(Events.TAREA_ELIMINAR_NOTFOUND, data);
 			else
-				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_SUCCESS, collectionTarea);
+				cIGUI.update(Events.TAREA_ELIMINAR_SUCCESS, data);
 			break;
 			
 		case Events.TAREA_MOSTRAR_UNO:
@@ -216,14 +325,73 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.TAREA_MOSTRAR_UNA_SI_ID, tTarea);
 			break;
-			
-		case Events.CLIENTE_MOSTRAR_TODOS:
-			Collection<TCliente> collectionCliente = saCliente.mostrarTodos();
-			if(collectionCliente.isEmpty())
-				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_ERROR, null);
+
+		case Events.TAREA_MOSTRAR_TODOS:
+			Collection<TTareas> collectionTarea= saTarea.leerTodos();
+			if(collectionTarea.isEmpty())
+				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_ERROR, null);
 			else
-				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_SUCCESS, collectionCliente);
+				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_SUCCESS, collectionTarea);
 			break;
+		
+		case Events.TAREA_VINCULAR:
+			break;
+			
+		case Events.TAREA_DESVINCULAR:
+			break;
+	
+			
+		//CLIENTE
+			//VISTAS
+		case Events.CLIENTE_CREAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_CREAR_VISTA, null);
+			break;
+		case Events.CLIENTE_MODIFICAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_MODIFICAR_VISTA, null);
+			break;
+		case Events.CLIENTE_ELIMINAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_ELIMINAR_VISTA, null);
+			break;
+		case Events.CLIENTE_MOSTRAR_UNO_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_MOSTRAR_UNO_VISTA, null);
+			break;
+		case Events.CLIENTE_MOSTRAR_TODOS_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_MOSTRAR_TODOS_VISTA, null);
+			break;
+			
+			//ACCIONES
+		case Events.CLIENTE_CREAR:
+			tCliente = (TCliente)data;
+			saSolution = saCliente.crear(tCliente);
+			if(saSolution == -1)
+				cIGUI.update(Events.CLIENTE_CREAR_ERROR, null);
+			else if(saSolution == -2)
+				cIGUI.update(Events.CLIENTE_CREAR_REPEATED,  tCliente.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.CLIENTE_CREAR_WRONG_PARAMETERS, saSolution);
+			else if(saSolution > 0)
+				cIGUI.update(Events.CLIENTE_CREAR_SUCCESS, tCliente.getId());
+			break;
+			
+		case Events.CLIENTE_MODIFICAR:
+			tCliente = (TCliente)data;
+			saSolution = saCliente.modificar(tCliente);
+			if(saSolution == -2)
+				cIGUI.update(Events.CLIENTE_MODIFICAR_NOTFOUND, tCliente.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.CLIENTE_MODIFICAR_WRONG_PARAMETERS, tCliente.getId());
+			else if(saSolution > 0)
+				cIGUI.update(Events.CLIENTE_MODIFICAR_SUCCESS, tCliente.getId());
+			
+		case Events.CLIENTE_ELIMINAR:
+			saSolution = saCliente.eliminar((Integer) data);
+
+			if(saSolution == -2)
+				cIGUI.update(Events.CLIENTE_ELIMINAR_NOTFOUND, data);
+			else
+				cIGUI.update(Events.CLIENTE_ELIMINAR_SUCCESS, data);
+			break;
+			
 		case Events.CLIENTE_MOSTRAR_UNO:
 			tCliente = saCliente.mostrarUno((Integer) data);
 			
@@ -232,29 +400,18 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.CLIENTE_MOSTRAR_UNO_SI_ID, tCliente);
 			break;
-		case Events.HABITACION_CREAR:
-			tHabitacion = (THabitaciones)data;
-			saSolution = saHabitacion.crear(tHabitacion);
-			if(saSolution == -1)
-				cIGUI.update(Events.HABITACION_CREAR_ERROR, null);
-			else if(saSolution == -2)
-				cIGUI.update(Events.HABITACION_CREAR_REPEATED,  tHabitacion.getNumero());
-			else if(saSolution == -5)
-				cIGUI.update(Events.HABITACION_CREAR_WRONG_PARAMETERS, saSolution);
-			else if(saSolution > 0)
-				cIGUI.update(Events.HABITACION_CREAR_SUCCESS, tHabitacion.getNumero());
+			
+		case Events.CLIENTE_MOSTRAR_TODOS:
+			Collection<TCliente> collectionCliente = saCliente.mostrarTodos();
+			if(collectionCliente.isEmpty())
+				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_ERROR, null);
+			else
+				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_SUCCESS, collectionCliente);
 			break;
 			
-		case Events.HABITACION_MODIFICAR:
-			tHabitacion = (THabitaciones)data;
-			saSolution = saHabitacion.modificar(tHabitacion);
-			if(saSolution == -2)
-				cIGUI.update(Events.HABITACION_MODIFICAR_NOTFOUND, tHabitacion.getNumero());
-			else if(saSolution == -5)
-				cIGUI.update(Events.HABITACION_MODIFICAR_WRONG_PARAMETERS, tHabitacion.getNumero());
-			else if(saSolution > 0)
-				cIGUI.update(Events.HABITACION_MODIFICAR_SUCCESS, tHabitacion.getNumero());
+		
 			
+		//HABITACIONES
 		case Events.HABITACION_NUEVA_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.HABITACION_VISTA, null);
 			break;
@@ -279,20 +436,30 @@ public class ControllerImp extends Controller {
 		case Events.HABITACION_MOSTRAR_POR_EMPLEADO_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.HABITACION_MOSTRAR_POR_EMPLEADO_VISTA, null);
 			break;
-		case Events.HABITACION_MOSTRAR_TODAS:
-			Collection<THabitaciones> collectionHabTodas = saHabitacion.mostrarTodos();
-			if(collectionHabTodas.isEmpty())
-				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_ERROR, null);
-			else
-				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_SUCCESS, collectionHabTodas);
+			
+		case Events.HABITACION_CREAR:
+			tHabitacion = (THabitaciones)data;
+			saSolution = saHabitacion.crear(tHabitacion);
+			if(saSolution == -1)
+				cIGUI.update(Events.HABITACION_CREAR_ERROR, null);
+			else if(saSolution == -2)
+				cIGUI.update(Events.HABITACION_CREAR_REPEATED,  tHabitacion.getNumero());
+			else if(saSolution == -5)
+				cIGUI.update(Events.HABITACION_CREAR_WRONG_PARAMETERS, saSolution);
+			else if(saSolution > 0)
+				cIGUI.update(Events.HABITACION_CREAR_SUCCESS, tHabitacion.getNumero());
 			break;
-		case Events.HABITACION_MOSTRAR_DISPONIBLES:
-			Collection<THabitaciones> collectionHabDisponibles = saHabitacion.MostrarTodasDisponibles();
-			if(collectionHabDisponibles == null)
-				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_ERROR, null);
-			else
-				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_SUCCESS, collectionHabDisponibles);
-			break;
+			
+		case Events.HABITACION_MODIFICAR:
+			tHabitacion = (THabitaciones)data;
+			saSolution = saHabitacion.modificar(tHabitacion);
+			if(saSolution == -2)
+				cIGUI.update(Events.HABITACION_MODIFICAR_NOTFOUND, tHabitacion.getNumero());
+			else if(saSolution == -5)
+				cIGUI.update(Events.HABITACION_MODIFICAR_WRONG_PARAMETERS, tHabitacion.getNumero());
+			else if(saSolution > 0)
+				cIGUI.update(Events.HABITACION_MODIFICAR_SUCCESS, tHabitacion.getNumero());
+			
 		case Events.HABITACION_ELIMINAR:
 			saSolution = saHabitacion.eliminar((Integer) data);
 			
@@ -302,7 +469,7 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.HABITACION_ELIMINAR_SUCCESS, data);
 			break;
 
-			
+		
 		case Events.HABITACION_MOSTRAR_UNA:
 			tHabitacion = saHabitacion.mostrarUno((Integer) data);
 			
@@ -311,6 +478,23 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.HABITACION_MOSTRAR_UNA_SI_ID, tHabitacion);
 			break;
+			
+		case Events.HABITACION_MOSTRAR_TODAS:
+			Collection<THabitaciones> collectionHabTodas = saHabitacion.mostrarTodos();
+			if(collectionHabTodas.isEmpty())
+				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_ERROR, null);
+			else
+				cIGUI.update(Events.HABITACION_MOSTRAR_TODAS_SUCCESS, collectionHabTodas);
+			break;
+			
+		case Events.HABITACION_MOSTRAR_DISPONIBLES:
+			Collection<THabitaciones> collectionHabDisponibles = saHabitacion.MostrarTodasDisponibles();
+			if(collectionHabDisponibles == null)
+				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_ERROR, null);
+			else
+				cIGUI.update(Events.HABITACION_MOSTRAR_DISPONIBLES_SUCCESS, collectionHabDisponibles);
+			break;
+			
 		case Events.HABITACION_MOSTRAR_POR_EMPLEADO:
 			Collection<THabitaciones> collectionHabPorEmpleado = saHabitacion.mostrarPorEmpleado((Integer)data);
 			if(collectionHabPorEmpleado.isEmpty())
@@ -319,10 +503,7 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.HABITACION_MOSTRAR_POR_EMPLEADO_ID, collectionHabPorEmpleado);
 			break;
 
-		}
-		
-		//j
-		
+		}		
 	}
 }
 

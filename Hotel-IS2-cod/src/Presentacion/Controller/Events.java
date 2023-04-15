@@ -41,6 +41,8 @@ public class Events {
 	
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO = 160;
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA = 161;
+	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_ID = 162;
+	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_NOID= 163;
 
 	
 	//CLIENTE
