@@ -81,7 +81,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.CLIENTE_CREAR, null);
+				ctrl.carryAction(Events.CLIENTE_CREAR_VISTA, null);
 				setVisible(false);
 			}
 		});
@@ -96,7 +96,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.CLIENTE_MODIFICAR, null);
+				ctrl.carryAction(Events.CLIENTE_MODIFICAR_VISTA, null);
 				setVisible(false);
 			}
 		});
@@ -111,7 +111,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.CLIENTE_ELIMINAR, null);
+				ctrl.carryAction(Events.CLIENTE_ELIMINAR_VISTA, null);
 				setVisible(false);
 			}
 		});
@@ -126,7 +126,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.CLIENTE_MOSTRAR_UNO, null);
+				ctrl.carryAction(Events.CLIENTE_MOSTRAR_UNO_VISTA, null);
 				setVisible(false);
 			}
 		});
@@ -141,7 +141,7 @@ public class VCliente extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.CLIENTE_MOSTRAR_TODOS, null);
+				ctrl.carryAction(Events.CLIENTE_MOSTRAR_TODOS_VISTA, null);
 				setVisible(false);
 			}
 		});

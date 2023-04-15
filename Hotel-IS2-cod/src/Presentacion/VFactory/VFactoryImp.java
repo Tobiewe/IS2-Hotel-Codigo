@@ -10,6 +10,11 @@ import Presentacion.Departamento.VDepartamentoCasosUso.VEliminarDepartamento;
 import Presentacion.Departamento.VDepartamentoCasosUso.VLeerTodosDepartamento;
 import Presentacion.Departamento.VDepartamentoCasosUso.VLeerUnoDepartamento;
 import Presentacion.Empleado.VEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VCrearEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VEliminarEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VLeerTodosEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VLeerUnoEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VModificarEmpleado;
 import Presentacion.Habitacion.VHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VAñadirHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VEliminarHabitacion;
@@ -109,9 +114,18 @@ public class VFactoryImp extends VFactory {
 			return new VMostrarUnaHabitacion();
 		case Events.HABITACION_MOSTRAR_TODAS_VISTA:
 			return new VMostrarTodasHabitacion();
-		
 			
-			
+		case Events.EMPLEADO_CREAR_VISTA:
+			return new VCrearEmpleado();
+		case Events.EMPLEADO_ELIMINAR_VISTA:
+			return new VEliminarEmpleado();
+		case Events.EMPLEADO_MODIFICAR_VISTA:
+			return new VModificarEmpleado();
+		case Events.EMPLEADO_MOSTRAR_UNO_VISTA:
+			return new VLeerTodosEmpleado();
+		case Events.EMPLEADO_MOSTRAR_TODOS_VISTA:
+			return new VLeerUnoEmpleado();
+
 		}
 	
 			

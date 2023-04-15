@@ -74,7 +74,7 @@ public class VEmpleado extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EMPLEADO_CREAR, null);
+					ctrl.carryAction(Events.EMPLEADO_CREAR_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -89,7 +89,7 @@ public class VEmpleado extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EMPLEADO_MODIFICAR, null);
+					ctrl.carryAction(Events.EMPLEADO_MODIFICAR_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -104,7 +104,7 @@ public class VEmpleado extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EMPLEADO_ELIMINAR, null);
+					ctrl.carryAction(Events.EMPLEADO_ELIMINAR_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -119,7 +119,7 @@ public class VEmpleado extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EMPLEADO_MOSTRAR_UNO, null);
+					ctrl.carryAction(Events.EMPLEADO_MOSTRAR_UNO_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -134,7 +134,7 @@ public class VEmpleado extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EMPLEADO_MOSTRAR_TODOS, null);
+					ctrl.carryAction(Events.EMPLEADO_MOSTRAR_TODOS_VISTA, null);
 					setVisible(false);
 				}
 			});
@@ -148,7 +148,7 @@ public class VEmpleado extends JFrame implements IGUI{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ctrl.carryAction(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO, null);
+					ctrl.carryAction(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA, null);
 					setVisible(false);
 				}
 			});

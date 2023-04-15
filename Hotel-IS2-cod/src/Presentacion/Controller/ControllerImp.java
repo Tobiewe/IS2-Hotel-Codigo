@@ -121,6 +121,35 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.DEPARTAMENTO_MOSTRAR_TODOS_SUCCESS, collectionDep);
 			break;
+		case Events.EMPLEADO_CREAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_CREAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_MODIFICAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MODIFICAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_ELIMINAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_ELIMINAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_MOSTRAR_UNO_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_UNO_VISTA, null);
+			break;
+		case Events.EMPLEADO_MOSTRAR_TODOS_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_TODOS_VISTA, null);
+			break;
+		case Events.EMPLEADO_CREAR:
+			break;
+		case Events.EMPLEADO_MODIFICAR:
+			tEmpleado = (TEmpleados)data;
+			saSolution = saEmpleado.modificar(tEmpleado);
+			if(saSolution == -2)
+				cIGUI.update(Events.EMPLEADO_MODIFICAR_NOTFOUND, tEmpleado.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.EMPLEADO_MODIFICAR_WRONG_PARAMETERS, tEmpleado.getId());
+			else if(saSolution > 0)
+				cIGUI.update(Events.EMPLEADO_MODIFICAR_SUCCESS, tEmpleado.getId());
+			break;
+		case Events.EMPLEADO_ELIMINAR:
+				break;
 		case Events.EMPLEADO_MOSTRAR_UNO:
 			tEmpleado = saEmpleado.mostrarUno((Integer) data);
 			
