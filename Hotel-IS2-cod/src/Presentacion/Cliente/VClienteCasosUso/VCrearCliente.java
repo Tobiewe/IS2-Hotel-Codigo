@@ -91,8 +91,8 @@ public class VCrearCliente extends JFrame implements IGUI{
 		
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		buttonPanel.add(crearButton(correoText));
+
+		buttonPanel.add(crearButton(tipo,correoText,nombreText,apellidoText,nifText,cifText));
 		buttonPanel.add(cancelButton());
 		
 		mainPanel.add(buttonPanel);
@@ -290,7 +290,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 				}
 				else
 				{
-					ctrl.carryAction(Events.HABITACION_CREAR, null);
+					ctrl.carryAction(Events.CLIENTE_CREAR, null);
 				} 
 				
 			}
@@ -307,7 +307,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+				ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
 			}
 		
 		});
@@ -316,17 +316,17 @@ public class VCrearCliente extends JFrame implements IGUI{
 	
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.HABITACION_CREAR_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear la habitación");
-		else if(event == Events.HABITACION_CREAR_REPEATED)
-			JOptionPane.showMessageDialog(this, "ERROR: Ya existe una habitación con el id " + (Integer) datos);
-		else if(event == Events.HABITACION_CREAR_WRONG_PARAMETERS)
+		if(event == Events.CLIENTE_CREAR_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear el cliente");
+		else if(event == Events.CLIENTE_CREAR_REPEATED)
+			JOptionPane.showMessageDialog(this, "ERROR: El cliente con id " + (Integer) datos + " ya existe");
+		else if(event == Events.CLIENTE_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
-		else if(event == Events.HABITACION_CREAR_SUCCESS)
+		else if(event == Events.CLIENTE_CREAR_SUCCESS)
 		{
-			JOptionPane.showMessageDialog(this, "La habitación con id " +(Integer) datos +" se ha creado correctamente");
+			JOptionPane.showMessageDialog(this, "El cliente con id " +(Integer) datos +" se ha creado correctamente");
 			setVisible(false);
-			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
 		}
 			
 	}
