@@ -80,6 +80,15 @@ public class Events {
 	public static final int CLIENTE_MOSTRAR_TODOS_SUCCESS = 252;
 	public static final int CLIENTE_MOSTRAR_TODOS_ERROR = 253;
 	
+	public static final int CLIENTE_MOSTRAR_PARTICULAR = 260;
+	public static final int CLIENTE_MOSTRAR_PARTICULAR_VISTA = 261;
+	public static final int CLIENTE_MOSTRAR_PARTICULAR_SUCCESS = 262;
+	public static final int CLIENTE_MOSTRAR_PARTICULAR_ERROR = 263;
+	
+	public static final int CLIENTE_MOSTRAR_EMPRESA = 270;
+	public static final int CLIENTE_MOSTRAR_EMPRESA_VISTA = 271;
+	public static final int CLIENTE_MOSTRAR_EMPRESA_SUCCESS = 272;
+	public static final int CLIENTE_MOSTRAR_EMPRESA_ERROR = 273;
 	//RESERVA
 	public static final int RESERVA_VISTA = 300;
 	public static final int RESERVA_NUEVA_VISTA = 301 ;

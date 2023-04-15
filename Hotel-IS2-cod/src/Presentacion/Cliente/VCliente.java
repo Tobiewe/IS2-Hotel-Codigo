@@ -50,6 +50,9 @@ public class VCliente extends JFrame implements IGUI {
 		mainPanel.add(eliminarClienteButton());
 		mainPanel.add(mostrarUnoClienteButton());
 		mainPanel.add(mostrarTodosClienteButton());
+		mainPanel.add(mostrarParticularClienteButton());
+		mainPanel.add(mostrarEmpresaClienteButton());
+		
 		pack();
 		setLocationRelativeTo(getParent());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -142,6 +145,34 @@ public class VCliente extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e)
 			{
 				ctrl.carryAction(Events.CLIENTE_MOSTRAR_TODOS_VISTA, null);
+				setVisible(false);
+			}
+		});
+		return mostrarTodosClienteButton;
+	}
+	public JButton mostrarParticularClienteButton()
+	{
+		JButton mostrarTodosClienteButton = new JButton("Mostrar Clientes Particular");
+		mostrarTodosClienteButton.setSize(buttonDimension);
+		mostrarTodosClienteButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ctrl.carryAction(Events.CLIENTE_MOSTRAR_PARTICULAR_VISTA, null);
+				setVisible(false);
+			}
+		});
+		return mostrarTodosClienteButton;
+	}
+	public JButton mostrarEmpresaClienteButton()
+	{
+		JButton mostrarTodosClienteButton = new JButton("Mostrar Clientes Empresa");
+		mostrarTodosClienteButton.setSize(buttonDimension);
+		mostrarTodosClienteButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ctrl.carryAction(Events.CLIENTE_MOSTRAR_EMPRESA_VISTA, null);
 				setVisible(false);
 			}
 		});

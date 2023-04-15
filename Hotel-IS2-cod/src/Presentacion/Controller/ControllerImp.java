@@ -358,6 +358,12 @@ public class ControllerImp extends Controller {
 		case Events.CLIENTE_MOSTRAR_TODOS_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_MOSTRAR_TODOS_VISTA, null);
 			break;
+		case Events.CLIENTE_MOSTRAR_PARTICULAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_MOSTRAR_PARTICULAR_VISTA, null);
+			break;
+		case Events.CLIENTE_MOSTRAR_EMPRESA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.CLIENTE_MOSTRAR_EMPRESA_VISTA, null);
+			break;
 			
 			//ACCIONES
 		case Events.CLIENTE_CREAR:
@@ -407,6 +413,12 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_ERROR, null);
 			else
 				cIGUI.update(Events.CLIENTE_MOSTRAR_TODOS_SUCCESS, collectionCliente);
+			break;
+			
+		case Events.CLIENTE_MOSTRAR_PARTICULAR:
+			break;
+			
+		case Events.CLIENTE_MOSTRAR_EMPRESA:
 			break;
 			
 		

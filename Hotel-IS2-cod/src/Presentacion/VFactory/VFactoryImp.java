@@ -4,6 +4,8 @@ import Presentacion.Cliente.VCliente;
 import Presentacion.Cliente.VClienteCasosUso.VBorrarCliente;
 import Presentacion.Cliente.VClienteCasosUso.VCrearCliente;
 import Presentacion.Cliente.VClienteCasosUso.VModificarCliente;
+import Presentacion.Cliente.VClienteCasosUso.VMostrarClienteEmpresa;
+import Presentacion.Cliente.VClienteCasosUso.VMostrarClienteParticular;
 import Presentacion.Cliente.VClienteCasosUso.VMostrarTodosClientes;
 import Presentacion.Cliente.VClienteCasosUso.VMostrarUnoCliente;
 import Presentacion.Controller.Events;
@@ -68,10 +70,10 @@ public class VFactoryImp extends VFactory {
 		case Events.CLIENTE_MOSTRAR_TODOS_VISTA:
 			return new VMostrarUnoCliente();
 		case Events.CLIENTE_MOSTRAR_PARTICULAR:
-			return new VMostrarPorDepartamento();
+			return new VMostrarClienteParticular();
 		case Events.CLIENTE_MOSTRAR_EMPRESA:
+			return new VMostrarClienteEmpresa();
 			
-		
 			//EMPLEADO
 		case Events.EMPLEADO_VISTA:
 			return new VEmpleado();
