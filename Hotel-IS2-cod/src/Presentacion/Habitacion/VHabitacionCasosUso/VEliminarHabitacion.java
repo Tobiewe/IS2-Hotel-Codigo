@@ -54,7 +54,7 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 	
 	public void initGUI(){
 		
-		setTitle("Añadir Habitación");
+		setTitle("Eliminar Habitación");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -91,6 +91,8 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 		mainPanel.add(buttonPanel);
 
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 		
@@ -131,8 +133,11 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 
 	@Override
 	public void update(int event, Object datos) {
-		if (event == Events.HABITACION_ELIMINAR_SUCCESS) 
+		if (event == Events.HABITACION_ELIMINAR_SUCCESS){
 			JOptionPane.showMessageDialog(null, "La Habitacion de id " + (Integer) datos + " ha sido dada de baja");
+			setVisible(false);
+			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+		}
 		else if(event == Events.HABITACION_ELIMINAR_NOTFOUND)
 			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " no esta registrado");
 		

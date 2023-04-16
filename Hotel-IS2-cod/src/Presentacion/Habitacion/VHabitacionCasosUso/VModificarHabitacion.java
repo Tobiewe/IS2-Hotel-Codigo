@@ -74,6 +74,8 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 //		setPreferredSize(d);
 //		mainPanel.setPreferredSize(d);
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 	}
@@ -258,8 +260,11 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
 		else if(event == Events.HABITACION_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + " no se ha encontrado");
-		else if(event == Events.HABITACION_MODIFICAR_SUCCESS) 
-			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + "se ha modificado correctamente");
+		else if(event == Events.HABITACION_MODIFICAR_SUCCESS){
+			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + " se ha modificado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+		}
 
 	}
 

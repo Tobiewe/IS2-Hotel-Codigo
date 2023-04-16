@@ -48,7 +48,7 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 	public void initGUI() 
 	{
 		setTitle("Añadir Habitación");
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
@@ -71,6 +71,8 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 		
 		
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
