@@ -1,5 +1,6 @@
 package Presentacion.Empleado.VEmpleadoCasosUso;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,15 +14,21 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.SwingUtilities;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import Negocio.Clientes.TCliente;
 import Negocio.Empleados.TEmpleados;
 import Negocio.Habitaciones.THabitaciones;
 
@@ -32,329 +39,181 @@ import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;;
 
 public class VCrearEmpleado extends JFrame implements IGUI {
-	private Controller ctrl;
-	private String tipoEmpleado = "Limpieza", nombre, apellidos,email,tlf,sueldo;
-	private Boolean letras=false;
-
+private Controller ctrl;
+	
+	private Integer telefono;
+	private Integer sueldo;
+	private String correo;
+	private String nombre;
+	private String apellido;
+	private Integer idDepartamento;
+	
+	
 	public VCrearEmpleado(){
-		
-		SwingUtilities.invokeLater(new Runnable()
-		{
+		ctrl = Controller.getInstance();
+		SwingUtilities.invokeLater(new Runnable() {
 			@Override
-			public void run()
-			{
+			public void run() {
 				initGUI();
 			}
 		});
-		
 	}
-	
-	public void initGUI(){
-		
+
+	public void initGUI() 
+	{
+		setTitle("Crear Cliente");
 		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+		mainPanel.setPreferredSize(new Dimension(400, 300));
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
+		setLocationRelativeTo(getParent());
+
+		//Text Feilds
+		JTextField sueldoText = new JTextField("");
+		JTextField nombreText = new JTextField("");
+		JTextField apellidoText = new JTextField("");
+		JTextField correoText = new JTextField("");
 		
-		//casida Nombre
-		JPanel nombrePanel = new JPanel();
-		mainPanel.add(nombrePanel);
-		nombrePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		nombrePanel.add(new JLabel("Nombre: "));
-		nombrePanel.add(nombreField());
+		sueldoText.setPreferredSize(new Dimension(150, 20));
+		correoText.setPreferredSize(new Dimension(150, 20));
+		apellidoText.setPreferredSize(new Dimension(150, 20));
+		nombreText.setPreferredSize(new Dimension(150, 20));
 		
-		//casilla Apellidos
-		JPanel apellidosPanel= new JPanel();
-		mainPanel.add(apellidosPanel);
-		apellidosPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		apellidosPanel.add(new JLabel("Apellidos: "));
-		apellidosPanel.add(apellidosField());
+		
+		mainPanel.add(panelSueldo(sueldoText));
+		mainPanel.add(panelNombre(nombreText));
+		mainPanel.add(panelApellido(apellidoText));
+		mainPanel.add(panelCorreo(correoText));
+		mainPanel.add(panelTelefono());
+		mainPanel.add(panelIdDepartamento());
 		
 	
-		// casilla email
-		JPanel emailPanel = new JPanel();
-		mainPanel.add(emailPanel);
-		emailPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		emailPanel.add(new JLabel("Email: "));
-		emailPanel.add(emailField());
-		
-		// casilla TLF
-		JPanel tlfPanel = new JPanel();
-		mainPanel.add(tlfPanel);
-		tlfPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		tlfPanel.add(new JLabel("Telefono: "));
-		tlfPanel.add(tlfField());
 		
 		
-		
-		//casilla sueldo
-		JPanel sueldoPanel = new JPanel();
-		mainPanel.add(sueldoPanel);
-		sueldoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		sueldoPanel.add(new JLabel("Sueldo: "));
-		sueldoPanel.add(sueldoField());
-		
-		/*comprobar si empleado esta activo para poner la casilla sueldo
-		activoBox.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        if (activoBox.isSelected()) {
-		            mainPanel.add(sueldoPanel);
-		        } else {
-		            mainPanel.remove(sueldoPanel);
-		        }
-		        mainPanel.revalidate();
-		        mainPanel.repaint();
-		    }
-		});
-		*/
-		//casilla Lugar y Especialidad
-		JPanel lugarPanel= new JPanel();
-		JPanel especialidadPanel= new JPanel();
-		
-		//casilla tipo
-		JPanel tipoPanel = new JPanel();
-		mainPanel.add(tipoPanel);
-		tipoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		tipoPanel.add(new JLabel("Tipo: "));
-		JComboBox<String> combTipo = new JComboBox<String>();
-		combTipo.addItem("Mantenimiento");
-		combTipo.addItem("Limpieza");
-		tipoPanel.add(combTipo);
-		
-		combTipo.addItemListener(new ItemListener(){
-			
-			@Override
-			public void itemStateChanged(ItemEvent e){
-				if(e.getStateChange()== ItemEvent.SELECTED){
-					tipoEmpleado=(String) e.getItem();
-					
-					if(tipoEmpleado.equals("Mantenimiento")){
-						mainPanel.add(lugarPanel);
-						mainPanel.remove(especialidadPanel);
-					}
-					else if (tipoEmpleado.equals("Limpieza")){
-						mainPanel.remove(lugarPanel);
-						mainPanel.add(especialidadPanel);
-					}
-					mainPanel.revalidate();
-				    mainPanel.repaint();
-				}
-			}
-		});
-		//lugar y especialidad?
-		lugarPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		lugarPanel.add(new JLabel("Lugar: "));
-		//lugarPanel.add(lugarField())
-		
-		especialidadPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		especialidadPanel.add(new JLabel("Especialidad: "));
-		//especialidadPanel.add(especialidadField())
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		buttonPanel.add(okButton());
+
+		buttonPanel.add(crearButton(sueldoText,nombreText,apellidoText,correoText));
 		buttonPanel.add(cancelButton());
 		
 		mainPanel.add(buttonPanel);
-				
+		
+		
 		pack();
 		setVisible(true);
-		
 	}
-	public static boolean isNumeric(String cadena) {
+	public JPanel panelSueldo(JTextField sueldoText)
+	{
+		JPanel sueldoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel sueldoLabel = new JLabel("Sueldo: ");
+		
+		sueldoPanel.add(sueldoLabel);
+		sueldoPanel.add(sueldoText);
+		
+		return sueldoPanel;
+	}
+	public JPanel panelNombre(JTextField nombreText)
+	{
+		JPanel nombrePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel nombreLabel = new JLabel("Nombre: ");
+		
+		nombrePanel.add(nombreLabel);
+		nombrePanel.add(nombreText);
+		
+		
+		
+		return nombrePanel;
+	}
+	public JPanel panelApellido(JTextField apellidoText)
+	{
+		JPanel apellidoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel apellidoLabel = new JLabel("Apellido: ");
+		
+		apellidoPanel.add(apellidoLabel);
+		apellidoPanel.add(apellidoText);
+		
+		
+		
+		return apellidoPanel;
+	}
+	public JPanel panelTelefono()
+	{
+		JPanel panelTelefono = new JPanel();
+		panelTelefono.setLayout(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel telefonoLabel = new JLabel("Teléfono: ");
+		JSpinner telefonoSpinner = new JSpinner(new SpinnerNumberModel(111111111,111111111,999999999,1));
+		telefonoSpinner.setPreferredSize(new Dimension(100, 20));
+		telefono = (Integer) telefonoSpinner.getValue();
+		telefonoSpinner.addChangeListener(new ChangeListener()
+		{
 
-        boolean resultado;
-
-        try {
-            Integer.parseInt(cadena);
-            resultado = true;
-        } catch (NumberFormatException excepcion) {
-            resultado = false;
-        }
-
-        return resultado;
-    }
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				telefono = (Integer) telefonoSpinner.getValue();
+			}
+			
+		});
+		
+		panelTelefono.add(telefonoLabel);
+		panelTelefono.add(telefonoSpinner);
+		
+		return panelTelefono;
+	}
 	
-	JTextField nombreField(){
-		JTextField nombreField=new JTextField(10);
-		nombre=new String();
+	public JPanel panelCorreo(JTextField correoText)
+	{
+		JPanel correoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		nombreField.getDocument().addDocumentListener(new DocumentListener(){
-			
-			@Override
-			public void insertUpdate(DocumentEvent e){
-				nombre = nombreField.getText();
-			}
+		JLabel correoLabel = new JLabel("Correo: ");
+		
+		correoPanel.add(correoLabel);
+		correoPanel.add(correoText);
+		
+		
+		
+		return correoPanel;
+	}
+	
+	public JPanel panelIdDepartamento()
+	{
+		JPanel panelIdDepartamento= new JPanel();
+		panelIdDepartamento.setLayout(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel idDepartamentoLabel = new JLabel("Id del departamento: ");
+		JSpinner idDepartamentoSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
+		idDepartamentoSpinner.setPreferredSize(new Dimension(100, 20));
+		idDepartamento = (Integer) idDepartamentoSpinner.getValue();
+		idDepartamentoSpinner.addChangeListener(new ChangeListener()
+		{
 
 			@Override
-			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				nombre=nombreField.getText();
-				
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				nombre=nombreField.getText();
-				
+			public void stateChanged(ChangeEvent e) {
+				idDepartamento = (Integer) idDepartamentoSpinner.getValue();
 			}
 			
 		});
-		return nombreField;
+		
+		panelIdDepartamento.add(idDepartamentoLabel);
+		panelIdDepartamento.add(idDepartamentoSpinner);
+		
+		return panelIdDepartamento;
 	}
-	JTextField apellidosField(){
-		JTextField apellidosField=new JTextField(20);
-		apellidos=new String();
-		
-		apellidosField.getDocument().addDocumentListener(new DocumentListener(){
-			
-			@Override
-			public void insertUpdate(DocumentEvent e){
-				apellidos = apellidosField.getText();
-			}
 
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				apellidos=apellidosField.getText();
-				
-			}
 
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				apellidos=apellidosField.getText();
-				
-			}
-			
-		});
-		return apellidosField;
-	}
-	JTextField emailField(){
-		JTextField emailField=new JTextField(20);
-		email=new String();
-		
-		emailField.getDocument().addDocumentListener(new DocumentListener(){
-			
-			@Override
-			public void insertUpdate(DocumentEvent e){
-				email = emailField.getText();
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				email=emailField.getText();
-				
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				email=emailField.getText();
-				
-			}
-			
-		});
-		return emailField;
-	}
-	JTextField tlfField(){
-		JTextField tlfField=new JTextField(9);
-		
-		
-		tlfField.getDocument().addDocumentListener(new DocumentListener(){
-			
-			@Override
-			public void insertUpdate(DocumentEvent e){
-				if(isNumeric(tlfField.getText()) ==true){
-					sueldo = tlfField.getText();
-				    letras = false;
-				}
-				
-				else
-					letras=true;
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				if(isNumeric(tlfField.getText()) ==true){
-					tlf = tlfField.getText();
-				    letras = false;
-				}
-				
-				else
-					letras=true;
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				if(isNumeric(tlfField.getText()) ==true){
-					tlf = tlfField.getText();
-				    letras = false;
-				}
-				
-				else
-					letras=true;
-			}
-			
-		});
-		return tlfField;
-	}
-	JTextField sueldoField(){
-		JTextField sueldoField=new JTextField(5);
-		
-		
-		sueldoField.getDocument().addDocumentListener(new DocumentListener(){
-			
-			@Override
-			public void insertUpdate(DocumentEvent e){
-				if(isNumeric(sueldoField.getText()) ==true){
-					sueldo = sueldoField.getText();
-					letras=false;
-				}
-				
-				else
-					letras=true;
-					
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				if(isNumeric(sueldoField.getText()) ==true){
-					sueldo = sueldoField.getText();
-				    letras = false;
-				}
-				
-				else
-					letras=true;
-				
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				if(isNumeric(sueldoField.getText()) ==true){
-					sueldo = sueldoField.getText();
-					letras=false;
-				}
-				
-				else
-					letras=true;
-				
-			}
-			
-		});
-		return sueldoField;
-	}
-	public JButton okButton()
+	public JButton crearButton(JTextField sueldoText, JTextField nombreText,JTextField apellidoText, JTextField correoText)
 	{
 		JButton crearButton = new JButton("Crear");
 		crearButton.addActionListener(new ActionListener()
 		{
 
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//FALTAN LOS VALORES DE EMPLEADOS
-				//TEmpleados tEmpleado = new TEmpleados()
+				TEmpleados tEmpleado= new TEmpleados(null,Float.parseFloat(sueldoText.getText()),nombreText.getText(), apellidoText.getText(),true, correoText.getText(),telefono,idDepartamento);
 				ctrl.carryAction(Events.EMPLEADO_CREAR, tEmpleado);
 			}
 			
@@ -376,13 +235,17 @@ public class VCrearEmpleado extends JFrame implements IGUI {
 		});
 		return cancelButton;
 	}
-
+	
 	@Override
 	public void update(int event, Object datos) {
-		// TODO Auto-generated method stub
-		
+		if(event == Events.EMPLEADO_CREAR_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear el cliente");
+		else if(event == Events.EMPLEADO_CREAR_REPEATED)
+			JOptionPane.showMessageDialog(this, "ERROR: El cliente con id " + (Integer) datos + " ya existe");
+		else if(event == Events.EMPLEADO_CREAR_WRONG_PARAMETERS)
+			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
+		else if(event == Events.EMPLEADO_CREAR_SUCCESS)
+			JOptionPane.showMessageDialog(this, "El cliente con id " +(Integer) datos +" se ha creado correctamente");
+			
 	}
-	
-
-	
 }

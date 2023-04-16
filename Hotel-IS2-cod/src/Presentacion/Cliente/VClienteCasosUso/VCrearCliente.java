@@ -37,7 +37,6 @@ public class VCrearCliente extends JFrame implements IGUI{
 	
 	private Integer telefono;
 	private String correo;
-	private boolean activo;
 	private String tipo;
 	private String nombre;
 	private String apellido;
@@ -84,7 +83,6 @@ public class VCrearCliente extends JFrame implements IGUI{
 		mainPanel.add(panelTelefono());
 		mainPanel.add(panelCorreo(correoText));
 		mainPanel.add(panelNombre(nombreText));
-		mainPanel.add(panelActivo());
 		mainPanel.add(panelTipo(tipoCombo, particularPanel, empresaPanel));
 		mainPanel.add(particularPanel);
 		mainPanel.add(empresaPanel);
@@ -141,33 +139,6 @@ public class VCrearCliente extends JFrame implements IGUI{
 		return correoPanel;
 	}
 	
-	public JPanel panelActivo()
-	{
-		JPanel panelTipo = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel tamanyoLabel = new JLabel("Activo: ");
-		JComboBox<Boolean> tipoCombo = new JComboBox<Boolean>();
-		
-		tipoCombo.addItem(true);
-		tipoCombo.addItem(false);
-		
-		activo = (Boolean) tipoCombo.getSelectedItem();
-		
-		tipoCombo.addItemListener(new ItemListener()
-		{
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				activo = (Boolean) tipoCombo.getSelectedItem();
-			}
-			
-		});
-		
-		panelTipo.add(tamanyoLabel);
-		panelTipo.add(tipoCombo);
-		
-		return panelTipo;
-	}
 	
 	public JPanel panelNombre(JTextField nombreText)
 	{
@@ -323,11 +294,8 @@ public class VCrearCliente extends JFrame implements IGUI{
 		else if(event == Events.CLIENTE_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if(event == Events.CLIENTE_CREAR_SUCCESS)
-		{
 			JOptionPane.showMessageDialog(this, "El cliente con id " +(Integer) datos +" se ha creado correctamente");
-			setVisible(false);
-			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
-		}
+
 			
 	}
 }

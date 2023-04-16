@@ -59,12 +59,12 @@ public class VModificarEmpleado extends JFrame implements IGUI {
 
 		JTextField sueldoText = new JTextField("1000");
 		sueldoText.setPreferredSize(new Dimension(70, 25));
-		JTextField nombreText = new JTextField("            ");
-		sueldoText.setPreferredSize(new Dimension(70, 25));
-		JTextField apellidoText = new JTextField("               ");
-		sueldoText.setPreferredSize(new Dimension(70, 25));
-		JTextField correoText = new JTextField("                                                  ");
-		sueldoText.setPreferredSize(new Dimension(70, 25));
+		JTextField nombreText = new JTextField("");
+		nombreText.setPreferredSize(new Dimension(70, 25));
+		JTextField apellidoText = new JTextField("");
+		apellidoText.setPreferredSize(new Dimension(70, 25));
+		JTextField correoText = new JTextField("");
+		correoText.setPreferredSize(new Dimension(70, 25));
 		
 		mainPanel.add(panelId());
 		mainPanel.add(panelSueldo(sueldoText));
@@ -82,9 +82,8 @@ public class VModificarEmpleado extends JFrame implements IGUI {
 		buttonPanel.add(cancelButton());
 		
 		mainPanel.add(buttonPanel);
-//		Dimension d = new Dimension(600,400);
-//		setPreferredSize(d);
-//		mainPanel.setPreferredSize(d);
+
+		mainPanel.setPreferredSize(new Dimension(600,400));
 		pack();
 		setVisible(true);
 		

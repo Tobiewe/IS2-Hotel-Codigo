@@ -25,7 +25,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		
 		try {
 			
-			String c = "INSERT INTO empleado (sueldo, nombre, apellidos, activo, correo, telefono, iddepartemento) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO empleado (sueldo, nombre, apellidos, activo, correo, telefono, iddepartamento) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -96,7 +96,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		
 		try {
 			
-			String c = "UPDATE empleado SET sueldo = ?, nombre = ?, apellidos = ?, correo = ?, telefono = ?, iddepartemento = ? WHERE Id = ?;";
+			String c = "UPDATE empleado SET sueldo = ?, nombre = ?, apellidos = ?, correo = ?, telefono = ?, iddepartamento = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -136,7 +136,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			if (Rs.next()){
 				
 				tEmpleados = new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
-						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartemento"));
+						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartamento"));
 				
 			}
 	
@@ -167,7 +167,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			while (Rs.next()){
 				
 				lista.add(new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
-						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartemento")));
+						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartamento")));
 				
 			}
 						
@@ -190,7 +190,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		ArrayList<TEmpleados> lista = new ArrayList<TEmpleados>();
 		
 		try {
-			String c = "SELECT * FROM empleado WHERE iddepartemento = ?;";
+			String c = "SELECT * FROM empleado WHERE iddepartamento = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -201,7 +201,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			while (Rs.next()){
 				
 				lista.add(new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
-						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartemento")));
+						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartamento")));
 				
 			}
 						
