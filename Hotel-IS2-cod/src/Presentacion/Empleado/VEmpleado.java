@@ -44,6 +44,7 @@ public class VEmpleado extends JFrame implements IGUI{
 		mainPanel.add(eliminarEmpleadoButton());
 		mainPanel.add(mostrarUnoEmpleadoButton());
 		mainPanel.add(mostrarTodosEmpleadoButton());
+		mainPanel.add(mostrarPorDepartamentoButton());
 		
 		pack();
 		setLocationRelativeTo(getParent());
@@ -142,7 +143,7 @@ public class VEmpleado extends JFrame implements IGUI{
 		}
 		public JButton mostrarPorDepartamentoButton()
 		{
-			JButton mostrarPorDepartamentoButton = new JButton("Mostrar Todo");
+			JButton mostrarPorDepartamentoButton = new JButton("Mostrar por Departamento");
 			mostrarPorDepartamentoButton.setSize(buttonDimension);
 			mostrarPorDepartamentoButton.addActionListener(new ActionListener()
 			{
