@@ -110,6 +110,8 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			ps.setInt(7, tEmpleados.getId());
 			ps.executeUpdate();
 			
+			if(ps.executeUpdate() == 1) key = tEmpleados.getId();
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

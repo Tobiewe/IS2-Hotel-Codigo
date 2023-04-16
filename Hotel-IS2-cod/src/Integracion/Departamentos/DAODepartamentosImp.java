@@ -90,6 +90,8 @@ public class DAODepartamentosImp implements DAODepartamentos {
 			ps.setString(1, tDepartamento.getNombre());
 			ps.setBoolean(2, tDepartamento.getActivado());
 			ps.setInt(3, tDepartamento.getId());
+			
+			if(ps.executeUpdate()==1) ok = tDepartamento.getId();
 						
 			Cnx.close();
 			ps.close();
