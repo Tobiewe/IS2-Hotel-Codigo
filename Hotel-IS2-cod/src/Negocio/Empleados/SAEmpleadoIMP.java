@@ -15,7 +15,7 @@ public class SAEmpleadoIMP implements SAEmpleado {
 		
 		String numero = Integer.toString(empleado.getTelefono());
 		
-		if(empleado.getApellidos().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getSueldo() > 0 || numero.length() == 9){
+		if(empleado.getApellidos().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getSueldo() < 0 || numero.length() != 9){
 			return -5;
 		}
 		
@@ -45,7 +45,7 @@ public class SAEmpleadoIMP implements SAEmpleado {
 		
 		String numero = Integer.toString(empleado.getTelefono());
 		
-		if(empleado.getApellidos().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getSueldo() > 0 || numero.length() == 9){
+		if(empleado.getApellidos().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getSueldo() < 0 || numero.length() != 9){
 			return -5;
 		}
 		

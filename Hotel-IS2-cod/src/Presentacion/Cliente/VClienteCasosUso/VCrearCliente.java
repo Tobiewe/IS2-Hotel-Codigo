@@ -295,7 +295,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 		else if(event == Events.CLIENTE_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if(event == Events.CLIENTE_CREAR_SUCCESS)
-			JOptionPane.showMessageDialog(this, "El cliente con id " +(Integer) datos +" se ha creado correctamente");
+			JOptionPane.showMessageDialog(this, "El Cliente se ha creado correctamente");
 
 			
 	}

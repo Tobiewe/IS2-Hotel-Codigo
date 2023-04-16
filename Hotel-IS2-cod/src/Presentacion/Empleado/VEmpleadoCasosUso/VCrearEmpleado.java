@@ -61,7 +61,7 @@ private Controller ctrl;
 
 	public void initGUI() 
 	{
-		setTitle("Crear Cliente");
+		setTitle("Crear Empleado");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setPreferredSize(new Dimension(400, 300));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
