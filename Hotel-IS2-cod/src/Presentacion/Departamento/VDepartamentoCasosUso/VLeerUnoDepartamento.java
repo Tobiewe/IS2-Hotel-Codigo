@@ -140,6 +140,7 @@ public class VLeerUnoDepartamento extends JFrame implements IGUI {
 		}
 		public void addElement(TDepartamento element)
 		{
+			departamento =  new ArrayList<>();
 			departamento.add(element);
 			fireTableDataChanged();
 		}

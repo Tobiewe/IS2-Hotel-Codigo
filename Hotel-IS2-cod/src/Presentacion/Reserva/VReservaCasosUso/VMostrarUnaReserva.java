@@ -141,6 +141,7 @@ public class VMostrarUnaReserva extends JFrame implements IGUI{
 		}
 		public void addElement(TReserva element)
 		{
+			reservas =  new ArrayList<>();
 			reservas.add(element);
 			fireTableDataChanged();
 		}

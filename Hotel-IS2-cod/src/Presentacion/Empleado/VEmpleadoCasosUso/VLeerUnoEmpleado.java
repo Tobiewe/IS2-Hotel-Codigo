@@ -138,6 +138,7 @@ public class VLeerUnoEmpleado extends JFrame implements IGUI{
 			fireTableDataChanged();
 		}
 		public void addElement(TEmpleados datos) {
+			empleados =  new ArrayList<>();
 			empleados.add(datos);
 			fireTableDataChanged();
 			

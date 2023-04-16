@@ -138,6 +138,7 @@ public class VLeerUnaTarea extends JFrame implements IGUI{
 		}
 		public void addElement(TTareas element)
 		{
+			tarea =  new ArrayList<>();
 			tarea.add(element);
 			fireTableDataChanged();
 		}

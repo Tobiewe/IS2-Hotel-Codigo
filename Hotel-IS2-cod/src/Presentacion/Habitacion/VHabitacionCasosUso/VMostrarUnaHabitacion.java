@@ -142,6 +142,7 @@ public class VMostrarUnaHabitacion  extends JFrame implements IGUI{
 		}
 		public void addElement(THabitaciones element)
 		{
+			habitaciones =  new ArrayList<>();
 			habitaciones.add(element);
 			fireTableDataChanged();
 		}

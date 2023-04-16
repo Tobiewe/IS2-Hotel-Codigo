@@ -138,6 +138,7 @@ public class VMostrarUnoCliente extends JFrame implements IGUI{
 		}
 		public void addElement(TCliente element)
 		{
+			clientes =  new ArrayList<>();
 			clientes.add(element);
 			fireTableDataChanged();
 		}
