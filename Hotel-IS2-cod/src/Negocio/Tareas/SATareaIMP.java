@@ -103,6 +103,6 @@ public class SATareaIMP implements SATarea {
 		return dev;
 	}
 	
-
+	
 
 }

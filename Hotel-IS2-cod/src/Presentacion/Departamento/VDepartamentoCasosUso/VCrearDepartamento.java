@@ -84,7 +84,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TDepartamento tDepartamento = new TDepartamento(null, (String)nombreTextField.getText(), false);
+				TDepartamento tDepartamento = new TDepartamento(null, (String)nombreTextField.getText(), true);
 				ctrl.carryAction(Events.DEPARTAMENTO_CREAR, tDepartamento);
 			}
 
