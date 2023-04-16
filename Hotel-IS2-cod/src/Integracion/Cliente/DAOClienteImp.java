@@ -23,7 +23,7 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			
-			String c = "INSERT INTO cliente (telefono, Correo, activo) VALUES (?, ?, ?);";
+			String c = "INSERT INTO cliente (telefono, Correo, activo, nombre) VALUES (?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -31,6 +31,7 @@ public class DAOClienteImp implements DAOCliente {
 			ps.setInt(1, tCliente.getTelefono());
 			ps.setString(2, tCliente.getCorreo());
 			ps.setBoolean(3, tCliente.getActivo());
+			ps.setString(4, tCliente.getNombre());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -41,25 +42,23 @@ public class DAOClienteImp implements DAOCliente {
 
 			
 			if(tCliente.getCIF() != null){
-				c = "INSERT INTO cliente_empresa (nombre, CIF, cliente_id) VALUES (?, ?, ?);";
+				c = "INSERT INTO cliente_empresa ( CIF, cliente_id) VALUES ( ?, ?);";
 
 				ps = Cnx.prepareStatement(c);
 
-				ps.setString(1, tCliente.getNombre());
-				ps.setString(2, tCliente.getCIF());
-				ps.setInt(3, tCliente.getId());
+				ps.setString(1, tCliente.getCIF());
+				ps.setInt(2, tCliente.getId());
 				ps.executeUpdate();
 
 			}
 			else{
-				c = "INSERT INTO cliente_particular (nombre, apellidos, NIF, cliente_id) VALUES (?, ?, ?, ?);";
+				c = "INSERT INTO cliente_particular (apellidos, NIF, cliente_id) VALUES (?, ?, ?);";
 
 				ps = Cnx.prepareStatement(c);
 
-				ps.setString(1, tCliente.getNombre());
-				ps.setString(2, tCliente.getApellidos());
-				ps.setString(3, tCliente.getNIF());
-				ps.setInt(4, tCliente.getId());;
+				ps.setString(1, tCliente.getApellidos());
+				ps.setString(2, tCliente.getNIF());
+				ps.setInt(3, tCliente.getId());;
 				ps.executeUpdate();
 					
 			}
@@ -115,40 +114,39 @@ public class DAOClienteImp implements DAOCliente {
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE cliente SET telefono = ?, Correo = ? WHERE Id = ?;";
+			String c = "UPDATE cliente SET telefono = ?, Correo = ?, nombre = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setInt(1, tCliente.getTelefono());
 			ps.setString(2, tCliente.getCorreo());
-			ps.setInt(3, tCliente.getId());
+			ps.setString(3, tCliente.getNombre());
+			ps.setInt(4, tCliente.getId());
 			
 			if(ps.executeUpdate()==1) ok= tCliente.getId();
 			
 			
 			if(tCliente.getCIF() != null){
 				
-				c = "UPDATE cliente_empresa SET Nombre = ?, CIF = ? WHERE cliente_id = ?;";
+				c = "UPDATE cliente_empresa SET CIF = ? WHERE cliente_id = ?;";
 
 				
 				ps = Cnx.prepareStatement(c);
 
-				ps.setString(1, tCliente.getNombre());
-				ps.setString(2, tCliente.getCIF());
-				ps.setInt(3, tCliente.getId());
+				ps.setString(1, tCliente.getCIF());
+				ps.setInt(2, tCliente.getId());
 				ps.executeUpdate();
 
 			}
 			else if (tCliente.getNIF() != null){
-				c = "UPDATE cliente_particular SET nombre = ?, apellidos = ?, NIF = ? WHERE cliente_id = ?;";
+				c = "UPDATE cliente_particular SET apellidos = ?, NIF = ? WHERE cliente_id = ?;";
 
 				ps = Cnx.prepareStatement(c);
 
-				ps.setString(1, tCliente.getNombre());
-				ps.setString(2, tCliente.getApellidos());
-				ps.setString(3, tCliente.getNIF());
-				ps.setInt(4, tCliente.getId());;
+				ps.setString(1, tCliente.getApellidos());
+				ps.setString(2, tCliente.getNIF());
+				ps.setInt(3, tCliente.getId());;
 				ps.executeUpdate();
 			}
 			
@@ -169,7 +167,7 @@ public class DAOClienteImp implements DAOCliente {
 	public TCliente MostrarUno(Integer id) { 
 		
 		TCliente tCliente = null;
-		String nombre = null, CIF = null, apellidos = null, NIF = null;
+		String CIF = null, apellidos = null, NIF = null;
 		
 		try {
 			
@@ -183,7 +181,6 @@ public class DAOClienteImp implements DAOCliente {
 			ResultSet Rs = ps.executeQuery();
 			
 			if(Rs.getString("CIF") != null){
-				nombre = Rs.getString("nombre");
 				CIF = Rs.getString("CIF");
 			}
 			
@@ -193,7 +190,6 @@ public class DAOClienteImp implements DAOCliente {
 				
 				 ps.setInt(1, id);
 				 Rs = ps.executeQuery();
-				 nombre = Rs.getString("nombre");
 				 apellidos = Rs.getString("apellidos");
 				 NIF = Rs.getString("NIF");
 			}
@@ -210,7 +206,7 @@ public class DAOClienteImp implements DAOCliente {
 				
 				
 				tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-						Rs.getInt("telefono"), nombre,  CIF,  apellidos ,NIF ,  Rs.getBoolean("activo"));
+						Rs.getInt("telefono"), Rs.getString("nombre"),  CIF,  apellidos ,NIF ,  Rs.getBoolean("activo"));
 				
 			}
 	
@@ -246,12 +242,12 @@ public class DAOClienteImp implements DAOCliente {
 				if(tCliente.getCIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-							Rs.getInt("telefono"), tCliente.getNombre(), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
+							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
 					
 				}
 				else if(tCliente.getNIF() != null){
 					
-					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), tCliente.getNombre(), 
+					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), Rs.getString("nombre"), 
 							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo")));
 					
 				}
