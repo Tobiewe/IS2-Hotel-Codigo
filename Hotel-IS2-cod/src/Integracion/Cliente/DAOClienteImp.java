@@ -268,4 +268,83 @@ public class DAOClienteImp implements DAOCliente {
 		return lista;
 	}
 
+
+	
+	public Collection<TCliente> MostrarParticular() {
+		ArrayList<TCliente> lista = new ArrayList<TCliente>();
+		
+		try {
+			String c = "SELECT * FROM cliente;";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			Statement St = Cnx.createStatement();
+			ResultSet Rs = St.executeQuery(c);
+
+			while (Rs.next()){
+				
+				TCliente tCliente = MostrarUno(Rs.getInt("Id"));
+				
+				if(tCliente.getNIF() != null){
+					
+					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), Rs.getString("nombre"), 
+							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo")));
+					
+				}
+				
+				tCliente = null;
+				
+			}
+						
+			Cnx.close();
+			St.close();
+			Rs.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return lista;
+	}
+
+
+	
+	public Collection<TCliente> MostrarEmpresa() {
+		
+		ArrayList<TCliente> lista = new ArrayList<TCliente>();
+		
+		try {
+			String c = "SELECT * FROM cliente;";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			Statement St = Cnx.createStatement();
+			ResultSet Rs = St.executeQuery(c);
+
+			while (Rs.next()){
+				
+				TCliente tCliente = MostrarUno(Rs.getInt("Id"));
+				
+				if(tCliente.getCIF() != null){
+					
+					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
+					
+				}
+				
+				tCliente = null;
+				
+			}
+						
+			Cnx.close();
+			St.close();
+			Rs.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return lista;
+	}
+
 }

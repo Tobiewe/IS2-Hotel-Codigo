@@ -101,4 +101,38 @@ public class SAClienteIMP implements SACliente{
 		return dev;
 	}
 
+
+	
+	public Collection<TCliente> MostrarParticular() {
+		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
+		Collection<TCliente> lista = daoCliente.MostrarParticular();
+		Collection<TCliente> dev = new ArrayList<TCliente>();
+		
+		for(TCliente t : lista){
+			
+			if(daoCliente.MostrarUno(t.getId()) != null){
+				dev.add(t);
+			}
+		}
+		
+		return dev;
+	}
+
+
+	public Collection<TCliente> MostrarEmpresa() {
+		
+		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
+		Collection<TCliente> lista = daoCliente.MostrarEmpresa();
+		Collection<TCliente> dev = new ArrayList<TCliente>();
+		
+		for(TCliente t : lista){
+			
+			if(daoCliente.MostrarUno(t.getId()) != null){
+				dev.add(t);
+			}
+		}
+		
+		return dev;
+	}
+
 }

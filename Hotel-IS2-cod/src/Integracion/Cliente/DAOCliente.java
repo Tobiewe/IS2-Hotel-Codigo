@@ -15,5 +15,9 @@ public interface DAOCliente {
 	public TCliente MostrarUno(Integer id);
 
 	public Collection<TCliente> MostrarTodos();
+	
+	public Collection<TCliente> MostrarParticular();
+	
+	public Collection<TCliente> MostrarEmpresa();
 
 }
