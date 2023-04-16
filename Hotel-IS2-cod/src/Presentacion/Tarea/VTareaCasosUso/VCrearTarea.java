@@ -30,13 +30,8 @@ import Presentacion.Controller.IGUI;
 public class VCrearTarea extends JFrame implements IGUI {
 
 	private Controller ctrl;
-	
-	
-	private String descripcion;
-	private String lugar;
-	private String nombre;
+
 	private Integer idEmpleado;
-	private boolean activa;
 	
 	
 	public VCrearTarea(){
@@ -51,7 +46,7 @@ public class VCrearTarea extends JFrame implements IGUI {
 
 	public void initGUI() 
 	{
-		setTitle("Crear Tarea");
+		setTitle("Modificar Tarea");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
@@ -70,7 +65,6 @@ public class VCrearTarea extends JFrame implements IGUI {
 		mainPanel.add(panelLugar(lugarText));
 		mainPanel.add(panelNombre(nombreText));
 		mainPanel.add(idEmpleadoPanel());
-		mainPanel.add(panelActivo());
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
@@ -143,33 +137,7 @@ public class VCrearTarea extends JFrame implements IGUI {
 		
 		return panelIdEmpleado;
 	}
-	public JPanel panelActivo()
-	{
-		JPanel panelTipo = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel tamanyoLabel = new JLabel("Activa: ");
-		JComboBox<Boolean> tipoCombo = new JComboBox<Boolean>();
-		
-		tipoCombo.addItem(true);
-		tipoCombo.addItem(false);
-		
-		activa = (Boolean) tipoCombo.getSelectedItem();
-		
-		tipoCombo.addItemListener(new ItemListener()
-		{
 
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				activa = (Boolean) tipoCombo.getSelectedItem();
-			}
-			
-		});
-		
-		panelTipo.add(tamanyoLabel);
-		panelTipo.add(tipoCombo);
-		
-		return panelTipo;
-	}
 	public JButton crearButton(JTextField descripcionText,JTextField lugarText,JTextField nombreText)
 	{
 		JButton crearButton = new JButton("Crear");
@@ -177,7 +145,7 @@ public class VCrearTarea extends JFrame implements IGUI {
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TTareas tTarea = new TTareas(null,descripcionText.getText(),lugarText.getText(),nombreText.getText(),activa,idEmpleado);
+				TTareas tTarea = new TTareas(null,descripcionText.getText(),lugarText.getText(),nombreText.getText(),true,idEmpleado);
 				ctrl.carryAction(Events.TAREA_CREAR, tTarea);
 			}
 			
@@ -204,13 +172,11 @@ public class VCrearTarea extends JFrame implements IGUI {
 	public void update(int event, Object datos) {
 		if(event == Events.TAREA_CREAR_ERROR)
 			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear la Tarea");
-		else if(event == Events.TAREA_CREAR_REPEATED)
-			JOptionPane.showMessageDialog(this, "ERROR: Ya existe una Tarea con el id " + (Integer) datos);
 		else if(event == Events.TAREA_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if(event == Events.TAREA_CREAR_SUCCESS)
 		{
-			JOptionPane.showMessageDialog(this, "La Tarea con id " +(Integer) datos +" se ha creado correctamente");
+			JOptionPane.showMessageDialog(this, "La Tarea se ha creado correctamente");
 		}
 			
 	}

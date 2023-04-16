@@ -52,7 +52,7 @@ public class VModificarTarea extends JFrame implements IGUI {
 
 	public void initGUI() 
 	{
-		setTitle("Crear Tarea");
+		setTitle("Modificar Tarea");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
@@ -196,13 +196,13 @@ public class VModificarTarea extends JFrame implements IGUI {
 	}
 	public JButton crearButton(JTextField descripcionText,JTextField lugarText,JTextField nombreText)
 	{
-		JButton crearButton = new JButton("Crear");
+		JButton crearButton = new JButton("Modificar");
 		crearButton.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TTareas tTarea = new TTareas(id,descripcionText.getText(),lugarText.getText(),nombreText.getText(),activa,idEmpleado);
-				ctrl.carryAction(Events.TAREA_CREAR, tTarea);
+				ctrl.carryAction(Events.TAREA_MODIFICAR, tTarea);
 			}
 			
 			

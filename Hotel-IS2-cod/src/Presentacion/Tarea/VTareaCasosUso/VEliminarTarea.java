@@ -114,9 +114,9 @@ public class VEliminarTarea extends JFrame implements IGUI{
 	@Override
 	public void update(int event, Object datos) {
 		if (event == Events.TAREA_ELIMINAR_SUCCESS) 
-			JOptionPane.showMessageDialog(null, "La Habitacion de id " + (Integer) datos + " ha sido dada de baja");
+			JOptionPane.showMessageDialog(null, "La Tarea con id " + (Integer) datos + " ha sido dada de baja");
 		else if(event == Events.TAREA_ELIMINAR_NOTFOUND)
-			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " no esta registrado");
+			JOptionPane.showMessageDialog(this, "ERROR: La tarea con id " + (Integer) datos + " no esta registrado");
 		
 		
 	}

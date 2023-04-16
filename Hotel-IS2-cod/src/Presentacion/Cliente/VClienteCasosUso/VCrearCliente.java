@@ -72,6 +72,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 		
 		correoText.setPreferredSize(new Dimension(150, 20));
 		apellidoText.setPreferredSize(new Dimension(150, 20));
+		nombreText.setPreferredSize(new Dimension(150, 20));
 		nifText.setPreferredSize(new Dimension(150, 20));
 		cifText.setPreferredSize(new Dimension(150, 20));
 		
