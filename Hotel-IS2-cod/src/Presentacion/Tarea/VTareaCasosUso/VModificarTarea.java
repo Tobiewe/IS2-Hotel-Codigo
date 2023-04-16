@@ -33,9 +33,6 @@ public class VModificarTarea extends JFrame implements IGUI {
 	private Controller ctrl;
 	
 	private Integer id;
-	private String descripcion;
-	private String lugar;
-	private String nombre;
 	private boolean activa;
 	
 	
@@ -57,15 +54,18 @@ public class VModificarTarea extends JFrame implements IGUI {
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
-
-		JTextField descripcionText = new JTextField("");
+		
+		TTareas tTarea = null;
+		ctrl.carryAction(Events.TAREA_MODIFICAR, tTarea);
+		JTextField descripcionText = new JTextField(tTarea.getDescripcion());
 		JTextField lugarText = new JTextField("");
 		JTextField nombreText = new JTextField("");
 
 		descripcionText.setPreferredSize(new Dimension(150, 20));
 		lugarText.setPreferredSize(new Dimension(150, 20));
 		nombreText.setPreferredSize(new Dimension(150, 20));
-
+		
+		
 		mainPanel.add(panelId());
 		mainPanel.add(panelDescripcion(descripcionText));
 		mainPanel.add(panelLugar(lugarText));

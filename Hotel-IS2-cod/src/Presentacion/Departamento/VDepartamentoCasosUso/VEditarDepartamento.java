@@ -44,7 +44,7 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 		});
 	}
 	public void initGUI() {
-		setTitle("Modificar Habitación");
+		setTitle("Modificar Departamento");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
@@ -140,8 +140,8 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TDepartamento tHabitacion = new TDepartamento(id,(String)nombreText.getText(),activado);
-				ctrl.carryAction(Events.DEPARTAMENTO_MODIFICAR, tHabitacion);
+				TDepartamento tDepartamento = new TDepartamento(id,(String)nombreText.getText(),activado);
+				ctrl.carryAction(Events.DEPARTAMENTO_MODIFICAR, tDepartamento);
 			}
 			
 			
