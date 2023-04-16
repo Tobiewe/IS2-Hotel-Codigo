@@ -82,16 +82,15 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE departamentos SET nombre = ? WHERE Id = ?;";
+			String c = "UPDATE departamentos SET nombre = ?, activo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setString(1, tDepartamento.getNombre());
-			ps.setInt(2, tDepartamento.getId());
-			
-			if(ps.executeUpdate()==1) ok= tDepartamento.getId();
-			
+			ps.setBoolean(2, tDepartamento.getActivado());
+			ps.setInt(3, tDepartamento.getId());
+						
 			Cnx.close();
 			ps.close();
 			
