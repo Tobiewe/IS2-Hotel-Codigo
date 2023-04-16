@@ -45,7 +45,8 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 	}
 	public void initGUI() {
 		setTitle("Modificar Departamento");
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -66,6 +67,8 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 		mainPanel.add(buttonPanel);
 
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 	}
@@ -170,8 +173,11 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
 		else if(event == Events.DEPARTAMENTO_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: El departamento con id " + (Integer)datos + " no se ha encontrado");
-		else if(event == Events.DEPARTAMENTO_MODIFICAR_SUCCESS) 
-			JOptionPane.showMessageDialog(this, "El departamento con id " + (Integer)datos + "se ha registrado correctamente");
+		else if(event == Events.DEPARTAMENTO_MODIFICAR_SUCCESS) {
+			JOptionPane.showMessageDialog(this, "El departamento con id " + (Integer)datos + " se ha registrado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
+		}
 
 	}
 }

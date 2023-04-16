@@ -1,5 +1,6 @@
 package Presentacion.Departamento.VDepartamentoCasosUso;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,7 +41,8 @@ public class VEliminarDepartamento extends JFrame implements IGUI {
 	public void initGUI(){
 		
 		setTitle("Eliminar Departamento");
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -73,6 +75,8 @@ public class VEliminarDepartamento extends JFrame implements IGUI {
 		mainPanel.add(buttonPanel);
 
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 		
@@ -115,8 +119,11 @@ public class VEliminarDepartamento extends JFrame implements IGUI {
 
 	@Override
 	public void update(int event, Object datos) {
-		if (event == Events.DEPARTAMENTO_ELIMINAR_SUCCESS) 
-			JOptionPane.showMessageDialog(null, "El departamento " + (String) datos + " se ha eliminado");
+		if (event == Events.DEPARTAMENTO_ELIMINAR_SUCCESS){
+			JOptionPane.showMessageDialog(null, "El departamento " + (Integer) datos + " se ha eliminado");
+			setVisible(false);
+			ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
+		}
 		else if(event == Events.DEPARTAMENTO_ELIMINAR_NOTFOUND)
 			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " de departamento no está registrado");
 		

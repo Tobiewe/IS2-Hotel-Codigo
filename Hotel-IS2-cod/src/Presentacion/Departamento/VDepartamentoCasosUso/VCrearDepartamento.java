@@ -44,7 +44,8 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 
 	public void initGUI() {
 		setTitle("Crear Habitación");
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -62,6 +63,8 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 		mainPanel.add(buttonPanel);
 
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
@@ -113,9 +116,12 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 			JOptionPane.showMessageDialog(this, "ERROR: Ya existe un departamento con el nombre " + (String) datos);
 		else if (event == Events.DEPARTAMENTO_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
-		else if (event == Events.DEPARTAMENTO_CREAR_SUCCESS)
-			JOptionPane.showMessageDialog(this,
-					"El departamento " + (String) datos + " ha sido creado correctamente");
+		else if (event == Events.DEPARTAMENTO_CREAR_SUCCESS){
+			JOptionPane.showMessageDialog(this,"El departamento " + (String) datos + " ha sido creado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
+		}
+
 	}
 
 }

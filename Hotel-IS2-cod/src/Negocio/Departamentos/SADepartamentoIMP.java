@@ -30,9 +30,8 @@ public class SADepartamentoIMP implements SADepartamento {
 			return tDep.getActivado() ? -2 : tDep.getId();
 		}
 		
-		tDep.setId(daoDep.crear(tdepartamento));
 		
-		return tDep.getId();
+		return daoDep.crear(tdepartamento);
 	}
 
 	

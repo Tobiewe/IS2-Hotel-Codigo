@@ -1,5 +1,6 @@
 package Presentacion.Departamento;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -33,15 +34,17 @@ public class VDepartamento extends JFrame implements IGUI{
 
 	protected void initGUI() {
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		Dimension d = new Dimension(500,150);
+		mainPanel.setPreferredSize(d);
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		
-		mainPanel.add(volverButton());
-		mainPanel.add(crearDepartamentoButton());
-		mainPanel.add(modificarDepartamentoButton());
-		mainPanel.add(eliminarDepartamentoButton());
-		mainPanel.add(mostrarUnoDepartamentoButton());
-		mainPanel.add(mostrarTodosDepartamentoButton());
+		mainPanel.add(volverButton(), BorderLayout.CENTER);
+		mainPanel.add(crearDepartamentoButton(), BorderLayout.CENTER);
+		mainPanel.add(modificarDepartamentoButton(), BorderLayout.CENTER);
+		mainPanel.add(eliminarDepartamentoButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarUnoDepartamentoButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarTodosDepartamentoButton(), BorderLayout.CENTER);
 		
 		pack();
 		setLocationRelativeTo(getParent());
