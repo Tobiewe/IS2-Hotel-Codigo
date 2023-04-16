@@ -88,7 +88,7 @@ public class DAOTareasImp implements DAOTareas{
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE tareas SET Descripcion = ?, Lugar = ?, Nombre = ? WHERE Id = ?;";
+			String c = "UPDATE tareas SET Descripcion = ?, Lugar = ?, Nombre = ?, activa = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -96,7 +96,8 @@ public class DAOTareasImp implements DAOTareas{
 			ps.setString(1, tTareas.getDescripcion());
 			ps.setString(2, tTareas.getLugar());
 			ps.setString(3, tTareas.getNombre());
-			ps.setInt(4, tTareas.getId());
+			ps.setBoolean(4, tTareas.getActiva());
+			ps.setInt(5, tTareas.getId());
 			
 			if(ps.executeUpdate()==1) ok= tTareas.getId();
 			
