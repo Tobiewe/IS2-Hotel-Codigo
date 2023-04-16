@@ -42,7 +42,7 @@ public class VDesvincularTarea extends JFrame implements IGUI{
 	
 	public void initGUI(){
 		
-		setTitle("Eliminar Tarea");
+		setTitle("Desvincular Tarea");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
