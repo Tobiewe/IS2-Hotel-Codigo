@@ -30,8 +30,6 @@ import Presentacion.Controller.IGUI;
 public class VCrearTarea extends JFrame implements IGUI {
 
 	private Controller ctrl;
-
-	private Integer idEmpleado;
 	
 	
 	public VCrearTarea(){
@@ -47,7 +45,8 @@ public class VCrearTarea extends JFrame implements IGUI {
 	public void initGUI() 
 	{
 		setTitle("Modificar Tarea");
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -64,7 +63,6 @@ public class VCrearTarea extends JFrame implements IGUI {
 		mainPanel.add(panelDescripcion(descripcionText));
 		mainPanel.add(panelLugar(lugarText));
 		mainPanel.add(panelNombre(nombreText));
-		mainPanel.add(idEmpleadoPanel());
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
@@ -75,6 +73,8 @@ public class VCrearTarea extends JFrame implements IGUI {
 		
 		
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	
@@ -113,30 +113,6 @@ public class VCrearTarea extends JFrame implements IGUI {
 		
 		return nombrePanel;
 	}
-	public JPanel idEmpleadoPanel()
-	{
-		JPanel panelIdEmpleado = new JPanel();
-		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel idEmpleadoLabel = new JLabel("Id empleado: ");
-		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
-		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 20));
-		idEmpleado = (Integer) idEmpleadoSpinner.getValue();
-		idEmpleadoSpinner.addChangeListener(new ChangeListener()
-		{
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				idEmpleado = (Integer) idEmpleadoSpinner.getValue();
-			}
-			
-		});
-		
-		panelIdEmpleado.add(idEmpleadoLabel);
-		panelIdEmpleado.add(idEmpleadoSpinner);
-		
-		return panelIdEmpleado;
-	}
 
 	public JButton crearButton(JTextField descripcionText,JTextField lugarText,JTextField nombreText)
 	{
@@ -145,7 +121,7 @@ public class VCrearTarea extends JFrame implements IGUI {
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TTareas tTarea = new TTareas(null,descripcionText.getText(),lugarText.getText(),nombreText.getText(),true,idEmpleado);
+				TTareas tTarea = new TTareas(null,descripcionText.getText(),lugarText.getText(),nombreText.getText(),true);
 				ctrl.carryAction(Events.TAREA_CREAR, tTarea);
 			}
 			
@@ -175,6 +151,10 @@ public class VCrearTarea extends JFrame implements IGUI {
 		else if(event == Events.TAREA_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if(event == Events.TAREA_CREAR_SUCCESS)
-			JOptionPane.showMessageDialog(this, "La Tarea se ha creado correctamente");
+		{
+			JOptionPane.showMessageDialog(this, "La Tarea con id " + (Integer) datos + " se ha creado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.TAREA_NUEVA_VISTA, null);
+		}
 	}
 }

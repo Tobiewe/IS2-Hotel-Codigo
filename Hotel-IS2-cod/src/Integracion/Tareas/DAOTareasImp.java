@@ -23,7 +23,7 @@ public class DAOTareasImp implements DAOTareas{
 		
 		try {
 			
-			String c = "INSERT INTO tareas (Descripcion, Lugar, Nombre, empleado_Id, activa) VALUES (?, ?, ?, ?, ?);";
+			String c = "INSERT INTO tareas (Descripcion, Lugar, Nombre, activa) VALUES (?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -31,8 +31,7 @@ public class DAOTareasImp implements DAOTareas{
 			ps.setString(1, tTareas.getDescripcion());
 			ps.setString(2, tTareas.getLugar());
 			ps.setString(3, tTareas.getNombre());
-			ps.setInt(4, tTareas.getId_empleado());
-			ps.setBoolean(5, tTareas.getActiva());
+			ps.setBoolean(4, tTareas.getActiva());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -89,7 +88,7 @@ public class DAOTareasImp implements DAOTareas{
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE tareas SET Descripcion = ?, Lugar = ?, Nombre = ?, empleado_Id = ? WHERE Id = ?;";
+			String c = "UPDATE tareas SET Descripcion = ?, Lugar = ?, Nombre = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -97,8 +96,7 @@ public class DAOTareasImp implements DAOTareas{
 			ps.setString(1, tTareas.getDescripcion());
 			ps.setString(2, tTareas.getLugar());
 			ps.setString(3, tTareas.getNombre());
-			ps.setInt(4, tTareas.getId_empleado());
-			ps.setInt(5, tTareas.getId());
+			ps.setInt(4, tTareas.getId());
 			
 			if(ps.executeUpdate()==1) ok= tTareas.getId();
 			
@@ -133,7 +131,7 @@ public class DAOTareasImp implements DAOTareas{
 			if (Rs.next()){
 				
 				tTareas = new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
-						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa"), Rs.getInt("empleado_Id"));
+						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa"));
 				
 			}
 	
@@ -165,7 +163,7 @@ public class DAOTareasImp implements DAOTareas{
 			while (Rs.next()){
 				
 				lista.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
-						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa"), Rs.getInt("empleado_Id")));
+						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
 				
 			}
 						

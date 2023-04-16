@@ -119,7 +119,7 @@ public class VLeerUnaTarea extends JFrame implements IGUI{
 	}
 	class tareaTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Descripción", "Lugar","Nombre","Id del empleado","Activa"};
+		String[] columnValues = {"Id", "Descripción", "Lugar","Nombre","Activa"};
 		List<TTareas> tarea;
 		
 		public tareaTableModel()
@@ -162,8 +162,6 @@ public class VLeerUnaTarea extends JFrame implements IGUI{
 			else if(columnIndex == 3)
 				return tarea.get(rowIndex).getNombre();
 			else if(columnIndex == 4)
-				return tarea.get(rowIndex).getId_empleado();
-			else if(columnIndex == 5)
 				return tarea.get(rowIndex).getActiva();
 			return null;
 		}

@@ -1,5 +1,6 @@
 package Presentacion.Tarea;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -34,17 +35,19 @@ public class VTarea extends JFrame implements IGUI{
 	protected void initGUI() {
 		setTitle("Tareas");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		Dimension d = new Dimension(500,150);
+		mainPanel.setPreferredSize(d);
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		
-		mainPanel.add(volverButton());
-		mainPanel.add(crearTareaButton());
-		mainPanel.add(modificarTareaButton());
-		mainPanel.add(eliminarTareaButton());
-		mainPanel.add(mostrarUnoTareaButton());
-		mainPanel.add(mostrarTodosTareaButton());
-		mainPanel.add(vincularTareaButton());
-		mainPanel.add(desvincularTareaButton());
+		mainPanel.add(volverButton(), BorderLayout.CENTER);
+		mainPanel.add(crearTareaButton(), BorderLayout.CENTER);
+		mainPanel.add(modificarTareaButton(), BorderLayout.CENTER);
+		mainPanel.add(eliminarTareaButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarUnoTareaButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarTodosTareaButton(), BorderLayout.CENTER);
+		mainPanel.add(vincularTareaButton(), BorderLayout.CENTER);
+		mainPanel.add(desvincularTareaButton(), BorderLayout.CENTER);
 		
 		pack();
 		setLocationRelativeTo(getParent());
