@@ -85,6 +85,8 @@ public class VModificarEmpleado extends JFrame implements IGUI {
 
 		mainPanel.setPreferredSize(new Dimension(600,400));
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 	}

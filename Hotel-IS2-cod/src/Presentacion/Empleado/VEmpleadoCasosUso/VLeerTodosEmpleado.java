@@ -61,6 +61,7 @@ public class VLeerTodosEmpleado extends JFrame implements IGUI{
 
 		pack();
 		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 	}

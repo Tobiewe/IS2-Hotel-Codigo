@@ -40,7 +40,8 @@ public class VEliminarEmpleado extends JFrame implements IGUI{
 	public void initGUI(){
 		
 		setTitle("Eliminar Empleado");
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -75,6 +76,8 @@ public class VEliminarEmpleado extends JFrame implements IGUI{
 		mainPanel.add(buttonPanel);
 
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 		
@@ -115,8 +118,12 @@ public class VEliminarEmpleado extends JFrame implements IGUI{
 
 	@Override
 	public void update(int event, Object datos) {
-		if (event == Events.EMPLEADO_ELIMINAR_SUCCESS) 
+		if (event == Events.EMPLEADO_ELIMINAR_SUCCESS){
+			setVisible(false);
+			ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
 			JOptionPane.showMessageDialog(null, "El empleado con id " + (Integer) datos + " ha sido dada de baja");
+
+		}
 		else if(event == Events.EMPLEADO_ELIMINAR_NOTFOUND)
 			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " no esta registrado");
 		

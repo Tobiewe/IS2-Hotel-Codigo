@@ -100,6 +100,8 @@ private Controller ctrl;
 		
 		
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	public JPanel panelSueldo(JTextField sueldoText)
@@ -244,8 +246,11 @@ private Controller ctrl;
 			JOptionPane.showMessageDialog(this, "ERROR: El cliente con id " + (Integer) datos + " ya existe");
 		else if(event == Events.EMPLEADO_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
-		else if(event == Events.EMPLEADO_CREAR_SUCCESS)
+		else if(event == Events.EMPLEADO_CREAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "El cliente con id " +(Integer) datos +" se ha creado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
+		}
 			
 	}
 }

@@ -35,16 +35,18 @@ public class VEmpleado extends JFrame implements IGUI{
 	protected void initGUI() {
 		setTitle("Empleado");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		Dimension d = new Dimension(500,150);
+		mainPanel.setPreferredSize(d);
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		
-		mainPanel.add(volverButton());
-		mainPanel.add(crearEmpleadoButton());
-		mainPanel.add(modificarEmpleadoButton());
-		mainPanel.add(eliminarEmpleadoButton());
-		mainPanel.add(mostrarUnoEmpleadoButton());
-		mainPanel.add(mostrarTodosEmpleadoButton());
-		mainPanel.add(mostrarPorDepartamentoButton());
+		mainPanel.add(volverButton(), BorderLayout.CENTER);
+		mainPanel.add(crearEmpleadoButton(), BorderLayout.CENTER);
+		mainPanel.add(modificarEmpleadoButton(), BorderLayout.CENTER);
+		mainPanel.add(eliminarEmpleadoButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarUnoEmpleadoButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarTodosEmpleadoButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarPorDepartamentoButton(), BorderLayout.CENTER);
 		
 		pack();
 		setLocationRelativeTo(getParent());
