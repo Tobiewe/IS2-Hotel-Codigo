@@ -42,23 +42,23 @@ public class DAOClienteImp implements DAOCliente {
 
 			
 			if(tCliente.getCIF() != null){
-				c = "INSERT INTO cliente_empresa ( CIF, cliente_id) VALUES ( ?, ?);";
+				c = "INSERT INTO cliente_empresa ( CIF, cliente_Id) VALUES ( ?, ?);";
 
 				ps = Cnx.prepareStatement(c);
 
 				ps.setString(1, tCliente.getCIF());
-				ps.setInt(2, tCliente.getId());
+				ps.setInt(2, key);
 				ps.executeUpdate();
 
 			}
 			else{
-				c = "INSERT INTO cliente_particular (apellidos, NIF, cliente_id) VALUES (?, ?, ?);";
+				c = "INSERT INTO cliente_particular (apellidos, NIF, cliente_Id) VALUES (?, ?, ?);";
 
 				ps = Cnx.prepareStatement(c);
 
 				ps.setString(1, tCliente.getApellidos());
 				ps.setString(2, tCliente.getNIF());
-				ps.setInt(3, tCliente.getId());;
+				ps.setInt(3, key);;
 				ps.executeUpdate();
 					
 			}
@@ -129,24 +129,24 @@ public class DAOClienteImp implements DAOCliente {
 			
 			if(tCliente.getCIF() != null){
 				
-				c = "UPDATE cliente_empresa SET CIF = ? WHERE cliente_id = ?;";
+				c = "UPDATE cliente_empresa SET CIF = ? WHERE cliente_Id = ?;";
 
 				
 				ps = Cnx.prepareStatement(c);
 
 				ps.setString(1, tCliente.getCIF());
-				ps.setInt(2, tCliente.getId());
+				ps.setInt(2, ok);
 				ps.executeUpdate();
 
 			}
 			else if (tCliente.getNIF() != null){
-				c = "UPDATE cliente_particular SET apellidos = ?, NIF = ? WHERE cliente_id = ?;";
+				c = "UPDATE cliente_particular SET apellidos = ?, NIF = ? WHERE cliente_Id = ?;";
 
 				ps = Cnx.prepareStatement(c);
 
 				ps.setString(1, tCliente.getApellidos());
 				ps.setString(2, tCliente.getNIF());
-				ps.setInt(3, tCliente.getId());;
+				ps.setInt(3, ok);;
 				ps.executeUpdate();
 			}
 			

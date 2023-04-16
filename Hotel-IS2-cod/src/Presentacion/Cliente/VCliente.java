@@ -41,17 +41,19 @@ public class VCliente extends JFrame implements IGUI {
 	protected void initGUI() {
 		setTitle("Cliente");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		Dimension d = new Dimension(500,150);
+		mainPanel.setPreferredSize(d);
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		
-		mainPanel.add(volverButton());
-		mainPanel.add(crearClienteButton());
-		mainPanel.add(modificarClienteButton());
-		mainPanel.add(eliminarClienteButton());
-		mainPanel.add(mostrarUnoClienteButton());
-		mainPanel.add(mostrarTodosClienteButton());
-		mainPanel.add(mostrarParticularClienteButton());
-		mainPanel.add(mostrarEmpresaClienteButton());
+		mainPanel.add(volverButton(), BorderLayout.CENTER);
+		mainPanel.add(crearClienteButton(), BorderLayout.CENTER);
+		mainPanel.add(modificarClienteButton(), BorderLayout.CENTER);
+		mainPanel.add(eliminarClienteButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarUnoClienteButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarTodosClienteButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarParticularClienteButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarEmpresaClienteButton(), BorderLayout.CENTER);
 		
 		pack();
 		setLocationRelativeTo(getParent());

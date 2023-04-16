@@ -16,11 +16,8 @@ public class SAClienteIMP implements SACliente{
 	public Integer crear(TCliente entradaCliente) {
 		
 		String numero = Integer.toString(entradaCliente.getTelefono());
-		String patron = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-		Pattern pattern = Pattern.compile(patron);
-		Matcher matcher = pattern.matcher(entradaCliente.getCorreo());
 		
-		if(numero.length() != 9 || matcher.matches() || entradaCliente.getNombre() == ""){
+		if(numero.length() != 9 || entradaCliente.getNombre() == ""){
 			return -5;
 		}
 		

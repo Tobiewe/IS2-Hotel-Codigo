@@ -57,8 +57,8 @@ public class VCrearCliente extends JFrame implements IGUI{
 	public void initGUI() 
 	{
 		setTitle("Crear Cliente");
-		JPanel mainPanel = new JPanel();
-		mainPanel.setPreferredSize(new Dimension(400, 300));
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		mainPanel.setPreferredSize(new Dimension(500, 300));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -98,6 +98,8 @@ public class VCrearCliente extends JFrame implements IGUI{
 		
 		
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
@@ -294,8 +296,12 @@ public class VCrearCliente extends JFrame implements IGUI{
 			JOptionPane.showMessageDialog(this, "ERROR: El cliente con id " + (Integer) datos + " ya existe");
 		else if(event == Events.CLIENTE_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
-		else if(event == Events.CLIENTE_CREAR_SUCCESS)
+		else if(event == Events.CLIENTE_CREAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "El Cliente se ha creado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
+		}
+
 
 			
 	}

@@ -53,7 +53,8 @@ public class VModificarCliente extends JFrame implements IGUI{
 	public void initGUI() 
 	{
 		setTitle("Crear Cliente");
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setPreferredSize(new Dimension(400, 300));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
@@ -96,6 +97,8 @@ public class VModificarCliente extends JFrame implements IGUI{
 		
 		
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
@@ -343,8 +346,11 @@ public class VModificarCliente extends JFrame implements IGUI{
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
 		else if(event == Events.CLIENTE_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + " no se ha encontrado");
-		else if(event == Events.CLIENTE_MODIFICAR_SUCCESS) 
+		else if(event == Events.CLIENTE_MODIFICAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + "se ha modificado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
+		}
 			
 	}
 }

@@ -40,7 +40,8 @@ public class VBorrarCliente extends JFrame implements IGUI{
 	public void initGUI(){
 		
 		setTitle("Eliminar Cliente");
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -75,6 +76,8 @@ public class VBorrarCliente extends JFrame implements IGUI{
 		mainPanel.add(buttonPanel);
 
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 		
@@ -114,8 +117,11 @@ public class VBorrarCliente extends JFrame implements IGUI{
 
 	@Override
 	public void update(int event, Object datos) {
-		if (event == Events.CLIENTE_ELIMINAR_SUCCESS) 
+		if (event == Events.CLIENTE_ELIMINAR_SUCCESS){
 			JOptionPane.showMessageDialog(null, "La Habitacion de id " + (Integer) datos + " ha sido dada de baja");
+			setVisible(false);
+			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
+		}
 		else if(event == Events.CLIENTE_ELIMINAR_NOTFOUND)
 			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " no esta registrado");
 		
