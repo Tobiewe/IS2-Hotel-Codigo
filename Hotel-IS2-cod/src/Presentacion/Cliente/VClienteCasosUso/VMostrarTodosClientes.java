@@ -100,10 +100,18 @@ public class VMostrarTodosClientes extends JFrame implements IGUI{
 			if(columnIndex == 0)
 				return clientes.get(rowIndex).getId();
 			else if(columnIndex == 1)
-				return clientes.get(rowIndex).getTelefono();
-			else if(columnIndex == 2)
 				return clientes.get(rowIndex).getCorreo();
+			else if(columnIndex == 2)
+				return clientes.get(rowIndex).getTelefono();
 			else if(columnIndex == 3)
+				return clientes.get(rowIndex).getNombre();
+			else if(columnIndex == 4)
+				return clientes.get(rowIndex).getCIF();
+			else if(columnIndex == 5)
+				return clientes.get(rowIndex).getApellidos();
+			else if(columnIndex == 6)
+				return clientes.get(rowIndex).getNIF();
+			else if(columnIndex == 7)
 				return clientes.get(rowIndex).getActivo();
 			return null;
 		}

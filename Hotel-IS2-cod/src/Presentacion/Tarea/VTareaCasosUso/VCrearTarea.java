@@ -175,9 +175,6 @@ public class VCrearTarea extends JFrame implements IGUI {
 		else if(event == Events.TAREA_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if(event == Events.TAREA_CREAR_SUCCESS)
-		{
 			JOptionPane.showMessageDialog(this, "La Tarea se ha creado correctamente");
-		}
-			
 	}
 }
