@@ -54,10 +54,8 @@ public class VModificarTarea extends JFrame implements IGUI {
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
-		
-		TTareas tTarea = null;
-		ctrl.carryAction(Events.TAREA_MODIFICAR, tTarea);
-		JTextField descripcionText = new JTextField(tTarea.getDescripcion());
+
+		JTextField descripcionText = new JTextField("");
 		JTextField lugarText = new JTextField("");
 		JTextField nombreText = new JTextField("");
 
