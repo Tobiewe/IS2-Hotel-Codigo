@@ -140,7 +140,7 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TDepartamento tHabitacion = new TDepartamento(id,"",(String)nombreText.getText(),activado);
+				TDepartamento tHabitacion = new TDepartamento(id,(String)nombreText.getText(),activado);
 				ctrl.carryAction(Events.DEPARTAMENTO_MODIFICAR, tHabitacion);
 			}
 			

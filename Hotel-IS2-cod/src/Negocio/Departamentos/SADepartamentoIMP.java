@@ -10,8 +10,9 @@ import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 public class SADepartamentoIMP implements SADepartamento {
 	
 	
+	@SuppressWarnings("null")
 	public Integer crear(TDepartamento tdepartamento) {
-		if(tdepartamento.getJefe().length() == 8 || tdepartamento.getNombre().trim().equals("")){
+		if(tdepartamento.getNombre().trim().equals("")){
 			return -5;
 		}
 		
@@ -36,7 +37,7 @@ public class SADepartamentoIMP implements SADepartamento {
 
 	
 	public Integer modificar(TDepartamento tdepartamento) {
-		if(tdepartamento.getJefe().length() == 8 || tdepartamento.getNombre().trim().equals("")){
+		if( tdepartamento.getNombre().trim().equals("")){
 			return -5;
 		}
 		

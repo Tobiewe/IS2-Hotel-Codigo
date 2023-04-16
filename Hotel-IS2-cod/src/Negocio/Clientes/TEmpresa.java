@@ -10,16 +10,6 @@ public class TEmpresa extends TCliente {
 	}
 
 
-	public String getNombre() {
-		return nombre;
-	}
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-
 	public String getCIF() {
 		return CIF;
 	}

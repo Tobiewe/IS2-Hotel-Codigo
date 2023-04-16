@@ -1,78 +1,104 @@
 package Negocio.Clientes;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import Integracion.Cliente.DAOCliente;
 import Integracion.FactoriaIntegracion.FactoriaIntegracion;
+import Negocio.Empleados.TEmpleados;
 
 public class SAClienteIMP implements SACliente{
 
-	@Override
+	
 
 	public Integer crear(TCliente entradaCliente) {
+		
+		String numero = Integer.toString(entradaCliente.getTelefono());
+		String patron = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+		Pattern pattern = Pattern.compile(patron);
+		Matcher matcher = pattern.matcher(entradaCliente.getCorreo());
+		
+		if(numero.length() != 9 || matcher.matches() || entradaCliente.getNombre() == ""){
+			return -5;
+		}
+		
 		//Creamos el dao
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
-		TCliente tCliente = daoCliente.MostrarUno(entradaCliente.getId());
 		
-		if(tCliente != null)
-		{
-			if(!tCliente.getActivo())
-			{
-				entradaCliente.setActivo(true);
-				//Dependiendo de resupuesta de Antonio
-				//entradaCliente.setId(auxCliente.getId())
-				//Llamar a modificar Cliente del DAO
+		if(entradaCliente.getId() != null){
+			TCliente tCliente = daoCliente.MostrarUno(entradaCliente.getId());
+
+			if(tCliente != null){
+				daoCliente.modificar(entradaCliente);
+						
+				return tCliente.getActivo() ? -2 : entradaCliente.getId();	
 			}
-			else 
-				return -1;
-				
+			
 		}
-		//Si positivo no pasa nada
-		return entradaCliente.getId();
+		
+
+		return daoCliente.crear(entradaCliente);
 	}
-	@Override
+	
+	
 	public Integer modificar(TCliente cliente) {
-		if(cliente.getCorreo().trim().equals("") || cliente.getTelefono() < 111111111 || cliente.getTelefono() > 999999999)
-		{
-			return -2;
+		
+		String numero = Integer.toString(cliente.getTelefono());
+		String patron = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+		Pattern pattern = Pattern.compile(patron);
+		Matcher matcher = pattern.matcher(cliente.getCorreo());
+		
+		if(numero.length() != 9 || matcher.matches() || cliente.getNombre() == ""){
+			return -5;
 		}
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
 		TCliente auxCliente = daoCliente.MostrarUno(cliente.getId());
-		if(!auxCliente.getActivo() || auxCliente == null )
+		
+		if(auxCliente == null )
 			return -2;
-		return cliente.getId();
+		
+		return daoCliente.modificar(cliente);
 	}
 
-	@Override
+	
 	public Integer eliminar(int idCliente) {
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
 		TCliente tCliente = daoCliente.MostrarUno(idCliente);
-		//Hacer otro if con el caso de que esté simplemente desactivado según diga Antonio
-		if(tCliente == null)
-		{
-			return -3;
+		
+		if(tCliente == null){
+			return -2;
 		}
-		return idCliente;
+		
+		return daoCliente.borrar(idCliente);
 	}
 
-	@Override
+	
 	public TCliente mostrarUno(int idCliente) {
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
 		TCliente tCliente = daoCliente.MostrarUno(idCliente);
-		//Hacer otro if con el caso de que esté simplemente desactivado según diga Antonio
 
 		if(tCliente == null)
 			return null;
-		//Ver que hacer en mensajes si no se consigue mostrar uno
-		return daoCliente.MostrarUno(idCliente);
+		
+		return tCliente;
 	}
 
-	@Override
+	
 	public Collection<TCliente> mostrarTodos() {
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
-		Collection<TCliente> clienteCollection;
+		Collection<TCliente> lista = daoCliente.MostrarTodos();
+		Collection<TCliente> dev = new ArrayList<TCliente>();
 		
-		clienteCollection = daoCliente.MostrarTodos();
-		return null;
+		for(TCliente t : lista){
+			
+			if(daoCliente.MostrarUno(t.getId()) != null){
+				dev.add(t);
+			}
+		}
+		
+		return dev;
 	}
 
 }

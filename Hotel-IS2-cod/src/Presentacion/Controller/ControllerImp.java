@@ -307,7 +307,7 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.TAREA_MODIFICAR_WRONG_PARAMETERS, tTarea.getId());
 			else if(saSolution > 0)
 				cIGUI.update(Events.TAREA_MODIFICAR_SUCCESS, tTarea.getId());
-			
+			break;
 		case Events.TAREA_ELIMINAR:
 			saSolution = saTarea.eliminar((Integer) data);
 			
@@ -471,7 +471,7 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.HABITACION_MODIFICAR_WRONG_PARAMETERS, tHabitacion.getNumero());
 			else if(saSolution > 0)
 				cIGUI.update(Events.HABITACION_MODIFICAR_SUCCESS, tHabitacion.getNumero());
-			
+			break;
 		case Events.HABITACION_ELIMINAR:
 			saSolution = saHabitacion.eliminar((Integer) data);
 			

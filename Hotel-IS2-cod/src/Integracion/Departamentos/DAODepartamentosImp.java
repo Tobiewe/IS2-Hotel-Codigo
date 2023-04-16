@@ -23,14 +23,13 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		try {
 			
 			
-			String c = "INSERT INTO departamentos (jefe, nombre, activo) VALUES (?, ?, ?);";
+			String c = "INSERT INTO departamentos (nombre, activo) VALUES (?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setString(1, tDepartamento.getJefe());
-			ps.setString(2, tDepartamento.getNombre());
-			ps.setBoolean(3, tDepartamento.getActivado());
+			ps.setString(1, tDepartamento.getNombre());
+			ps.setBoolean(2, tDepartamento.getActivado());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -83,14 +82,13 @@ public class DAODepartamentosImp implements DAODepartamentos {
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE departamentos SET jefe = ?, nombre = ? WHERE Id = ?;";
+			String c = "UPDATE departamentos SET nombre = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
-			ps.setString(1, tDepartamento.getJefe());
-			ps.setString(2, tDepartamento.getNombre());
-			ps.setInt(3, tDepartamento.getId());
+			ps.setString(1, tDepartamento.getNombre());
+			ps.setInt(2, tDepartamento.getId());
 			
 			if(ps.executeUpdate()==1) ok= tDepartamento.getId();
 			
@@ -122,8 +120,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 
 			if (Rs.next()){
 				
-				tDepartamento = new TDepartamento(Rs.getInt("Id"), Rs.getString("jefe"),
-						Rs.getString("nombre"), Rs.getBoolean("activo"));
+				tDepartamento = new TDepartamento(Rs.getInt("Id"), Rs.getString("nombre"), Rs.getBoolean("activo"));
 				
 			}
 	
@@ -155,8 +152,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 
 			if (Rs.next()){
 				
-				tDepartamento = new TDepartamento(Rs.getInt("Id"), Rs.getString("jefe"),
-						Rs.getString("nombre"), Rs.getBoolean("activo"));
+				tDepartamento = new TDepartamento(Rs.getInt("Id"), Rs.getString("nombre"), Rs.getBoolean("activo"));
 				
 			}
 	
@@ -186,8 +182,7 @@ public class DAODepartamentosImp implements DAODepartamentos {
 
 			while (Rs.next()){
 				
-				lista.add(new TDepartamento(Rs.getInt("Id"), Rs.getString("jefe"),
-						Rs.getString("nombre"), Rs.getBoolean("activo")));
+				lista.add(new TDepartamento(Rs.getInt("Id"), Rs.getString("nombre"), Rs.getBoolean("activo")));
 				
 			}
 						
