@@ -64,7 +64,7 @@ public class VMostrarTodosClientes extends JFrame implements IGUI{
 	}
 	class clienteTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Teléfono", "Correo", "Activo"};
+		String[] columnValues = {"Id", "Correo","Teléfono", "Nombre" , "CIF" , "Apellido", "NIF", "Activo"};
 		List<TCliente> clientes;
 		
 		public clienteTableModel()

@@ -172,7 +172,7 @@ public class DAOClienteImp implements DAOCliente {
 		try {
 			
 			
-			String cE = "SELECT * FROM cliente_empresa WHERE Id = ?;";
+			String cE = "SELECT * FROM cliente_empresa WHERE cliente_Id= ?;";
 			
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(cE);
@@ -185,7 +185,7 @@ public class DAOClienteImp implements DAOCliente {
 			}
 			
 			else{
-				String cP = "SELECT * FROM cliente_particular WHERE Id = ?;";
+				String cP = "SELECT * FROM cliente_particular WHERE cliente_Id = ?;";
 				 Cnx.prepareStatement(cP);
 				
 				 ps.setInt(1, id);
