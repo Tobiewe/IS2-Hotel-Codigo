@@ -36,7 +36,6 @@ public class VModificarTarea extends JFrame implements IGUI {
 	private String descripcion;
 	private String lugar;
 	private String nombre;
-	private Integer idEmpleado;
 	private boolean activa;
 	
 	
@@ -54,6 +53,7 @@ public class VModificarTarea extends JFrame implements IGUI {
 	{
 		setTitle("Modificar Tarea");
 		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(500, 300));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -70,7 +70,6 @@ public class VModificarTarea extends JFrame implements IGUI {
 		mainPanel.add(panelDescripcion(descripcionText));
 		mainPanel.add(panelLugar(lugarText));
 		mainPanel.add(panelNombre(nombreText));
-		mainPanel.add(idEmpleadoPanel());
 		mainPanel.add(panelActivo());
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -82,6 +81,8 @@ public class VModificarTarea extends JFrame implements IGUI {
 		
 		
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	public JPanel panelId()
@@ -143,30 +144,7 @@ public class VModificarTarea extends JFrame implements IGUI {
 		
 		return nombrePanel;
 	}
-	public JPanel idEmpleadoPanel()
-	{
-		JPanel panelIdEmpleado = new JPanel();
-		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel idEmpleadoLabel = new JLabel("Id empleado: ");
-		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
-		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 20));
-		idEmpleado = (Integer) idEmpleadoSpinner.getValue();
-		idEmpleadoSpinner.addChangeListener(new ChangeListener()
-		{
 
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				idEmpleado = (Integer) idEmpleadoSpinner.getValue();
-			}
-			
-		});
-		
-		panelIdEmpleado.add(idEmpleadoLabel);
-		panelIdEmpleado.add(idEmpleadoSpinner);
-		
-		return panelIdEmpleado;
-	}
 	public JPanel panelActivo()
 	{
 		JPanel panelTipo = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -201,7 +179,7 @@ public class VModificarTarea extends JFrame implements IGUI {
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TTareas tTarea = new TTareas(id,descripcionText.getText(),lugarText.getText(),nombreText.getText(),activa,idEmpleado);
+				TTareas tTarea = new TTareas(id,descripcionText.getText(),lugarText.getText(),nombreText.getText(),activa);
 				ctrl.carryAction(Events.TAREA_MODIFICAR, tTarea);
 			}
 			
@@ -232,8 +210,12 @@ public class VModificarTarea extends JFrame implements IGUI {
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
 		else if(event == Events.TAREA_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: La tarea con id " + (Integer)datos + " no se ha encontrado");
-		else if(event == Events.TAREA_MODIFICAR_SUCCESS) 
-			JOptionPane.showMessageDialog(this, "La tarea con id " + (Integer)datos + "se ha modificado correctamente");
+		else if(event == Events.TAREA_MODIFICAR_SUCCESS){
+			JOptionPane.showMessageDialog(this, "La tarea con id " + (Integer)datos + " se ha modificado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.TAREA_NUEVA_VISTA, null);
+		}
+
 			
 	}
 }

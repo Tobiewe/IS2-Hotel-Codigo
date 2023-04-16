@@ -41,6 +41,7 @@ public class VEliminarTarea extends JFrame implements IGUI{
 		
 		setTitle("Eliminar Tarea");
 		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
@@ -74,6 +75,8 @@ public class VEliminarTarea extends JFrame implements IGUI{
 		mainPanel.add(buttonPanel);
 
 		pack();
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 		
@@ -113,8 +116,11 @@ public class VEliminarTarea extends JFrame implements IGUI{
 
 	@Override
 	public void update(int event, Object datos) {
-		if (event == Events.TAREA_ELIMINAR_SUCCESS) 
+		if (event == Events.TAREA_ELIMINAR_SUCCESS){
 			JOptionPane.showMessageDialog(null, "La Tarea con id " + (Integer) datos + " ha sido dada de baja");
+			setVisible(false);
+			ctrl.carryAction(Events.TAREA_NUEVA_VISTA, null);
+		}
 		else if(event == Events.TAREA_ELIMINAR_NOTFOUND)
 			JOptionPane.showMessageDialog(this, "ERROR: La tarea con id " + (Integer) datos + " no esta registrado");
 		
