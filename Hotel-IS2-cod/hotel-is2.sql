@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-04-2023 a las 16:47:16
+-- Tiempo de generación: 16-04-2023 a las 18:00:53
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -31,17 +31,18 @@ CREATE TABLE `cliente` (
   `Id` int(11) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `Correo` varchar(100) DEFAULT NULL,
-  `activo` tinyint(1) DEFAULT 0
+  `activo` tinyint(1) DEFAULT 0,
+  `nombre` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`Id`, `telefono`, `Correo`, `activo`) VALUES
-(3, '123456789', 'alvaro@gmail.com', 0),
-(4, '65478978', 'pepe@gmail.com', 1),
-(5, '66666666', 'hola@fgaihd', 1);
+INSERT INTO `cliente` (`Id`, `telefono`, `Correo`, `activo`, `nombre`) VALUES
+(3, '123456789', 'alvaro@gmail.com', 0, NULL),
+(4, '65478978', 'pepe@gmail.com', 1, NULL),
+(5, '66666666', 'hola@fgaihd', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -50,7 +51,6 @@ INSERT INTO `cliente` (`Id`, `telefono`, `Correo`, `activo`) VALUES
 --
 
 CREATE TABLE `cliente_empresa` (
-  `Nombre` varchar(100) DEFAULT NULL,
   `CIF` varchar(20) DEFAULT NULL,
   `cliente_Id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -59,8 +59,8 @@ CREATE TABLE `cliente_empresa` (
 -- Volcado de datos para la tabla `cliente_empresa`
 --
 
-INSERT INTO `cliente_empresa` (`Nombre`, `CIF`, `cliente_Id`) VALUES
-('pwc', '12345678J', 4);
+INSERT INTO `cliente_empresa` (`CIF`, `cliente_Id`) VALUES
+('12345678J', 4);
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,6 @@ INSERT INTO `cliente_empresa` (`Nombre`, `CIF`, `cliente_Id`) VALUES
 --
 
 CREATE TABLE `cliente_particular` (
-  `nombre` varchar(50) DEFAULT NULL,
   `apellidos` varchar(100) DEFAULT NULL,
   `NIF` varchar(20) DEFAULT NULL,
   `cliente_Id` int(11) DEFAULT NULL
@@ -79,8 +78,8 @@ CREATE TABLE `cliente_particular` (
 -- Volcado de datos para la tabla `cliente_particular`
 --
 
-INSERT INTO `cliente_particular` (`nombre`, `apellidos`, `NIF`, `cliente_Id`) VALUES
-('alvaro', 'martinez', '12345671235Y', 3);
+INSERT INTO `cliente_particular` (`apellidos`, `NIF`, `cliente_Id`) VALUES
+('martinez', '12345671235Y', 3);
 
 -- --------------------------------------------------------
 
@@ -90,7 +89,6 @@ INSERT INTO `cliente_particular` (`nombre`, `apellidos`, `NIF`, `cliente_Id`) VA
 
 CREATE TABLE `departamentos` (
   `Id` int(11) NOT NULL,
-  `jefe` varchar(100) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -99,10 +97,15 @@ CREATE TABLE `departamentos` (
 -- Volcado de datos para la tabla `departamentos`
 --
 
-INSERT INTO `departamentos` (`Id`, `jefe`, `nombre`, `activo`) VALUES
-(2, 'ana', 'reparar', 0),
-(23, 'alvaro', 'limpieza', 0),
-(24, '12345678P', 'JuanAlberto', 1);
+INSERT INTO `departamentos` (`Id`, `nombre`, `activo`) VALUES
+(2, 'reparar', 0),
+(23, 'limpieza', 0),
+(24, 'JuanAlberto', 0),
+(25, 'Contabilidad', 0),
+(26, 'Aventura', 0),
+(27, 'wer', 0),
+(28, 't', 0),
+(29, 'Nombre del departamento', 0);
 
 -- --------------------------------------------------------
 
@@ -128,7 +131,8 @@ CREATE TABLE `empleado` (
 INSERT INTO `empleado` (`Id`, `sueldo`, `nombre`, `apellidos`, `activo`, `correo`, `telefono`, `iddepartamento`) VALUES
 (23, '400.00', 'juan', 'luis', 1, 'pepe@gmail.com', '66666666', NULL),
 (58, '1250.00', 'alberto', 'sanchez', 0, 'sanchez@jag.com', '33333333', NULL),
-(59, '1200.00', 'alberto', 'galdos', 1, 'abertto@jag.com', '123456789', NULL);
+(59, '1200.00', 'alberto', 'galdos', 1, 'abertto@jag.com', '123456789', NULL),
+(60, '3000.00', 'wer', 'djah', 0, 'adfg', '111111111', 2);
 
 -- --------------------------------------------------------
 
@@ -150,12 +154,10 @@ CREATE TABLE `habitacion` (
 --
 
 INSERT INTO `habitacion` (`numero`, `piso`, `tamanyo`, `precio`, `ocupada`, `id_empleado`) VALUES
-(4, 5, '50.43', '5678.76', 0, 23),
 (6, 1, '30.5', '1030.54', 0, 23),
-(8, 1, '1.0', '22220.00', 0, 23),
-(11, 5, '3.0', '1300.00', 0, 23),
-(12, 1, '1.0', '150.00', 0, 23),
-(13, 4, '3.0', '300.00', 1, 23);
+(15, 2, '3.0', '400.00', 0, 23),
+(17, 1, '1.0', '5600.00', 0, 23),
+(18, 2, '1.0', '1000.00', 0, 23);
 
 -- --------------------------------------------------------
 
@@ -212,7 +214,6 @@ CREATE TABLE `tareas` (
   `Descripcion` varchar(500) DEFAULT NULL,
   `Lugar` varchar(100) DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
-  `empleado_Id` int(11) DEFAULT NULL,
   `activa` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -220,9 +221,10 @@ CREATE TABLE `tareas` (
 -- Volcado de datos para la tabla `tareas`
 --
 
-INSERT INTO `tareas` (`Id`, `Descripcion`, `Lugar`, `Nombre`, `empleado_Id`, `activa`) VALUES
-(67, 'Arreglo aire', 'habitacion 23', 'aire acondicionado', 23, 1),
-(69, 'Limpieza planta 5', 'pasillo verde', 'manolos', 23, 0);
+INSERT INTO `tareas` (`Id`, `Descripcion`, `Lugar`, `Nombre`, `activa`) VALUES
+(67, 'Arreglo aire', 'habitacion 23', 'aire acondicionado', 0),
+(69, 'Limpieza planta 5', 'pasillo verde', 'manolos', 0),
+(70, 'wqer', 'qwe', 'qwe', 1);
 
 -- --------------------------------------------------------
 
@@ -303,8 +305,7 @@ ALTER TABLE `reserva`
 -- Indices de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `tareas_ibfk_1` (`empleado_Id`);
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indices de la tabla `tareas_empleado`
@@ -327,19 +328,19 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
@@ -351,7 +352,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Restricciones para tablas volcadas
@@ -395,12 +396,6 @@ ALTER TABLE `linea_pedidos`
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`cliente_Id`) REFERENCES `cliente` (`Id`);
 
---
--- Filtros para la tabla `tareas`
---
-ALTER TABLE `tareas`
-  ADD CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`empleado_Id`) REFERENCES `empleado` (`Id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
