@@ -526,6 +526,8 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.HABITACION_MOSTRAR_POR_EMPLEADO_ID, collectionHabPorEmpleado);
 			break;
+		case Events.RESERVA_ELIMINAR:
+			saSolution= saReserva.eliminar((Integer)data);
 
 		}		
 	}

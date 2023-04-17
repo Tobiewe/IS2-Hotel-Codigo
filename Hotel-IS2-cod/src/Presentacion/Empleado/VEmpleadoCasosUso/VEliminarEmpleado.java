@@ -35,6 +35,7 @@ public class VEliminarEmpleado extends JFrame implements IGUI{
 				initGUI();
 			}
 		});
+		
 	}
 	
 	public void initGUI(){
@@ -129,5 +130,6 @@ public class VEliminarEmpleado extends JFrame implements IGUI{
 		
 		
 	}
+	                                   
 
 }

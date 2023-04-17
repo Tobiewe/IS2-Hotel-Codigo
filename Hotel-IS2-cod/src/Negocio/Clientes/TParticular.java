@@ -5,8 +5,8 @@ public class TParticular extends TCliente {
 
 
 	public TParticular(Integer id, String correo, Integer telefono, String nombre, String CIF, String apellidos,
-			String NIF, Boolean activo) {
-		super(id, correo, telefono, nombre, null, apellidos, NIF, activo);
+			String NIF, Boolean activo, String tipo) {
+		super(id, correo, telefono, nombre, null, apellidos, NIF, activo, tipo);
 		// TODO Auto-generated constructor stub
 	}
 

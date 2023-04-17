@@ -23,7 +23,7 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			
-			String c = "INSERT INTO cliente (telefono, Correo, activo, nombre) VALUES (?, ?, ?, ?);";
+			String c = "INSERT INTO cliente (telefono, Correo, activo, nombre, Tipo) VALUES (?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -32,6 +32,7 @@ public class DAOClienteImp implements DAOCliente {
 			ps.setString(2, tCliente.getCorreo());
 			ps.setBoolean(3, tCliente.getActivo());
 			ps.setString(4, tCliente.getNombre());
+			ps.setString(5, tCliente.getTipo());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -41,8 +42,8 @@ public class DAOClienteImp implements DAOCliente {
 				
 
 			
-			if(tCliente.getCIF() != null){
-				c = "INSERT INTO cliente_empresa ( CIF, cliente_Id) VALUES ( ?, ?);";
+			if(tCliente.getTipo() == "Empresa" || tCliente.getTipo() == "empresa"){
+				c = "INSERT INTO cliente_empresa (CIF, cliente_Id) VALUES ( ?, ?);";
 
 				ps = Cnx.prepareStatement(c);
 
@@ -127,7 +128,7 @@ public class DAOClienteImp implements DAOCliente {
 			if(ps.executeUpdate()==1) ok= tCliente.getId();
 			
 			
-			if(tCliente.getCIF() != null){
+			if(tCliente.getTipo() == "Empresa" || tCliente.getTipo() == "empresa"){
 				
 				c = "UPDATE cliente_empresa SET CIF = ? WHERE cliente_Id = ?;";
 
@@ -139,7 +140,7 @@ public class DAOClienteImp implements DAOCliente {
 				ps.executeUpdate();
 
 			}
-			else if (tCliente.getNIF() != null){
+			else if (tCliente.getTipo() == "Particular" || tCliente.getTipo() == "particular"){
 				c = "UPDATE cliente_particular SET apellidos = ?, NIF = ? WHERE cliente_Id = ?;";
 
 				ps = Cnx.prepareStatement(c);
@@ -172,42 +173,66 @@ public class DAOClienteImp implements DAOCliente {
 		try {
 			
 			
-			String cE = "SELECT * FROM cliente_empresa WHERE cliente_Id= ?;";
+			String c = "SELECT * FROM cliente WHERE Id = ?;";
 			
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
-			PreparedStatement ps = Cnx.prepareStatement(cE);
+			PreparedStatement ps = Cnx.prepareStatement(c);
 			
 			ps.setInt(1, id);
 			ResultSet Rs = ps.executeQuery();
-			
-			if(Rs.getString("CIF") != null){
-				CIF = Rs.getString("CIF");
-			}
-			
-			else{
-				String cP = "SELECT * FROM cliente_particular WHERE cliente_Id = ?;";
-				 Cnx.prepareStatement(cP);
-				
-				 ps.setInt(1, id);
-				 Rs = ps.executeQuery();
-				 apellidos = Rs.getString("apellidos");
-				 NIF = Rs.getString("NIF");
-			}
-			
-			
-			String c = "SELECT * FROM cliente WHERE Id = ?;";
-
-			Cnx.prepareStatement(c);
-
-			ps.setInt(1, id);
-			Rs = ps.executeQuery();
 
 			if (Rs.next()){
 				
+				if(Rs.getString("Tipo") == "Empresa" || Rs.getString("Tipo") == "empresa"){
+					
+					c = "SELECT * FROM cliente_empresa WHERE cliente_Id = ?;";
+					
+					ps = Cnx.prepareStatement(c);
+					
+					ps.setInt(1, id);
+					Rs = ps.executeQuery();
+					
+					CIF = Rs.getString("CIF");
+					
+					c = "SELECT * FROM cliente WHERE Id = ?;";
+					
+					ps = Cnx.prepareStatement(c);
+					
+					ps.setInt(1, id);
+					Rs = ps.executeQuery();
+					
+					tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+							Rs.getInt("telefono"), Rs.getString("nombre"),  CIF,  null ,null ,  Rs.getBoolean("activo"), Rs.getString("Tipo"));
+					
+					System.out.println(CIF);
+					
+				}
+				else{
+					
+					c = "SELECT * FROM cliente_particular WHERE cliente_Id = ?;";
+					
+					ps = Cnx.prepareStatement(c);
+					
+					ps.setInt(1, id);
+					Rs = ps.executeQuery();
+					
+					NIF = (String) Rs.getString("NIF");
+					apellidos = Rs.getString("apellidos");
+					
+					c = "SELECT * FROM cliente WHERE Id = ?;";
+					
+					ps = Cnx.prepareStatement(c);
+					
+					ps.setInt(1, id);
+					Rs = ps.executeQuery();
+					
+					tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+							Rs.getInt("telefono"), Rs.getString("nombre"),  null,  apellidos ,NIF ,  Rs.getBoolean("activo"), Rs.getString("Tipo"));
 				
-				tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-						Rs.getInt("telefono"), Rs.getString("nombre"),  CIF,  apellidos ,NIF ,  Rs.getBoolean("activo"));
-				
+					System.out.println(NIF);
+					System.out.println(apellidos);
+
+				}
 			}
 	
 			Cnx.close();
@@ -242,13 +267,13 @@ public class DAOClienteImp implements DAOCliente {
 				if(tCliente.getCIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
+							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo"), Rs.getString("Tipo")));
 					
 				}
 				else if(tCliente.getNIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), Rs.getString("nombre"), 
-							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo")));
+							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo"), Rs.getString("Tipo")));
 					
 				}
 				
@@ -287,7 +312,7 @@ public class DAOClienteImp implements DAOCliente {
 				if(tCliente.getNIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), Rs.getString("nombre"), 
-							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo")));
+							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo"), Rs.getString("Tipo")));
 					
 				}
 				
@@ -327,7 +352,7 @@ public class DAOClienteImp implements DAOCliente {
 				if(tCliente.getCIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
+							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo"), Rs.getString("Tipo")));
 					
 				}
 				
