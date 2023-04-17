@@ -1,4 +1,4 @@
-package Presentacion.Tarea.VTareaCasosUso;
+package Presentacion.Empleado.VEmpleadoCasosUso;
 
 import javax.swing.JFrame;
 

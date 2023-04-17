@@ -1,4 +1,4 @@
-package Presentacion.Tarea.VTareaCasosUso;
+package Presentacion.Empleado.VEmpleadoCasosUso;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
