@@ -39,12 +39,10 @@ import Presentacion.Reserva.VReservaCasosUso.VMostrarUnaReserva;
 import Presentacion.Reserva.VReservaCasosUso.VQuitarReserva;
 import Presentacion.Tarea.VTarea;
 import Presentacion.Tarea.VTareaCasosUso.VCrearTarea;
-import Presentacion.Tarea.VTareaCasosUso.VDesvincularTarea;
 import Presentacion.Tarea.VTareaCasosUso.VEliminarTarea;
 import Presentacion.Tarea.VTareaCasosUso.VLeerTodasTareas;
 import Presentacion.Tarea.VTareaCasosUso.VLeerUnaTarea;
 import Presentacion.Tarea.VTareaCasosUso.VModificarTarea;
-import Presentacion.Tarea.VTareaCasosUso.VVincularTarea;
 import Presentacion.launcher.VPrincipal;
 
 public class VFactoryImp extends VFactory {
@@ -89,6 +87,10 @@ public class VFactoryImp extends VFactory {
 			return new VLeerTodosEmpleado();
 		case Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA:
 			return new VMostrarPorDepartamento();
+		case Events.EMPLEADO_VINCULAR_VISTA:
+			return new VVincularTarea();
+		case Events.EMPLEADO_DESVINCULAR_VISTA:
+			return new VDesvincularTarea();
 			
 		//DEPARTAMENTO
 		case Events.DEPARTAMENTO_VISTA:
@@ -117,10 +119,6 @@ public class VFactoryImp extends VFactory {
 			return new VLeerUnaTarea();
 		case Events.TAREA_MOSTRAR_TODAS_VISTA:
 			return new VLeerTodasTareas();
-		case Events.TAREA_VINCULAR_VISTA:
-			return new VVincularTarea();
-		case Events.TAREA_DESVINCULAR_VISTA:
-			return new VDesvincularTarea();
 			
 		//RESERVA
 		case Events.RESERVA_VISTA:

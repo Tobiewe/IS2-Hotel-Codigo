@@ -277,12 +277,6 @@ public class ControllerImp extends Controller {
 		case Events.TAREA_MOSTRAR_TODAS_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.TAREA_MOSTRAR_TODAS_VISTA, null);
 			break;
-		case Events.TAREA_VINCULAR_VISTA:
-			cIGUI = VFactory.getInstance().newView(Events.TAREA_VINCULAR_VISTA, null);
-			break;
-		case Events.TAREA_DESVINCULAR_VISTA:
-			cIGUI = VFactory.getInstance().newView(Events.TAREA_DESVINCULAR_VISTA, null);
-			break;
 			
 			//ACCIONES
 		case Events.TAREA_CREAR:
@@ -334,12 +328,6 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.TAREA_MOSTRAR_TODAS_SUCCESS, collectionTarea);
 			break;
 		
-		case Events.TAREA_VINCULAR:
-			break;
-			
-		case Events.TAREA_DESVINCULAR:
-			break;
-	
 			
 		//CLIENTE
 			//VISTAS

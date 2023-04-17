@@ -46,8 +46,6 @@ public class VTarea extends JFrame implements IGUI{
 		mainPanel.add(eliminarTareaButton(), BorderLayout.CENTER);
 		mainPanel.add(mostrarUnoTareaButton(), BorderLayout.CENTER);
 		mainPanel.add(mostrarTodosTareaButton(), BorderLayout.CENTER);
-		mainPanel.add(vincularTareaButton(), BorderLayout.CENTER);
-		mainPanel.add(desvincularTareaButton(), BorderLayout.CENTER);
 		
 		pack();
 		setLocationRelativeTo(getParent());
@@ -142,34 +140,7 @@ public class VTarea extends JFrame implements IGUI{
 			});
 			return mostrarTodosTareaButton;
 		}
-		public JButton vincularTareaButton()
-		{
-			JButton mostrarPorDepartamentoButton = new JButton("Vincular");
-			mostrarPorDepartamentoButton.setSize(buttonDimension);
-			mostrarPorDepartamentoButton.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					ctrl.carryAction(Events.TAREA_VINCULAR_VISTA, null);
-					setVisible(false);
-				}
-			});
-			return mostrarPorDepartamentoButton;
-		}
-		public JButton desvincularTareaButton()
-		{
-			JButton mostrarPorDepartamentoButton = new JButton("Desvincular");
-			mostrarPorDepartamentoButton.setSize(buttonDimension);
-			mostrarPorDepartamentoButton.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					ctrl.carryAction(Events.TAREA_DESVINCULAR_VISTA, null);
-					setVisible(false);
-				}
-			});
-			return mostrarPorDepartamentoButton;
-		}
+
 
 	@Override
 	public void update(int event, Object datos) {

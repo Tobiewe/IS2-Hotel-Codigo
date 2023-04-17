@@ -47,6 +47,8 @@ public class VEmpleado extends JFrame implements IGUI{
 		mainPanel.add(mostrarUnoEmpleadoButton(), BorderLayout.CENTER);
 		mainPanel.add(mostrarTodosEmpleadoButton(), BorderLayout.CENTER);
 		mainPanel.add(mostrarPorDepartamentoButton(), BorderLayout.CENTER);
+		mainPanel.add(vincularTareaButton(), BorderLayout.CENTER);
+		mainPanel.add(desvincularTareaButton(), BorderLayout.CENTER);
 		
 		pack();
 		setLocationRelativeTo(getParent());
@@ -152,6 +154,36 @@ public class VEmpleado extends JFrame implements IGUI{
 				public void actionPerformed(ActionEvent e)
 				{
 					ctrl.carryAction(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA, null);
+					setVisible(false);
+				}
+			});
+			return mostrarPorDepartamentoButton;
+		}
+		
+		public JButton vincularTareaButton()
+		{
+			JButton mostrarPorDepartamentoButton = new JButton("Vincular");
+			mostrarPorDepartamentoButton.setSize(buttonDimension);
+			mostrarPorDepartamentoButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					ctrl.carryAction(Events.EMPLEADO_VINCULAR_VISTA, null);
+					setVisible(false);
+				}
+			});
+			return mostrarPorDepartamentoButton;
+		}
+		
+		public JButton desvincularTareaButton()
+		{
+			JButton mostrarPorDepartamentoButton = new JButton("Desvincular");
+			mostrarPorDepartamentoButton.setSize(buttonDimension);
+			mostrarPorDepartamentoButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					ctrl.carryAction(Events.EMPLEADO_DESVINCULAR_VISTA, null);
 					setVisible(false);
 				}
 			});
