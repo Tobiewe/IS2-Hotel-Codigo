@@ -17,4 +17,14 @@ public interface SAEmpleado {
 	public Collection<TEmpleados> mostrarTodos();
 	
 	public Collection<TEmpleados> mostrarPorDepartamento(Integer idDepartamento);
+	
+	public Integer vincular(TTareasDelEmpleado tTareasDelEmpleado);
+
+	public Integer desvincular(TTareasDelEmpleado tTareasDelEmpleado);
+	
+	public Collection<TTareasDelEmpleado> Leertodos();
+
+	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas);
+	
+	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
 }

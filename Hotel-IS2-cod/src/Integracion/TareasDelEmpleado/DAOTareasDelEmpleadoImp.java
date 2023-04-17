@@ -34,7 +34,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
-			if (rs.next()){ 		//devuelvo el id de la tarea u otra cosa??????
+			if (rs.next()){ 		//devuelvo el id del empleado creo
 				key = rs.getInt(1);
 			}
 				
