@@ -43,7 +43,7 @@ public class Events {
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA = 161;
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_ID = 162;
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_NOID= 163;
-
+	
 	
 	//CLIENTE
 	public static final int CLIENTE_VISTA = 200;
@@ -216,6 +216,21 @@ public class Events {
 	
 	public static final int TAREA_VINCULAR = 570;
 	public static final int TAREA_VINCULAR_VISTA = 571;
+	
+	public static final int TAREA_MOSTRAR_EMPYTAR = 580;
+	public static final int TAREA_MOSTRAR_EMPYTAR_VISTA = 581;
+	public static final int TAREA_MOSTRAR_EMPYTAR_ID = 582;
+	public static final int TAREA_MOSTRAR_EMPYTAR_NOID = 583;
+	
+	public static final int TAREA_MOSTRAR_MOSTRAR_POR_TAREA = 590;
+	public static final int TAREA_MOSTRAR_MOSTRAR_POR_TAREA_VISTA = 591;
+	public static final int TTAREA_MOSTRAR_MOSTRAR_POR_TAREA_ID = 592;
+	public static final int TTAREA_MOSTRAR_MOSTRAR_POR_TAREA_NOID = 593;
+	
+	public static final int TAREA_MOSTRAR_MOSTRAR_POR_EMPLEADO = 594;
+	public static final int TAREA_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA = 595;
+	public static final int TTAREA_MOSTRAR_MOSTRAR_POR_EMPLEADO_ID = 596;
+	public static final int TTAREA_MOSTRAR_MOSTRAR_POR_EMPLEADO_NOID = 597;
 	//DEPARTAMENTO
 	public static final int DEPARTAMENTO_VISTA = 600;
 	public static final int DEPARTAMENTO_NUEVA_VISTA = 601;
