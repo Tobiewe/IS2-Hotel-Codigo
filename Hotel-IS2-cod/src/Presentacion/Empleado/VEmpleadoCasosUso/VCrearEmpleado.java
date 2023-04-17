@@ -69,7 +69,7 @@ private Controller ctrl;
 		setLocationRelativeTo(getParent());
 
 		//Text Feilds
-		JTextField sueldoText = new JTextField("");
+		JTextField sueldoText = new JTextField("1000");
 		JTextField nombreText = new JTextField("");
 		JTextField apellidoText = new JTextField("");
 		JTextField correoText = new JTextField("");
@@ -215,7 +215,14 @@ private Controller ctrl;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TEmpleados tEmpleado= new TEmpleados(null,Float.parseFloat(sueldoText.getText()),nombreText.getText(), apellidoText.getText(),true, correoText.getText(),telefono,idDepartamento);
+				TEmpleados tEmpleado = null;
+				System.out.println(sueldoText.getText());
+				if(!sueldoText.getText().trim().equals("")){
+					tEmpleado= new TEmpleados(null,Float.parseFloat(sueldoText.getText()),nombreText.getText(), apellidoText.getText(),true, correoText.getText(),telefono,idDepartamento);
+				}
+				else{
+					tEmpleado= new TEmpleados(null,0f,nombreText.getText(), apellidoText.getText(),true, correoText.getText(),telefono,idDepartamento);
+				}
 				ctrl.carryAction(Events.EMPLEADO_CREAR, tEmpleado);
 			}
 			
@@ -223,6 +230,7 @@ private Controller ctrl;
 		});
 		return crearButton;
 	}
+	
 	public JButton cancelButton()
 	{
 		JButton cancelButton = new JButton("Cancel");
@@ -241,13 +249,13 @@ private Controller ctrl;
 	@Override
 	public void update(int event, Object datos) {
 		if(event == Events.EMPLEADO_CREAR_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear el cliente");
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear el empleado");
 		else if(event == Events.EMPLEADO_CREAR_REPEATED)
-			JOptionPane.showMessageDialog(this, "ERROR: El cliente con id " + (Integer) datos + " ya existe");
+			JOptionPane.showMessageDialog(this, "ERROR: El empleado con id " + (Integer) datos + " ya existe");
 		else if(event == Events.EMPLEADO_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if(event == Events.EMPLEADO_CREAR_SUCCESS){
-			JOptionPane.showMessageDialog(this, "El cliente con id " +(Integer) datos +" se ha creado correctamente");
+			JOptionPane.showMessageDialog(this, "El empleado con id " +(Integer) datos +" se ha creado correctamente");
 			setVisible(false);
 			ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
 		}

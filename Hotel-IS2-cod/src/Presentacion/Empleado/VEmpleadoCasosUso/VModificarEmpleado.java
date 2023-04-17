@@ -50,7 +50,7 @@ public class VModificarEmpleado extends JFrame implements IGUI {
 		});
 	}
 	public void initGUI() {
-		setTitle("Modificar Habitación");
+		setTitle("Modificar Empleado");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setPreferredSize(new Dimension(500, 250));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));

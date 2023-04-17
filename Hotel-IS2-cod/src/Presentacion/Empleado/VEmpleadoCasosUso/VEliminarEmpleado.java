@@ -120,9 +120,9 @@ public class VEliminarEmpleado extends JFrame implements IGUI{
 	@Override
 	public void update(int event, Object datos) {
 		if (event == Events.EMPLEADO_ELIMINAR_SUCCESS){
+			JOptionPane.showMessageDialog(null, "El empleado con id " + (Integer) datos + " ha sido dada de baja");
 			setVisible(false);
 			ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
-			JOptionPane.showMessageDialog(null, "El empleado con id " + (Integer) datos + " ha sido dada de baja");
 
 		}
 		else if(event == Events.EMPLEADO_ELIMINAR_NOTFOUND)
