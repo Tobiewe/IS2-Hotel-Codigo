@@ -416,10 +416,22 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.CLIENTE_MOSTRAR_PARTICULAR:
+			Collection<TCliente> collectionParticular = saCliente.MostrarParticular();
+			if(collectionParticular.isEmpty())
+				cIGUI.update(Events.CLIENTE_MOSTRAR_PARTICULAR_ERROR, null);
+			else
+				cIGUI.update(Events.CLIENTE_MOSTRAR_PARTICULAR_SUCCESS, collectionParticular);
 			break;
 			
+			
 		case Events.CLIENTE_MOSTRAR_EMPRESA:
+			Collection<TCliente> collectionEmpresa = saCliente.MostrarEmpresa();
+			if(collectionEmpresa.isEmpty())
+				cIGUI.update(Events.CLIENTE_MOSTRAR_EMPRESA_ERROR, null);
+			else
+				cIGUI.update(Events.CLIENTE_MOSTRAR_EMPRESA_SUCCESS, collectionEmpresa);
 			break;
+			
 			
 		
 			

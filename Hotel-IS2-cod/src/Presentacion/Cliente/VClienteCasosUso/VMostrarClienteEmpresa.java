@@ -57,7 +57,7 @@ public class VMostrarClienteEmpresa extends JFrame implements IGUI{
 		mainPanel.add(buttonPanel);
 		
 		
-		Controller.getInstance().carryAction(Events.CLIENTE_MOSTRAR_TODOS, null);
+		Controller.getInstance().carryAction(Events.CLIENTE_MOSTRAR_EMPRESA, null);
 
 		pack();
 		setLocationRelativeTo(getParent());
@@ -66,7 +66,7 @@ public class VMostrarClienteEmpresa extends JFrame implements IGUI{
 	}
 	class clienteTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Teléfono", "Correo", "Activo"};
+		String[] columnValues = {"Id", "Correo","Teléfono", "Nombre" , "CIF" , "Apellido", "NIF", "Activo"};
 		List<TCliente> clientes;
 		
 		public clienteTableModel()
@@ -123,7 +123,7 @@ public class VMostrarClienteEmpresa extends JFrame implements IGUI{
 			JTable hTable = new JTable(this); 
 			
 			tablaPanel.add(hTable);
-			TitledBorder titleBorder = BorderFactory.createTitledBorder("Habitación");
+			TitledBorder titleBorder = BorderFactory.createTitledBorder("Clientes Empresa");
 			tablaPanel.setBorder(titleBorder);
 			
 			JScrollPane sPanel = new JScrollPane(hTable);
@@ -148,10 +148,10 @@ public class VMostrarClienteEmpresa extends JFrame implements IGUI{
 	}
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.CLIENTE_MOSTRAR_TODOS_SUCCESS)
+		if(event == Events.CLIENTE_MOSTRAR_EMPRESA_SUCCESS)
 			tableModel.setList((Collection<TCliente>) datos);
-		else if(event == Events.CLIENTE_MOSTRAR_TODOS_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No hay ninguna habitación por mostrar");
+		else if(event == Events.CLIENTE_MOSTRAR_EMPRESA_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: No hay ningún Cliente empresa por mostrar");
 	}
 
 }
