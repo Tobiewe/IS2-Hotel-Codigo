@@ -27,7 +27,7 @@ import Presentacion.Controller.IGUI;
 
 public class VLeerTodasTareas extends JFrame implements IGUI {
 	private Controller ctrl;
-	private String title = "Tareas";
+	private String title = "Mostrar todas las tareas";
 	private tareaTableModel tableModel;
 	
 	public VLeerTodasTareas(){

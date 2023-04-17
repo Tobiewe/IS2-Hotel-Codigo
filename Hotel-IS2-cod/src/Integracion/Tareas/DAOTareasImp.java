@@ -35,6 +35,7 @@ public class DAOTareasImp implements DAOTareas{
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
+			
 			if (rs.next()){
 				key = rs.getInt(1);
 			}

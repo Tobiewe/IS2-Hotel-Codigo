@@ -173,7 +173,7 @@ public class ControllerImp extends Controller {
 			else if(saSolution == -5)
 				cIGUI.update(Events.EMPLEADO_CREAR_WRONG_PARAMETERS, null);
 			else if(saSolution > 0)
-				cIGUI.update(Events.EMPLEADO_CREAR_SUCCESS, tEmpleado.getId());
+				cIGUI.update(Events.EMPLEADO_CREAR_SUCCESS, saSolution);
 			break;
 			
 		case Events.EMPLEADO_MODIFICAR:
@@ -295,7 +295,7 @@ public class ControllerImp extends Controller {
 			else if(saSolution == -5)
 				cIGUI.update(Events.TAREA_CREAR_WRONG_PARAMETERS, saSolution);
 			else if(saSolution > 0)
-				cIGUI.update(Events.TAREA_CREAR_SUCCESS, tTarea.getId());
+				cIGUI.update(Events.TAREA_CREAR_SUCCESS, saSolution);
 			break;
 			
 		case Events.TAREA_MODIFICAR:

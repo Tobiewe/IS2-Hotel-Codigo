@@ -44,7 +44,7 @@ public class VCrearTarea extends JFrame implements IGUI {
 
 	public void initGUI() 
 	{
-		setTitle("Modificar Tarea");
+		setTitle("Crear Tarea");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
