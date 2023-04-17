@@ -43,7 +43,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 	}
 
 	public void initGUI() {
-		setTitle("Crear Habitación");
+		setTitle("Crear Departamento");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));

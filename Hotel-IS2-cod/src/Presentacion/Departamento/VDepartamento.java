@@ -33,6 +33,7 @@ public class VDepartamento extends JFrame implements IGUI{
 	}
 
 	protected void initGUI() {
+		setTitle("Departamento");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		Dimension d = new Dimension(500,150);
 		mainPanel.setPreferredSize(d);

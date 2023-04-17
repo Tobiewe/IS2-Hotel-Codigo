@@ -28,7 +28,7 @@ import Presentacion.Controller.IGUI;
 public class VLeerTodosDepartamento extends JFrame implements IGUI{
 
 	private Controller ctrl;
-	private String title = "Departamentos";
+	private String title = "Mostrar todos los departamentos";
 	private departamentoTableModel tableModel;
 	public VLeerTodosDepartamento(){
 		ctrl = Controller.getInstance();

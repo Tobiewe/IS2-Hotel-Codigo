@@ -43,7 +43,10 @@ public class SADepartamentoIMP implements SADepartamento {
 		DAODepartamentos daoDep = FactoriaIntegracion.getInstance().newDAODepartamento();
 		TDepartamento tDep = daoDep.MostrarUno(tdepartamento.getId());
 		
-		if(tDep == null && !tDep.getNombre().equals(tdepartamento.getNombre())){
+		if(tDep == null){
+			return -2;
+		}
+		if (!tDep.getNombre().equals(tdepartamento.getNombre())){
 			return -2;
 		}
 		
