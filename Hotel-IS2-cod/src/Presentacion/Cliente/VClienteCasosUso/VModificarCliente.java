@@ -52,7 +52,7 @@ public class VModificarCliente extends JFrame implements IGUI{
 
 	public void initGUI() 
 	{
-		setTitle("Crear Cliente");
+		setTitle("Modificar Cliente");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		mainPanel.setPreferredSize(new Dimension(400, 200));
 		mainPanel.setPreferredSize(new Dimension(400, 300));
@@ -90,7 +90,7 @@ public class VModificarCliente extends JFrame implements IGUI{
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		buttonPanel.add(crearButton(tipo,correoText,nombreText,apellidoText,nifText,cifText));
+		buttonPanel.add(modificarButton(tipo,correoText,nombreText,apellidoText,nifText,cifText));
 		buttonPanel.add(cancelButton());
 		
 		mainPanel.add(buttonPanel);
@@ -292,10 +292,10 @@ public class VModificarCliente extends JFrame implements IGUI{
 		return particularPanel;
 
 	}
-	public JButton crearButton(String tipo, JTextField correoText,JTextField nombreText,JTextField apellidoText,JTextField niftext,JTextField cifText)
+	public JButton modificarButton(String tipo, JTextField correoText,JTextField nombreText,JTextField apellidoText,JTextField niftext,JTextField cifText)
 	{
-		JButton crearButton = new JButton("Crear");
-		crearButton.addActionListener(new ActionListener()
+		JButton modificarButton = new JButton("Modificar");
+		modificarButton.addActionListener(new ActionListener()
 		{
 			//public TCliente(Integer id, String correo, Integer telefono, String nombre, String CIF, String apellidos,  String NIF, Boolean activo){
 			
@@ -321,7 +321,7 @@ public class VModificarCliente extends JFrame implements IGUI{
 			
 			
 		});
-		return crearButton;
+		return modificarButton;
 	}
 	public JButton cancelButton()
 	{
@@ -345,9 +345,9 @@ public class VModificarCliente extends JFrame implements IGUI{
 //		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
 		else if(event == Events.CLIENTE_MODIFICAR_NOTFOUND) 
-			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + " no se ha encontrado");
+			JOptionPane.showMessageDialog(this, "ERROR: El cliente con id " + (Integer)datos + " no se ha encontrado");
 		else if(event == Events.CLIENTE_MODIFICAR_SUCCESS){
-			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + "se ha modificado correctamente");
+			JOptionPane.showMessageDialog(this, "El cliente con id " + (Integer)datos + " se ha modificado correctamente");
 			setVisible(false);
 			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
 		}
