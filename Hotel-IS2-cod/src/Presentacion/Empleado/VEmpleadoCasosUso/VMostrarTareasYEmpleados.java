@@ -49,8 +49,8 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 		setTitle(title);
 		
 		
-		JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		cancelButtonPanel.add(cancelButton());
+//		JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//		cancelButtonPanel.add(cancelButton());
 		
 		tareaTableModel = new tareaTableModel();
 		mainPanel.add(tareaTableModel.transformTableToPanel());
@@ -61,7 +61,7 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 		mainPanel.add(buttonPanel);
 		
 		
-		Controller.getInstance().carryAction(Events.TAREA_MOSTRAR_TODOS, null);
+		Controller.getInstance().carryAction(Events.EMPLEADO_MOSTRAR_EMPYTAR, null);
 
 		pack();
 		setLocationRelativeTo(getParent());
@@ -200,7 +200,7 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ctrl.carryAction(Events.TAREA_NUEVA_VISTA, null);
+				ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
 			}
 		
 		});
@@ -209,9 +209,10 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 	@Override
 	public void update(int event, Object datos) {
 		if(event == Events.TAREA_MOSTRAR_TODAS_SUCCESS)
-			empleadoTableModel.setList((Collection<TTareas>) datos);
+			empleadoTableModel.setList((Collection<TEmpleados>) datos);
+			tareaTableModel.setList((Collection<TTareas>) datos);
 		else if(event == Events.TAREA_MOSTRAR_TODAS_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No hay ningúna tarea por mostrar");
+			JOptionPane.showMessageDialog(this, "ERROR: No hay tareas ni empleados en la base de datos");
 	}
 
 
