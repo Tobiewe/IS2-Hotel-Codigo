@@ -580,6 +580,7 @@ public class ControllerImp extends Controller {
 			saSolution= saReserva.eliminar((Integer)data);
 
 		}		
+		
 	}
 }
 
