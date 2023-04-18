@@ -98,9 +98,9 @@ public class VFactoryImp extends VFactory {
 			return new VDesvincularTarea();
 		case Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA:
 			return new VMostrarTareasYEmpleados();
-		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA:
+		case Events.EMPLEADO_MOSTRAR_POR_TAREA_VISTA:
 			return new VMostrarEmpleadosPorTarea();
-		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA:
+		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_VISTA:
 			return new VMostrarTareasPorEmpleado();
 			
 		//DEPARTAMENTO
