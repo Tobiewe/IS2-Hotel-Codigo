@@ -265,7 +265,7 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.EMPLEADO_MOSTRAR_EMPYTAR:
-			//Collection<TTareasDelEmpleado> tTareasDelEmpeladoCollection = saTareasDelEmpleado.
+			Collection<>
 			break;
 		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA, null);

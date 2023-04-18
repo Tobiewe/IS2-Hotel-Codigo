@@ -62,15 +62,15 @@ public class Events {
 	public static final int EMPLEADO_MOSTRAR_EMPYTAR_ID = 178;
 	public static final int EMPLEADO_MOSTRAR_EMPYTAR_NOID = 179;
 	
-	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA = 180;
-	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA = 181;
-	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_ID = 182;
-	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_NOID = 183;
+	public static final int EMPLEADO_MOSTRAR_POR_TAREA = 180;
+	public static final int EMPLEADO_MOSTRAR_POR_TAREA_VISTA = 181;
+	public static final int EMPLEADO_MOSTRAR_POR_TAREA_ID = 182;
+	public static final int EMPLEADO_MOSTRAR_POR_TAREA_NOID = 183;
 	
-	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO = 190;
-	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA = 191;
-	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_ID = 192;
-	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_NOID = 193;
+	public static final int EMPLEADO_MOSTRAR_POR_EMPLEADO = 190;
+	public static final int EMPLEADO_MOSTRAR_POR_EMPLEADO_VISTA = 191;
+	public static final int EMPLEADO_MOSTRAR_POR_EMPLEADO_ID = 192;
+	public static final int EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID = 193;
 	
 	
 	//CLIENTE

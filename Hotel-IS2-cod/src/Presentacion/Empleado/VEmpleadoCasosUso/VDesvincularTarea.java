@@ -144,7 +144,7 @@ public class VDesvincularTarea extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ctrl.carryAction(Events.TAREA_NUEVA_VISTA, null);
+				ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
 			}
 		
 		});
