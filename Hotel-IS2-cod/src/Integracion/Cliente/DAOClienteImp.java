@@ -39,9 +39,10 @@ public class DAOClienteImp implements DAOCliente {
 				key = rs.getInt(1);
 			}
 				
-
+			System.out.println(tCliente.getCIF());
 			
 			if(tCliente.getCIF() != null){
+				System.out.println("llega al dao crearcliente empresa");
 				c = "INSERT INTO cliente_empresa (CIF, cliente_Id) VALUES ( ?, ?);";
 
 				ps = Cnx.prepareStatement(c);
@@ -52,6 +53,7 @@ public class DAOClienteImp implements DAOCliente {
 
 			}
 			else{
+				System.out.println("llega al dao crearcliente particular");
 				c = "INSERT INTO cliente_particular (apellidos, NIF, cliente_Id) VALUES (?, ?, ?);";
 
 				ps = Cnx.prepareStatement(c);

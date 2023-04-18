@@ -419,6 +419,7 @@ public class ControllerImp extends Controller {
 		case Events.CLIENTE_CREAR:
 			tCliente = (TCliente)data;
 			saSolution = saCliente.crear(tCliente);
+			System.out.println(tCliente.getCIF());
 			if(saSolution == -1)
 				cIGUI.update(Events.CLIENTE_CREAR_ERROR, null);
 			else if(saSolution == -2)

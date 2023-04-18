@@ -17,7 +17,7 @@ public class SAClienteIMP implements SACliente{
 		
 		String numero = Integer.toString(entradaCliente.getTelefono());
 		
-		if(numero.length() != 9 || entradaCliente.getNombre() == ""){
+		if(numero.length() != 9 || entradaCliente.getNombre().trim().equals("")){
 			return -5;
 		}
 		
@@ -35,6 +35,7 @@ public class SAClienteIMP implements SACliente{
 			
 		}
 		
+		System.out.println("llega al sa");
 
 		return daoCliente.crear(entradaCliente);
 	}

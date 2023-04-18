@@ -165,18 +165,9 @@ public class VCrearCliente extends JFrame implements IGUI{
 		tipoCombo.addItem("Particular");
 		tipoCombo.addItem("Empresa");
 		
-		tipo = (String) tipoCombo.getSelectedItem();
-		if(tipo.equals("Particular"))
-		{
-			empresaPanel.setVisible(false);
-			particularPanel.setVisible(true);
-		}
-		else if(tipo.equals("Empresa"))
-		{
-			particularPanel.setVisible(false);
-			empresaPanel.setVisible(true);
-		}
-		
+		empresaPanel.setVisible(false);
+		particularPanel.setVisible(true);
+	
 		tipoCombo.addItemListener(new ItemListener()
 		{
 
@@ -197,6 +188,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 			
 		});
 		
+		tipo = (String) tipoCombo.getSelectedItem();
 		panelTipo.add(tipoLabel);
 		panelTipo.add(tipoCombo);
 		
@@ -259,7 +251,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 				}
 				else if (tipo.equals("Empresa"))
 				{
-					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true);
+					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(), cifText.getText(), null,null,true);
 					ctrl.carryAction(Events.CLIENTE_CREAR, tCliente);
 				}
 				else
