@@ -438,6 +438,7 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.CLIENTE_MODIFICAR_WRONG_PARAMETERS, tCliente.getId());
 			else if(saSolution > 0)
 				cIGUI.update(Events.CLIENTE_MODIFICAR_SUCCESS, tCliente.getId());
+			break;
 			
 		case Events.CLIENTE_ELIMINAR:
 			saSolution = saCliente.eliminar((Integer) data);
