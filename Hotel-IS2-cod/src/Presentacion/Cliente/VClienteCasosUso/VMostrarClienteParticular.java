@@ -21,7 +21,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
 import Negocio.Clientes.TCliente;
-import Presentacion.Cliente.VClienteCasosUso.VMostrarClienteEmpresa.clienteTableModel;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;

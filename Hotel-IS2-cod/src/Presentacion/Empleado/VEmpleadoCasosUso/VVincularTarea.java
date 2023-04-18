@@ -18,6 +18,7 @@ import javax.swing.event.ChangeListener;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
+import Negocio.Empleados.TTareasDelEmpleado;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
@@ -101,14 +102,14 @@ public class VVincularTarea extends JFrame implements IGUI {
 		idEmpleadoPanel.add(new JLabel("Id del empleado: "));
 		JSpinner idEmpleadoField = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
 		idEmpleadoField.setPreferredSize(new Dimension(50,20));
-		idTarea = (Integer) idEmpleadoField.getValue();
+		idEmpleado = (Integer) idEmpleadoField.getValue();
 		
 		idEmpleadoField.addChangeListener(new ChangeListener()
 		{
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				idTarea = (Integer) idEmpleadoField.getValue();
+				idEmpleado = (Integer) idEmpleadoField.getValue();
 			}
 			
 		});
@@ -126,8 +127,8 @@ public class VVincularTarea extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Pair<Integer, Integer> vincularPair = new Pair<>(idTarea, idEmpleado);
-				ctrl.carryAction(Events.EMPLEADO_VINCULAR, vincularPair);
+				TTareasDelEmpleado tTareasDelEmpleadoVincular = new TTareasDelEmpleado(idTarea,idEmpleado);
+				ctrl.carryAction(Events.EMPLEADO_VINCULAR, tTareasDelEmpleadoVincular);
 			}
 	
 		});
@@ -152,12 +153,14 @@ public class VVincularTarea extends JFrame implements IGUI {
 
 	@Override
 	public void update(int event, Object datos) {
-//		if (event == Events.TAREA_VINCULAR_SUCCESS) 
-//			JOptionPane.showMessageDialog(null, "La Habitacion de id " + (Integer) datos + " ha sido dada de baja");
-//		else if(event == Events.TAREA_VINCULAR_NOTFOUND)
-//			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " no esta registrado");
-		
-		
+		if(event == Events.EMPLEADO_VINCULAR_NOID)
+			JOptionPane.showMessageDialog(this, "ERROR: Por lo menos uno de los ids introducidos no está registrado");
+		else if(event == Events.EMPLEADO_VINCULAR_TAREA_NO_ACTIVA)
+			JOptionPane.showMessageDialog(this, "ERROR: Tarea no disponible");
+		else if(event == Events.EMPLEADO_VINCULAR_EMPLEADO_NO_ACTIVO)
+			JOptionPane.showMessageDialog(this, "ERROR: Empleado no disponible");
+		else if(event == Events.EMPLEADO_VINCULAR_SUCCESS)
+			JOptionPane.showMessageDialog(this, "La tarea y el empleado se han vinculado con éxito");
 	}
 
 }

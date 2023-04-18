@@ -28,7 +28,6 @@ public class Events {
 	public static final int EMPLEADO_ELIMINAR_NOTFOUND = 133;
 	public static final int EMPLEADO_ELIMINAR_SUCCESS = 134;
 	
-	
 	public static final int EMPLEADO_MOSTRAR_UNO = 140;
 	public static final int EMPLEADO_MOSTRAR_UNO_VISTA = 141;
 	public static final int EMPLEADO_MOSTRAR_UNO_SI_ID = 143;
@@ -44,17 +43,24 @@ public class Events {
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_ID = 162;
 	public static final int EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_NOID= 163;
 	
-	public static final int EMPLEADO_DESVINCULAR = 164;
-	public static final int EMPLEADO_DESVINCULAR_VISTA = 165;
+	public static final int EMPLEADO_VINCULAR = 164;
+	public static final int EMPLEADO_VINCULAR_VISTA = 165;
+	public static final int EMPLEADO_VINCULAR_NOID = 166;
+	public static final int EMPLEADO_VINCULAR_TAREA_NO_ACTIVA = 167;
+	public static final int EMPLEADO_VINCULAR_EMPLEADO_NO_ACTIVO = 168;
+	public static final int EMPLEADO_VINCULAR_SUCCESS = 169;
 
-	
-	public static final int EMPLEADO_VINCULAR = 166;
-	public static final int EMPLEADO_VINCULAR_VISTA = 167;
-	
-	public static final int EMPLEADO_MOSTRAR_EMPYTAR = 170;
-	public static final int EMPLEADO_MOSTRAR_EMPYTAR_VISTA = 171;
-	public static final int EMPLEADO_MOSTRAR_EMPYTAR_ID = 172;
-	public static final int EMPLEADO_MOSTRAR_EMPYTAR_NOID = 173;
+	public static final int EMPLEADO_DESVINCULAR = 170;
+	public static final int EMPLEADO_DESVINCULAR_VISTA = 171;
+	public static final int EMPLEADO_DESVINCULAR_NOID = 172;
+	public static final int EMPLEADO_DESVINCULAR_TAREA_NO_ACTIVA = 173;
+	public static final int EMPLEADO_DESVINCULAR_EMPLEADO_NO_ACTIVO = 174;
+	public static final int EMPLEADO_DESVINCULAR_SUCCESS = 175;
+
+	public static final int EMPLEADO_MOSTRAR_EMPYTAR = 176;
+	public static final int EMPLEADO_MOSTRAR_EMPYTAR_VISTA = 177;
+	public static final int EMPLEADO_MOSTRAR_EMPYTAR_ID = 178;
+	public static final int EMPLEADO_MOSTRAR_EMPYTAR_NOID = 179;
 	
 	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA = 180;
 	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA = 181;

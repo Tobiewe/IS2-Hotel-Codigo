@@ -2,6 +2,7 @@ package Presentacion.Controller;
 
 import Negocio.Empleados.SAEmpleado;
 import Negocio.Empleados.TEmpleados;
+import Negocio.Empleados.TTareasDelEmpleado;
 
 import java.util.Collection;
 
@@ -28,6 +29,7 @@ public class ControllerImp extends Controller {
 	private SADepartamento saDepartamento;
 	private SAHabitacion saHabitacion;
 	private SAReserva saReserva;
+	//private SATareasDelEmpleado saTareasDelEmpleado;
 	private Integer saSolution;
 
 	private THabitaciones tHabitacion;
@@ -36,6 +38,7 @@ public class ControllerImp extends Controller {
 	private TTareas tTarea;
 	private TCliente tCliente;
 	private TDepartamento tDepartamento;
+	private TTareasDelEmpleado tTareasDelEmpleado;
 	
 	public ControllerImp() {
 		saEmpleado = SAFactory.getInstance().newSAEmpleado();
@@ -207,9 +210,9 @@ public class ControllerImp extends Controller {
 			saSolution = saEmpleado.eliminar((Integer) data);
 			
 			if(saSolution == -2)
-				cIGUI.update(Events.EMPLEADO_ELIMINAR_NOTFOUND, data);
+				cIGUI.update(Events.EMPLEADO_ELIMINAR_NOTFOUND, (Integer) data);
 			else
-				cIGUI.update(Events.EMPLEADO_ELIMINAR_SUCCESS, data);
+				cIGUI.update(Events.EMPLEADO_ELIMINAR_SUCCESS, (Integer) data);
 			break;
 				
 		case Events.EMPLEADO_MOSTRAR_UNO:
@@ -238,18 +241,36 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.EMPLEADO_VINCULAR:
-			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_VINCULAR_VISTA, null);
+			saSolution = saEmpleado.vincular((TTareasDelEmpleado) data);
+			if(saSolution == -5)
+				cIGUI.update(Events.EMPLEADO_VINCULAR_NOID, null);
+			else if(saSolution == -6)
+				cIGUI.update(Events.EMPLEADO_VINCULAR_TAREA_NO_ACTIVA, null);
+			else if(saSolution == -7)
+				cIGUI.update(Events.EMPLEADO_VINCULAR_EMPLEADO_NO_ACTIVO, null);
+			else
+				cIGUI.update(Events.EMPLEADO_VINCULAR_SUCCESS, null);
 			break;
-		case Events.EMPLEADO_DESVINCULAR_VISTA:
-			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_DESVINCULAR_VISTA, null);
+			
+		case Events.EMPLEADO_DESVINCULAR:
+			saSolution = saEmpleado.desvincular((TTareasDelEmpleado) data);
+			if(saSolution == -5)
+				cIGUI.update(Events.EMPLEADO_DESVINCULAR_NOID, null);
+			else if(saSolution == -6)
+				cIGUI.update(Events.EMPLEADO_DESVINCULAR_TAREA_NO_ACTIVA, null);
+			else if(saSolution == -7)
+				cIGUI.update(Events.EMPLEADO_DESVINCULAR_EMPLEADO_NO_ACTIVO, null);
+			else 
+				cIGUI.update(Events.EMPLEADO_DESVINCULAR_SUCCESS, null);
 			break;
-		case Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA:
-			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA, null);
+			
+		case Events.EMPLEADO_MOSTRAR_EMPYTAR:
+			//Collection<TTareasDelEmpleado> tTareasDelEmpeladoCollection = saTareasDelEmpleado.
 			break;
-		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA:
+		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA, null);
 			break;
-		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA:
+		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA, null);
 			break;
 			
