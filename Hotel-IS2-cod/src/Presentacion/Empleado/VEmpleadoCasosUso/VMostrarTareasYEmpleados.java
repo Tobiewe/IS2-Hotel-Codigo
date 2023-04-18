@@ -25,7 +25,6 @@ import Negocio.Tareas.TTareas;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
-import Presentacion.Tarea.VTareaCasosUso.VLeerTodasTareas.tareaTableModel;
 
 public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 
@@ -210,7 +209,7 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 	@Override
 	public void update(int event, Object datos) {
 		if(event == Events.TAREA_MOSTRAR_TODAS_SUCCESS)
-			tableModel.setList((Collection<TTareas>) datos);
+			empleadoTableModel.setList((Collection<TTareas>) datos);
 		else if(event == Events.TAREA_MOSTRAR_TODAS_ERROR)
 			JOptionPane.showMessageDialog(this, "ERROR: No hay ningúna tarea por mostrar");
 	}

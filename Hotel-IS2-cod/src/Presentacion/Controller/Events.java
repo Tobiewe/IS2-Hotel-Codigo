@@ -51,6 +51,21 @@ public class Events {
 	public static final int EMPLEADO_VINCULAR = 166;
 	public static final int EMPLEADO_VINCULAR_VISTA = 167;
 	
+	public static final int EMPLEADO_MOSTRAR_EMPYTAR = 170;
+	public static final int EMPLEADO_MOSTRAR_EMPYTAR_VISTA = 171;
+	public static final int EMPLEADO_MOSTRAR_EMPYTAR_ID = 172;
+	public static final int EMPLEADO_MOSTRAR_EMPYTAR_NOID = 173;
+	
+	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA = 180;
+	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA = 181;
+	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_ID = 182;
+	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_NOID = 183;
+	
+	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO = 190;
+	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA = 191;
+	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_ID = 192;
+	public static final int EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_NOID = 193;
+	
 	
 	//CLIENTE
 	public static final int CLIENTE_VISTA = 200;
@@ -218,20 +233,7 @@ public class Events {
 	public static final int TAREA_MOSTRAR_TODAS_ERROR = 553;
 	
 	
-	public static final int TAREA_MOSTRAR_EMPYTAR = 580;
-	public static final int TAREA_MOSTRAR_EMPYTAR_VISTA = 581;
-	public static final int TAREA_MOSTRAR_EMPYTAR_ID = 582;
-	public static final int TAREA_MOSTRAR_EMPYTAR_NOID = 583;
 	
-	public static final int TAREA_MOSTRAR_MOSTRAR_POR_TAREA = 590;
-	public static final int TAREA_MOSTRAR_MOSTRAR_POR_TAREA_VISTA = 591;
-	public static final int TTAREA_MOSTRAR_MOSTRAR_POR_TAREA_ID = 592;
-	public static final int TTAREA_MOSTRAR_MOSTRAR_POR_TAREA_NOID = 593;
-	
-	public static final int TAREA_MOSTRAR_MOSTRAR_POR_EMPLEADO = 594;
-	public static final int TAREA_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA = 595;
-	public static final int TTAREA_MOSTRAR_MOSTRAR_POR_EMPLEADO_ID = 596;
-	public static final int TTAREA_MOSTRAR_MOSTRAR_POR_EMPLEADO_NOID = 597;
 	//DEPARTAMENTO
 	public static final int DEPARTAMENTO_VISTA = 600;
 	public static final int DEPARTAMENTO_NUEVA_VISTA = 601;

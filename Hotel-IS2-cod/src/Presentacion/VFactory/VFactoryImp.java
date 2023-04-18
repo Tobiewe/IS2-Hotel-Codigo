@@ -18,11 +18,16 @@ import Presentacion.Departamento.VDepartamentoCasosUso.VLeerTodosDepartamento;
 import Presentacion.Departamento.VDepartamentoCasosUso.VLeerUnoDepartamento;
 import Presentacion.Empleado.VEmpleado;
 import Presentacion.Empleado.VEmpleadoCasosUso.VCrearEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VDesvincularTarea;
 import Presentacion.Empleado.VEmpleadoCasosUso.VEliminarEmpleado;
 import Presentacion.Empleado.VEmpleadoCasosUso.VLeerTodosEmpleado;
 import Presentacion.Empleado.VEmpleadoCasosUso.VLeerUnoEmpleado;
 import Presentacion.Empleado.VEmpleadoCasosUso.VModificarEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VMostrarEmpleadosPorTarea;
 import Presentacion.Empleado.VEmpleadoCasosUso.VMostrarPorDepartamento;
+import Presentacion.Empleado.VEmpleadoCasosUso.VMostrarTareasPorEmpleado;
+import Presentacion.Empleado.VEmpleadoCasosUso.VMostrarTareasYEmpleados;
+import Presentacion.Empleado.VEmpleadoCasosUso.VVincularTarea;
 import Presentacion.Habitacion.VHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VAñadirHabitacion;
 import Presentacion.Habitacion.VHabitacionCasosUso.VEliminarHabitacion;
@@ -91,6 +96,12 @@ public class VFactoryImp extends VFactory {
 			return new VVincularTarea();
 		case Events.EMPLEADO_DESVINCULAR_VISTA:
 			return new VDesvincularTarea();
+		case Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA:
+			return new VMostrarTareasYEmpleados();
+		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA:
+			return new VMostrarEmpleadosPorTarea();
+		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA:
+			return new VMostrarTareasPorEmpleado();
 			
 		//DEPARTAMENTO
 		case Events.DEPARTAMENTO_VISTA:
@@ -151,7 +162,6 @@ public class VFactoryImp extends VFactory {
 			return new VMostrarUnaHabitacion();
 		case Events.HABITACION_MOSTRAR_TODAS_VISTA:
 			return new VMostrarTodasHabitacion();
-			
 		}
 		
 		return null;

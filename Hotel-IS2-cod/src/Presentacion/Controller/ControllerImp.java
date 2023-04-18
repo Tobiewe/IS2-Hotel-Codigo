@@ -161,6 +161,22 @@ public class ControllerImp extends Controller {
 		case Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_VISTA, null);
 			break;
+		case Events.EMPLEADO_VINCULAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_VINCULAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_DESVINCULAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_DESVINCULAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA, null);
+			break;
+		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA, null);
+			break;
+		
 			
 			//ACCIONES
 		case Events.EMPLEADO_CREAR:
@@ -219,6 +235,22 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_NOID, null);
 			else
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_ID, collectionEmpleadoPorDep);
+			break;
+			
+		case Events.EMPLEADO_VINCULAR:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_VINCULAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_DESVINCULAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_DESVINCULAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA, null);
+			break;
+		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA, null);
+			break;
+		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA, null);
 			break;
 			
 			
@@ -289,7 +321,6 @@ public class ControllerImp extends Controller {
 			else if(saSolution == -5)
 				cIGUI.update(Events.TAREA_CREAR_WRONG_PARAMETERS, saSolution);
 			else if(saSolution > 0)
-				cIGUI.update(Events.TAREA_CREAR_SUCCESS, saSolution);
 			break;
 			
 		case Events.TAREA_MODIFICAR:

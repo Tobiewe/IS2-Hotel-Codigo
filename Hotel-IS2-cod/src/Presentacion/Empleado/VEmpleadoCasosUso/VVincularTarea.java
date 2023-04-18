@@ -127,7 +127,7 @@ public class VVincularTarea extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Pair<Integer, Integer> vincularPair = new Pair<>(idTarea, idEmpleado);
-				ctrl.carryAction(Events.TAREA_VINCULAR, vincularPair);
+				ctrl.carryAction(Events.EMPLEADO_VINCULAR, vincularPair);
 			}
 	
 		});
