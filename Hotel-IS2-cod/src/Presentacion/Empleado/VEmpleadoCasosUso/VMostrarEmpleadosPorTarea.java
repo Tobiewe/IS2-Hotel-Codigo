@@ -99,7 +99,7 @@ public class VMostrarEmpleadosPorTarea extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA, idTarea);
+				ctrl.carryAction(Events.EMPLEADO_MOSTRAR_POR_TAREA, idTarea);
 			}
 			
 			
@@ -186,7 +186,7 @@ public class VMostrarEmpleadosPorTarea extends JFrame implements IGUI {
 	
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.EMPLEADO_MOSTRAR_POR)
+		if(event == Events.EMPLEADO_MOSTRAR_POR_TAREA_ID)
 		{
 			tableModel.setList((Collection<TEmpleados>) datos);
 		}
