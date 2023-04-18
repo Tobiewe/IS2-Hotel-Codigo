@@ -578,6 +578,12 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.RESERVA_ELIMINAR:
 			saSolution= saReserva.eliminar((Integer)data);
+			
+			if(saSolution == -1)
+				cIGUI.update(Events.RESERVA_ELIMINAR_ERROR, data);
+			else
+				cIGUI.update(Events.RESERVA_ELIMINAR_SUCCESS, data);
+			break;
 
 		}		
 		

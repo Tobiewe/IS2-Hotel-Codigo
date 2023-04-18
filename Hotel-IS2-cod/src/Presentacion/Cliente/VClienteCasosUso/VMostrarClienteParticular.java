@@ -132,7 +132,7 @@ public class VMostrarClienteParticular extends JFrame implements IGUI{
 			JTable hTable = new JTable(this); 
 			
 			tablaPanel.add(hTable);
-			TitledBorder titleBorder = BorderFactory.createTitledBorder("Habitación");
+			TitledBorder titleBorder = BorderFactory.createTitledBorder("Clientes Particulares");
 			tablaPanel.setBorder(titleBorder);
 			
 			JScrollPane sPanel = new JScrollPane(hTable);
@@ -161,7 +161,7 @@ public class VMostrarClienteParticular extends JFrame implements IGUI{
 		if(event == Events.CLIENTE_MOSTRAR_TODOS_SUCCESS)
 			tableModel.setList((Collection<TCliente>) datos);
 		else if(event == Events.CLIENTE_MOSTRAR_TODOS_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No hay ninguna habitación por mostrar");
+			JOptionPane.showMessageDialog(this, "ERROR: No hay ningun Cliente particular por mostrar");
 	}
 
 }
