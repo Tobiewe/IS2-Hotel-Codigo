@@ -9,7 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import Negocio.Empleados.TEmpleados;
 import Negocio.Empleados.TTareasDelEmpleado;
+import Negocio.Tareas.TTareas;
 
 public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 
@@ -52,13 +54,13 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 	}
 
 	
-	public Integer modificar(TTareasDelEmpleado tTareasDelEmpleado) {
+	public Integer eliminar(TTareasDelEmpleado tTareasDelEmpleado) {
 
 		int key = -1;
 
 		try {
 			
-			String c = "UPDATE tareas_empleado SET id_tareas = ? WHERE id_empleado = ?;";
+			String c = "DELETE FROM tareas_empleado WHERE id_empleado = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -112,12 +114,12 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 	}
 
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas) {
+	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas) {
 
-		ArrayList<TTareasDelEmpleado> lista = new ArrayList<TTareasDelEmpleado>();
+		ArrayList<TTareas> lista = new ArrayList<TTareas>();
 		
 		try {
-			String c = "SELECT * FROM tareas_empleado WHERE id_tareas = ?;";
+			String c = "SELECT * FROM tareas JOIN tareas_empleado ON tareas.Id = tareas_empleado.id_tareas WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -127,7 +129,8 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 
 			while (Rs.next()){
 				
-				lista.add(new TTareasDelEmpleado(Rs.getInt("id_tareas"), Rs.getInt("id_empleado")));
+				lista.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
+						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
 				
 			}
 	
@@ -145,12 +148,12 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 	}
 
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
+	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
 
-		ArrayList<TTareasDelEmpleado> lista = new ArrayList<TTareasDelEmpleado>();
+		ArrayList<TEmpleados> lista = new ArrayList<TEmpleados>();
 		
 		try {
-			String c = "SELECT * FROM tareas_empleado WHERE id_empleado = ?;";
+			String c = "SELECT * FROM empleado JOIN tareas_empleado ON empleado.Id = tareas_empleado.id_empleado WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -160,7 +163,8 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 
 			while (Rs.next()){
 				
-				lista.add(new TTareasDelEmpleado(Rs.getInt("id_tareas"), Rs.getInt("id_empleado")));
+				lista.add(new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
+						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartamento")));
 				
 			}
 	

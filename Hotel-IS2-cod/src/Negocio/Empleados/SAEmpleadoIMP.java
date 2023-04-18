@@ -163,7 +163,7 @@ public class SAEmpleadoIMP implements SAEmpleado {
 		
 		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
 		
-		return daote.modificar(tTareasDelEmpleado);
+		return daote.eliminar(tTareasDelEmpleado);
 	}
 
 
@@ -193,21 +193,19 @@ public class SAEmpleadoIMP implements SAEmpleado {
 
 
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas) {
+	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas) {
 		
-		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
 		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
 		
 		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
-		Collection<TTareasDelEmpleado> lista = daote.LeerLineasPedidoPorTareas(idTareas);
-		Collection<TTareasDelEmpleado> dev = new ArrayList<TTareasDelEmpleado>();
+		Collection<TTareas> lista = daote.LeerLineasPedidoPorTareas(idTareas);
+		Collection<TTareas> dev = new ArrayList<TTareas>();
 		
-		for(TTareasDelEmpleado t : lista){
+		for(TTareas t : lista){
 			
-			TEmpleados tem = daoEmpl.MostrarUno(t.getId_empleado());
-			TTareas tta = daoTarea.leerUno(t.getId_tareas());
+			TTareas tta = daoTarea.leerUno(idTareas);
 			
-			if(tem != null || tta != null){
+			if(tta != null){
 				dev.add(t);
 			}
 			
@@ -218,20 +216,19 @@ public class SAEmpleadoIMP implements SAEmpleado {
 
 
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
+	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
+		
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
-		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
 		
 		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
-		Collection<TTareasDelEmpleado> lista = daote.LeerLineasPedidoPorEmpleado(idEmpleado);
-		Collection<TTareasDelEmpleado> dev = new ArrayList<TTareasDelEmpleado>();
+		Collection<TEmpleados> lista = daote.LeerLineasPedidoPorEmpleado(idEmpleado);
+		Collection<TEmpleados> dev = new ArrayList<TEmpleados>();
 		
-		for(TTareasDelEmpleado t : lista){
+		for(TEmpleados t : lista){
 			
-			TEmpleados tem = daoEmpl.MostrarUno(t.getId_empleado());
-			TTareas tta = daoTarea.leerUno(t.getId_tareas());
+			TEmpleados tem = daoEmpl.MostrarUno(idEmpleado);
 			
-			if(tem != null || tta != null){
+			if(tem != null){
 				dev.add(t);
 			}
 			

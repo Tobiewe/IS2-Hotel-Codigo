@@ -1,6 +1,8 @@
 package Integracion.TareasDelEmpleado;
 
+import Negocio.Empleados.TEmpleados;
 import Negocio.Empleados.TTareasDelEmpleado;
+import Negocio.Tareas.TTareas;
 
 import java.util.Collection;
 
@@ -8,12 +10,12 @@ public interface DAOTareasDelEmpleado {
 
 	public Integer crear(TTareasDelEmpleado tTareasDelEmpleado);
 
-	public Integer modificar(TTareasDelEmpleado tTareasDelEmpleado);
+	public Integer eliminar(TTareasDelEmpleado tTareasDelEmpleado);
 	
 	public Collection<TTareasDelEmpleado> Leertodos();
 
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas);
+	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas);
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
+	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
 	
 }

@@ -3,6 +3,7 @@ package Negocio.Empleados;
 import java.util.Collection;
 
 import Negocio.Empleados.TEmpleados;
+import Negocio.Tareas.TTareas;
 
 public interface SAEmpleado {
 	
@@ -24,7 +25,7 @@ public interface SAEmpleado {
 	
 	public Collection<TTareasDelEmpleado> Leertodos();
 
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas);
+	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas);
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
+	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
 }
