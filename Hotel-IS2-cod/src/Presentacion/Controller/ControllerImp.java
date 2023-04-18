@@ -173,11 +173,11 @@ public class ControllerImp extends Controller {
 		case Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA, null);
 			break;
-		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA:
-			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA, null);
+		case Events.EMPLEADO_MOSTRAR_POR_TAREA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_POR_TAREA_VISTA, null);
 			break;
-		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA:
-			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA, null);
+		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_VISTA, null);
 			break;
 		
 			
@@ -265,13 +265,23 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.EMPLEADO_MOSTRAR_EMPYTAR:
-			Collection<>
+			//Falta esto
 			break;
-		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA:
-			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_TAREA_VISTA, null);
+			
+		case Events.EMPLEADO_MOSTRAR_POR_TAREA:
+			Collection<TEmpleados> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorTareas((Integer) data);
+			if(collectionEmpleadosPorTarea == null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, null);
+			else
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_NOID, null);
 			break;
-		case Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO:
-			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_MOSTRAR_POR_EMPLEADO_VISTA, null);
+
+		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
+			Collection<TEmpleados> collectionTareasPorEmpleado = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data);
+			if(collectionTareasPorEmpleado == null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, null);
+			else
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, null);
 			break;
 			
 			

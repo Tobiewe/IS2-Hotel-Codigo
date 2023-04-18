@@ -49,8 +49,8 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 		setTitle(title);
 		
 		
-//		JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-//		cancelButtonPanel.add(cancelButton());
+		JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		cancelButtonPanel.add(cancelButton());
 		
 		tareaTableModel = new tareaTableModel();
 		mainPanel.add(tareaTableModel.transformTableToPanel());
