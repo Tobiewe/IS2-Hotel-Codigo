@@ -254,12 +254,12 @@ public class VCrearCliente extends JFrame implements IGUI{
 			public void actionPerformed(ActionEvent e) {
 				if(tipo.equals("Particular"))
 				{
-					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true,tipo);
+					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true);
 					ctrl.carryAction(Events.CLIENTE_CREAR, tCliente);
 				}
 				else if (tipo.equals("Empresa"))
 				{
-					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true,tipo);
+					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true);
 					ctrl.carryAction(Events.CLIENTE_CREAR, tCliente);
 				}
 				else
