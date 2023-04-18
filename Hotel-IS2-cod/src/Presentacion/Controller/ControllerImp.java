@@ -581,6 +581,7 @@ public class ControllerImp extends Controller {
 			
 			if(saSolution == -1)
 				cIGUI.update(Events.RESERVA_ELIMINAR_ERROR, data);
+			
 			else
 				cIGUI.update(Events.RESERVA_ELIMINAR_SUCCESS, data);
 			break;
