@@ -423,11 +423,11 @@ public class ControllerImp extends Controller {
 			if(saSolution == -1)
 				cIGUI.update(Events.CLIENTE_CREAR_ERROR, null);
 			else if(saSolution == -2)
-				cIGUI.update(Events.CLIENTE_CREAR_REPEATED,  tCliente.getId());
+				cIGUI.update(Events.CLIENTE_CREAR_REPEATED,  saSolution);
 			else if(saSolution == -5)
 				cIGUI.update(Events.CLIENTE_CREAR_WRONG_PARAMETERS, saSolution);
 			else if(saSolution > 0)
-				cIGUI.update(Events.CLIENTE_CREAR_SUCCESS, tCliente.getId());
+				cIGUI.update(Events.CLIENTE_CREAR_SUCCESS,saSolution);
 			break;
 			
 		case Events.CLIENTE_MODIFICAR:
