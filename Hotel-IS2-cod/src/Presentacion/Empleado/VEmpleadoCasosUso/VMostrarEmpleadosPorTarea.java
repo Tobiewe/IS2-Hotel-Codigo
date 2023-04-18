@@ -36,7 +36,6 @@ public class VMostrarEmpleadosPorTarea extends JFrame implements IGUI {
 	private Integer idTarea;
 	private empleadoTableModel tableModel;
 	
-	private Integer idDepartamento;
 	public VMostrarEmpleadosPorTarea(){
 		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable() {
