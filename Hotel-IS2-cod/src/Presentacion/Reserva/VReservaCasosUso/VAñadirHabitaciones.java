@@ -32,10 +32,11 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 	private Controller ctrl;
 	private String title = "Añadir Habitaciones";
 	private Integer idHabitacion;
-	private Integer[] listaHabitaciones;
+    DefaultListModel<Integer> listaHabitaciones;
 
 	public VAñadirHabitaciones() {
 		ctrl = Controller.getInstance();
+		listaHabitaciones  = new DefaultListModel<>();
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -55,22 +56,18 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		
 		mainPanel.add(buttonsFirstPanel());
 		
-		JList<Integer> list = new JList<>();
+		JList<Integer> list = new JList<>(listaHabitaciones);
+		list.setName("Habitaciones");
 		JScrollPane scrollPane = new JScrollPane(list);
 		mainPanel.add(scrollPane);
 		
-		mainPanel.add(cerrarReservaButton());
+		mainPanel.add(cerrarReservaPanel());
+		
 
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
-//	public JScrollPane habitacionesListPanel() {
-//		
-//		return scrollPane;
-//
-//	}
 
 
 	public JPanel panelIdHabitacion() {
@@ -108,7 +105,8 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		JButton cerrarReservaButton = new JButton("Añadir");
 		cerrarReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(!listaHabitaciones.contains(idHabitacion))
+					listaHabitaciones.addElement(idHabitacion);
 			}
 		});
 		return cerrarReservaButton;
@@ -117,20 +115,39 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		JButton cerrarReservaButton = new JButton("Eliminar");
 		cerrarReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.RESERVA_CERRAR, null);
+				listaHabitaciones.removeElement(idHabitacion);
 			}
 		});
 		return cerrarReservaButton;
 	}
 	
-	public JButton cerrarReservaButton() {
+	public JPanel cerrarReservaPanel() {
+		JPanel cerrarReservaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
 		JButton cerrarReservaButton = new JButton("Cerrar");
 		cerrarReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.carryAction(Events.RESERVA_CERRAR, null);
 			}
 		});
-		return cerrarReservaButton;
+		cerrarReservaPanel.add(cancelButton());
+		cerrarReservaPanel.add(cerrarReservaButton);
+		return cerrarReservaPanel;
+	}
+	
+	public JButton cancelButton()
+	{
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
+			}
+		
+		});
+		return cancelButton;
 	}
 	@Override
 	public void update(int event, Object datos) {
