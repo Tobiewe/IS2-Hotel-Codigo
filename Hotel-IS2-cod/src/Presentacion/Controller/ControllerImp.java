@@ -8,6 +8,8 @@ import java.util.Collection;
 
 import Negocio.Clientes.SACliente;
 import Negocio.Clientes.TCliente;
+import Negocio.Clientes.TEmpresa;
+import Negocio.Clientes.TParticular;
 import Negocio.Tareas.SATarea;
 import Negocio.Tareas.TTareas;
 import Negocio.Departamentos.TDepartamento;
@@ -468,7 +470,7 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.CLIENTE_MOSTRAR_PARTICULAR:
-			Collection<TCliente> collectionParticular = saCliente.MostrarParticular();
+			Collection<TParticular> collectionParticular = saCliente.MostrarParticular();
 			if(collectionParticular.isEmpty())
 				cIGUI.update(Events.CLIENTE_MOSTRAR_PARTICULAR_ERROR, null);
 			else
@@ -477,7 +479,7 @@ public class ControllerImp extends Controller {
 			
 			
 		case Events.CLIENTE_MOSTRAR_EMPRESA:
-			Collection<TCliente> collectionEmpresa = saCliente.MostrarEmpresa();
+			Collection<TEmpresa> collectionEmpresa = saCliente.MostrarEmpresa();
 			if(collectionEmpresa.isEmpty())
 				cIGUI.update(Events.CLIENTE_MOSTRAR_EMPRESA_ERROR, null);
 			else
