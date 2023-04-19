@@ -101,15 +101,15 @@ public class SAClienteIMP implements SACliente{
 
 
 	
-	public Collection<TCliente> MostrarParticular() {
+	public Collection<TParticular> MostrarParticular() {
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
-		Collection<TCliente> lista = daoCliente.MostrarParticular();
-		Collection<TCliente> dev = new ArrayList<TCliente>();
+		Collection<TParticular> lista = daoCliente.MostrarParticular();
+		Collection<TParticular> dev = new ArrayList<TParticular>();
 		
 		for(TCliente t : lista){
 			
 			if(daoCliente.MostrarUno(t.getId()) != null){
-				dev.add(t);
+				dev.add((TParticular) t);
 			}
 		}
 		
@@ -117,16 +117,16 @@ public class SAClienteIMP implements SACliente{
 	}
 
 
-	public Collection<TCliente> MostrarEmpresa() {
+	public Collection<TEmpresa> MostrarEmpresa() {
 		
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
-		Collection<TCliente> lista = daoCliente.MostrarEmpresa();
-		Collection<TCliente> dev = new ArrayList<TCliente>();
+		Collection<TEmpresa> lista = daoCliente.MostrarEmpresa();
+		Collection<TEmpresa> dev = new ArrayList<TEmpresa>();
 		
 		for(TCliente t : lista){
 			
 			if(daoCliente.MostrarUno(t.getId()) != null){
-				dev.add(t);
+				dev.add((TEmpresa) t);
 			}
 		}
 		

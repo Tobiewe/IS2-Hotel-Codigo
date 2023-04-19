@@ -1,6 +1,8 @@
 package Integracion.Cliente;
 
 import Negocio.Clientes.TCliente;
+import Negocio.Clientes.TEmpresa;
+import Negocio.Clientes.TParticular;
 
 import java.util.Collection;
 
@@ -16,8 +18,8 @@ public interface DAOCliente {
 
 	public Collection<TCliente> MostrarTodos();
 	
-	public Collection<TCliente> MostrarParticular();
+	public Collection<TParticular> MostrarParticular();
 	
-	public Collection<TCliente> MostrarEmpresa();
+	public Collection<TEmpresa> MostrarEmpresa();
 
 }

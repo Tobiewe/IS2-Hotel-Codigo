@@ -16,8 +16,8 @@ public interface SACliente {
 	
 	public Collection<TCliente> mostrarTodos();
 	
-	public Collection<TCliente> MostrarParticular();
+	public Collection<TParticular> MostrarParticular();
 	
-	public Collection<TCliente> MostrarEmpresa();
+	public Collection<TEmpresa> MostrarEmpresa();
 	
 }

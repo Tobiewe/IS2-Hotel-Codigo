@@ -1,6 +1,8 @@
 package Integracion.Cliente;
 
 import Negocio.Clientes.TCliente;
+import Negocio.Clientes.TEmpresa;
+import Negocio.Clientes.TParticular;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -266,8 +268,8 @@ public class DAOClienteImp implements DAOCliente {
 
 
 	
-	public Collection<TCliente> MostrarParticular() {
-		ArrayList<TCliente> lista = new ArrayList<TCliente>();
+	public Collection<TParticular> MostrarParticular() {
+		ArrayList<TParticular> lista = new ArrayList<TParticular>();
 		
 		try {
 			String c = "SELECT * FROM cliente RIGHT JOIN cliente_particular ON cliente.Id = cliente_particular.cliente_Id;";
@@ -282,7 +284,7 @@ public class DAOClienteImp implements DAOCliente {
 				
 				if(tCliente.getNIF() != null){
 					
-					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), Rs.getString("nombre"), 
+					lista.add(new TParticular(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), Rs.getString("nombre"), 
 							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo")));
 					
 				}
@@ -305,9 +307,9 @@ public class DAOClienteImp implements DAOCliente {
 
 
 	
-	public Collection<TCliente> MostrarEmpresa() {
+	public Collection<TEmpresa> MostrarEmpresa() {
 		
-		ArrayList<TCliente> lista = new ArrayList<TCliente>();
+		ArrayList<TEmpresa> lista = new ArrayList<TEmpresa>();
 		
 		try {
 			String c = "SELECT * FROM cliente RIGHT JOIN cliente_empresa ON cliente.Id = cliente_empresa.cliente_Id;";
@@ -322,7 +324,7 @@ public class DAOClienteImp implements DAOCliente {
 				
 				if(tCliente.getCIF() != null){
 					
-					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+					lista.add(new TEmpresa(Rs.getInt("Id"), Rs.getString("correo"),
 							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
 					
 				}
