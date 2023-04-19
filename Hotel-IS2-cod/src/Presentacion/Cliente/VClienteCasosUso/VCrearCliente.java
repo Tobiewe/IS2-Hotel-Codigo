@@ -21,6 +21,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import Negocio.Clientes.TCliente;
+import Negocio.Clientes.TEmpresa;
+import Negocio.Clientes.TParticular;
 import Negocio.Habitaciones.THabitaciones;
 
 import javax.swing.JDialog;
@@ -254,13 +256,13 @@ public class VCrearCliente extends JFrame implements IGUI{
 			public void actionPerformed(ActionEvent e) {
 				if(tipo.equals("Particular"))
 				{
-					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true,tipo);
-					ctrl.carryAction(Events.CLIENTE_CREAR, tCliente);
+					TParticular tParticular = new TParticular(null,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true,tipo);
+					ctrl.carryAction(Events.CLIENTE_CREAR, tParticular);
 				}
 				else if (tipo.equals("Empresa"))
 				{
-					TCliente tCliente = new TCliente(null,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true,tipo);
-					ctrl.carryAction(Events.CLIENTE_CREAR, tCliente);
+					TEmpresa tEmpresa = new TEmpresa(null,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true,tipo);
+					ctrl.carryAction(Events.CLIENTE_CREAR, tEmpresa);
 				}
 				else
 				{

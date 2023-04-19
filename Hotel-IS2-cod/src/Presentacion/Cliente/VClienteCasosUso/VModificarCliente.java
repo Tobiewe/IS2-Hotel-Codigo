@@ -22,6 +22,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import Negocio.Clientes.TCliente;
+import Negocio.Clientes.TEmpresa;
+import Negocio.Clientes.TParticular;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
@@ -304,13 +306,13 @@ public class VModificarCliente extends JFrame implements IGUI{
 			public void actionPerformed(ActionEvent e) {
 				if(tipo.equals("Particular"))
 				{
-					TCliente tCliente = new TCliente(id,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true,tipo);
-					ctrl.carryAction(Events.CLIENTE_MODIFICAR, tCliente);
+					TParticular tParticular = new TParticular(id,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true,tipo);
+					ctrl.carryAction(Events.CLIENTE_MODIFICAR, tParticular);
 				}
 				else if (tipo.equals("Empresa"))
 				{
-					TCliente tCliente = new TCliente(id,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true,tipo);
-					ctrl.carryAction(Events.CLIENTE_MODIFICAR, tCliente);
+					TEmpresa tEmpresa = new TEmpresa(id,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true,tipo);
+					ctrl.carryAction(Events.CLIENTE_MODIFICAR, tEmpresa);
 				}
 				else
 				{

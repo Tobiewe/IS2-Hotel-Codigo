@@ -41,9 +41,6 @@ public class VReserva extends JFrame implements IGUI {
 		mainPanel.add(eliminarReservaButton());
 		mainPanel.add(mostrarunaReservaButton());
 		mainPanel.add(mostrartodasReservaButton());
-		mainPanel.add(cerrarReservaButton());
-		mainPanel.add(quitarhabitacionesReservaButton());
-		mainPanel.add(annadirhabitacionesReservaButton());
 		mainPanel.add(mostrarporclienteReservaButton());
 		
 		pack();
