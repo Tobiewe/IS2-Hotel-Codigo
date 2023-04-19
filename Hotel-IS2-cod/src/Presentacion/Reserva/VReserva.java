@@ -42,7 +42,7 @@ public class VReserva extends JFrame implements IGUI {
 		mainPanel.add(mostrarunaReservaButton());
 		mainPanel.add(mostrartodasReservaButton());
 		mainPanel.add(mostrarporclienteReservaButton());
-		mainPanel.add(añadirhabitacionesReservaButton());
+		//mainPanel.add(añadirhabitacionesReservaButton());
 		
 		pack();
 		setLocationRelativeTo(getParent());
@@ -149,18 +149,18 @@ public class VReserva extends JFrame implements IGUI {
 		});
 		return mostrarporclienteReservaButton;
 	}
-	public JButton añadirhabitacionesReservaButton()
-	{
-		JButton annadirhabitacionesReservaButton = new JButton("Añadir Habitaciones");
-		annadirhabitacionesReservaButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
-			}
-		});
-		return annadirhabitacionesReservaButton;
-	}
+//	public JButton añadirhabitacionesReservaButton()
+//	{
+//		JButton annadirhabitacionesReservaButton = new JButton("Añadir Habitaciones");
+//		annadirhabitacionesReservaButton.addActionListener(new ActionListener()
+//		{
+//			public void actionPerformed(ActionEvent e)
+//			{
+//				ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
+//			}
+//		});
+//		return annadirhabitacionesReservaButton;
+//	}
 	@Override
 	public void update(int event, Object datos) {
 		// TODO Auto-generated method stub
