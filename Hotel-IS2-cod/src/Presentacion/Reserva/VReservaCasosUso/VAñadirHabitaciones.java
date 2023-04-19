@@ -1,45 +1,35 @@
 package Presentacion.Reserva.VReservaCasosUso;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTable;
+import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.table.AbstractTableModel;
 
-import Negocio.Reserva.TReserva;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
-import Presentacion.Controller.IGUI;
 
-public class VAbrirReserva extends JFrame implements IGUI {
+public class VAñadirHabitaciones extends JFrame implements IGUI{
 
 	private Controller ctrl;
 	private String title = "Abrir Reserva";
 	private Integer noches;
 	private Date fecha;
-	public VAbrirReserva(){
+	public VAñadirHabitaciones(){
 		ctrl = Controller.getInstance();
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -140,5 +130,4 @@ public class VAbrirReserva extends JFrame implements IGUI {
 		
 		
 	}
-
 }

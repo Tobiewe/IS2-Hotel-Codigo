@@ -93,7 +93,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		buttonPanel.add(crearButton(tipo,correoText,nombreText,apellidoText,nifText,cifText));
+		buttonPanel.add(crearButton(correoText,nombreText,apellidoText,nifText,cifText));
 		buttonPanel.add(cancelButton());
 		
 		mainPanel.add(buttonPanel);
@@ -190,7 +190,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 			
 		});
 		
-		tipo = (String) tipoCombo.getSelectedItem();
+		System.out.println(tipo);
 		panelTipo.add(tipoLabel);
 		panelTipo.add(tipoCombo);
 		
@@ -236,7 +236,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 		return particularPanel;
 
 	}
-	public JButton crearButton(String tipo, JTextField correoText,JTextField nombreText,JTextField apellidoText,JTextField niftext,JTextField cifText)
+	public JButton crearButton(JTextField correoText,JTextField nombreText,JTextField apellidoText,JTextField niftext,JTextField cifText)
 	{
 		JButton crearButton = new JButton("Crear");
 		crearButton.addActionListener(new ActionListener()
@@ -246,6 +246,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(tipo);
 				if(tipo.equals("Particular"))
 				{
 					TParticular tParticular = new TParticular(null,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true,tipo);

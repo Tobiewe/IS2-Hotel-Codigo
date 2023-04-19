@@ -153,7 +153,10 @@ public class Events {
 	
 	public static final int RESERVA_CERRAR = 360;
 	public static final int RESERVA_QUITAR_HABITACIONES = 370;
+	
 	public static final int RESERVA_AÑADIR_HABITACIONES = 380;
+	public static final int RESERVA_AÑADIR_HABITACIONES_VISTA = 381;
+	
 	public static final int RESERVA_MOSTRAR_POR_CLIENTE = 390;
 	
 	//HABITACION

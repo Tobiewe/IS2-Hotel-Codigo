@@ -92,7 +92,7 @@ public class VModificarCliente extends JFrame implements IGUI{
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		buttonPanel.add(modificarButton(tipo,correoText,nombreText,apellidoText,nifText,cifText));
+		buttonPanel.add(modificarButton(correoText,nombreText,apellidoText,nifText,cifText));
 		buttonPanel.add(cancelButton());
 		
 		mainPanel.add(buttonPanel);
@@ -294,7 +294,7 @@ public class VModificarCliente extends JFrame implements IGUI{
 		return particularPanel;
 
 	}
-	public JButton modificarButton(String tipo, JTextField correoText,JTextField nombreText,JTextField apellidoText,JTextField niftext,JTextField cifText)
+	public JButton modificarButton(JTextField correoText,JTextField nombreText,JTextField apellidoText,JTextField niftext,JTextField cifText)
 	{
 		JButton modificarButton = new JButton("Modificar");
 		modificarButton.addActionListener(new ActionListener()
