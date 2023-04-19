@@ -299,6 +299,7 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.RESERVA_AÑADIR_HABITACIONES_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
+			break;
 		
 //		case Events.RESERVA_VINCULAR_VISTA:
 //			cIGUI = VFactory.getInstance().newView(Events.TAREA_VINCULAR_VISTA, null);

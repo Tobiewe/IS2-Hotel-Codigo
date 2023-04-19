@@ -65,6 +65,8 @@ public class VAbrirReserva extends JFrame implements IGUI {
 
 	    JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	    cancelButtonPanel.add(cancelButton());
+	    
+	    mainPanel.add(añadirhabitacionesReservaButton());
 
 	    mainPanel.add(nochesPanel);
 	    mainPanel.add(fechaPanel);
