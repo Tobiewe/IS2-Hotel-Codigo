@@ -6,22 +6,16 @@ import Negocio.Reserva.TReserva;
 import Negocio.Reserva.TLineaReserva;
 
 public interface SAReserva {
-	public Integer abrir(TReserva reserva);
+	public Integer abrir(TReserva tReserva);
 	
-	public Integer aniadirHabitacion(TLineaReserva pedido);
-	
-	public Integer eliminarHabitacion(TLineaReserva pedido);
-	
-	public Integer modificar(TReserva reserva);
-	
-	public Integer cerrar(TLineaReserva pedido);
+	public Integer eliminar(Integer id);
 
-	public Integer eliminar(Integer idReserva);
+	public Integer modificar(TReserva tReserva);
 
-	public TReserva mostrarUno(Integer idReserva);
+	public TReserva MostrarUna(Integer id);
 	
-	public Collection<TReserva> mostrarTodos();
+	public Collection<TReserva> MostrarTodas();
 	
-	public Collection<TReserva> mostrarPorCliente(Integer idCliente);
+	public Collection<TReserva> leerReservasPorCliente(Integer idCliente);
 	
 }

@@ -18,6 +18,6 @@ public interface DAOReserva {
 	
 	public Collection<TReserva> MostrarTodas();
 	
-	public Collection<TReserva> leerReservasPorCliente(int idCliente);
+	public Collection<TReserva> leerReservasPorCliente(Integer idCliente);
 
 }

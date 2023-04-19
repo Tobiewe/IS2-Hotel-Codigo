@@ -14,7 +14,7 @@ public class SAReservaIMP implements SAReserva{
 
 	
 	public Integer abrir(TReserva reserva) {
-		if(reserva.getNoches() <= 0 || reserva.getNombre().trim().equals("")){
+		if(reserva.getNoches() <= 0 || reserva.getNombre().trim().equals("") || reserva.getTotal() != 0 || reserva.getActivo()){
 			return -5;
 		}
 		
@@ -24,30 +24,12 @@ public class SAReservaIMP implements SAReserva{
 	}
 
 	
-	public Integer aniadirHabitacion(TLineaReserva pedido) {
+	public Integer modificar(TReserva reserva) {
 		
-		DAOHabitaciones daoH = FactoriaIntegracion.getInstance().newDAOHabitaciones();
-		THabitaciones th = daoH.MostrarUna(pedido.getId_habitacion());
-		
-		if(th.getOcupada() == true){
-			return -2;
+		if(reserva.getNoches() <= 0 || reserva.getNombre().trim().equals("")){
+			return -5;
 		}
 		
-		DAOLineaReserva daoR = FactoriaIntegracion.getInstance().newLineaReserva();
-		
-		return daoR.crear(pedido);
-		
-	}
-
-	
-	public Integer eliminarHabitacion(TLineaReserva pedido) {		
-		DAOLineaReserva daoR = FactoriaIntegracion.getInstance().newLineaReserva();
-		
-		return daoR.eliminar(pedido.getId_reserva(), pedido.getId_cliente(), pedido.getId_habitacion());
-	}
-
-	
-	public Integer modificar(TReserva reserva) {
 		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
 		TReserva tr = daoR.MostrarUna(reserva.getId());
 		
@@ -60,13 +42,6 @@ public class SAReservaIMP implements SAReserva{
 	}
 
 	
-	public Integer cerrar(TLineaReserva pedido) {
-		DAOLineaReserva daoR = FactoriaIntegracion.getInstance().newLineaReserva();
-		
-		return 0; //hay que mirarlo
-	}
-
-	
 	public Integer eliminar(Integer idReserva) {
 		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
 		
@@ -74,7 +49,7 @@ public class SAReservaIMP implements SAReserva{
 	}
 
 	
-	public TReserva mostrarUno(Integer idReserva) {
+	public TReserva MostrarUna(Integer idReserva) {
 		
 		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
 		TReserva tr = daoR.MostrarUna(idReserva);
@@ -87,7 +62,7 @@ public class SAReservaIMP implements SAReserva{
 	}
 
 	
-	public Collection<TReserva> mostrarTodos() {
+	public Collection<TReserva> MostrarTodas() {
 		
 		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
 		Collection<TReserva> lista = daoR.MostrarTodas();
@@ -105,7 +80,7 @@ public class SAReservaIMP implements SAReserva{
 	}
 
 	
-	public Collection<TReserva> mostrarPorCliente(Integer idCliente) {
+	public Collection<TReserva> leerReservasPorCliente(Integer idCliente) {
 		
 		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
 		Collection<TReserva> lista = daoR.leerReservasPorCliente(idCliente);
