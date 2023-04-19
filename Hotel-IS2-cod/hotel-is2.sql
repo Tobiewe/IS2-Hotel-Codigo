@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2023 a las 17:54:17
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generaciÃ³n: 17-04-2023 a las 17:54:17
+-- VersiÃ³n del servidor: 10.4.27-MariaDB
+-- VersiÃ³n de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -165,22 +165,15 @@ INSERT INTO `habitacion` (`numero`, `piso`, `tamanyo`, `precio`, `ocupada`, `id_
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `linea_pedidos`
+-- Estructura de tabla para la tabla `linea_reserva`
 --
 
-CREATE TABLE `linea_pedidos` (
+CREATE TABLE `linea_reserva` (
   `id_Reserva` int(11) NOT NULL,
-  `id_Cliente` int(11) NOT NULL,
   `id_Habitacion` int(11) NOT NULL,
   `activo` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `linea_pedidos`
---
-
-INSERT INTO `linea_pedidos` (`id_Reserva`, `id_Cliente`, `id_Habitacion`, `activo`) VALUES
-(34, 3, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -247,7 +240,7 @@ INSERT INTO `tareas_empleado` (`id_tareas`, `id_empleado`) VALUES
 (67, 23);
 
 --
--- Índices para tablas volcadas
+-- Ã�ndices para tablas volcadas
 --
 
 --
@@ -289,11 +282,10 @@ ALTER TABLE `habitacion`
   ADD KEY `habitacion_ibfk_1` (`id_empleado`);
 
 --
--- Indices de la tabla `linea_pedidos`
+-- Indices de la tabla `linea_reserva`
 --
-ALTER TABLE `linea_pedidos`
-  ADD PRIMARY KEY (`id_Reserva`,`id_Cliente`,`id_Habitacion`),
-  ADD KEY `id_Cliente` (`id_Cliente`),
+ALTER TABLE `linea_reserva`
+  ADD PRIMARY KEY (`id_Reserva`, `id_Habitacion`),
   ADD KEY `id_Habitacion` (`id_Habitacion`);
 
 --
@@ -385,12 +377,11 @@ ALTER TABLE `habitacion`
   ADD CONSTRAINT `habitacion_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`Id`);
 
 --
--- Filtros para la tabla `linea_pedidos`
+-- Filtros para la tabla `linea_reserva`
 --
-ALTER TABLE `linea_pedidos`
-  ADD CONSTRAINT `linea_pedidos_ibfk_1` FOREIGN KEY (`id_Reserva`) REFERENCES `reserva` (`Id`),
-  ADD CONSTRAINT `linea_pedidos_ibfk_2` FOREIGN KEY (`id_Cliente`) REFERENCES `cliente` (`Id`),
-  ADD CONSTRAINT `linea_pedidos_ibfk_3` FOREIGN KEY (`id_Habitacion`) REFERENCES `habitacion` (`numero`);
+ALTER TABLE `linea_reserva`
+  ADD CONSTRAINT `linea_reserva_ibfk_1` FOREIGN KEY (`id_Reserva`) REFERENCES `reserva` (`Id`),
+  ADD CONSTRAINT `linea_reserva_ibfk_3` FOREIGN KEY (`id_Habitacion`) REFERENCES `habitacion` (`numero`);
 
 --
 -- Filtros para la tabla `reserva`
