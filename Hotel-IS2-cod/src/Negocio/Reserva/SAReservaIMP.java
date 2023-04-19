@@ -97,4 +97,75 @@ public class SAReservaIMP implements SAReserva{
 		
 	}
 
+
+	
+	public Integer añadirHabitacion(TLineaReserva tLineaPedido) {
+		
+		DAOHabitaciones daoH = FactoriaIntegracion.getInstance().newDAOHabitaciones();
+		THabitaciones th = daoH.MostrarUna(tLineaPedido.getId_habitacion());
+
+		if(th.getOcupada()){
+			return -6; //habitacion ocupada
+		}
+		
+		DAOLineaReserva daoLR = FactoriaIntegracion.getInstance().newLineaReserva();
+		
+		return daoLR.añadirHabitacion(tLineaPedido); 
+	}
+
+
+	
+	public Integer eliminarHabitacion(Integer idReserva, Integer idHabitacion) { 
+
+		DAOHabitaciones daoH = FactoriaIntegracion.getInstance().newDAOHabitaciones();
+		THabitaciones th = daoH.MostrarUna(idHabitacion);
+
+		if(th.getOcupada()){
+			return -6; //habitacion ocupada
+		}
+		
+		DAOLineaReserva daoLR = FactoriaIntegracion.getInstance().newLineaReserva();
+		
+		return daoLR.eliminarHabitacion(idReserva, idHabitacion); 
+
+	}
+
+
+	
+	public Collection<THabitaciones> ListarHabitacionesPorReserva(Integer idReserva) {
+
+		DAOLineaReserva daoLR = FactoriaIntegracion.getInstance().newLineaReserva();
+		Collection<THabitaciones> lista = daoLR.ListarHabitacionesPorReserva(idReserva);
+		Collection<THabitaciones> dev = new ArrayList<THabitaciones>();
+		
+		for(THabitaciones t : lista){
+			
+			if(t != null){
+				dev.add(t);
+			}
+		}
+		
+		return dev;
+
+	}
+
+
+	
+	public Collection<TReserva> ListarReservasPorHabitacion(Integer idHabitacion) {
+
+		DAOLineaReserva daoLR = FactoriaIntegracion.getInstance().newLineaReserva();
+		Collection<TReserva> lista = daoLR.ListarReservasPorHabitacion(idHabitacion);
+		Collection<TReserva> dev = new ArrayList<TReserva>();
+		
+		for(TReserva t : lista){
+			
+			if(t != null){
+				dev.add(t);
+			}
+		}
+		
+		return dev;
+		
+	}
+
 }
