@@ -23,7 +23,7 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			
-			String c = "INSERT INTO cliente (telefono, Correo, activo, nombre, Tipo) VALUES (?, ?, ?, ?, ?);";
+			String c = "INSERT INTO cliente (telefono, Correo, activo, nombre) VALUES (?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
@@ -32,7 +32,6 @@ public class DAOClienteImp implements DAOCliente {
 			ps.setString(2, tCliente.getCorreo());
 			ps.setBoolean(3, tCliente.getActivo());
 			ps.setString(4, tCliente.getNombre());
-			ps.setString(5, tCliente.getTipo());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -40,9 +39,10 @@ public class DAOClienteImp implements DAOCliente {
 				key = rs.getInt(1);
 			}
 				
-
+			System.out.println(tCliente.getCIF());
 			
-			if(tCliente.getTipo() == "Empresa" || tCliente.getTipo() == "empresa"){
+			if(tCliente.getCIF() != null){
+				System.out.println("llega al dao crearcliente empresa");
 				c = "INSERT INTO cliente_empresa (CIF, cliente_Id) VALUES ( ?, ?);";
 
 				ps = Cnx.prepareStatement(c);
@@ -53,6 +53,7 @@ public class DAOClienteImp implements DAOCliente {
 
 			}
 			else{
+				System.out.println("llega al dao crearcliente particular");
 				c = "INSERT INTO cliente_particular (apellidos, NIF, cliente_Id) VALUES (?, ?, ?);";
 
 				ps = Cnx.prepareStatement(c);
@@ -128,7 +129,7 @@ public class DAOClienteImp implements DAOCliente {
 			if(ps.executeUpdate()==1) ok= tCliente.getId();
 			
 			
-			if(tCliente.getTipo() == "Empresa" || tCliente.getTipo() == "empresa"){
+			if(tCliente.getCIF() != null){
 				
 				c = "UPDATE cliente_empresa SET CIF = ? WHERE cliente_Id = ?;";
 
@@ -140,7 +141,7 @@ public class DAOClienteImp implements DAOCliente {
 				ps.executeUpdate();
 
 			}
-			else if (tCliente.getTipo() == "Particular" || tCliente.getTipo() == "particular"){
+			else if (tCliente.getNIF() != null){
 				c = "UPDATE cliente_particular SET apellidos = ?, NIF = ? WHERE cliente_Id = ?;";
 
 				ps = Cnx.prepareStatement(c);
@@ -173,68 +174,38 @@ public class DAOClienteImp implements DAOCliente {
 		try {
 			
 			
-			String c = "SELECT * FROM cliente WHERE Id = ?;";
+			String c = "SELECT * FROM cliente JOIN cliente_particular ON cliente.Id = cliente_particular.cliente_Id WHERE Id = ?;";
 			
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
-			
+
 			ps.setInt(1, id);
 			ResultSet Rs = ps.executeQuery();
 
 			if (Rs.next()){
 				
-				if(Rs.getString("Tipo") == "Empresa" || Rs.getString("Tipo") == "empresa"){
-					
-					c = "SELECT * FROM cliente_empresa WHERE cliente_Id = ?;";
-					
-					ps = Cnx.prepareStatement(c);
-					
-					ps.setInt(1, id);
-					Rs = ps.executeQuery();
-					
-					CIF = Rs.getString("CIF");
-					
-					c = "SELECT * FROM cliente WHERE Id = ?;";
-					
-					ps = Cnx.prepareStatement(c);
-					
-					ps.setInt(1, id);
-					Rs = ps.executeQuery();
-					
-					tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-							Rs.getInt("telefono"), Rs.getString("nombre"),  CIF,  null ,null ,  Rs.getBoolean("activo"), Rs.getString("Tipo"));
-					
-					System.out.println(CIF);
-					
-				}
-				else{
-					
-					c = "SELECT * FROM cliente_particular WHERE cliente_Id = ?;";
-					
-					ps = Cnx.prepareStatement(c);
-					
-					ps.setInt(1, id);
-					Rs = ps.executeQuery();
-					
-					NIF = (String) Rs.getString("NIF");
-					apellidos = Rs.getString("apellidos");
-					
-					c = "SELECT * FROM cliente WHERE Id = ?;";
-					
-					ps = Cnx.prepareStatement(c);
-					
-					ps.setInt(1, id);
-					Rs = ps.executeQuery();
-					
-					tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-							Rs.getInt("telefono"), Rs.getString("nombre"),  null,  apellidos ,NIF ,  Rs.getBoolean("activo"), Rs.getString("Tipo"));
+				tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+						Rs.getInt("telefono"), Rs.getString("nombre"),  null,  Rs.getString("apellidos") , Rs.getString("NIF"),  Rs.getBoolean("activo"));
 				
-					System.out.println(NIF);
-					System.out.println(apellidos);
+			}
+			else{
+				
+				c = "SELECT * FROM cliente JOIN cliente_empresa ON cliente.Id = cliente_empresa.cliente_Id WHERE Id = ?;";
+				
+				ps = Cnx.prepareStatement(c);
 
+				ps.setInt(1, id);
+				Rs = ps.executeQuery();
+				
+				if(Rs.next()){
+					tCliente = new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
+							Rs.getInt("telefono"), Rs.getString("nombre"),  Rs.getString("CIF"), null, null,  Rs.getBoolean("activo"));
 				}
+				
 			}
 	
+			
+			
 			Cnx.close();
 			ps.close();
 			Rs.close();
@@ -267,13 +238,13 @@ public class DAOClienteImp implements DAOCliente {
 				if(tCliente.getCIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo"), Rs.getString("Tipo")));
+							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
 					
 				}
 				else if(tCliente.getNIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), Rs.getString("nombre"), 
-							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo"), Rs.getString("Tipo")));
+							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo")));
 					
 				}
 				
@@ -299,7 +270,7 @@ public class DAOClienteImp implements DAOCliente {
 		ArrayList<TCliente> lista = new ArrayList<TCliente>();
 		
 		try {
-			String c = "SELECT * FROM cliente;";
+			String c = "SELECT * FROM cliente JOIN cliente_particular ON cliente.Id = cliente_particular.cliente_Id;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -312,7 +283,7 @@ public class DAOClienteImp implements DAOCliente {
 				if(tCliente.getNIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"), Rs.getInt("telefono"), Rs.getString("nombre"), 
-							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo"), Rs.getString("Tipo")));
+							null, tCliente.getApellidos() ,tCliente.getNIF(),  Rs.getBoolean("activo")));
 					
 				}
 				
@@ -339,7 +310,7 @@ public class DAOClienteImp implements DAOCliente {
 		ArrayList<TCliente> lista = new ArrayList<TCliente>();
 		
 		try {
-			String c = "SELECT * FROM cliente;";
+			String c = "SELECT * FROM cliente JOIN cliente_empresa ON cliente.Id = cliente_empresa.cliente_Id;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -352,7 +323,7 @@ public class DAOClienteImp implements DAOCliente {
 				if(tCliente.getCIF() != null){
 					
 					lista.add(new TCliente(Rs.getInt("Id"), Rs.getString("correo"),
-							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo"), Rs.getString("Tipo")));
+							Rs.getInt("telefono"),  Rs.getString("nombre"), tCliente.getCIF(), null ,null,  Rs.getBoolean("activo")));
 					
 				}
 				

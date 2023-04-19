@@ -1,19 +1,23 @@
 package Integracion.TareasDelEmpleado;
 
+import Negocio.Empleados.TEmpleados;
 import Negocio.Empleados.TTareasDelEmpleado;
+import Negocio.Tareas.TTareas;
 
 import java.util.Collection;
+
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
 public interface DAOTareasDelEmpleado {
 
 	public Integer crear(TTareasDelEmpleado tTareasDelEmpleado);
 
-	public Integer modificar(TTareasDelEmpleado tTareasDelEmpleado);
+	public Integer eliminar(TTareasDelEmpleado tTareasDelEmpleado);
 	
-	public Collection<TTareasDelEmpleado> Leertodos();
+	public Pair<Collection<TEmpleados>,Collection<TTareas>> Leertodos();
 
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas);
+	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas);
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
+	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
 	
 }

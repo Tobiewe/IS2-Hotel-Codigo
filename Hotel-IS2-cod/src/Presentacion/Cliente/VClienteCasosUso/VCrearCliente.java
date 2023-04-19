@@ -167,18 +167,9 @@ public class VCrearCliente extends JFrame implements IGUI{
 		tipoCombo.addItem("Particular");
 		tipoCombo.addItem("Empresa");
 		
-		tipo = (String) tipoCombo.getSelectedItem();
-		if(tipo.equals("Particular"))
-		{
-			empresaPanel.setVisible(false);
-			particularPanel.setVisible(true);
-		}
-		else if(tipo.equals("Empresa"))
-		{
-			particularPanel.setVisible(false);
-			empresaPanel.setVisible(true);
-		}
-		
+		empresaPanel.setVisible(false);
+		particularPanel.setVisible(true);
+	
 		tipoCombo.addItemListener(new ItemListener()
 		{
 
@@ -199,6 +190,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 			
 		});
 		
+		tipo = (String) tipoCombo.getSelectedItem();
 		panelTipo.add(tipoLabel);
 		panelTipo.add(tipoCombo);
 		
@@ -258,6 +250,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 				{
 					TParticular tParticular = new TParticular(null,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true,tipo);
 					ctrl.carryAction(Events.CLIENTE_CREAR, tParticular);
+
 				}
 				else if (tipo.equals("Empresa"))
 				{
@@ -299,7 +292,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 		else if(event == Events.CLIENTE_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if(event == Events.CLIENTE_CREAR_SUCCESS){
-			JOptionPane.showMessageDialog(this, "El Cliente se ha creado correctamente");
+			JOptionPane.showMessageDialog(this, "El cliente con id " + (Integer) datos + " se ha creado correctamente");
 			setVisible(false);
 			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
 		}

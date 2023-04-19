@@ -118,7 +118,7 @@ public class VBorrarCliente extends JFrame implements IGUI{
 	@Override
 	public void update(int event, Object datos) {
 		if (event == Events.CLIENTE_ELIMINAR_SUCCESS){
-			JOptionPane.showMessageDialog(null, "La Habitacion de id " + (Integer) datos + " ha sido dada de baja");
+			JOptionPane.showMessageDialog(null, "El cliente de id " + (Integer) datos + " ha sido dada de baja");
 			setVisible(false);
 			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);
 		}

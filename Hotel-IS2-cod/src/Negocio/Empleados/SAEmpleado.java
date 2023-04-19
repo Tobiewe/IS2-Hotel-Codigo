@@ -2,7 +2,10 @@ package Negocio.Empleados;
 
 import java.util.Collection;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+
 import Negocio.Empleados.TEmpleados;
+import Negocio.Tareas.TTareas;
 
 public interface SAEmpleado {
 	
@@ -22,9 +25,9 @@ public interface SAEmpleado {
 
 	public Integer desvincular(TTareasDelEmpleado tTareasDelEmpleado);
 	
-	public Collection<TTareasDelEmpleado> Leertodos();
+	public Pair<Collection<TEmpleados>,Collection<TTareas>> LeertodosDeTareasEmpleado();
 
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas);
+	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas);
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
+	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
 }

@@ -3,6 +3,8 @@ package Negocio.Empleados;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+
 import Integracion.Empleados.DAOEmpleados;
 import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 import Integracion.Habitaciones.DAOHabitaciones;
@@ -163,26 +165,60 @@ public class SAEmpleadoIMP implements SAEmpleado {
 		
 		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
 		
-		return daote.modificar(tTareasDelEmpleado);
+		return daote.eliminar(tTareasDelEmpleado);
 	}
 
 
 	
-	public Collection<TTareasDelEmpleado> Leertodos() {
+	public  Pair<Collection<TEmpleados>,Collection<TTareas>> LeertodosDeTareasEmpleado() {
 
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
 		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
 		
 		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
-		Collection<TTareasDelEmpleado> lista = daote.Leertodos();
-		Collection<TTareasDelEmpleado> dev = new ArrayList<TTareasDelEmpleado>();
+		Pair<Collection<TEmpleados>,Collection<TTareas>> lista = daote.Leertodos();
+		ArrayList<TTareas> listatareas = new ArrayList<TTareas>();
+		ArrayList<TEmpleados> listaempleados = new ArrayList<TEmpleados>();
 		
-		for(TTareasDelEmpleado t : lista){
+		for(TEmpleados t : lista.left){
 			
-			TEmpleados tem = daoEmpl.MostrarUno(t.getId_empleado());
-			TTareas tta = daoTarea.leerUno(t.getId_tareas());
+			TEmpleados tem = daoEmpl.MostrarUno(t.getId());
 			
-			if(tem != null || tta != null){
+			if(tem != null){
+				listaempleados.add(t);
+			}
+			
+		}
+		
+		for(TTareas t : lista.right){
+			
+			TTareas tta = daoTarea.leerUno(t.getId());
+			
+			if(tta != null){
+				listatareas.add(t);
+			}
+			
+		}
+		
+		 Pair<Collection<TEmpleados>,Collection<TTareas>> dev = new  Pair<>(listaempleados, listatareas);
+		return dev;
+	}
+
+
+	
+	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas) {
+		
+		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
+		
+		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
+		Collection<TTareas> lista = daote.LeerLineasPedidoPorTareas(idTareas);
+		Collection<TTareas> dev = new ArrayList<TTareas>();
+		
+		for(TTareas t : lista){
+			
+			TTareas tta = daoTarea.leerUno(idTareas);
+			
+			if(tta != null){
 				dev.add(t);
 			}
 			
@@ -193,45 +229,19 @@ public class SAEmpleadoIMP implements SAEmpleado {
 
 
 	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorTareas(Integer idTareas) {
+	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
 		
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
-		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
 		
 		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
-		Collection<TTareasDelEmpleado> lista = daote.LeerLineasPedidoPorTareas(idTareas);
-		Collection<TTareasDelEmpleado> dev = new ArrayList<TTareasDelEmpleado>();
+		Collection<TEmpleados> lista = daote.LeerLineasPedidoPorEmpleado(idEmpleado);
+		Collection<TEmpleados> dev = new ArrayList<TEmpleados>();
 		
-		for(TTareasDelEmpleado t : lista){
+		for(TEmpleados t : lista){
 			
-			TEmpleados tem = daoEmpl.MostrarUno(t.getId_empleado());
-			TTareas tta = daoTarea.leerUno(t.getId_tareas());
+			TEmpleados tem = daoEmpl.MostrarUno(idEmpleado);
 			
-			if(tem != null || tta != null){
-				dev.add(t);
-			}
-			
-		}
-		
-		return dev;
-	}
-
-
-	
-	public Collection<TTareasDelEmpleado> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
-		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
-		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
-		
-		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
-		Collection<TTareasDelEmpleado> lista = daote.LeerLineasPedidoPorEmpleado(idEmpleado);
-		Collection<TTareasDelEmpleado> dev = new ArrayList<TTareasDelEmpleado>();
-		
-		for(TTareasDelEmpleado t : lista){
-			
-			TEmpleados tem = daoEmpl.MostrarUno(t.getId_empleado());
-			TTareas tta = daoTarea.leerUno(t.getId_tareas());
-			
-			if(tem != null || tta != null){
+			if(tem != null){
 				dev.add(t);
 			}
 			

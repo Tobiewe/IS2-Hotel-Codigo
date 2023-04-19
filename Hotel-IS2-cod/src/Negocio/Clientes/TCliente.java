@@ -10,11 +10,10 @@ public class TCliente {
 	protected String CIF;
 	protected String apellidos;
 	protected String NIF;
-	private String Tipo;
 	
 
 	
-	public TCliente(Integer id, String correo, Integer telefono, String nombre, String CIF, String apellidos,  String NIF, Boolean activo, String Tipo){
+	public TCliente(Integer id, String correo, Integer telefono, String nombre, String CIF, String apellidos,  String NIF, Boolean activo){
 		
 		this.id = id;
 		this.correo = correo;
@@ -24,7 +23,6 @@ public class TCliente {
 		this.apellidos = apellidos;
 		this.NIF =  NIF;
 		this.activo = activo;
-		this.Tipo = Tipo;
 	}
 
 
@@ -99,16 +97,6 @@ public class TCliente {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
-
-
-	public String getTipo() {
-		return Tipo;
-	}
-
-
-	public void setTipo(String tipo) {
-		Tipo = tipo;
 	}
 	
 }

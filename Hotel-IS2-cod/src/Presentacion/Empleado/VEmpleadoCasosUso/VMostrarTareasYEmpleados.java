@@ -208,9 +208,10 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 	}
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.TAREA_MOSTRAR_TODAS_SUCCESS)
+		if(event == Events.TAREA_MOSTRAR_TODAS_SUCCESS){
 			empleadoTableModel.setList((Collection<TEmpleados>) datos);
 			tareaTableModel.setList((Collection<TTareas>) datos);
+		}
 		else if(event == Events.TAREA_MOSTRAR_TODAS_ERROR)
 			JOptionPane.showMessageDialog(this, "ERROR: No hay tareas ni empleados en la base de datos");
 	}

@@ -119,16 +119,14 @@ public JButton cancelButton()
 	@Override
 	public void update(int event, Object datos) {
 		if (event == Events.HABITACION_ELIMINAR_SUCCESS){
-			JOptionPane.showMessageDialog(null, "La Reserva de id " + (Integer) datos + " ha sido dada de baja");
+			JOptionPane.showMessageDialog(null, "La Reserva de id " + id + " ha sido dada de baja");
 			setVisible(false);
 			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
 		}
-		else if(event == Events.HABITACION_ELIMINAR_NOTFOUND)
-			JOptionPane.showMessageDialog(this, "ERROR: El id " + (Integer) datos + " no esta registrado");
+		else if(event == Events.HABITACION_ELIMINAR_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: El id " + id + " no esta registrado");
 		
 		
 	}
 		
 	}
-
-
