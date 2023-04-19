@@ -169,13 +169,14 @@ public class VCrearCliente extends JFrame implements IGUI{
 		
 		empresaPanel.setVisible(false);
 		particularPanel.setVisible(true);
-	
+		tipo = "Particular";
 		tipoCombo.addItemListener(new ItemListener()
 		{
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				tipo = (String) tipoCombo.getSelectedItem();
+				System.out.println(tipo);
 				if(tipo.equals("Particular"))
 				{
 					empresaPanel.setVisible(false);
@@ -186,6 +187,7 @@ public class VCrearCliente extends JFrame implements IGUI{
 					particularPanel.setVisible(false);
 					empresaPanel.setVisible(true);
 				}
+				System.out.println(tipo);
 			}
 			
 		});

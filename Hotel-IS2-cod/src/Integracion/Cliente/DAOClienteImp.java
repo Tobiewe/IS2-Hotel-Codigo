@@ -270,7 +270,7 @@ public class DAOClienteImp implements DAOCliente {
 		ArrayList<TCliente> lista = new ArrayList<TCliente>();
 		
 		try {
-			String c = "SELECT * FROM cliente JOIN cliente_particular ON cliente.Id = cliente_particular.cliente_Id;";
+			String c = "SELECT * FROM cliente RIGHT JOIN cliente_particular ON cliente.Id = cliente_particular.cliente_Id;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
@@ -310,7 +310,7 @@ public class DAOClienteImp implements DAOCliente {
 		ArrayList<TCliente> lista = new ArrayList<TCliente>();
 		
 		try {
-			String c = "SELECT * FROM cliente JOIN cliente_empresa ON cliente.Id = cliente_empresa.cliente_Id;";
+			String c = "SELECT * FROM cliente RIGHT JOIN cliente_empresa ON cliente.Id = cliente_empresa.cliente_Id;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			Statement St = Cnx.createStatement();
