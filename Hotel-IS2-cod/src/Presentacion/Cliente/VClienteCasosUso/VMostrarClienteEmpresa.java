@@ -66,7 +66,7 @@ public class VMostrarClienteEmpresa extends JFrame implements IGUI{
 	}
 	class clienteTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Correo","Teléfono", "Nombre" , "CIF" , "Apellido", "NIF", "Activo"};
+		String[] columnValues = {"Id", "Correo","Teléfono", "Nombre" , "CIF", "Activo"};
 		List<TCliente> clientes;
 		
 		public clienteTableModel()
@@ -110,10 +110,6 @@ public class VMostrarClienteEmpresa extends JFrame implements IGUI{
 			else if(columnIndex == 4)
 				return clientes.get(rowIndex).getCIF();
 			else if(columnIndex == 5)
-				return clientes.get(rowIndex).getApellidos();
-			else if(columnIndex == 6)
-				return clientes.get(rowIndex).getNIF();
-			else if(columnIndex == 7)
 				return clientes.get(rowIndex).getActivo();
 			return null;
 		}

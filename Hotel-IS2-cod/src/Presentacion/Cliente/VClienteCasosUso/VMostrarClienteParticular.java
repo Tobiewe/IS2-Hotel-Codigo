@@ -61,7 +61,7 @@ public class VMostrarClienteParticular extends JFrame implements IGUI{
 		mainPanel.add(buttonPanel);
 		
 
-		Controller.getInstance().carryAction(Events.CLIENTE_MOSTRAR_TODOS, null);
+		Controller.getInstance().carryAction(Events.CLIENTE_MOSTRAR_PARTICULAR, null);
 
 		pack();
 		setLocationRelativeTo(getParent());
@@ -75,7 +75,7 @@ public class VMostrarClienteParticular extends JFrame implements IGUI{
 	
 	class clienteTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Teléfono", "Correo", "Activo"};
+		String[] columnValues = {"Id", "Correo", "Teléfono", "Nombre","NIF","Apellido","Activo"};
 		List<TCliente> clientes;
 		
 		public clienteTableModel()
@@ -117,12 +117,10 @@ public class VMostrarClienteParticular extends JFrame implements IGUI{
 			else if(columnIndex == 3)
 				return clientes.get(rowIndex).getNombre();
 			else if(columnIndex == 4)
-				return clientes.get(rowIndex).getCIF();
+				return clientes.get(rowIndex).getNIF();
 			else if(columnIndex == 5)
 				return clientes.get(rowIndex).getApellidos();
 			else if(columnIndex == 6)
-				return clientes.get(rowIndex).getNIF();
-			else if(columnIndex == 7)
 				return clientes.get(rowIndex).getActivo();
 			return null;
 		}
@@ -158,9 +156,9 @@ public class VMostrarClienteParticular extends JFrame implements IGUI{
 	}
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.CLIENTE_MOSTRAR_TODOS_SUCCESS)
+		if(event == Events.CLIENTE_MOSTRAR_PARTICULAR_SUCCESS)
 			tableModel.setList((Collection<TCliente>) datos);
-		else if(event == Events.CLIENTE_MOSTRAR_TODOS_ERROR){
+		else if(event == Events.CLIENTE_MOSTRAR_PARTICULAR_ERROR){
 			JOptionPane.showMessageDialog(this, "ERROR: No hay ningun Cliente particular por mostrar");
 			setVisible(false);
 			ctrl.carryAction(Events.CLIENTE_NUEVA_VISTA, null);

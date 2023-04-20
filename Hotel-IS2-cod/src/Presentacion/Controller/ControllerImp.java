@@ -311,7 +311,7 @@ public class ControllerImp extends Controller {
 //			break;
 			
 		case Events.RESERVA_MOSTRAR_UNA:
-			tReserva = saReserva.mostrarUno((Integer) data);
+			tReserva = saReserva.MostrarUna((Integer) data);
 			if(tReserva == null)
 				cIGUI.update(Events.RESERVA_MOSTRAR_UNA_NO_ID, null);
 			else
@@ -319,7 +319,7 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.RESERVA_MOSTRAR_TODAS:
-			Collection<TReserva> collectionReserva = saReserva.mostrarTodos();
+			Collection<TReserva> collectionReserva = saReserva.MostrarTodas();
 			if(collectionReserva.isEmpty())
 				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_ERROR, null);
 			else
