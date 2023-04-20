@@ -51,7 +51,8 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
-		JTextField nombreText = new JTextField("Nombre del departamento");
+		JTextField nombreText = new JTextField("");
+		nombreText.setPreferredSize(new Dimension(200,20));
 		
 		mainPanel.add(panelId());
 		mainPanel.add(nombrePanel(nombreText));

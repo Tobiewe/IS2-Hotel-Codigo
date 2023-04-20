@@ -50,8 +50,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 
-		JTextField nombreText = new JTextField("Ingrese aqui el nombre del departamento");
-		nombreText.setSize(1000, 50);
+		JTextField nombreText = new JTextField("");
 		mainPanel.add(nombrePanel(nombreText));
 		
 
@@ -72,8 +71,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 		JPanel nombrePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
 		JLabel nombreLabel = new JLabel("Nombre: ");
-		Dimension d = new Dimension(1000, 1000);
-		nombreText.setSize(d);
+		nombreText.setPreferredSize(new Dimension(200, 20));
 		nombrePanel.add(nombreLabel);
 		nombrePanel.add(nombreText);
 
