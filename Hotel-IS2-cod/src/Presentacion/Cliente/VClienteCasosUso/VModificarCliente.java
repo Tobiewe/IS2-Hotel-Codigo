@@ -306,12 +306,12 @@ public class VModificarCliente extends JFrame implements IGUI{
 			public void actionPerformed(ActionEvent e) {
 				if(tipo.equals("Particular"))
 				{
-					TParticular tParticular = new TParticular(id,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true,tipo);
+					TParticular tParticular = new TParticular(id,correoText.getText(),telefono, nombreText.getText(),null, apellidoText.getText(),niftext.getText(),true);
 					ctrl.carryAction(Events.CLIENTE_MODIFICAR, tParticular);
 				}
 				else if (tipo.equals("Empresa"))
 				{
-					TEmpresa tEmpresa = new TEmpresa(id,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true,tipo);
+					TEmpresa tEmpresa = new TEmpresa(id,correoText.getText(),telefono, nombreText.getText(),cifText.getText(), null,null,true);
 					ctrl.carryAction(Events.CLIENTE_MODIFICAR, tEmpresa);
 				}
 				else
