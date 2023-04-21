@@ -105,8 +105,8 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 		JLabel activadoLabel = new JLabel("Activado: ");
 		JComboBox<Boolean> activadoCombo = new JComboBox<Boolean>();
 		
-		activadoCombo.addItem(false);
 		activadoCombo.addItem(true);
+		activadoCombo.addItem(false);
 		
 		activado = (boolean) activadoCombo.getSelectedItem();
 		
@@ -171,11 +171,11 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 		if(event == Events.DEPARTAMENTO_MODIFICAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Los parámetros introducidos son erróneos");
 //		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
-//			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
+//			JOptionPane.showMessageDialog(this, "ERROR: El departamento con id " + (Integer)datos + "ya existe");
 		else if(event == Events.DEPARTAMENTO_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: El departamento con id " + (Integer)datos + " no se ha encontrado");
 		else if(event == Events.DEPARTAMENTO_MODIFICAR_SUCCESS) {
-			JOptionPane.showMessageDialog(this, "El departamento con id " + (Integer)datos + " se ha registrado correctamente");
+			JOptionPane.showMessageDialog(this, "El departamento con id " + (Integer)datos + " se ha modificado correctamente");
 			setVisible(false);
 			ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
 		}
