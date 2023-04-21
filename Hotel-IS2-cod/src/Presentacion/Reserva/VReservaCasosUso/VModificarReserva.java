@@ -6,16 +6,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
@@ -27,18 +33,19 @@ import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
 
 public class VModificarReserva extends JFrame implements IGUI {
-
-	Controller ctrl;
-	private Integer tamanyo;
-	private Integer piso;
-	private Integer noches;
-	private float precio;
+	private Controller ctrl;
+	private String title = "Abrir Reserva";
+	private Integer idHabitacion;
 	private Integer id;
-	private Integer id_empleado;
-	private boolean ocupada;
+    private DefaultListModel<Integer> listaHabitaciones;
+    private JPanel añadirHabitacionesPanel;
+	private Integer noches;
+	private Date fecha;
 	
 	public VModificarReserva(){
 		ctrl = Controller.getInstance();
+		listaHabitaciones  = new DefaultListModel<>();
+		añadirHabitacionesPanel = new JPanel();
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -46,225 +53,175 @@ public class VModificarReserva extends JFrame implements IGUI {
 			}
 		});
 	}
-	public void initGUI() {
-		setTitle("Modificar Reserva");
-		JPanel mainPanel = new JPanel();
-		mainPanel.setPreferredSize(new Dimension(500, 250));
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		setContentPane(mainPanel);
-		setLocationRelativeTo(getParent());
+	
+	protected void initGUI() {
+	    JPanel mainPanel = new JPanel();
+	    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		añadirHabitacionesPanel.setLayout(new BoxLayout(añadirHabitacionesPanel, BoxLayout.Y_AXIS));
 
-		JTextField precioText = new JTextField("0");
-		precioText.setPreferredSize(new Dimension(70, 25));
-		
-		mainPanel.add(panelId());
-		mainPanel.add(panelPiso());
-		mainPanel.add(tamanyoPanel());
-		mainPanel.add(precioPanel(precioText));
-		mainPanel.add(panelIdEmpleado());
-		mainPanel.add(panelOcupada());
-		
-		
-		
-		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		buttonPanel.add(modificarButton(precioText));
-		buttonPanel.add(cancelButton());
-		
-		mainPanel.add(buttonPanel);
-//		Dimension d = new Dimension(600,400);
-//		setPreferredSize(d);
-//		mainPanel.setPreferredSize(d);
-		pack();
-		setLocationRelativeTo(getParent());
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-		
-	}
-	public JPanel panelId()
-	{
-		JPanel panelId = new JPanel();
-		panelId.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel idLabel = new JLabel("Id: ");
-		JSpinner idSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
-		idSpinner.setPreferredSize(new Dimension(40, 20));
-		id = (Integer) idSpinner.getValue();
-		idSpinner.addChangeListener(new ChangeListener()
-		{
+	    setContentPane(mainPanel);
+	    setTitle(title);
 
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				id = (Integer) idSpinner.getValue();
-			}
-			
-		});
-		
-		panelId.add(idLabel);
-		panelId.add(idSpinner);
-		
-		return panelId;
-	}
-	public JPanel panelTotal()
-	{
-		JPanel panelOcupada = new JPanel();
-		panelOcupada.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel ocupadaLabel = new JLabel("Ocupada: ");
-		JComboBox<Boolean> ocupadaCombo = new JComboBox<Boolean>();
-		
-		ocupadaCombo.addItem(false);
-		ocupadaCombo.addItem(true);
-		
-		ocupada = (boolean) ocupadaCombo.getSelectedItem();
-		
-		ocupadaCombo.addItemListener(new ItemListener()
-		{
+	    JPanel nochesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	    nochesPanel.add(new JLabel("Noches: "));
+	    nochesPanel.add(nochesSpinner());
 
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				ocupada = (boolean) ocupadaCombo.getSelectedItem();
-			}
-			
-		});		
-		panelOcupada.add(ocupadaLabel);
-		panelOcupada.add(ocupadaCombo);
+	    JPanel fechaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	    fechaPanel.add(new JLabel("Fecha: "));
+	    fechaPanel.add(fechaSpinner());
+//
+//	    JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//	    cancelButtonPanel.add(cancelButton());
+	   // cancelButtonPanel.add(añadirHabitacionesReservaButton());
+	    
+	    JPanel idPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	    idPanel.add(new JLabel("Id: "));
+	    idPanel.add(idSpinner());	    
+	    
+//	    JPanel nombrePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//	    nombrePanel.add(new JLabel("Nombre: "));
+//	    nombrePanel.add(idSpinner());	
+	    
+	    mainPanel.add(idPanel);
+	    mainPanel.add(nochesPanel);
+	    mainPanel.add(fechaPanel);
+//	    mainPanel.add(cancelButtonPanel);
+	    
+	    
+	    añadirHabitacionesPanel.add(panelIdHabitacion());
 		
-		return panelOcupada;
-	}
+		añadirHabitacionesPanel.add(buttonsFirstPanel());
+		
+		JList<Integer> list = new JList<>(listaHabitaciones);
+		list.setName("Habitaciones");
+		JScrollPane scrollPane = new JScrollPane(list);
+		añadirHabitacionesPanel.add(scrollPane);
+		
+		añadirHabitacionesPanel.add(modificarReservaPanel());
+		
+		añadirHabitacionesPanel.setVisible(true);
+	    
+	    mainPanel.add(añadirHabitacionesPanel);
 
-	public JPanel panelPiso()
-	{
-		JPanel panelPiso = new JPanel();
-		panelPiso.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel pisoLabel = new JLabel("Piso: ");
-		JSpinner pisoSpinner = new JSpinner(new SpinnerNumberModel(1,1,5,1));
-		pisoSpinner.setPreferredSize(new Dimension(40, 15));
-		piso = (Integer) pisoSpinner.getValue();
-		pisoSpinner.addChangeListener(new ChangeListener()
-		{
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				piso = (Integer) pisoSpinner.getValue();
-			}
-			
-		});
-		
-		panelPiso.add(pisoLabel);
-		panelPiso.add(pisoSpinner);
-		
-		return panelPiso;
+	    pack();
+	    setLocationRelativeTo(null);
+	    setVisible(true);
 	}
 	
-	public JPanel tamanyoPanel()
-	{
-		JPanel tamanyoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel tamanyoLabel = new JLabel("Tamaño: ");
-		JComboBox<Integer> tamanyoCombo = new JComboBox<Integer>();
-		
-		tamanyoCombo.addItem(1);
-		tamanyoCombo.addItem(2);
-		tamanyoCombo.addItem(3);
-		tamanyoCombo.addItem(4);
-		
-		tamanyo = (Integer) tamanyoCombo.getSelectedItem();
-		
-		tamanyoCombo.addItemListener(new ItemListener()
+	public JSpinner idSpinner(){
+		JSpinner idSpin = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
+		idSpin.setPreferredSize(new Dimension(40, 15));
+		id = (Integer) idSpin.getValue();
+		idSpin.addChangeListener(new ChangeListener()
 		{
 
 			@Override
-			public void itemStateChanged(ItemEvent e) {
-				tamanyo = (Integer) tamanyoCombo.getSelectedItem();
+			public void stateChanged(ChangeEvent e) {
+				noches = (Integer) idSpin.getValue();
 			}
 			
 		});
 		
-		tamanyoPanel.add(tamanyoLabel);
-		tamanyoPanel.add(tamanyoCombo);
+		return idSpin;
 		
-		return tamanyoPanel;
 	}
-	public JPanel precioPanel(JTextField precioText)
-	{
-		JPanel precioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	public JSpinner nochesSpinner(){
+		JSpinner nochesSpin = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
+		nochesSpin.setPreferredSize(new Dimension(40, 15));
+		noches = (Integer) nochesSpin.getValue();
+		nochesSpin.addChangeListener(new ChangeListener()
+		{
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				noches = (Integer) nochesSpin.getValue();
+			}
+			
+		});
 		
-		JLabel precioLabel = new JLabel("Precio: ");
+		return nochesSpin;
 		
-		precioPanel.add(precioLabel);
-		precioPanel.add(precioText);
-		
-		
-		
-		return precioPanel;
 	}
-	public JPanel panelIdCliente()
-	{
+	public JSpinner fechaSpinner() {
+	    JSpinner fechaSpin = new JSpinner(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_MONTH));
+	    fechaSpin.setEditor(new JSpinner.DateEditor(fechaSpin, "dd/MM/yyyy"));
+	    fechaSpin.setPreferredSize(new Dimension(100, 20));
+	    fecha = (Date) fechaSpin.getValue();
+	    fechaSpin.addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            fecha = (Date) fechaSpin.getValue();
+	        }
+	    });
+
+	    return fechaSpin;
+	}
+	
+
+	public JPanel panelIdHabitacion() {
 		JPanel panelIdEmpleado = new JPanel();
 		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel idEmpleadoLabel = new JLabel("Id del Empleado: ");
-		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
+
+		JLabel idEmpleadoLabel = new JLabel("Número de habitación: ");
+		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
 		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 20));
-		id_empleado = (Integer) idEmpleadoSpinner.getValue();
-		idEmpleadoSpinner.addChangeListener(new ChangeListener()
-		{
+		idHabitacion = (Integer) idEmpleadoSpinner.getValue();
+		idEmpleadoSpinner.addChangeListener(new ChangeListener() {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				id_empleado = (Integer) idEmpleadoSpinner.getValue();
+				idHabitacion = (Integer) idEmpleadoSpinner.getValue();
 			}
-			
+
 		});
-		
+
 		panelIdEmpleado.add(idEmpleadoLabel);
 		panelIdEmpleado.add(idEmpleadoSpinner);
-		
+
 		return panelIdEmpleado;
 	}
-	public JPanel panelNoches()
+	public JPanel buttonsFirstPanel()
 	{
-		JPanel panelIdEmpleado = new JPanel();
-		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
+		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		JLabel idEmpleadoLabel = new JLabel("Noches: ");
-		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
-		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 20));
-		noches = (Integer) idEmpleadoSpinner.getValue();
-		idEmpleadoSpinner.addChangeListener(new ChangeListener()
-		{
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				noches = (Integer) idEmpleadoSpinner.getValue();
-			}
-			
-		});
+		buttonsPanel.add(añadirHabitacionButton());
+		buttonsPanel.add(eliminarHabitacionButton());
 		
-		panelIdEmpleado.add(idEmpleadoLabel);
-		panelIdEmpleado.add(idEmpleadoSpinner);
-		
-		return panelIdEmpleado;
+		return buttonsPanel;
 	}
-	
-	
-	public JButton modificarButton(JTextField textField)
-	{
-		JButton crearButton = new JButton("Modificar");
-		crearButton.addActionListener(new ActionListener()
-		{
-
-			@Override
+	public JButton añadirHabitacionButton() {
+		JButton cerrarReservaButton = new JButton("Añadir");
+		cerrarReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				THabitaciones tHabitacion = new THabitaciones(id,piso,tamanyo,Float.parseFloat(textField.getText()),ocupada,id_empleado);
-				ctrl.carryAction(Events.HABITACION_MODIFICAR, tHabitacion);
+				if(!listaHabitaciones.contains(idHabitacion))
+					listaHabitaciones.addElement(idHabitacion);
 			}
-			
-			
 		});
-		return crearButton;
+		return cerrarReservaButton;
+	}
+	public JButton eliminarHabitacionButton() {
+		JButton cerrarReservaButton = new JButton("Eliminar");
+		cerrarReservaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listaHabitaciones.removeElement(idHabitacion);
+			}
+		});
+		return cerrarReservaButton;
+	}
+	
+	public JPanel modificarReservaPanel() {
+		JPanel modificarReservaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		JButton modificarReservaButton = new JButton("Cerrar");
+		modificarReservaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.carryAction(Events.RESERVA_MODIFICAR, null);
+			}
+		});
+		modificarReservaPanel.add(modificarReservaButton);
+		modificarReservaPanel.add(cancelButton());
+		
+		return modificarReservaPanel;
 	}
 	public JButton cancelButton()
 	{
@@ -274,24 +231,25 @@ public class VModificarReserva extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+				ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
 			}
 		
 		});
 		return cancelButton;
 	}
+	
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.HABITACION_MODIFICAR_WRONG_PARAMETERS)
+		if(event == Events.RESERVA_MODIFICAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Los parámetros introducidos son erróneos");
 //		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
-		else if(event == Events.HABITACION_MODIFICAR_NOTFOUND) 
+		else if(event == Events.RESERVA_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + " no se ha encontrado");
-		else if(event == Events.HABITACION_MODIFICAR_SUCCESS){
+		else if(event == Events.RESERVA_MODIFICAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + " se ha modificado correctamente");
 			setVisible(false);
-			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
+			ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
 		}
 
 	}

@@ -30,6 +30,7 @@ public class VAbrirReserva extends JFrame implements IGUI {
     private JPanel añadirHabitacionesPanel;
 	private Integer noches;
 	private Date fecha;
+	
 	public VAbrirReserva(){
 		ctrl = Controller.getInstance();
 		listaHabitaciones  = new DefaultListModel<>();
@@ -50,22 +51,22 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	    setContentPane(mainPanel);
 	    setTitle(title);
 
-	    JPanel nochesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+	    JPanel nochesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	    nochesPanel.add(new JLabel("Noches: "));
 	    nochesPanel.add(nochesSpinner());
 
-	    JPanel fechaPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+	    JPanel fechaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	    fechaPanel.add(new JLabel("Fecha: "));
 	    fechaPanel.add(fechaSpinner());
 
-	    JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	    cancelButtonPanel.add(cancelButton());
+//	    JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//	    cancelButtonPanel.add(cancelButton());
 	   // cancelButtonPanel.add(añadirHabitacionesReservaButton());
 	    
 
 	    mainPanel.add(nochesPanel);
 	    mainPanel.add(fechaPanel);
-	    mainPanel.add(cancelButtonPanel);
+	    //mainPanel.add(cancelButtonPanel);
 	    
 	    
 	    añadirHabitacionesPanel.add(panelIdHabitacion());
@@ -194,8 +195,9 @@ public class VAbrirReserva extends JFrame implements IGUI {
 				ctrl.carryAction(Events.RESERVA_CERRAR, null);
 			}
 		});
-		cerrarReservaPanel.add(cancelButton());
 		cerrarReservaPanel.add(cerrarReservaButton);
+		cerrarReservaPanel.add(cancelButton());
+		
 		return cerrarReservaPanel;
 	}
 	public JButton cancelButton()
