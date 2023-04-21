@@ -6,6 +6,8 @@ import Negocio.Empleados.TTareasDelEmpleado;
 
 import java.util.Collection;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+
 import Negocio.Clientes.SACliente;
 import Negocio.Clientes.TCliente;
 import Negocio.Clientes.TEmpresa;
@@ -13,12 +15,16 @@ import Negocio.Clientes.TParticular;
 import Negocio.Tareas.SATarea;
 import Negocio.Tareas.TTareas;
 import Negocio.Departamentos.TDepartamento;
+import Presentacion.Reserva.VReservaCasosUso.VEliminarHabitaciones;
+import Presentacion.Reserva.VReservaCasosUso.VMostrarHabitacionesReserva;
+import Presentacion.Reserva.VReservaCasosUso.VMostrarReservaCliente;
 import Presentacion.VFactory.VFactory;
 import Negocio.Departamentos.SADepartamento;
 import Negocio.Habitaciones.SAHabitacion;
 import Negocio.Habitaciones.THabitaciones;
 import Negocio.NegocioFactory.SAFactory;
 import Negocio.Reserva.SAReserva;
+import Negocio.Reserva.TLineaReserva;
 import Negocio.Reserva.TReserva;
 
 public class ControllerImp extends Controller {
@@ -302,8 +308,14 @@ public class ControllerImp extends Controller {
 		case Events.RESERVA_AÑADIR_HABITACIONES_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
 			break;
+		case Events.RESERVA_QUITAR_HABITACIONES_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_QUITAR_HABITACIONES_VISTA, null);
+			break;
 		case Events.RESERVA_MOSTRAR_POR_CLIENTE_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_POR_CLIENTE_VISTA, null);
+			break;
+		case Events.RESERVA_MOSTRAR_HABITACIONES_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_HABITACIONES_VISTA, null);
 			break;
 		
 		case Events.RESERVA_CREAR:
@@ -355,12 +367,27 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_SUCCESS, collectionReserva);
 			break;
+			
 		case Events.RESERVA_MOSTRAR_POR_CLIENTE:
 			Collection<TReserva> collectionReservaPorCliente = saReserva.leerReservasPorCliente((Integer) data);
 			if(collectionReservaPorCliente.isEmpty())
 				cIGUI.update(Events.RESERVA_MOSTRAR_POR_CLIENTE_FAILED, null);
 			else
 				cIGUI.update(Events.RESERVA_MOSTRAR_POR_CLIENTE_SUCCESS, collectionReservaPorCliente);
+			break;
+			
+		case Events.RESERVA_AÑADIR_HABITACIONES:
+			Integer auxIdReserva, auxIdHabitacion;
+			auxIdReserva = (Pair<Integer,Integer>
+			saSolution = saReserva.eliminarHabitacion( )
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
+			break;
+			
+		case Events.RESERVA_QUITAR_HABITACIONES:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_QUITAR_HABITACIONES_VISTA, null);
+			break;
+		case Events.RESERVA_MOSTRAR_HABITACIONES:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_HABITACIONES_VISTA, null);
 			break;
 			
 			//TAREA

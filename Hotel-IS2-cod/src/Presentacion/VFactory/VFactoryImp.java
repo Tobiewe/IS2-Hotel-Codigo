@@ -39,8 +39,9 @@ import Presentacion.Habitacion.VHabitacionCasosUso.VMostrarUnaHabitacion;
 import Presentacion.Reserva.VReserva;
 import Presentacion.Reserva.VReservaCasosUso.VAbrirReserva;
 import Presentacion.Reserva.VReservaCasosUso.VAñadirHabitaciones;
-import Presentacion.Reserva.VReservaCasosUso.VAñadirReserva;
+import Presentacion.Reserva.VReservaCasosUso.VEliminarHabitaciones;
 import Presentacion.Reserva.VReservaCasosUso.VModificarReserva;
+import Presentacion.Reserva.VReservaCasosUso.VMostrarHabitacionesReserva;
 import Presentacion.Reserva.VReservaCasosUso.VMostrarReservaCliente;
 import Presentacion.Reserva.VReservaCasosUso.VMostrarTodasReserva;
 import Presentacion.Reserva.VReservaCasosUso.VMostrarUnaReserva;
@@ -149,8 +150,12 @@ public class VFactoryImp extends VFactory {
 			return new VMostrarTodasReserva();
 		case Events.RESERVA_AÑADIR_HABITACIONES_VISTA:
 			return new VAñadirHabitaciones();
+		case Events.RESERVA_QUITAR_HABITACIONES_VISTA:
+			return new VEliminarHabitaciones();
 		case Events.RESERVA_MOSTRAR_POR_CLIENTE_VISTA:
 			return new VMostrarReservaCliente();
+		case Events.RESERVA_MOSTRAR_HABITACIONES_VISTA:
+			return new VMostrarHabitacionesReserva();
 			
 		//HABITACION
 		case Events.HABITACION_VISTA:

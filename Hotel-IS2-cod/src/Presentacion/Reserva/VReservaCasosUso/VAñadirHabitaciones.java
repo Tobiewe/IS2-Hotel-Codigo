@@ -23,6 +23,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Negocio.Reserva.TLineaReserva;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
@@ -32,11 +33,10 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 	private Controller ctrl;
 	private String title = "Añadir Habitaciones";
 	private Integer idHabitacion;
-    DefaultListModel<Integer> listaHabitaciones;
+	private Integer idReserva;
 
 	public VAñadirHabitaciones() {
 		ctrl = Controller.getInstance();
-		listaHabitaciones  = new DefaultListModel<>();
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -51,22 +51,14 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setTitle(title);
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		mainPanel.add(panelIdHabitacion());
-		
-		mainPanel.add(buttonsFirstPanel());
-		
-		JList<Integer> list = new JList<>(listaHabitaciones);
-		list.setName("Habitaciones");
-		JScrollPane scrollPane = new JScrollPane(list);
-		mainPanel.add(scrollPane);
-		
-		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		buttonPanel.add(añadirHabitacionesButton());
+		buttonPanel.add(cancelButton());
 
-		buttonsPanel.add(añadirHabitacionesButton());
-		buttonsPanel.add(cancelButton());
-		
-		mainPanel.add(buttonsPanel);
+		mainPanel.add(panelIdHabitacion());
+		mainPanel.add(panelIdReserva());
+		mainPanel.add(buttonPanel);
 		
 		pack();
 		setLocationRelativeTo(null);
@@ -75,54 +67,48 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 
 
 	public JPanel panelIdHabitacion() {
-		JPanel panelIdEmpleado = new JPanel();
-		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
+		JPanel panelIdHabitacion = new JPanel();
+		panelIdHabitacion.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		JLabel idEmpleadoLabel = new JLabel("Número de habitación: ");
-		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
-		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 20));
-		idHabitacion = (Integer) idEmpleadoSpinner.getValue();
-		idEmpleadoSpinner.addChangeListener(new ChangeListener() {
+		JLabel idHabitacionLabel = new JLabel("Número de habitación: ");
+		JSpinner idHabitacionSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+		idHabitacionSpinner.setPreferredSize(new Dimension(40, 20));
+		idHabitacion = (Integer) idHabitacionSpinner.getValue();
+		idHabitacionSpinner.addChangeListener(new ChangeListener() {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				idHabitacion = (Integer) idEmpleadoSpinner.getValue();
+				idHabitacion = (Integer) idHabitacionSpinner.getValue();
 			}
 
 		});
 
-		panelIdEmpleado.add(idEmpleadoLabel);
-		panelIdEmpleado.add(idEmpleadoSpinner);
+		panelIdHabitacion.add(idHabitacionLabel);
+		panelIdHabitacion.add(idHabitacionSpinner);
 
-		return panelIdEmpleado;
+		return panelIdHabitacion;
 	}
-	public JPanel buttonsFirstPanel()
-	{
-		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		buttonsPanel.add(añadirHabitacionButton());
-		buttonsPanel.add(eliminarHabitacionButton());
-		
-		return buttonsPanel;
-	}
-	public JButton añadirHabitacionButton() {
-		JButton añadirHabitacionesButton = new JButton("Añadir");
-		añadirHabitacionesButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(!listaHabitaciones.contains(idHabitacion))
-					listaHabitaciones.addElement(idHabitacion);
+	public JPanel panelIdReserva() {
+		JPanel panelIdReserva = new JPanel();
+		panelIdReserva.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+		JLabel idReservaLabel = new JLabel("Id de la reserva: ");
+		JSpinner idReservaSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
+		idReservaSpinner.setPreferredSize(new Dimension(40, 20));
+		idReserva = (Integer) idReservaSpinner.getValue();
+		idReservaSpinner.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				idReserva = (Integer) idReservaSpinner.getValue();
 			}
+
 		});
-		return añadirHabitacionesButton;
-	}
-	public JButton eliminarHabitacionButton() {
-		JButton añadirHabitacionesButton = new JButton("Eliminar");
-		añadirHabitacionesButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				listaHabitaciones.removeElement(idHabitacion);
-			}
-		});
-		return añadirHabitacionesButton;
+
+		panelIdReserva.add(idReservaLabel);
+		panelIdReserva.add(idReservaSpinner);
+
+		return panelIdReserva;
 	}
 	
 	public JButton añadirHabitacionesButton() {
@@ -130,8 +116,8 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		JButton añadirHabitacionesButton = new JButton("Añadir Habitaciones");
 		añadirHabitacionesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				ctrl.carryAction(Events.RESERVA_CREAR, null);
+				TLineaReserva tLineaReserva = new TLineaReserva(idHabitacion,idReserva,null,true);
+				ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES, tLineaReserva);
 			}
 		});
 		return añadirHabitacionesButton;
