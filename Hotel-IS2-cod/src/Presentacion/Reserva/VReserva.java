@@ -143,7 +143,7 @@ public class VReserva extends JFrame implements IGUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ctrl.carryAction(Events.RESERVA_MOSTRAR_POR_CLIENTE, null);
+				ctrl.carryAction(Events.RESERVA_MOSTRAR_POR_CLIENTE_VISTA, null);
 				setVisible(false);
 			}
 		});

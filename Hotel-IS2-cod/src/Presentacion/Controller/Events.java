@@ -158,6 +158,9 @@ public class Events {
 	public static final int RESERVA_AÑADIR_HABITACIONES_VISTA = 381;
 	
 	public static final int RESERVA_MOSTRAR_POR_CLIENTE = 390;
+	public static final int RESERVA_MOSTRAR_POR_CLIENTE_VISTA = 391;
+	public static final int RESERVA_MOSTRAR_POR_CLIENTE_SUCCESS = 392;
+	public static final int RESERVA_MOSTRAR_POR_CLIENTE_FAILED = 393;
 	
 	//HABITACION
 	public static final int HABITACION_VISTA = 400;
