@@ -167,23 +167,23 @@ public class VAbrirReserva extends JFrame implements IGUI {
 		return buttonsPanel;
 	}
 	public JButton añadirHabitacionButton() {
-		JButton cerrarReservaButton = new JButton("Añadir");
-		cerrarReservaButton.addActionListener(new ActionListener() {
+		JButton añadirHabitacionButton = new JButton("Añadir");
+		añadirHabitacionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!listaHabitaciones.contains(idHabitacion))
 					listaHabitaciones.addElement(idHabitacion);
 			}
 		});
-		return cerrarReservaButton;
+		return añadirHabitacionButton;
 	}
 	public JButton eliminarHabitacionButton() {
-		JButton cerrarReservaButton = new JButton("Eliminar");
-		cerrarReservaButton.addActionListener(new ActionListener() {
+		JButton  eliminarHabitacionButton = new JButton("Eliminar");
+		 	eliminarHabitacionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listaHabitaciones.removeElement(idHabitacion);
 			}
 		});
-		return cerrarReservaButton;
+		return  eliminarHabitacionButton;
 	}
 	
 	public JPanel cerrarReservaPanel() {

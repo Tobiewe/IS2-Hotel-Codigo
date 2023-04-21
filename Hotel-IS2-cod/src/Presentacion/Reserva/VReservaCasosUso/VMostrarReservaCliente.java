@@ -191,7 +191,7 @@ public class VMostrarReservaCliente extends JFrame implements IGUI {
 		if(event == Events.RESERVA_MOSTRAR_POR_CLIENTE_SUCCESS)
 			reservaTableModel.setList((Collection<TReserva>) datos);
 		else if(event == Events.RESERVA_MOSTRAR_POR_CLIENTE_FAILED)
-			JOptionPane.showMessageDialog(this, "ERROR: No hay ninguna habitación por mostrar");
+			JOptionPane.showMessageDialog(this, "ERROR: No hay ninguna reserva por mostrar");
 	}
 
 }

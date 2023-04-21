@@ -28,17 +28,21 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import Negocio.Habitaciones.THabitaciones;
+import Negocio.Reserva.TReserva;
+import Negocio.Tareas.TTareas;
 import Presentacion.Controller.Controller;
 import Presentacion.Controller.Events;
 import Presentacion.Controller.IGUI;
 
 public class VModificarReserva extends JFrame implements IGUI {
 	private Controller ctrl;
-	private String title = "Abrir Reserva";
+	private String title = "Modificar Reserva";
 	private Integer idHabitacion;
 	private Integer id;
+	private Integer idCliente;
     private DefaultListModel<Integer> listaHabitaciones;
     private JPanel añadirHabitacionesPanel;
+    private boolean activa;
 	private Integer noches;
 	private Date fecha;
 	
@@ -78,13 +82,20 @@ public class VModificarReserva extends JFrame implements IGUI {
 	    idPanel.add(new JLabel("Id: "));
 	    idPanel.add(idSpinner());	    
 	    
+	    JPanel idClientePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	    idClientePanel.add(new JLabel("Id del Cliente: "));
+	    idClientePanel.add(idSpinner());	
+	    
 //	    JPanel nombrePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 //	    nombrePanel.add(new JLabel("Nombre: "));
 //	    nombrePanel.add(idSpinner());	
 	    
 	    mainPanel.add(idPanel);
+	    mainPanel.add(idClientePanel);
+	    mainPanel.add(panelActivo());
 	    mainPanel.add(nochesPanel);
 	    mainPanel.add(fechaPanel);
+	   
 //	    mainPanel.add(cancelButtonPanel);
 	    
 	    
@@ -117,13 +128,57 @@ public class VModificarReserva extends JFrame implements IGUI {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				noches = (Integer) idSpin.getValue();
+				id = (Integer) idSpin.getValue();
 			}
 			
 		});
 		
 		return idSpin;
 		
+	}
+	public JSpinner idClienteSpinner(){
+		JSpinner idSpin = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
+		idSpin.setPreferredSize(new Dimension(40, 15));
+		idCliente = (Integer) idSpin.getValue();
+		idSpin.addChangeListener(new ChangeListener()
+		{
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				idCliente = (Integer) idSpin.getValue();
+			}
+			
+		});
+		
+		return idSpin;
+		
+	}
+	public JPanel panelActivo()
+	{
+		JPanel panelActivo = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		
+		JLabel activoLabel = new JLabel("Activa: ");
+		JComboBox<Boolean> activoCombo = new JComboBox<Boolean>();
+		
+		activoCombo.addItem(true);
+		activoCombo.addItem(false);
+		
+		activa = (Boolean) activoCombo.getSelectedItem();
+		
+		activoCombo.addItemListener(new ItemListener()
+		{
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				activa = (Boolean) activoCombo.getSelectedItem();
+			}
+			
+		});
+		
+		panelActivo.add(activoLabel);
+		panelActivo.add(activoCombo);
+		
+		return panelActivo;
 	}
 	public JSpinner nochesSpinner(){
 		JSpinner nochesSpin = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
@@ -190,31 +245,36 @@ public class VModificarReserva extends JFrame implements IGUI {
 		return buttonsPanel;
 	}
 	public JButton añadirHabitacionButton() {
-		JButton cerrarReservaButton = new JButton("Añadir");
-		cerrarReservaButton.addActionListener(new ActionListener() {
+		JButton añadirHabitacionButton = new JButton("Añadir");
+		añadirHabitacionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!listaHabitaciones.contains(idHabitacion))
 					listaHabitaciones.addElement(idHabitacion);
 			}
 		});
-		return cerrarReservaButton;
+		return añadirHabitacionButton;
 	}
 	public JButton eliminarHabitacionButton() {
-		JButton cerrarReservaButton = new JButton("Eliminar");
-		cerrarReservaButton.addActionListener(new ActionListener() {
+		JButton  eliminarHabitacionButton = new JButton("Eliminar");
+		 	eliminarHabitacionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listaHabitaciones.removeElement(idHabitacion);
 			}
 		});
-		return cerrarReservaButton;
+		return  eliminarHabitacionButton;
 	}
 	
 	public JPanel modificarReservaPanel() {
 		JPanel modificarReservaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		JButton modificarReservaButton = new JButton("Cerrar");
+		JButton modificarReservaButton = new JButton("Modificar");
 		modificarReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				public TReserva(Integer id, Float total, Date fecha_entrada, String nombre, Integer id_cliente, Integer noches, Boolean activo){
+//
+//				TReserva tReserva = new TReserva(id, null, fecha, "", , idCliente, noches)
+//				TTareas tTarea = new TTareas(id,descripcionText.getText(),lugarText.getText(),nombreText.getText(),activa);
+
 				ctrl.carryAction(Events.RESERVA_MODIFICAR, null);
 			}
 		});
@@ -245,9 +305,9 @@ public class VModificarReserva extends JFrame implements IGUI {
 //		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
 		else if(event == Events.RESERVA_MODIFICAR_NOTFOUND) 
-			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + " no se ha encontrado");
+			JOptionPane.showMessageDialog(this, "ERROR: La reserva con id " + (Integer)datos + " no se ha encontrado");
 		else if(event == Events.RESERVA_MODIFICAR_SUCCESS){
-			JOptionPane.showMessageDialog(this, "La habitación con id " + (Integer)datos + " se ha modificado correctamente");
+			JOptionPane.showMessageDialog(this, "La reserva con id " + (Integer)datos + " se ha modificado correctamente");
 			setVisible(false);
 			ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
 		}

@@ -145,30 +145,30 @@ public class VModificarTarea extends JFrame implements IGUI {
 
 	public JPanel panelActivo()
 	{
-		JPanel panelTipo = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JPanel panelActivo = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		JLabel tamanyoLabel = new JLabel("Activa: ");
-		JComboBox<Boolean> tipoCombo = new JComboBox<Boolean>();
+		JLabel activoLabel = new JLabel("Activa: ");
+		JComboBox<Boolean> activoCombo = new JComboBox<Boolean>();
 		
-		tipoCombo.addItem(true);
-		tipoCombo.addItem(false);
+		activoCombo.addItem(true);
+		activoCombo.addItem(false);
 		
-		activa = (Boolean) tipoCombo.getSelectedItem();
+		activa = (Boolean) activoCombo.getSelectedItem();
 		
-		tipoCombo.addItemListener(new ItemListener()
+		activoCombo.addItemListener(new ItemListener()
 		{
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				activa = (Boolean) tipoCombo.getSelectedItem();
+				activa = (Boolean) activoCombo.getSelectedItem();
 			}
 			
 		});
 		
-		panelTipo.add(tamanyoLabel);
-		panelTipo.add(tipoCombo);
+		panelActivo.add(activoLabel);
+		panelActivo.add(activoCombo);
 		
-		return panelTipo;
+		return panelActivo;
 	}
 	public JButton crearButton(JTextField descripcionText,JTextField lugarText,JTextField nombreText)
 	{

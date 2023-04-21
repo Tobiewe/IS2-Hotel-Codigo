@@ -306,6 +306,39 @@ public class ControllerImp extends Controller {
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_POR_CLIENTE_VISTA, null);
 			break;
 		
+		case Events.RESERVA_CERRAR:
+			tReserva = (TReserva)data;
+			saSolution = saReserva.abrir(tReserva);
+			if(saSolution == -1)
+				cIGUI.update(Events.RESERVA_CREAR_ERROR, null);
+			else if(saSolution == -2)
+				cIGUI.update(Events.RESERVA_CREAR_REPEATED,  tReserva.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.RESERVA_CREAR_WRONG_PARAMETERS, saSolution);
+			else if(saSolution > 0)
+				cIGUI.update(Events.RESERVA_CREAR_SUCCESS, null);
+			break;
+			
+		case Events.RESERVA_MODIFICAR:
+			tReserva = (TReserva)data;
+			saSolution = saReserva.modificar(tReserva);
+			if(saSolution == -2)
+				cIGUI.update(Events.RESERVA_MODIFICAR_NOTFOUND, tReserva.getId());
+			else if(saSolution == -5)
+				cIGUI.update(Events.RESERVA_MODIFICAR_WRONG_PARAMETERS, tReserva.getId());
+			else if(saSolution > 0)
+				cIGUI.update(Events.RESERVA_MODIFICAR_SUCCESS, tReserva.getId());
+			break;
+			
+		case Events.RESERVA_ELIMINAR:
+			saSolution= saReserva.eliminar((Integer)data);
+			
+			if(saSolution == -1)
+				cIGUI.update(Events.RESERVA_ELIMINAR_ERROR, data);
+			
+			else
+				cIGUI.update(Events.RESERVA_ELIMINAR_SUCCESS, data);
+			break;
 			
 		case Events.RESERVA_MOSTRAR_UNA:
 			tReserva = saReserva.MostrarUna((Integer) data);
@@ -321,6 +354,13 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_ERROR, null);
 			else
 				cIGUI.update(Events.RESERVA_MOSTRAR_TODAS_SUCCESS, collectionReserva);
+			break;
+		case Events.RESERVA_MOSTRAR_POR_CLIENTE:
+			Collection<TReserva> collectionReservaPorCliente = saReserva.leerReservasPorCliente((Integer) data);
+			if(collectionReservaPorCliente.isEmpty())
+				cIGUI.update(Events.RESERVA_MOSTRAR_POR_CLIENTE_FAILED, null);
+			else
+				cIGUI.update(Events.RESERVA_MOSTRAR_POR_CLIENTE_SUCCESS, collectionReservaPorCliente);
 			break;
 			
 			//TAREA
@@ -578,15 +618,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.HABITACION_MOSTRAR_POR_EMPLEADO_ID, collectionHabPorEmpleado);
 			break;
-		case Events.RESERVA_ELIMINAR:
-			saSolution= saReserva.eliminar((Integer)data);
-			
-			if(saSolution == -1)
-				cIGUI.update(Events.RESERVA_ELIMINAR_ERROR, data);
-			
-			else
-				cIGUI.update(Events.RESERVA_ELIMINAR_SUCCESS, data);
-			break;
+		
 
 		}		
 		
