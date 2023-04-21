@@ -306,7 +306,7 @@ public class ControllerImp extends Controller {
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_POR_CLIENTE_VISTA, null);
 			break;
 		
-		case Events.RESERVA_CERRAR:
+		case Events.RESERVA_CREAR:
 			tReserva = (TReserva)data;
 			saSolution = saReserva.abrir(tReserva);
 			if(saSolution == -1)

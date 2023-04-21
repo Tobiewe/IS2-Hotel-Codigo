@@ -59,28 +59,15 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	    fechaPanel.add(new JLabel("Fecha: "));
 	    fechaPanel.add(fechaSpinner());
 
-//	    JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-//	    cancelButtonPanel.add(cancelButton());
-	   // cancelButtonPanel.add(añadirHabitacionesReservaButton());
+	    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	    buttonPanel.add(crearReservaButton());
+	    buttonPanel.add(cancelButton());
 	    
 
 	    mainPanel.add(nochesPanel);
 	    mainPanel.add(fechaPanel);
-	    //mainPanel.add(cancelButtonPanel);
-	    
-	    
-	    añadirHabitacionesPanel.add(panelIdHabitacion());
-		
-		añadirHabitacionesPanel.add(buttonsFirstPanel());
-		
-		JList<Integer> list = new JList<>(listaHabitaciones);
-		list.setName("Habitaciones");
-		JScrollPane scrollPane = new JScrollPane(list);
-		añadirHabitacionesPanel.add(scrollPane);
-		
-		añadirHabitacionesPanel.add(cerrarReservaPanel());
-		
-		añadirHabitacionesPanel.setVisible(true);
+	    mainPanel.add(buttonPanel);
+	  
 	    
 	    mainPanel.add(añadirHabitacionesPanel);
 
@@ -121,20 +108,6 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	    return fechaSpin;
 	}
 	
-//	public JButton añadirHabitacionesReservaButton()
-//	{
-//		JButton annadirhabitacionesReservaButton = new JButton("Añadir Habitaciones");
-//		annadirhabitacionesReservaButton.addActionListener(new ActionListener()
-//		{
-//			public void actionPerformed(ActionEvent e)
-//			{
-//				//ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
-//				
-//				añadirHabitacionesPanel.setVisible(true);
-//			}
-//		});
-//		return annadirhabitacionesReservaButton;
-//	}
 	public JPanel panelIdHabitacion() {
 		JPanel panelIdEmpleado = new JPanel();
 		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -157,48 +130,16 @@ public class VAbrirReserva extends JFrame implements IGUI {
 
 		return panelIdEmpleado;
 	}
-	public JPanel buttonsFirstPanel()
-	{
-		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		buttonsPanel.add(añadirHabitacionButton());
-		buttonsPanel.add(eliminarHabitacionButton());
-		
-		return buttonsPanel;
-	}
-	public JButton añadirHabitacionButton() {
-		JButton añadirHabitacionButton = new JButton("Añadir");
-		añadirHabitacionButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(!listaHabitaciones.contains(idHabitacion))
-					listaHabitaciones.addElement(idHabitacion);
-			}
-		});
-		return añadirHabitacionButton;
-	}
-	public JButton eliminarHabitacionButton() {
-		JButton  eliminarHabitacionButton = new JButton("Eliminar");
-		 	eliminarHabitacionButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				listaHabitaciones.removeElement(idHabitacion);
-			}
-		});
-		return  eliminarHabitacionButton;
-	}
 	
-	public JPanel cerrarReservaPanel() {
-		JPanel cerrarReservaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	public JButton crearReservaButton() {
 		
-		JButton cerrarReservaButton = new JButton("Cerrar");
-		cerrarReservaButton.addActionListener(new ActionListener() {
+		JButton crearReservaButton = new JButton("Cerrar");
+		crearReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.RESERVA_CERRAR, null);
+				ctrl.carryAction(Events.RESERVA_CREAR, null);
 			}
 		});
-		cerrarReservaPanel.add(cerrarReservaButton);
-		cerrarReservaPanel.add(cancelButton());
-		
-		return cerrarReservaPanel;
+		return crearReservaButton;
 	}
 	public JButton cancelButton()
 	{

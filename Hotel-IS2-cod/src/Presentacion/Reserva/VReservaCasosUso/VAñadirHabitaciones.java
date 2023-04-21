@@ -61,9 +61,13 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		JScrollPane scrollPane = new JScrollPane(list);
 		mainPanel.add(scrollPane);
 		
-		mainPanel.add(cerrarReservaPanel());
-		
+		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
+		buttonsPanel.add(añadirHabitacionesButton());
+		buttonsPanel.add(cancelButton());
+		
+		mainPanel.add(buttonsPanel);
+		
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -102,37 +106,35 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		return buttonsPanel;
 	}
 	public JButton añadirHabitacionButton() {
-		JButton cerrarReservaButton = new JButton("Añadir");
-		cerrarReservaButton.addActionListener(new ActionListener() {
+		JButton añadirHabitacionesButton = new JButton("Añadir");
+		añadirHabitacionesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!listaHabitaciones.contains(idHabitacion))
 					listaHabitaciones.addElement(idHabitacion);
 			}
 		});
-		return cerrarReservaButton;
+		return añadirHabitacionesButton;
 	}
 	public JButton eliminarHabitacionButton() {
-		JButton cerrarReservaButton = new JButton("Eliminar");
-		cerrarReservaButton.addActionListener(new ActionListener() {
+		JButton añadirHabitacionesButton = new JButton("Eliminar");
+		añadirHabitacionesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listaHabitaciones.removeElement(idHabitacion);
 			}
 		});
-		return cerrarReservaButton;
+		return añadirHabitacionesButton;
 	}
 	
-	public JPanel cerrarReservaPanel() {
-		JPanel cerrarReservaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	public JButton añadirHabitacionesButton() {
 		
-		JButton cerrarReservaButton = new JButton("Cerrar");
-		cerrarReservaButton.addActionListener(new ActionListener() {
+		JButton añadirHabitacionesButton = new JButton("Añadir Habitaciones");
+		añadirHabitacionesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.RESERVA_CERRAR, null);
+				
+				ctrl.carryAction(Events.RESERVA_CREAR, null);
 			}
 		});
-		cerrarReservaPanel.add(cancelButton());
-		cerrarReservaPanel.add(cerrarReservaButton);
-		return cerrarReservaPanel;
+		return añadirHabitacionesButton;
 	}
 	
 	public JButton cancelButton()

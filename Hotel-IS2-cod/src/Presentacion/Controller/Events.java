@@ -151,11 +151,20 @@ public class Events {
 	public static final int RESERVA_MOSTRAR_TODAS_SUCCESS = 352;
 	public static final int RESERVA_MOSTRAR_TODAS_ERROR = 353;
 	
-	public static final int RESERVA_CERRAR = 360;
-	public static final int RESERVA_QUITAR_HABITACIONES = 370;
+	public static final int RESERVA_QUITAR_HABITACIONES = 360;
+	public static final int RESERVA_QUITAR_HABITACIONES_VISTA = 361;
+	public static final int RESERVA_QUITAR_HABITACIONES_SUCCESS = 362;
+	public static final int RESERVA_QUITAR_HABITACIONES_ERROR = 363;
+
 	
-	public static final int RESERVA_AÑADIR_HABITACIONES = 380;
-	public static final int RESERVA_AÑADIR_HABITACIONES_VISTA = 381;
+	public static final int RESERVA_AÑADIR_HABITACIONES = 370;
+	public static final int RESERVA_AÑADIR_HABITACIONES_VISTA = 371;
+	public static final int RESERVA_AÑADIR_HABITACIONES_SUCCESS = 372;
+	public static final int RESERVA_AÑADIR_HABITACIONES_ERROR = 373;
+	
+	public static final int RESERVA_MOSTRAR_HABITACIONES = 380;
+	public static final int RESERVA_MOSTRAR_HABITACIONES_VISTA = 381;
+
 	
 	public static final int RESERVA_MOSTRAR_POR_CLIENTE = 390;
 	public static final int RESERVA_MOSTRAR_POR_CLIENTE_VISTA = 391;
