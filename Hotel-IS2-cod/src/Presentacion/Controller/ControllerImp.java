@@ -8,6 +8,8 @@ import java.util.Collection;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
+import Integracion.Departamentos.DAODepartamentos;
+import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 import Negocio.Clientes.SACliente;
 import Negocio.Clientes.TCliente;
 import Negocio.Clientes.TEmpresa;
@@ -121,6 +123,8 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.DEPARTAMENTO_MODIFICAR_NOTFOUND, tDepartamento.getId());
 			else if(saSolution == -5)
 				cIGUI.update(Events.DEPARTAMENTO_MODIFICAR_WRONG_PARAMETERS, tDepartamento.getId());
+			else if(saSolution == -3)
+				cIGUI.update(Events.DEPARTAMENTO_MODIFICAR_NAMEREPEATED, tDepartamento.getNombre());
 			else if(saSolution > 0)
 				cIGUI.update(Events.DEPARTAMENTO_MODIFICAR_SUCCESS, tDepartamento.getId());
 			break;
@@ -185,18 +189,23 @@ public class ControllerImp extends Controller {
 		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_VISTA, null);
 			break;
-		
 			
 			//ACCIONES
 		case Events.EMPLEADO_CREAR:
 			tEmpleado = (TEmpleados)data;
 			saSolution = saEmpleado.crear(tEmpleado);
-			if(saSolution == -1)
-				cIGUI.update(Events.EMPLEADO_CREAR_ERROR, null);
-			else if(saSolution == -2)
+			if(saSolution == -2)
 				cIGUI.update(Events.EMPLEADO_CREAR_REPEATED,  tEmpleado.getId());
 			else if(saSolution == -5)
 				cIGUI.update(Events.EMPLEADO_CREAR_WRONG_PARAMETERS, null);
+			else if(saSolution == -6)
+				cIGUI.update(Events.EMPLEADO_CREAR_WRONG_NUMBER, null);
+			else if(saSolution == -7)
+				cIGUI.update(Events.EMPLEADO_CREAR_WRONG_MAIL, null);
+			else if(saSolution == -8)
+				cIGUI.update(Events.EMPLEADO_CREAR_NO_DEPARTAMENT, null);
+			else if(saSolution == -9)
+				cIGUI.update(Events.EMPLEADO_CREAR_DEPARTAMENT_INACTIVE, null);
 			else if(saSolution > 0)
 				cIGUI.update(Events.EMPLEADO_CREAR_SUCCESS, saSolution);
 			break;
@@ -207,7 +216,15 @@ public class ControllerImp extends Controller {
 			if(saSolution == -2)
 				cIGUI.update(Events.EMPLEADO_MODIFICAR_NOTFOUND, tEmpleado.getId());
 			else if(saSolution == -5)
-				cIGUI.update(Events.EMPLEADO_MODIFICAR_WRONG_PARAMETERS, tEmpleado.getId());
+				cIGUI.update(Events.EMPLEADO_MODIFICAR_WRONG_PARAMETERS, null);
+			else if(saSolution == -6)
+				cIGUI.update(Events.EMPLEADO_MODIFICAR_WRONG_NUMBER, null);
+			else if(saSolution == -7)
+				cIGUI.update(Events.EMPLEADO_MODIFICAR_WRONG_MAIL, null);
+			else if(saSolution == -8)
+				cIGUI.update(Events.EMPLEADO_MODIFICAR_NO_DEPARTAMENT, null);
+			else if(saSolution == -9)
+				cIGUI.update(Events.EMPLEADO_MODIFICAR_DEPARTAMENT_INACTIVE, null);
 			else if(saSolution > 0)
 				cIGUI.update(Events.EMPLEADO_MODIFICAR_SUCCESS, tEmpleado.getId());
 			break;
@@ -245,6 +262,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_ID, collectionEmpleadoPorDep);
 			break;
+			//ccomit
 			
 		case Events.EMPLEADO_VINCULAR:
 			saSolution = saEmpleado.vincular((TTareasDelEmpleado) data);
@@ -271,25 +289,28 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.EMPLEADO_MOSTRAR_EMPYTAR:
-			//Falta esto
+			Pair<Collection<TEmpleados>, Collection<TTareas>> collectionTodos = saEmpleado.LeertodosDeTareasEmpleado();
+			if(collectionTodos == null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_EMPYTAR_NOID, null);
+			else
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_EMPYTAR_ID, null);
 			break;
 			
-//		case Events.EMPLEADO_MOSTRAR_POR_TAREA:
-//			Collection<TEmpleados> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorTareas((Integer) data);
-//			if(collectionEmpleadosPorTarea == null)
-//				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, null);
-//			else
-//				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_NOID, null);
-//			break;
-//
-//		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
-//			Collection<TEmpleados> collectionTareasPorEmpleado = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data);
-//			if(collectionTareasPorEmpleado == null)
-//				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, null);
-//			else
-//				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, null);
-//			break;
-			
+		case Events.EMPLEADO_MOSTRAR_POR_TAREA:
+			Collection<TEmpleados> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data);
+			if(collectionEmpleadosPorTarea == null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, null);
+			else
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_NOID, null);
+			break;
+
+		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
+			Collection<TTareas> collectionTareasPorEmpleado = saEmpleado.LeerLineasPedidoPorTareas((Integer) data);
+			if(collectionTareasPorEmpleado == null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, null);
+			else
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, null);
+			break;		
 			
 			//RESERVA
 		case Events.RESERVA_CREAR_VISTA:
@@ -318,6 +339,9 @@ public class ControllerImp extends Controller {
 			break;
 		case Events.RESERVA_MOSTRAR_HABITACIONES_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_HABITACIONES_VISTA, null);
+			break;
+		case Events.RESERVA_MOSTRAR_RESERVA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_RESERVA_VISTA, null);
 			break;
 		
 		case Events.RESERVA_CREAR:
@@ -406,9 +430,16 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
 			break;
 		case Events.RESERVA_MOSTRAR_HABITACIONES:
-			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_HABITACIONES_VISTA, null);
+			Collection<THabitaciones> collectionHabPorReserva = saReserva.ListarHabitacionesPorReserva((Integer)data);
+			if(collectionHabPorReserva.isEmpty())
+				cIGUI.update(Events.RESERVA_MOSTRAR_HABITACIONES_FAILED, (Integer) data);
+			else
+				cIGUI.update(Events.RESERVA_MOSTRAR_HABITACIONES_SUCCESS, collectionHabPorReserva);
 			break;
 			
+			
+		case Events.RESERVA_MOSTRAR_RESERVA:
+		
 			//TAREA
 		case Events.TAREA_CREAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.TAREA_CREAR_VISTA, null);

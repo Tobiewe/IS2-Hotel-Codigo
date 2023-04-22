@@ -248,12 +248,18 @@ private Controller ctrl;
 	
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.EMPLEADO_CREAR_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear el empleado");
+		if(event == Events.EMPLEADO_CREAR_WRONG_NUMBER)
+			JOptionPane.showMessageDialog(this, "ERROR: El formato del número introducido es incorrecto");
+		else if(event == Events.EMPLEADO_CREAR_WRONG_MAIL)
+			JOptionPane.showMessageDialog(this, "ERROR: El formato del correo introducido es incorrecto");
+		else if(event == Events.EMPLEADO_CREAR_NO_DEPARTAMENT)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha encontrado el departamento introducido");
 		else if(event == Events.EMPLEADO_CREAR_REPEATED)
 			JOptionPane.showMessageDialog(this, "ERROR: El empleado con id " + (Integer) datos + " ya existe");
 		else if(event == Events.EMPLEADO_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
+		else if(event == Events.EMPLEADO_CREAR_DEPARTAMENT_INACTIVE)
+			JOptionPane.showMessageDialog(this, "ERROR: El departamento asignado se encuentra inactivo");
 		else if(event == Events.EMPLEADO_CREAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "El empleado con id " +(Integer) datos +" se ha creado correctamente");
 			setVisible(false);

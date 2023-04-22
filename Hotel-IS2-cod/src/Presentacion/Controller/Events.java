@@ -10,17 +10,23 @@ public class Events {
 	
 	public static final int EMPLEADO_CREAR_VISTA = 110;
 	public static final int EMPLEADO_CREAR = 111;
-	public static final int EMPLEADO_CREAR_ERROR = 112;
-	public static final int EMPLEADO_CREAR_REPEATED = 113;
-	public static final int EMPLEADO_CREAR_WRONG_PARAMETERS= 114;
-	public static final int EMPLEADO_CREAR_SUCCESS = 115;	
+	public static final int EMPLEADO_CREAR_REPEATED = 112;
+	public static final int EMPLEADO_CREAR_WRONG_PARAMETERS = 113;
+	public static final int EMPLEADO_CREAR_SUCCESS = 114;
+	public static final int EMPLEADO_CREAR_WRONG_NUMBER = 115;
+	public static final int EMPLEADO_CREAR_WRONG_MAIL = 116;
+	public static final int EMPLEADO_CREAR_NO_DEPARTAMENT = 117;
+	public static final int EMPLEADO_CREAR_DEPARTAMENT_INACTIVE = 118;
 	
 	public static final int EMPLEADO_MODIFICAR = 120; 
 	public static final int EMPLEADO_MODIFICAR_VISTA = 121;
-	public static final int EMPLEADO_MODIFICAR_WRONG_PARAMETERS = 122;
-	public static final int EMPLEADO_MODIFICAR_NOTFOUND = 123;
-	//public static final int EMPLEADO_MODIFICAR_IDREPEATED = 124;
-	public static final int EMPLEADO_MODIFICAR_SUCCESS = 125;
+	public static final int EMPLEADO_MODIFICAR_NOTFOUND= 122;
+	public static final int EMPLEADO_MODIFICAR_WRONG_PARAMETERS = 123;
+	public static final int EMPLEADO_MODIFICAR_SUCCESS = 124;
+	public static final int EMPLEADO_MODIFICAR_WRONG_NUMBER = 125;
+	public static final int EMPLEADO_MODIFICAR_WRONG_MAIL = 126;
+	public static final int EMPLEADO_MODIFICAR_NO_DEPARTAMENT = 127;
+	public static final int EMPLEADO_MODIFICAR_DEPARTAMENT_INACTIVE = 128;
 	
 	public static final int EMPLEADO_ELIMINAR = 130;
 	public static final int EMPLEADO_ELIMINAR_VISTA = 131;
@@ -177,6 +183,14 @@ public class Events {
 	
 	public static final int RESERVA_MOSTRAR_HABITACIONES = 380;
 	public static final int RESERVA_MOSTRAR_HABITACIONES_VISTA = 381;
+	public static final int RESERVA_MOSTRAR_HABITACIONES_SUCCESS = 382;
+	public static final int RESERVA_MOSTRAR_HABITACIONES_FAILED = 383;
+	
+	public static final int RESERVA_MOSTRAR_RESERVA = 384;
+	public static final int RESERVA_MOSTRAR_RESERVA_VISTA = 385;
+	public static final int RESERVA_MOSTRAR_RESERVA_SUCCESS = 386;
+	public static final int RESERVA_MOSTRAR_RESERVA_FAILED = 387;
+
 
 	
 	public static final int RESERVA_MOSTRAR_POR_CLIENTE = 390;
@@ -274,9 +288,8 @@ public class Events {
 
 	public static final int DEPARTAMENTO_CREAR = 610;
 	public static final int DEPARTAMENTO_CREAR_VISTA = 611;
-	public static final int DEPARTAMENTO_CREAR_ERROR = 612;
-	public static final int DEPARTAMENTO_CREAR_REPEATED = 613;
-	public static final int DEPARTAMENTO_CREAR_WRONG_PARAMETERS = 614;
+	public static final int DEPARTAMENTO_CREAR_REPEATED = 612;
+	public static final int DEPARTAMENTO_CREAR_WRONG_PARAMETERS = 613;
 	public static final int DEPARTAMENTO_CREAR_SUCCESS = 615;
 	
 	
@@ -284,7 +297,7 @@ public class Events {
 	public static final int DEPARTAMENTO_MODIFICAR_VISTA = 621;
 	public static final int DEPARTAMENTO_MODIFICAR_WRONG_PARAMETERS = 622;
 	public static final int DEPARTAMENTO_MODIFICAR_NOTFOUND = 623;
-	public static final int DEPARTAMENTO_MODIFICAR_IDREPEATED = 624;
+	public static final int DEPARTAMENTO_MODIFICAR_NAMEREPEATED = 624;
 	public static final int DEPARTAMENTO_MODIFICAR_SUCCESS = 625;
 	
 	public static final int DEPARTAMENTO_ELIMINAR = 630;
