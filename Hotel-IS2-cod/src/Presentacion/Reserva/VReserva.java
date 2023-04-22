@@ -45,6 +45,7 @@ public class VReserva extends JFrame implements IGUI {
 		mainPanel.add(añadirhabitacionesReservaButton());
 		mainPanel.add(eliminarHabitacionesReservaButton());
 		mainPanel.add(mostrarHabitacionesReservaButton());
+		mainPanel.add(mostrarReservaHabitacionButton());
 		
 		
 		pack();
@@ -180,12 +181,25 @@ public class VReserva extends JFrame implements IGUI {
 	}
 	public JButton mostrarHabitacionesReservaButton()
 	{
-		JButton annadirhabitacionesReservaButton = new JButton("Mostrar Habitaciones");
+		JButton annadirhabitacionesReservaButton = new JButton("Mostrar Habitaciones por Reserva");
 		annadirhabitacionesReservaButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
 				ctrl.carryAction(Events.RESERVA_MOSTRAR_HABITACIONES_VISTA, null);
+				setVisible(false);
+			}
+		});
+		return annadirhabitacionesReservaButton;
+	}
+	public JButton mostrarReservaHabitacionButton()
+	{
+		JButton annadirhabitacionesReservaButton = new JButton("Mostrar Reservas por Habitación");
+		annadirhabitacionesReservaButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ctrl.carryAction(Events.RESERVA_MOSTRAR_RESERVA_VISTA, null);
 				setVisible(false);
 			}
 		});

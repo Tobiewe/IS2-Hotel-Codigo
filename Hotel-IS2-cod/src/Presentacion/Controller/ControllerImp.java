@@ -417,7 +417,6 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
 			else 
 				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
-			
 			break;
 			
 		case Events.RESERVA_QUITAR_HABITACIONES:
@@ -429,6 +428,7 @@ public class ControllerImp extends Controller {
 			else
 				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
 			break;
+			
 		case Events.RESERVA_MOSTRAR_HABITACIONES:
 			Collection<THabitaciones> collectionHabPorReserva = saReserva.ListarHabitacionesPorReserva((Integer)data);
 			if(collectionHabPorReserva.isEmpty())
@@ -437,16 +437,12 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.RESERVA_MOSTRAR_HABITACIONES_SUCCESS, collectionHabPorReserva);
 			break;
 			
-			
 		case Events.RESERVA_MOSTRAR_RESERVA:
 			Collection<TReserva> collectionReservPorId =  saReserva.ListarReservasPorHabitacion((Integer)data);
-			
 			if(collectionReservPorId.isEmpty())
-				cIGUI.update(Events.RESERVA_MOSTRAR_RESERVA_FAILED, tReserva.getId());
-			
+				cIGUI.update(Events.RESERVA_MOSTRAR_RESERVA_FAILED, (Integer)data);
 			else
 				cIGUI.update(Events.RESERVA_MOSTRAR_RESERVA_SUCCESS, collectionReservPorId);
-			
 			break;
 		
 			//TAREA
