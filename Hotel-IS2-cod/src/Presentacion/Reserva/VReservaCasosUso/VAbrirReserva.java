@@ -131,7 +131,7 @@ public class VAbrirReserva extends JFrame implements IGUI {
 
 		return panelIdEmpleado;
 	}
-	//act
+	//ac
 	public JButton crearReservaButton() {
 		
 		JButton crearReservaButton = new JButton("Cerrar");
