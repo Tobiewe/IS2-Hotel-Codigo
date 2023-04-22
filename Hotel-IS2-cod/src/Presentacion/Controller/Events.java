@@ -134,6 +134,8 @@ public class Events {
 	public static final int RESERVA_CREAR_REPEATED = 313;
 	public static final int RESERVA_CREAR_WRONG_PARAMETERS= 314;
 	public static final int RESERVA_CREAR_SUCCESS = 315;
+	public static final int RESERVA_CREAR_CLIENTE_NOT_FOUND = 316;
+	public static final int RESERVA_CREAR_CLIENTE_NOT_ACTIVE = 317;
 	
 	public static final int RESERVA_MODIFICAR = 320;
 	public static final int RESERVA_MODIFICAR_VISTA = 321;
@@ -141,6 +143,8 @@ public class Events {
 	public static final int RESERVA_MODIFICAR_NOTFOUND = 323;
 	public static final int RESERVA_MODIFICAR_IDREPEATED = 324;
 	public static final int RESERVA_MODIFICAR_SUCCESS = 325;
+	public static final int RESERVA_MODIFICAR_CLIENTE_NOT_FOUND = 326;
+	public static final int RESERVA_MODIFICAR_CLIENTE_NOT_ACTIVE = 327;
 	
 	public static final int RESERVA_ELIMINAR = 330;
 	public static final int RESERVA_ELIMINAR_VISTA = 331;
@@ -162,12 +166,14 @@ public class Events {
 	public static final int RESERVA_QUITAR_HABITACIONES_VISTA = 361;
 	public static final int RESERVA_QUITAR_HABITACIONES_SUCCESS = 362;
 	public static final int RESERVA_QUITAR_HABITACIONES_ERROR = 363;
+	public static final int RESERVA_QUITAR_HABITACIONES_OCUPADA = 364;
 
 	
 	public static final int RESERVA_AÑADIR_HABITACIONES = 370;
 	public static final int RESERVA_AÑADIR_HABITACIONES_VISTA = 371;
 	public static final int RESERVA_AÑADIR_HABITACIONES_SUCCESS = 372;
 	public static final int RESERVA_AÑADIR_HABITACIONES_ERROR = 373;
+	public static final int RESERVA_AÑADIR_HABITACIONES_OCUPADA = 374;
 	
 	public static final int RESERVA_MOSTRAR_HABITACIONES = 380;
 	public static final int RESERVA_MOSTRAR_HABITACIONES_VISTA = 381;

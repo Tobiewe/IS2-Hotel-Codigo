@@ -27,6 +27,7 @@ import Negocio.Reserva.SAReserva;
 import Negocio.Reserva.TLineaReserva;
 import Negocio.Reserva.TReserva;
 
+
 public class ControllerImp extends Controller {
 	private IGUI cIGUI;
 	
@@ -47,6 +48,7 @@ public class ControllerImp extends Controller {
 	private TCliente tCliente;
 	private TDepartamento tDepartamento;
 	private TTareasDelEmpleado tTareasDelEmpleado;
+	private TLineaReserva tLineaPedido;
 	
 	public ControllerImp() {
 		saEmpleado = SAFactory.getInstance().newSAEmpleado();
@@ -323,10 +325,12 @@ public class ControllerImp extends Controller {
 			saSolution = saReserva.abrir(tReserva);
 			if(saSolution == -1)
 				cIGUI.update(Events.RESERVA_CREAR_ERROR, null);
-			else if(saSolution == -2)
-				cIGUI.update(Events.RESERVA_CREAR_REPEATED,  tReserva.getId());
 			else if(saSolution == -5)
 				cIGUI.update(Events.RESERVA_CREAR_WRONG_PARAMETERS, saSolution);
+			else if(saSolution == -6)
+				cIGUI.update(Events.RESERVA_CREAR_CLIENTE_NOT_FOUND, tReserva.getId_cliente());
+			else if(saSolution == -7)
+				cIGUI.update(Events.RESERVA_CREAR_CLIENTE_NOT_ACTIVE, tReserva.getId_cliente());
 			else if(saSolution > 0)
 				cIGUI.update(Events.RESERVA_CREAR_SUCCESS, null);
 			break;
@@ -338,6 +342,10 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.RESERVA_MODIFICAR_NOTFOUND, tReserva.getId());
 			else if(saSolution == -5)
 				cIGUI.update(Events.RESERVA_MODIFICAR_WRONG_PARAMETERS, tReserva.getId());
+			else if(saSolution == -6)
+				cIGUI.update(Events.RESERVA_MODIFICAR_CLIENTE_NOT_FOUND, tReserva.getId_cliente());
+			else if(saSolution == -7)
+				cIGUI.update(Events.RESERVA_MODIFICAR_CLIENTE_NOT_ACTIVE, tReserva.getId_cliente());
 			else if(saSolution > 0)
 				cIGUI.update(Events.RESERVA_MODIFICAR_SUCCESS, tReserva.getId());
 			break;
@@ -377,14 +385,25 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.RESERVA_AÑADIR_HABITACIONES:
-			Integer auxIdReserva, auxIdHabitacion;
-			//auxIdReserva = (Pair<Integer,Integer>
-			//saSolution = saReserva.eliminarHabitacion( )
-			cIGUI = VFactory.getInstance().newView(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
+			tLineaPedido = (TLineaReserva)data;
+			
+			saSolution = saReserva.añadirHabitacion(tLineaPedido);
+			
+			if (saSolution == -6)
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
+			else 
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
+			
 			break;
 			
 		case Events.RESERVA_QUITAR_HABITACIONES:
-			cIGUI = VFactory.getInstance().newView(Events.RESERVA_QUITAR_HABITACIONES_VISTA, null);
+			tLineaPedido=(TLineaReserva)data;
+			saSolution = saReserva.eliminarHabitacion(tLineaPedido.getId_reserva(), tLineaPedido.getId_habitacion());
+			
+			if(saSolution == -6)
+				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
+			else
+				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
 			break;
 		case Events.RESERVA_MOSTRAR_HABITACIONES:
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_HABITACIONES_VISTA, null);
@@ -489,17 +508,19 @@ public class ControllerImp extends Controller {
 			System.out.println(tCliente.getCIF());
 			
 			if(saSolution == -2)
-				cIGUI.update(Events.CLIENTE_CREAR_REPEATED,  saSolution);
+				cIGUI.update(Events.CLIENTE_CREAR_REPEATED,  tCliente.getId());
+			else if(saSolution == -1)
+				cIGUI.update(Events.CLIENTE_CREAR_ERROR, null);
 			else if(saSolution == -5)
 				cIGUI.update(Events.CLIENTE_CREAR_EMPTY, saSolution);
 			else if(saSolution == -6)
-				cIGUI.update(Events.CLIENTE_CREAR_NUM_OVERFLOW,saSolution);
+				cIGUI.update(Events.CLIENTE_CREAR_NUM_OVERFLOW,tCliente.getTelefono());
 			else if(saSolution == -7)
-				cIGUI.update(Events.CLIENTE_CREAR_EMAIL_WRONG, saSolution);
+				cIGUI.update(Events.CLIENTE_CREAR_EMAIL_WRONG, tCliente.getCorreo());
 			else if ( saSolution == -8)
-				cIGUI.update(Events.CLIENTE_CREAR_CIF_WRONG, saSolution);
+				cIGUI.update(Events.CLIENTE_CREAR_CIF_WRONG, tCliente.getCIF());
 			else if (saSolution == -9)
-				cIGUI.update(Events.CLIENTE_CREAR_NIF_WRONG, saSolution);
+				cIGUI.update(Events.CLIENTE_CREAR_NIF_WRONG, tCliente.getNIF());
 			else 
 				cIGUI.update(Events.CLIENTE_CREAR_SUCCESS, saSolution);
 			
