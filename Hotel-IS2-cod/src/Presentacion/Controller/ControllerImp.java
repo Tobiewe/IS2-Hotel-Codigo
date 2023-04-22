@@ -378,8 +378,8 @@ public class ControllerImp extends Controller {
 			
 		case Events.RESERVA_AÑADIR_HABITACIONES:
 			Integer auxIdReserva, auxIdHabitacion;
-			auxIdReserva = (Pair<Integer,Integer>
-			saSolution = saReserva.eliminarHabitacion( )
+			//auxIdReserva = (Pair<Integer,Integer>
+			//saSolution = saReserva.eliminarHabitacion( )
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
 			break;
 			
