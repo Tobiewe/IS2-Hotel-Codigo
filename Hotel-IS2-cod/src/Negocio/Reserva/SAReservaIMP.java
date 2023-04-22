@@ -3,10 +3,12 @@ package Negocio.Reserva;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import Integracion.Cliente.DAOCliente;
 import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 import Integracion.Habitaciones.DAOHabitaciones;
 import Integracion.LineaReserva.DAOLineaReserva;
 import Integracion.Reserva.DAOReserva;
+import Negocio.Clientes.TCliente;
 import Negocio.Habitaciones.THabitaciones;
 import Negocio.Tareas.TTareas;
 
@@ -14,8 +16,18 @@ public class SAReservaIMP implements SAReserva{
 
 	
 	public Integer abrir(TReserva reserva) {
-		if(reserva.getNoches() <= 0 || reserva.getTotal() != 0 || reserva.getActivo()){
+		if(reserva.getNoches() <= 0){
 			return -5;
+		}
+		
+		DAOCliente daoc = FactoriaIntegracion.getInstance().newDAOCliente();
+		TCliente tc = daoc.MostrarUno(reserva.getId_cliente());
+		
+		if(tc == null){
+			return -6; // el cliente no existe
+		}
+		else if(!tc.getActivo()){
+			return -7; // el cliente no esta ativo
 		}
 		
 		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
@@ -26,8 +38,18 @@ public class SAReservaIMP implements SAReserva{
 	
 	public Integer modificar(TReserva reserva) {
 		
-		if(reserva.getNoches() <= 0 ){
+		if(reserva.getNoches() <= 0){
 			return -5;
+		}
+		
+		DAOCliente daoc = FactoriaIntegracion.getInstance().newDAOCliente();
+		TCliente tc = daoc.MostrarUno(reserva.getId_cliente());
+		
+		if(tc == null){
+			return -6; // el cliente no existe
+		}
+		else if(!tc.getActivo()){
+			return -7; // el cliente no esta ativo
 		}
 		
 		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
