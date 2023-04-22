@@ -62,7 +62,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 
 		try {
 			
-			String c = "DELETE FROM tareas_empleado WHERE id_empleado = ?;";
+			String c = "DELETE FROM tareas_empleado WHERE id_tareas = ? AND id_empleado = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);

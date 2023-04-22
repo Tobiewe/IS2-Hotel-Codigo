@@ -121,7 +121,7 @@ public class VDesvincularTarea extends JFrame implements IGUI{
 	}
 	JButton vincularButton(){
 		
-		JButton okButton = new JButton("Vincular");
+		JButton okButton = new JButton("Desvincular");
 		 
 		 
 		okButton.addActionListener(new ActionListener(){
@@ -160,8 +160,11 @@ public class VDesvincularTarea extends JFrame implements IGUI{
 			JOptionPane.showMessageDialog(this, "ERROR: Tarea no disponible");
 		else if(event == Events.EMPLEADO_DESVINCULAR_EMPLEADO_NO_ACTIVO)
 			JOptionPane.showMessageDialog(this, "ERROR: Empleado no disponible");
-		else if(event == Events.EMPLEADO_DESVINCULAR_SUCCESS)
+		else if(event == Events.EMPLEADO_DESVINCULAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "La tarea y el empleado se han desvinculado con éxito");
+			setVisible(false);
+			ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
+		}
 	}
 
 }

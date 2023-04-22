@@ -192,6 +192,39 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 		return lista;
 
 	}
+	
+	
+	public Collection<TLineaReserva> LeerLineasPedidoPorHabitacion(Integer idHabitacion) {
+
+		ArrayList<TLineaReserva> lista = new ArrayList<TLineaReserva>();
+		
+		try {
+			String c = "SELECT * FROM linea_reserva WHERE id_Habitacion = ?;";
+
+			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
+			PreparedStatement ps = Cnx.prepareStatement(c);
+
+			ps.setInt(1, idHabitacion);
+			ResultSet Rs = ps.executeQuery();
+
+			while (Rs.next()){
+				
+				lista.add(new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
+				
+			}
+						
+			Cnx.close();
+			ps.close();
+			Rs.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return lista;
+
+	}
 
 	
 

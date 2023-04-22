@@ -286,8 +286,11 @@ public class VModificarEmpleado extends JFrame implements IGUI {
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
 		else if(event == Events.EMPLEADO_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: El empleado con id " + (Integer)datos + " no se ha encontrado");
-		else if(event == Events.EMPLEADO_MODIFICAR_SUCCESS) 
-			JOptionPane.showMessageDialog(this, "El empleado con id " + (Integer)datos + "se ha modificado correctamente");
+		else if(event == Events.EMPLEADO_MODIFICAR_SUCCESS){
+			JOptionPane.showMessageDialog(this, "El empleado con id " + (Integer)datos + " se ha modificado correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
+		}
 
 	}
 }

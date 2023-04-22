@@ -418,7 +418,7 @@ public class ControllerImp extends Controller {
 			else if(saSolution == -5)
 				cIGUI.update(Events.TAREA_CREAR_WRONG_PARAMETERS, saSolution);
 			else if(saSolution > 0)
-				cIGUI.update(Events.TAREA_CREAR_SUCCESS, null);
+				cIGUI.update(Events.TAREA_CREAR_SUCCESS, saSolution);
 			break;
 			
 		case Events.TAREA_MODIFICAR:

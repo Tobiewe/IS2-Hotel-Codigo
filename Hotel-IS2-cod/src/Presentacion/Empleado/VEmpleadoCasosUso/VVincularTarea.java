@@ -159,8 +159,11 @@ public class VVincularTarea extends JFrame implements IGUI {
 			JOptionPane.showMessageDialog(this, "ERROR: Tarea no disponible");
 		else if(event == Events.EMPLEADO_VINCULAR_EMPLEADO_NO_ACTIVO)
 			JOptionPane.showMessageDialog(this, "ERROR: Empleado no disponible");
-		else if(event == Events.EMPLEADO_VINCULAR_SUCCESS)
+		else if(event == Events.EMPLEADO_VINCULAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "La tarea y el empleado se han vinculado con éxito");
+			setVisible(false);
+			ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
+		}
 	}
 
 }

@@ -16,5 +16,7 @@ public interface DAOLineaReserva {
 	public Collection<THabitaciones> ListarHabitacionesPorReserva(Integer idReserva);
 	
 	public Collection<TReserva> ListarReservasPorHabitacion(Integer idHabitacion);
+	
+	public Collection<TLineaReserva> LeerLineasPedidoPorHabitacion(Integer idHabitacion);
 
 }

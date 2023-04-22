@@ -46,8 +46,8 @@ public class SADepartamentoIMP implements SADepartamento {
 		if(tDep == null){
 			return -2;
 		}
-		if (!tDep.getNombre().equals(tdepartamento.getNombre())){
-			return -2;
+		if (tDep.getNombre().equals(tdepartamento.getNombre())){
+			return -3; // enviar error por q se llaman igaul
 		}
 		
 		return daoDep.modificar(tdepartamento);
