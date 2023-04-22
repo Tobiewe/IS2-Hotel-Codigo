@@ -186,4 +186,24 @@ public class SAReservaTest {
 		assertTrue(result3 < 0);
 
 	}
+//	@Test
+//	public void añadirHabitacionCorrecto() {
+//		TReserva reserva = new TReserva(null, (float) 6.0, new Date(120, 5, 3), 1, 5, true);
+//
+//		Integer dev = SAFactory.getInstance().newSAReserva().abrir(reserva);
+//
+//		assertTrue(dev > 0);
+//
+//		TReserva reservaLeida = SAFactory.getInstance().newSAReserva().MostrarUna(dev);
+//
+//		assertNotNull(reservaLeida);
+//		assertEquals(reserva.getActivo(), reservaLeida.getActivo());
+//		assertEquals(reserva.getFecha_entrada(), reservaLeida.getFecha_entrada());
+//		assertEquals(reserva.getId(), reservaLeida.getId());
+//		assertEquals(reserva.getId_cliente(), reservaLeida.getId_cliente());
+//		assertEquals(reserva.getTotal(), reservaLeida.getTotal());
+//		
+//		
+//
+//	}
 }
