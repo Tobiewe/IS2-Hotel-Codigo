@@ -177,6 +177,14 @@ public class Events {
 	
 	public static final int RESERVA_MOSTRAR_HABITACIONES = 380;
 	public static final int RESERVA_MOSTRAR_HABITACIONES_VISTA = 381;
+	public static final int RESERVA_MOSTRAR_HABITACIONES_SUCCESS = 382;
+	public static final int RESERVA_MOSTRAR_HABITACIONES_FAILED = 383;
+	
+	public static final int RESERVA_MOSTRAR_RESERVA = 384;
+	public static final int RESERVA_MOSTRAR_RESERVA_VISTA = 385;
+	public static final int RESERVA_MOSTRAR_RESERVA_SUCCESS = 386;
+	public static final int RESERVA_MOSTRAR_RESERVA_FAILED = 387;
+
 
 	
 	public static final int RESERVA_MOSTRAR_POR_CLIENTE = 390;

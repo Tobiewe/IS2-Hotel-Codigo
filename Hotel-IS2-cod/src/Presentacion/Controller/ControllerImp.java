@@ -338,6 +338,9 @@ public class ControllerImp extends Controller {
 		case Events.RESERVA_MOSTRAR_HABITACIONES_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_HABITACIONES_VISTA, null);
 			break;
+		case Events.RESERVA_MOSTRAR_RESERVA_VISTA:
+			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_RESERVA_VISTA, null);
+			break;
 		
 		case Events.RESERVA_CREAR:
 			tReserva = (TReserva)data;
@@ -398,9 +401,6 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.RESERVA_AÑADIR_HABITACIONES:
-			Integer auxIdReserva, auxIdHabitacion;
-			//auxIdReserva = (Pair<Integer,Integer>
-			//saSolution = saReserva.eliminarHabitacion( )
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
 			break;
 			
@@ -408,9 +408,16 @@ public class ControllerImp extends Controller {
 			cIGUI = VFactory.getInstance().newView(Events.RESERVA_QUITAR_HABITACIONES_VISTA, null);
 			break;
 		case Events.RESERVA_MOSTRAR_HABITACIONES:
-			cIGUI = VFactory.getInstance().newView(Events.RESERVA_MOSTRAR_HABITACIONES_VISTA, null);
+			Collection<THabitaciones> collectionHabPorReserva = saReserva.ListarHabitacionesPorReserva((Integer)data);
+			if(collectionHabPorReserva.isEmpty())
+				cIGUI.update(Events.RESERVA_MOSTRAR_HABITACIONES_FAILED, (Integer) data);
+			else
+				cIGUI.update(Events.RESERVA_MOSTRAR_HABITACIONES_SUCCESS, collectionHabPorReserva);
 			break;
 			
+			
+		case Events.RESERVA_MOSTRAR_RESERVA:
+		
 			//TAREA
 		case Events.TAREA_CREAR_VISTA:
 			cIGUI = VFactory.getInstance().newView(Events.TAREA_CREAR_VISTA, null);
