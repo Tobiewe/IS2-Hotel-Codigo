@@ -170,8 +170,8 @@ public class VEditarDepartamento extends JFrame implements IGUI {
 	public void update(int event, Object datos) {
 		if(event == Events.DEPARTAMENTO_MODIFICAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Los parámetros introducidos son erróneos");
-//		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
-//			JOptionPane.showMessageDialog(this, "ERROR: El departamento con id " + (Integer)datos + "ya existe");
+		else if(event == Events.DEPARTAMENTO_MODIFICAR_NAMEREPEATED) 
+			JOptionPane.showMessageDialog(this, "ERROR: El departamento con nombre " + (String)datos + " ya existe");
 		else if(event == Events.DEPARTAMENTO_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: El departamento con id " + (Integer)datos + " no se ha encontrado");
 		else if(event == Events.DEPARTAMENTO_MODIFICAR_SUCCESS) {

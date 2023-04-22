@@ -108,9 +108,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 
 	@Override
 	public void update(int event, Object datos) {
-		if (event == Events.DEPARTAMENTO_CREAR_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear el departamento");
-		else if (event == Events.DEPARTAMENTO_CREAR_REPEATED)
+		if (event == Events.DEPARTAMENTO_CREAR_REPEATED)
 			JOptionPane.showMessageDialog(this, "ERROR: Ya existe un departamento con el nombre " + (String) datos);
 		else if (event == Events.DEPARTAMENTO_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");

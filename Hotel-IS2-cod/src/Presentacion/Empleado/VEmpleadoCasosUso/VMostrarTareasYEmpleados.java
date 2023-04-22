@@ -20,6 +20,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+
 import Negocio.Empleados.TEmpleados;
 import Negocio.Tareas.TTareas;
 import Presentacion.Controller.Controller;
@@ -29,7 +31,6 @@ import Presentacion.Controller.IGUI;
 public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 
 	private Controller ctrl;
-	private String title = "Mostrar Tareas y Empleados";
 	private tareaTableModel tareaTableModel;
 	private empleadoTableModel empleadoTableModel;
 	
@@ -46,18 +47,26 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
-		setTitle(title);
+		setTitle("Mostrar Empleados y Tareas");
 		
 		
 		JPanel cancelButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		cancelButtonPanel.add(cancelButton());
 		
+		JPanel tareaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JPanel empleadoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+		
 		tareaTableModel = new tareaTableModel();
-		mainPanel.add(tareaTableModel.transformTableToPanel());
+		tareaPanel.add(tareaTableModel.transformTableToPanel());
 		empleadoTableModel = new empleadoTableModel();
-		mainPanel.add(empleadoTableModel.transformTableToPanel());
+		empleadoPanel.add(empleadoTableModel.transformTableToPanel());
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		buttonPanel.add(cancelButtonPanel);
+		
+		mainPanel.add(empleadoPanel);
+		mainPanel.add(tareaPanel);
+		
 		mainPanel.add(buttonPanel);
 		
 		
@@ -121,7 +130,7 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 			JTable hTable = new JTable(this); 
 			
 			tablaPanel.add(hTable);
-			TitledBorder titleBorder = BorderFactory.createTitledBorder(title);
+			TitledBorder titleBorder = BorderFactory.createTitledBorder("Tareas");
 			tablaPanel.setBorder(titleBorder);
 			
 			JScrollPane sPanel = new JScrollPane(hTable);
@@ -183,7 +192,7 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 			JTable hTable = new JTable(this); 
 			
 			tablaPanel.add(hTable);
-			TitledBorder titleBorder = BorderFactory.createTitledBorder(title);
+			TitledBorder titleBorder = BorderFactory.createTitledBorder("Empleados");
 			tablaPanel.setBorder(titleBorder);
 			
 			JScrollPane sPanel = new JScrollPane(hTable);
@@ -209,8 +218,9 @@ public class VMostrarTareasYEmpleados extends JFrame implements IGUI{
 	@Override
 	public void update(int event, Object datos) {
 		if(event == Events.TAREA_MOSTRAR_TODAS_SUCCESS){
-			empleadoTableModel.setList((Collection<TEmpleados>) datos);
-			tareaTableModel.setList((Collection<TTareas>) datos);
+			Pair<Collection<TEmpleados>, Collection<TTareas> > myPair = (Pair<Collection<TEmpleados>, Collection<TTareas> > ) datos;
+			empleadoTableModel.setList(myPair.left);
+			tareaTableModel.setList((Collection<TTareas>) myPair.right);
 		}
 		else if(event == Events.TAREA_MOSTRAR_TODAS_ERROR)
 			JOptionPane.showMessageDialog(this, "ERROR: No hay tareas ni empleados en la base de datos");

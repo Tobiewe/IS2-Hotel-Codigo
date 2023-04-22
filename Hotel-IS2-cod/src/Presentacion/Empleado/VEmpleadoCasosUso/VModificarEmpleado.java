@@ -280,14 +280,20 @@ public class VModificarEmpleado extends JFrame implements IGUI {
 	}
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.EMPLEADO_MODIFICAR_WRONG_PARAMETERS)
-			JOptionPane.showMessageDialog(this, "ERROR: Los parámetros introducidos son erróneos");
-//		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
-//			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
-		else if(event == Events.EMPLEADO_MODIFICAR_NOTFOUND) 
-			JOptionPane.showMessageDialog(this, "ERROR: El empleado con id " + (Integer)datos + " no se ha encontrado");
+		if(event == Events.EMPLEADO_MODIFICAR_WRONG_NUMBER)
+			JOptionPane.showMessageDialog(this, "ERROR: El formato del número introducido es incorrecto");
+		else if(event == Events.EMPLEADO_MODIFICAR_WRONG_MAIL)
+			JOptionPane.showMessageDialog(this, "ERROR: El formato del correo introducido es incorrecto");
+		else if(event == Events.EMPLEADO_MODIFICAR_NO_DEPARTAMENT)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha encontrado el departamento introducido");
+		else if(event == Events.EMPLEADO_MODIFICAR_NOTFOUND)
+			JOptionPane.showMessageDialog(this, "ERROR: El empleado con id " + (Integer) datos + " no se ha encontrado");
+		else if(event == Events.EMPLEADO_MODIFICAR_WRONG_PARAMETERS)
+			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
+		else if(event == Events.EMPLEADO_MODIFICAR_DEPARTAMENT_INACTIVE)
+			JOptionPane.showMessageDialog(this, "ERROR: El departamento asignado se encuentra inactivo");
 		else if(event == Events.EMPLEADO_MODIFICAR_SUCCESS){
-			JOptionPane.showMessageDialog(this, "El empleado con id " + (Integer)datos + " se ha modificado correctamente");
+			JOptionPane.showMessageDialog(this, "El empleado con id " +(Integer) datos +" se ha modificado correctamente");
 			setVisible(false);
 			ctrl.carryAction(Events.EMPLEADO_NUEVA_VISTA, null);
 		}
