@@ -96,23 +96,13 @@ public class VModificarReserva extends JFrame implements IGUI {
 	    mainPanel.add(nochesPanel);
 	    mainPanel.add(fechaPanel);
 	   
-//	    mainPanel.add(cancelButtonPanel);
+	    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	    
+	    buttonPanel.add(modificarReservaButton());
+	    buttonPanel.add(cancelButton());
 	    
-	    añadirHabitacionesPanel.add(panelIdHabitacion());
-		
-		añadirHabitacionesPanel.add(buttonsFirstPanel());
-		
-		JList<Integer> list = new JList<>(listaHabitaciones);
-		list.setName("Habitaciones");
-		JScrollPane scrollPane = new JScrollPane(list);
-		añadirHabitacionesPanel.add(scrollPane);
-		
-		añadirHabitacionesPanel.add(modificarReservaPanel());
-		
-		añadirHabitacionesPanel.setVisible(true);
+	    mainPanel.add(buttonPanel);
 	    
-	    mainPanel.add(añadirHabitacionesPanel);
 
 	    pack();
 	    setLocationRelativeTo(null);
@@ -235,53 +225,18 @@ public class VModificarReserva extends JFrame implements IGUI {
 
 		return panelIdEmpleado;
 	}
-	public JPanel buttonsFirstPanel()
-	{
-		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		buttonsPanel.add(añadirHabitacionButton());
-		buttonsPanel.add(eliminarHabitacionButton());
-		
-		return buttonsPanel;
-	}
-	public JButton añadirHabitacionButton() {
-		JButton añadirHabitacionButton = new JButton("Añadir");
-		añadirHabitacionButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(!listaHabitaciones.contains(idHabitacion))
-					listaHabitaciones.addElement(idHabitacion);
-			}
-		});
-		return añadirHabitacionButton;
-	}
-	public JButton eliminarHabitacionButton() {
-		JButton  eliminarHabitacionButton = new JButton("Eliminar");
-		 	eliminarHabitacionButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				listaHabitaciones.removeElement(idHabitacion);
-			}
-		});
-		return  eliminarHabitacionButton;
-	}
 	
-	public JPanel modificarReservaPanel() {
-		JPanel modificarReservaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	public JButton modificarReservaButton() {
 		
 		JButton modificarReservaButton = new JButton("Modificar");
 		modificarReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				public TReserva(Integer id, Float total, Date fecha_entrada, String nombre, Integer id_cliente, Integer noches, Boolean activo){
-//
-//				TReserva tReserva = new TReserva(id, null, fecha, "", , idCliente, noches)
-//				TTareas tTarea = new TTareas(id,descripcionText.getText(),lugarText.getText(),nombreText.getText(),activa);
-
-				ctrl.carryAction(Events.RESERVA_MODIFICAR, null);
+				TReserva tReserva = new TReserva(id, null, fecha, idCliente, noches,activa);
+				ctrl.carryAction(Events.RESERVA_MODIFICAR, tReserva);
 			}
 		});
-		modificarReservaPanel.add(modificarReservaButton);
-		modificarReservaPanel.add(cancelButton());
 		
-		return modificarReservaPanel;
+		return modificarReservaButton;
 	}
 	public JButton cancelButton()
 	{
