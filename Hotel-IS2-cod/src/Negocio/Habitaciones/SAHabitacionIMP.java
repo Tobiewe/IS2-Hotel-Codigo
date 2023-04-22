@@ -14,7 +14,7 @@ public class SAHabitacionIMP implements SAHabitacion {
 	public Integer crear(THabitaciones habitacion) {
 		
 		if(habitacion.getPiso() < 0 || habitacion.getPrecio() <= 0 || habitacion.gettamanyo() <= 0){
-			return -5;
+			return -5; // los parametros deben ser mayor de 0
 		}
 		
 		DAOHabitaciones daoHab = FactoriaIntegracion.getInstance().newDAOHabitaciones();

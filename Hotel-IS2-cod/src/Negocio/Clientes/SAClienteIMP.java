@@ -11,15 +11,35 @@ import Negocio.Empleados.TEmpleados;
 
 public class SAClienteIMP implements SACliente{
 
-	
+	private final static String letras = "TRWAGMYFPDXBNJZSQVHLCKE";	
 
 	public Integer crear(TCliente entradaCliente) {
 		
 		String numero = Integer.toString(entradaCliente.getTelefono());
+		// Patrón para validar el email
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(entradaCliente.getCorreo());
 		
-		if(numero.length() != 9 || entradaCliente.getNombre().trim().equals("")){
-			return -5;
+		
+		if(entradaCliente.getApellidos().trim().equals("") || entradaCliente.getCIF().trim().equals("") || entradaCliente.getCorreo().trim().equals("") || entradaCliente.getNIF().trim().equals("") || entradaCliente.getNombre().trim().equals("")){
+			return -5; // los datos introducidos estan vacios porfavor complete los campos
 		}
+		else if(numero.length() != 9){
+			return -6; // numero de longuitdud mayor
+		}
+		else if(!mather.find()){
+			return -7; //correo no valido
+		}
+		else if(!NIFCIFValido(entradaCliente.getCIF())){
+			return -8; // cif invalido
+		}
+		else if(!NIFCIFValido(entradaCliente.getNIF())){
+			return -9; // nif invalido
+		}
+
+		
 		
 		//Creamos el dao
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
@@ -44,13 +64,29 @@ public class SAClienteIMP implements SACliente{
 	public Integer modificar(TCliente cliente) {
 		
 		String numero = Integer.toString(cliente.getTelefono());
-		String patron = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-		Pattern pattern = Pattern.compile(patron);
-		Matcher matcher = pattern.matcher(cliente.getCorreo());
+		// Patrón para validar el email
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(cliente.getCorreo());
 		
-		if(numero.length() != 9 || matcher.matches() || cliente.getNombre() == ""){
-			return -5;
+		
+		if(cliente.getApellidos().trim().equals("") || cliente.getCIF().trim().equals("") || cliente.getCorreo().trim().equals("") || cliente.getNIF().trim().equals("") || cliente.getNombre().trim().equals("")){
+			return -5; // los datos introducidos estan vacios porfavor complete los campos
 		}
+		else if(numero.length() != 9){
+			return -6; // numero de longuitdud mayor
+		}
+		else if(!mather.find()){
+			return -7; //correo no valido
+		}
+		else if(!NIFCIFValido(cliente.getCIF())){
+			return -8; // cif invalido
+		}
+		else if(!NIFCIFValido(cliente.getNIF())){
+			return -9; // nif invalido
+		}
+		
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
 		TCliente auxCliente = daoCliente.MostrarUno(cliente.getId());
 		
@@ -132,5 +168,16 @@ public class SAClienteIMP implements SACliente{
 		
 		return dev;
 	}
+	
+	
+    public static boolean NIFCIFValido(String doc) {
+        boolean valido = false;
+        if(doc.matches("\\d{8}[A-Z]")) {
+            if(doc.length() == 9) {
+                valido = true;
+            }
+        }
+        return valido;
+    }
 
 }

@@ -175,7 +175,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 			while (rs.next()){
 				
-				lista.add(new TReserva(rs.getInt("Id"), rs.getFloat("total"),rs.getDate("Fecha_entrada"), rs.getString("nombre"), rs.getInt("id_cliente"), 
+				lista.add(new TReserva(rs.getInt("Id"), rs.getFloat("total"),rs.getDate("Fecha_entrada"), rs.getInt("id_cliente"), 
 						rs.getInt("noches"), rs.getBoolean("activo")));
 				
 			}

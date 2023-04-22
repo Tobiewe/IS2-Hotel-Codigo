@@ -2,14 +2,18 @@ package Negocio.Empleados;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
+import Integracion.Departamentos.DAODepartamentos;
 import Integracion.Empleados.DAOEmpleados;
 import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 import Integracion.Habitaciones.DAOHabitaciones;
 import Integracion.Tareas.DAOTareas;
 import Integracion.TareasDelEmpleado.DAOTareasDelEmpleado;
+import Negocio.Departamentos.TDepartamento;
 import Negocio.Habitaciones.THabitaciones;
 import Negocio.Tareas.TTareas;
 
@@ -20,8 +24,31 @@ public class SAEmpleadoIMP implements SAEmpleado {
 		
 		String numero = Integer.toString(empleado.getTelefono());
 		
-		if(empleado.getApellidos().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getSueldo() < 0 || numero.length() != 9){
-			return -5;
+		// Patrón para validar el email
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(empleado.getCorreo());
+		
+		
+		if(empleado.getApellidos().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getNombre().trim().equals("")){
+			return -5; // los datos introducidos estan vacios porfavor complete los campos
+		}
+		else if(numero.length() != 9){
+			return -6; // numero de longuitdud mayor
+		}
+		else if(!mather.find()){
+			return -7; //correo no valido
+		}
+		
+		DAODepartamentos DAOdep =  FactoriaIntegracion.getInstance().newDAODepartamento();
+		TDepartamento td = DAOdep.MostrarUno(empleado.getId_Departamento());
+		
+		if(td == null){
+			return -8; //el departamento no existe
+		}
+		else if(!td.getActivado()){
+			return -9; //el departamento no esta activo
 		}
 		
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
@@ -50,8 +77,31 @@ public class SAEmpleadoIMP implements SAEmpleado {
 		
 		String numero = Integer.toString(empleado.getTelefono());
 		
-		if(empleado.getApellidos().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getSueldo() < 0 || numero.length() != 9){
-			return -5;
+		// Patrón para validar el email
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(empleado.getCorreo());
+		
+		
+		if(empleado.getApellidos().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getNombre().trim().equals("")){
+			return -5; // los datos introducidos estan vacios porfavor complete los campos
+		}
+		else if(numero.length() != 9){
+			return -6; // numero de longuitdud mayor
+		}
+		else if(!mather.find()){
+			return -7; //correo no valido
+		}
+		
+		DAODepartamentos DAOdep =  FactoriaIntegracion.getInstance().newDAODepartamento();
+		TDepartamento td = DAOdep.MostrarUno(empleado.getId_Departamento());
+		
+		if(td == null){
+			return -8; //el departamento no existe
+		}
+		else if(!td.getActivado()){
+			return -9; //el departamento no esta activo
 		}
 		
 		return daoEmpl.modificar(empleado);
