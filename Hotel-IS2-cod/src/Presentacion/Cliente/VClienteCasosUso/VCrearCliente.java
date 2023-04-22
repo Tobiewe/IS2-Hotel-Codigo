@@ -288,12 +288,18 @@ public class VCrearCliente extends JFrame implements IGUI{
 	
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.CLIENTE_CREAR_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: No se ha podido crear el cliente");
+		if(event == Events.CLIENTE_CREAR_NUM_OVERFLOW)
+			JOptionPane.showMessageDialog(this, "ERROR: El Número de telefono introducido excede las 9 Cifras");
 		else if(event == Events.CLIENTE_CREAR_REPEATED)
 			JOptionPane.showMessageDialog(this, "ERROR: El cliente con id " + (Integer) datos + " ya existe");
-		else if(event == Events.CLIENTE_CREAR_WRONG_PARAMETERS)
-			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
+		else if(event == Events.CLIENTE_CREAR_EMPTY)
+			JOptionPane.showMessageDialog(this, "ERROR: Alguno de los Parámetros introducidos Vacios");
+		else if(event == Events.CLIENTE_CREAR_CIF_WRONG)
+			JOptionPane.showMessageDialog(this, "ERROR: El CIF es Invalido");
+		else if(event == Events.CLIENTE_CREAR_EMAIL_WRONG)
+			JOptionPane.showMessageDialog(this, "ERROR: El Correo Electrónico es Invalido");
+		else if(event == Events.CLIENTE_CREAR_NIF_WRONG)
+			JOptionPane.showMessageDialog(this, "ERROR: El NIF es Invalido");
 		else if(event == Events.CLIENTE_CREAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "El cliente con id " + (Integer) datos + " se ha creado correctamente");
 			setVisible(false);

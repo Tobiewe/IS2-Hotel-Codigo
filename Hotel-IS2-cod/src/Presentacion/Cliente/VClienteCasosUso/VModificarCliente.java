@@ -342,12 +342,26 @@ public class VModificarCliente extends JFrame implements IGUI{
 	
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.CLIENTE_MODIFICAR_WRONG_PARAMETERS)
-			JOptionPane.showMessageDialog(this, "ERROR: Los parámetros introducidos son erróneos");
+		if(event == Events.CLIENTE_MODIFICAR_NUM_OVERFLOW)
+			JOptionPane.showMessageDialog(this, "ERROR: El numero de telefono excede las 9 Cifras");
 //		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
 //			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
 		else if(event == Events.CLIENTE_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: El cliente con id " + (Integer)datos + " no se ha encontrado");
+		
+		else if(event == Events.CLIENTE_MODIFICAR_EMPTY) 
+			JOptionPane.showMessageDialog(this, "ERROR: Alguno de los Parámetros introducidos estan en Blanco");
+		
+		else if(event == Events.CLIENTE_MODIFICAR_NIF_WRONG) 
+			JOptionPane.showMessageDialog(this, "ERROR: El NIF es invalido");
+		
+		else if(event == Events.CLIENTE_MODIFICAR_CIF_WRONG) 
+			JOptionPane.showMessageDialog(this, "ERROR: El CIF es invalido");
+		
+		else if(event == Events.CLIENTE_MODIFICAR_EMAIL_WRONG) 
+			JOptionPane.showMessageDialog(this, "ERROR: El Correo Electrónico es invalido");
+		
+		
 		else if(event == Events.CLIENTE_MODIFICAR_SUCCESS){
 			JOptionPane.showMessageDialog(this, "El cliente con id " + (Integer)datos + " se ha modificado correctamente");
 			setVisible(false);
