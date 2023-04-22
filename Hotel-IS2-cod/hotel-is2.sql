@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-04-2023 a las 11:32:54
+-- Tiempo de generación: 22-04-2023 a las 11:38:43
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -199,7 +199,6 @@ CREATE TABLE `reserva` (
   `Id` int(11) NOT NULL,
   `Total` decimal(10,2) DEFAULT NULL,
   `Fecha_entrada` date DEFAULT NULL,
-  `Nombre` varchar(100) DEFAULT NULL,
   `cliente_Id` int(11) DEFAULT NULL,
   `noches` int(11) NOT NULL,
   `activo` tinyint(1) DEFAULT 0
@@ -209,9 +208,9 @@ CREATE TABLE `reserva` (
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`Id`, `Total`, `Fecha_entrada`, `Nombre`, `cliente_Id`, `noches`, `activo`) VALUES
-(1, '1030.00', '1970-01-01', 'fiesta', 3, 5, 0),
-(34, '1000.00', '0000-00-00', 'Dondado', 3, 5, 1);
+INSERT INTO `reserva` (`Id`, `Total`, `Fecha_entrada`, `cliente_Id`, `noches`, `activo`) VALUES
+(1, '1030.00', '1970-01-01', 3, 5, 0),
+(34, '1000.00', '0000-00-00', 3, 5, 1);
 
 -- --------------------------------------------------------
 
