@@ -25,7 +25,7 @@ public class VAbrirReserva extends JFrame implements IGUI {
 
 	private Controller ctrl;
 	private String title = "Abrir Reserva";
-	private Integer idHabitacion;
+	private Integer idCliente;
     private DefaultListModel<Integer> listaHabitaciones;
     private JPanel añadirHabitacionesPanel;
 	private Integer noches;
@@ -66,6 +66,7 @@ public class VAbrirReserva extends JFrame implements IGUI {
 
 	    mainPanel.add(nochesPanel);
 	    mainPanel.add(fechaPanel);
+	    mainPanel.add(panelIdCliente());
 	    mainPanel.add(buttonPanel);
 	  
 	    
@@ -108,19 +109,19 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	    return fechaSpin;
 	}
 	
-	public JPanel panelIdHabitacion() {
+	public JPanel panelIdCliente() {
 		JPanel panelIdEmpleado = new JPanel();
 		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		JLabel idEmpleadoLabel = new JLabel("Número de habitación: ");
+		JLabel idEmpleadoLabel = new JLabel("Id del cliente: ");
 		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
 		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 20));
-		idHabitacion = (Integer) idEmpleadoSpinner.getValue();
+		idCliente = (Integer) idEmpleadoSpinner.getValue();
 		idEmpleadoSpinner.addChangeListener(new ChangeListener() {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				idHabitacion = (Integer) idEmpleadoSpinner.getValue();
+				idCliente = (Integer) idEmpleadoSpinner.getValue();
 			}
 
 		});
@@ -136,7 +137,9 @@ public class VAbrirReserva extends JFrame implements IGUI {
 		JButton crearReservaButton = new JButton("Cerrar");
 		crearReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.carryAction(Events.RESERVA_CREAR, null);
+				Float total = (float) 0.0;
+				TReserva tReserva = new TReserva(null, total, fecha,idCliente,noches,true);
+				ctrl.carryAction(Events.RESERVA_CREAR, tReserva);
 			}
 		});
 		return crearReservaButton;

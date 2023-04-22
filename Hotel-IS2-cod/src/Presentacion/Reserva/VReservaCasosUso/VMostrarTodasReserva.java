@@ -104,12 +104,10 @@ public class VMostrarTodasReserva extends JFrame implements IGUI {
 			else if(columnIndex == 2)
 				return reservas.get(rowIndex).getFecha_entrada();
 			else if(columnIndex == 3)
-				return reservas.get(rowIndex).getNombre();
-			else if(columnIndex == 4)
 				return reservas.get(rowIndex).getId_cliente();
-			else if(columnIndex == 5)
+			else if(columnIndex == 4)
 				return reservas.get(rowIndex).getNoches();
-			else if(columnIndex == 6)
+			else if(columnIndex == 5)
 				return reservas.get(rowIndex).getActivo();
 			return null;
 		}
