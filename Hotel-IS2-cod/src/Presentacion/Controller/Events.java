@@ -87,16 +87,23 @@ public class Events {
 	public static final int CLIENTE_CREAR_VISTA = 211;
 	public static final int CLIENTE_CREAR_ERROR = 212;
 	public static final int CLIENTE_CREAR_REPEATED = 213;
-	public static final int CLIENTE_CREAR_WRONG_PARAMETERS= 214;
+	public static final int CLIENTE_CREAR_NUM_OVERFLOW= 214;
 	public static final int CLIENTE_CREAR_SUCCESS = 215;
+	public static final int CLIENTE_CREAR_EMPTY = 216;
+	public static final int CLIENTE_CREAR_NIF_WRONG = 217;
+	public static final int CLIENTE_CREAR_CIF_WRONG = 218;
+	public static final int CLIENTE_CREAR_EMAIL_WRONG=219;
 	
 	
 	public static final int CLIENTE_MODIFICAR = 220;
 	public static final int CLIENTE_MODIFICAR_VISTA = 221;
-	public static final int CLIENTE_MODIFICAR_WRONG_PARAMETERS = 222;
 	public static final int CLIENTE_MODIFICAR_NOTFOUND = 223;
-	public static final int CLIENTE_MODIFICAR_IDREPEATED = 224;
 	public static final int CLIENTE_MODIFICAR_SUCCESS = 225;
+	public static final int CLIENTE_MODIFICAR_NUM_OVERFLOW= 226;
+	public static final int CLIENTE_MODIFICAR_EMPTY = 228;
+	public static final int CLIENTE_MODIFICAR_NIF_WRONG = 229;
+	public static final int CLIENTE_MODIFICAR_CIF_WRONG = 222;
+	public static final int CLIENTE_MODIFICAR_EMAIL_WRONG=224;
 	
 	public static final int CLIENTE_ELIMINAR = 230;
 	public static final int CLIENTE_ELIMINAR_VISTA = 231;

@@ -508,14 +508,22 @@ public class ControllerImp extends Controller {
 			tCliente = (TCliente)data;
 			saSolution = saCliente.crear(tCliente);
 			System.out.println(tCliente.getCIF());
-			if(saSolution == -1)
-				cIGUI.update(Events.CLIENTE_CREAR_ERROR, null);
-			else if(saSolution == -2)
+			
+			if(saSolution == -2)
 				cIGUI.update(Events.CLIENTE_CREAR_REPEATED,  saSolution);
 			else if(saSolution == -5)
-				cIGUI.update(Events.CLIENTE_CREAR_WRONG_PARAMETERS, saSolution);
-			else if(saSolution > 0)
-				cIGUI.update(Events.CLIENTE_CREAR_SUCCESS,saSolution);
+				cIGUI.update(Events.CLIENTE_CREAR_EMPTY, saSolution);
+			else if(saSolution == -6)
+				cIGUI.update(Events.CLIENTE_CREAR_NUM_OVERFLOW,saSolution);
+			else if(saSolution == -7)
+				cIGUI.update(Events.CLIENTE_CREAR_EMAIL_WRONG, saSolution);
+			else if ( saSolution == -8)
+				cIGUI.update(Events.CLIENTE_CREAR_CIF_WRONG, saSolution);
+			else if (saSolution == -9)
+				cIGUI.update(Events.CLIENTE_CREAR_NIF_WRONG, saSolution);
+			else 
+				cIGUI.update(Events.CLIENTE_CREAR_SUCCESS, saSolution);
+			
 			break;
 			
 		case Events.CLIENTE_MODIFICAR:
@@ -524,7 +532,15 @@ public class ControllerImp extends Controller {
 			if(saSolution == -2)
 				cIGUI.update(Events.CLIENTE_MODIFICAR_NOTFOUND, tCliente.getId());
 			else if(saSolution == -5)
-				cIGUI.update(Events.CLIENTE_MODIFICAR_WRONG_PARAMETERS, tCliente.getId());
+				cIGUI.update(Events.CLIENTE_MODIFICAR_EMPTY, tCliente.getId());
+			else if(saSolution == -6)
+				cIGUI.update(Events.CLIENTE_MODIFICAR_NUM_OVERFLOW, tCliente.getId());
+			else if(saSolution == -7)
+				cIGUI.update(Events.CLIENTE_MODIFICAR_EMAIL_WRONG, tCliente.getId());
+			else if(saSolution == -8)
+				cIGUI.update(Events.CLIENTE_MODIFICAR_CIF_WRONG, tCliente.getId());
+			else if(saSolution == -9)
+				cIGUI.update(Events.CLIENTE_MODIFICAR_NIF_WRONG, tCliente.getId());
 			else if(saSolution > 0)
 				cIGUI.update(Events.CLIENTE_MODIFICAR_SUCCESS, tCliente.getId());
 			break;
