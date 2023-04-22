@@ -56,4 +56,17 @@ public class THabitaciones {
 		this.numero = numero;
 	}
 	
+	public void setPiso(Integer piso){
+		this.piso = piso;
+	}
+	
+	public void setTamanyo(Integer tamaño){
+		this.tamaño= tamaño;
+	}
+	
+	public void setIdEmp(Integer id_empl){
+		this.id_empleado=id_empl;
+	}
+	
+	
 }

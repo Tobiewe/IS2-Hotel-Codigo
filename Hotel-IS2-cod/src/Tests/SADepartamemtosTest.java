@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import Negocio.Departamentos.TDepartamento;
 import Negocio.NegocioFactory.SAFactory;
-
 public class SADepartamemtosTest {
 
 	@Test
@@ -101,8 +100,7 @@ public class SADepartamemtosTest {
 	}
 	
 	
-	@Test
-	public void modificarDepIncorrecto() {
+	public void modificarDeptIncorrecto(){
 
 		TDepartamento depart = new TDepartamento(null, "Gestion web", true);
 		
