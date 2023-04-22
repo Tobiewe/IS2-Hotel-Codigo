@@ -7,19 +7,17 @@ public class TReserva {
 	private Integer id;
 	private Float total;
 	private Date fecha_entrada;
-	private String nombre;
 	private Integer id_cliente;
 	private Integer noches;
 	private Boolean activo;
 	
 
 	
-	public TReserva(Integer id, Float total, Date fecha_entrada, String nombre, Integer id_cliente, Integer noches, Boolean activo){
+	public TReserva(Integer id, Float total, Date fecha_entrada, Integer id_cliente, Integer noches, Boolean activo){
 		
 		this.id = id;
 		this.total = total;
 		this.fecha_entrada = fecha_entrada;
-		this.nombre = nombre;
 		this.id_cliente = id_cliente;
 		this.noches = noches;
 		this.activo = activo;
@@ -53,18 +51,6 @@ public class TReserva {
 
 	public void setFecha_entrada(Date fecha_entrada) {
 		this.fecha_entrada = fecha_entrada;
-	}
-
-
-
-	public String getNombre() {
-		return nombre;
-	}
-
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 

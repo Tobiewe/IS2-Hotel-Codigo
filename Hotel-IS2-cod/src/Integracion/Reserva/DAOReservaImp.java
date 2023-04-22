@@ -25,17 +25,16 @@ public class DAOReservaImp implements DAOReserva {
 		
 		try {
 			
-			String c = "INSERT INTO reserva (total, Fecha_entrada, nombre, noches, cliente_Id, activo) VALUES (?, ?, ?, ?, ?, ?);";
+			String c = "INSERT INTO reserva (total, Fecha_entrada, noches, cliente_Id, activo) VALUES ( ?, ?, ?, ?, ?);";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setFloat(1, tReserva.getTotal()); //pasarle 0 desde la vista
 			ps.setDate(2, (Date) tReserva.getFecha_entrada());
-			ps.setString(3, tReserva.getNombre());
-			ps.setInt(4, tReserva.getNoches());
-			ps.setInt(5, tReserva.getId_cliente());
-			ps.setBoolean(6, tReserva.getActivo()); //false pasarlo desde la vista
+			ps.setInt(3, tReserva.getNoches());
+			ps.setInt(4, tReserva.getId_cliente());
+			ps.setBoolean(5, tReserva.getActivo()); //false pasarlo desde la vista
 			ps.executeUpdate();
 			
 			
@@ -113,15 +112,14 @@ public class DAOReservaImp implements DAOReserva {
 			
 			rs.close();
 			
-			c = "UPDATE reserva SET Fecha_entrada = ?, nombre = ?, noches = ?, total = ? WHERE Id = ?;";
+			c = "UPDATE reserva SET Fecha_entrada = ?, noches = ?, total = ? WHERE Id = ?;";
 
 			ps = Cnx.prepareStatement(c);
 
 			ps.setDate(1, (Date) tReserva.getFecha_entrada());
-			ps.setString(2, tReserva.getNombre());
-			ps.setInt(3, tReserva.getNoches());
-			ps.setInt(4, total);
-			ps.setInt(5, tReserva.getId());
+			ps.setInt(2, tReserva.getNoches());
+			ps.setInt(3, total);
+			ps.setInt(4, tReserva.getId());
 			ps.executeUpdate();
 
 			if(ps.executeUpdate()==1) key = tReserva.getId();
@@ -154,7 +152,7 @@ public class DAOReservaImp implements DAOReserva {
 
 			if (Rs.next()){
 				
-				tReserva = new TReserva(Rs.getInt("Id"), Rs.getFloat("total"),Rs.getDate("Fecha_entrada"), Rs.getString("nombre"), Rs.getInt("cliente_Id"), 
+				tReserva = new TReserva(Rs.getInt("Id"), Rs.getFloat("total"),Rs.getDate("Fecha_entrada"), Rs.getInt("cliente_Id"), 
 						Rs.getInt("noches"), Rs.getBoolean("activo"));
 				
 			}
@@ -186,7 +184,7 @@ public class DAOReservaImp implements DAOReserva {
 
 			while (Rs.next()){
 				
-				lista.add(new TReserva(Rs.getInt("Id"), Rs.getFloat("total"),Rs.getDate("Fecha_entrada"), Rs.getString("nombre"), Rs.getInt("cliente_Id"), 
+				lista.add(new TReserva(Rs.getInt("Id"), Rs.getFloat("total"),Rs.getDate("Fecha_entrada"), Rs.getInt("cliente_Id"), 
 						Rs.getInt("noches"), Rs.getBoolean("activo")));
 				
 			}
@@ -223,7 +221,7 @@ public class DAOReservaImp implements DAOReserva {
 
 			while (rs.next()){
 				
-				lista.add(new TReserva(rs.getInt("Id"), rs.getFloat("total"),rs.getDate("Fecha_entrada"), rs.getString("nombre"), rs.getInt("id_cliente"), 
+				lista.add(new TReserva(rs.getInt("Id"), rs.getFloat("total"),rs.getDate("Fecha_entrada"), rs.getInt("id_cliente"), 
 						rs.getInt("noches"), rs.getBoolean("activo")));
 				
 			}

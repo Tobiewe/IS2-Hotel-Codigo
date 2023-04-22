@@ -14,7 +14,7 @@ public class SAReservaIMP implements SAReserva{
 
 	
 	public Integer abrir(TReserva reserva) {
-		if(reserva.getNoches() <= 0 || reserva.getNombre().trim().equals("") || reserva.getTotal() != 0 || reserva.getActivo()){
+		if(reserva.getNoches() <= 0 || reserva.getTotal() != 0 || reserva.getActivo()){
 			return -5;
 		}
 		
@@ -26,7 +26,7 @@ public class SAReservaIMP implements SAReserva{
 	
 	public Integer modificar(TReserva reserva) {
 		
-		if(reserva.getNoches() <= 0 || reserva.getNombre().trim().equals("")){
+		if(reserva.getNoches() <= 0 ){
 			return -5;
 		}
 		
