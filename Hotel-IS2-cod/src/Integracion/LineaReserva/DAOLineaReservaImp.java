@@ -209,7 +209,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 			while (Rs.next()){
 				
-				lista.add(new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_cliente"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
+				lista.add(new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
 				
 			}
 						

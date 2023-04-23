@@ -116,7 +116,7 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		JButton añadirHabitacionesButton = new JButton("Añadir Habitaciones");
 		añadirHabitacionesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TLineaReserva tLineaReserva = new TLineaReserva(idHabitacion,idReserva,null,true);
+				TLineaReserva tLineaReserva = new TLineaReserva(idReserva, idHabitacion, true);
 				ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES, tLineaReserva);
 			}
 		});

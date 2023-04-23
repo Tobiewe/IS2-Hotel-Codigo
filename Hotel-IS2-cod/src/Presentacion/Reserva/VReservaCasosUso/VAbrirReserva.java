@@ -134,7 +134,7 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	//ac
 	public JButton crearReservaButton() {
 		
-		JButton crearReservaButton = new JButton("Cerrar");
+		JButton crearReservaButton = new JButton("Crear");
 		crearReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Float total = (float) 0.0;

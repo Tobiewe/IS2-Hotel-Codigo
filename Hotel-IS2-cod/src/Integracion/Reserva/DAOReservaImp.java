@@ -31,7 +31,9 @@ public class DAOReservaImp implements DAOReserva {
 			PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setFloat(1, tReserva.getTotal()); //pasarle 0 desde la vista
-			ps.setDate(2, (Date) tReserva.getFecha_entrada());
+			java.util.Date fecha_entrada = tReserva.getFecha_entrada();
+			java.sql.Date sql_fecha_entrada = new java.sql.Date(fecha_entrada.getTime());
+			ps.setDate(2, sql_fecha_entrada);
 			ps.setInt(3, tReserva.getNoches());
 			ps.setInt(4, tReserva.getId_cliente());
 			ps.setBoolean(5, tReserva.getActivo()); //false pasarlo desde la vista

@@ -409,8 +409,8 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.RESERVA_AÑADIR_HABITACIONES:
-			tLineaPedido = (TLineaReserva)data;
-			
+			tLineaPedido = (TLineaReserva) data;
+			System.out.println(tLineaPedido.getId_habitacion());
 			saSolution = saReserva.añadirHabitacion(tLineaPedido);
 			
 			if (saSolution == -6)
