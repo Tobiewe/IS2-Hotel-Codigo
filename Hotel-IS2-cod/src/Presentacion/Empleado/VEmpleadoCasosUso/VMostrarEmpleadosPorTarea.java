@@ -46,7 +46,7 @@ public class VMostrarEmpleadosPorTarea extends JFrame implements IGUI {
 		});
 	}
 	public void initGUI() {
-		setTitle("Mostrar empleados por tarea");
+		setTitle("Mostrar Empleados por Tarea");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);

@@ -49,7 +49,7 @@ public class VMostrarTareasPorEmpleado extends JFrame implements IGUI{
 		});
 	}
 	public void initGUI() {
-		setTitle("Mostrar empleados por tarea");
+		setTitle("Mostrar Tareas por Empleado");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
