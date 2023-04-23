@@ -137,11 +137,10 @@ public class Events {
 	public static final int RESERVA_CREAR = 310;
 	public static final int RESERVA_CREAR_VISTA = 311;
 	public static final int RESERVA_CREAR_ERROR = 312;
-	public static final int RESERVA_CREAR_REPEATED = 313;
-	public static final int RESERVA_CREAR_WRONG_PARAMETERS= 314;
-	public static final int RESERVA_CREAR_SUCCESS = 315;
-	public static final int RESERVA_CREAR_CLIENTE_NOT_FOUND = 316;
-	public static final int RESERVA_CREAR_CLIENTE_NOT_ACTIVE = 317;
+	public static final int RESERVA_CREAR_WRONG_PARAMETERS= 313;
+	public static final int RESERVA_CREAR_SUCCESS = 314;
+	public static final int RESERVA_CREAR_CLIENTE_NOT_FOUND = 315;
+	public static final int RESERVA_CREAR_CLIENTE_NOT_ACTIVE = 316;
 	
 	public static final int RESERVA_MODIFICAR = 320;
 	public static final int RESERVA_MODIFICAR_VISTA = 321;

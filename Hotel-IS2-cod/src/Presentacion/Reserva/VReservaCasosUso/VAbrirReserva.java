@@ -162,8 +162,16 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	
 	@Override
 	public void update(int event, Object datos) {
-		
-		
+		if(event == Events.RESERVA_CREAR_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: Ha ocurrido un error al crear la reserva");
+		else if(event == Events.RESERVA_CREAR_WRONG_PARAMETERS)
+			JOptionPane.showMessageDialog(this, "ERROR: Parámetros incorrectos");
+		else if(event == Events.RESERVA_CREAR_CLIENTE_NOT_FOUND)
+			JOptionPane.showMessageDialog(this, "ERROR: El cliente no existe");
+		else if(event == Events.RESERVA_CREAR_CLIENTE_NOT_ACTIVE)
+			JOptionPane.showMessageDialog(this, "ERROR: El cliente no está activo");
+		else if(event == Events.RESERVA_CREAR_SUCCESS)
+			JOptionPane.showMessageDialog(this, "La reserva ha sido creada correctamente");S
 	}
 
 }

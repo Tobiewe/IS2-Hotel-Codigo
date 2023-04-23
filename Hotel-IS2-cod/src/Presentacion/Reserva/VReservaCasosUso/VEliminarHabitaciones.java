@@ -114,7 +114,7 @@ public class VEliminarHabitaciones extends JFrame implements IGUI {
 		eliminarHabitacionesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Pair<Integer,Integer> eliminarHabitacionPair = new Pair<>(idReserva, idHabitacion);
-				ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES,eliminarHabitacionPair );
+				ctrl.carryAction(Events.RESERVA_QUITAR_HABITACIONES,eliminarHabitacionPair);
 			}
 		});
 		return eliminarHabitacionesButton;
