@@ -123,7 +123,7 @@ public class VMostrarReservaHabitaciones extends JFrame implements IGUI {
 	}
 	class reservaTableModel extends AbstractTableModel
 	{
-		String[] columnValues = {"Id", "Total", "Fecha de entrada", "Nombre","Cliente Id", "Noches", "Activa"};
+		String[] columnValues = {"Id", "Total", "Fecha de entrada","Cliente Id", "Noches", "Activa"};
 		List<TReserva> reservas;
 		
 		public reservaTableModel()

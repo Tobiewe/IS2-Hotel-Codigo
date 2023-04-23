@@ -60,6 +60,10 @@ public class SATareaIMP implements SATarea {
 	
 	public Integer modificar(TTareas tTareas) {
 		
+		if(tTareas.getDescripcion().trim().equals("") || tTareas.getLugar().trim().equals("") || tTareas.getNombre().trim().equals("")){
+			return -5;
+		}
+		
 		DAOTareas daoTareas = FactoriaIntegracion.getInstance().newDAOTarea();
 		TTareas t = daoTareas.leerUno(tTareas.getId());
 		

@@ -31,7 +31,7 @@ public class SAEmpleadoIMP implements SAEmpleado {
         Matcher mather = pattern.matcher(empleado.getCorreo());
 		
 		
-		if(empleado.getApellidos().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getNombre().trim().equals("")){
+		if(empleado.getApellidos().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getSueldo() == 0){
 			return -5; // los datos introducidos estan vacios porfavor complete los campos
 		}
 		else if(numero.length() != 9){
@@ -84,7 +84,7 @@ public class SAEmpleadoIMP implements SAEmpleado {
         Matcher mather = pattern.matcher(empleado.getCorreo());
 		
 		
-		if(empleado.getApellidos().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getNombre().trim().equals("")){
+		if(empleado.getApellidos().trim().equals("") || empleado.getCorreo().trim().equals("") || empleado.getNombre().trim().equals("") || empleado.getSueldo() == 0){
 			return -5; // los datos introducidos estan vacios porfavor complete los campos
 		}
 		else if(numero.length() != 9){

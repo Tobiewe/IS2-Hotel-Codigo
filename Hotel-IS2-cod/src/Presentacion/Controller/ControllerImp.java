@@ -113,7 +113,7 @@ public class ControllerImp extends Controller {
 			else if(saSolution == -5)
 				cIGUI.update(Events.DEPARTAMENTO_CREAR_WRONG_PARAMETERS, null);
 			else if(saSolution > 0)
-				cIGUI.update(Events.DEPARTAMENTO_CREAR_SUCCESS, tDepartamento.getNombre());
+				cIGUI.update(Events.DEPARTAMENTO_CREAR_SUCCESS, saSolution);
 			break;
 			
 		case Events.DEPARTAMENTO_MODIFICAR:
