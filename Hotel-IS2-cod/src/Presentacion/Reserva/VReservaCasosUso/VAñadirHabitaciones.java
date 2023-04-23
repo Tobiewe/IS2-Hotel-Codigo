@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -139,6 +140,15 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 	}
 	@Override
 	public void update(int event, Object datos) {
-
+		if(event == Events.RESERVA_AÑADIR_HABITACIONES_NO_RESERVA)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha encontrado la reserva " + (Integer) datos);
+		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_OCUPADA)
+			JOptionPane.showMessageDialog(this, "ERROR: La habitación "+ (Integer) datos + " está ocupada");
+		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_NO_HABITACION)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha encontrado la habitación "+ (Integer) datos );
+		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS)
+			JOptionPane.showMessageDialog(this, "La habitación ha sido añadida a la reserva correctamente");
+		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: Ha habido un error en la operación");
 	}
 }

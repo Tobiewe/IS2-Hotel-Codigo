@@ -177,8 +177,13 @@ public class Events {
 	public static final int RESERVA_AÑADIR_HABITACIONES = 370;
 	public static final int RESERVA_AÑADIR_HABITACIONES_VISTA = 371;
 	public static final int RESERVA_AÑADIR_HABITACIONES_SUCCESS = 372;
-	public static final int RESERVA_AÑADIR_HABITACIONES_ERROR = 373;
+	public static final int RESERVA_AÑADIR_HABITACIONES_NO_HABITACION = 373;
 	public static final int RESERVA_AÑADIR_HABITACIONES_OCUPADA = 374;
+	public static final int RESERVA_AÑADIR_HABITACIONES_NO_RESERVA = 375;
+	public static final int RESERVA_AÑADIR_HABITACIONES_ERROR = 376;
+
+
+	
 	
 	public static final int RESERVA_MOSTRAR_HABITACIONES = 380;
 	public static final int RESERVA_MOSTRAR_HABITACIONES_VISTA = 381;

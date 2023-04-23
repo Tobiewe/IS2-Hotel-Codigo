@@ -377,10 +377,8 @@ public class ControllerImp extends Controller {
 			
 		case Events.RESERVA_ELIMINAR:
 			saSolution= saReserva.eliminar((Integer)data);
-			
 			if(saSolution == -1)
 				cIGUI.update(Events.RESERVA_ELIMINAR_ERROR, data);
-			
 			else
 				cIGUI.update(Events.RESERVA_ELIMINAR_SUCCESS, data);
 			break;
@@ -414,10 +412,16 @@ public class ControllerImp extends Controller {
 			System.out.println(tLineaPedido.getId_habitacion());
 			saSolution = saReserva.añadirHabitacion(tLineaPedido);
 			
-			if (saSolution == -6)
+			if(saSolution == -5)
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_NO_RESERVA, tLineaPedido.getId_reserva());
+			else if (saSolution == -6)
 				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
-			else 
-				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
+			else if(saSolution == -7)
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_NO_HABITACION, tLineaPedido.getId_habitacion());
+			else if(saSolution > 0)
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS, null);
+			else if(saSolution == -1)
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_ERROR, null);
 			break;
 			
 		case Events.RESERVA_QUITAR_HABITACIONES:
