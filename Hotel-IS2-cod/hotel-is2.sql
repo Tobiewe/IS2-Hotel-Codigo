@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-04-2023 a las 11:38:43
+-- Tiempo de generación: 23-04-2023 a las 17:05:35
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -35,16 +35,6 @@ CREATE TABLE `cliente` (
   `nombre` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`Id`, `telefono`, `Correo`, `activo`, `nombre`) VALUES
-(3, '123456789', 'alvaro@gmail.com', 0, NULL),
-(4, '65478978', 'pepe@gmail.com', 1, NULL),
-(8, '111111111', 'hola', 1, 'hola'),
-(9, '111111111', 'yu', 1, 'yu'),
-(10, '111111111', 'TT', 0, 'TT');
 
 -- --------------------------------------------------------
 
@@ -56,14 +46,6 @@ CREATE TABLE `cliente_empresa` (
   `CIF` varchar(20) DEFAULT NULL,
   `cliente_Id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `cliente_empresa`
---
-
-INSERT INTO `cliente_empresa` (`CIF`, `cliente_Id`) VALUES
-('12345678J', 4),
-('TG', 10);
 
 -- --------------------------------------------------------
 
@@ -77,15 +59,6 @@ CREATE TABLE `cliente_particular` (
   `cliente_Id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `cliente_particular`
---
-
-INSERT INTO `cliente_particular` (`apellidos`, `NIF`, `cliente_Id`) VALUES
-('martinez', '12345671235Y', 3),
-('hola', 'hola', 8),
-('yu', 'yu', 9);
-
 -- --------------------------------------------------------
 
 --
@@ -98,19 +71,6 @@ CREATE TABLE `departamentos` (
   `activo` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `departamentos`
---
-
-INSERT INTO `departamentos` (`Id`, `nombre`, `activo`) VALUES
-(2, 'departamento', 0),
-(23, 'dd', 0),
-(30, 'Ingrese aqui el nombre del departamento', 0),
-(31, 'dd', 0),
-(32, 'ff', 0),
-(33, 'sss departamento', 0),
-(34, 'sdfghghkhjk', 0),
-(35, 'ii', 0);
 
 -- --------------------------------------------------------
 
@@ -129,16 +89,6 @@ CREATE TABLE `empleado` (
   `iddepartamento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`Id`, `sueldo`, `nombre`, `apellidos`, `activo`, `correo`, `telefono`, `iddepartamento`) VALUES
-(23, '1000.00', 'ww', 'ww', 1, 'ww', '111111111', 2),
-(58, '1250.00', 'alberto', 'sanchez', 0, 'sanchez@jag.com', '33333333', NULL),
-(59, '1200.00', 'alberto', 'galdos', 1, 'abertto@jag.com', '123456789', NULL),
-(61, '1000.00', 'ttttt', 'tttttt', 0, 'ttttt', '211111111', 2),
-(62, '1000.00', 'rr', 'rr', 1, 'rr', '111111111', 2);
 
 -- --------------------------------------------------------
 
@@ -155,18 +105,6 @@ CREATE TABLE `habitacion` (
   `id_empleado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `habitacion`
---
-
-INSERT INTO `habitacion` (`numero`, `piso`, `tamanyo`, `precio`, `ocupada`, `id_empleado`) VALUES
-(6, 1, '30.5', '1030.54', 0, 23),
-(15, 2, '3.0', '400.00', 0, 23),
-(17, 1, '1.0', '5600.00', 0, 23),
-(18, 2, '1.0', '1000.00', 0, 23),
-(20, 2, '3.0', '5000.00', 0, 61),
-(21, 1, '1.0', '1000.00', 0, 61),
-(24, 1, '1.0', '2000.00', 0, 23);
 
 -- --------------------------------------------------------
 
@@ -179,15 +117,6 @@ CREATE TABLE `linea_reserva` (
   `id_Habitacion` int(11) NOT NULL,
   `activo` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `linea_reserva`
---
-
-INSERT INTO `linea_reserva` (`id_Reserva`, `id_Habitacion`, `activo`) VALUES
-(1, 15, 0),
-(1, 18, 0),
-(1, 21, 0);
 
 -- --------------------------------------------------------
 
@@ -204,14 +133,6 @@ CREATE TABLE `reserva` (
   `activo` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `reserva`
---
-
-INSERT INTO `reserva` (`Id`, `Total`, `Fecha_entrada`, `cliente_Id`, `noches`, `activo`) VALUES
-(1, '1030.00', '1970-01-01', 3, 5, 0),
-(34, '1000.00', '0000-00-00', 3, 5, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -226,16 +147,6 @@ CREATE TABLE `tareas` (
   `activa` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `tareas`
---
-
-INSERT INTO `tareas` (`Id`, `Descripcion`, `Lugar`, `Nombre`, `activa`) VALUES
-(67, '', '', '', 0),
-(69, 'Limpieza planta 5', 'pasillo verde', 'manolos', 0),
-(76, 'ttyy', 'ttyy', 'ttyy', 0),
-(77, 'gg', 'gg', 'gg', 1),
-(78, 'hh', 'hh', 'hh', 1);
 
 -- --------------------------------------------------------
 
@@ -247,13 +158,6 @@ CREATE TABLE `tareas_empleado` (
   `id_tareas` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tareas_empleado`
---
-
-INSERT INTO `tareas_empleado` (`id_tareas`, `id_empleado`) VALUES
-(67, 23);
 
 --
 -- Índices para tablas volcadas
@@ -338,7 +242,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -356,13 +260,13 @@ ALTER TABLE `habitacion`
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- Restricciones para tablas volcadas

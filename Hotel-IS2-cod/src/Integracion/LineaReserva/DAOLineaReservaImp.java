@@ -100,7 +100,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 		try {
 			
-			String c = "UPDATE linea_pedidos SET activo = ? WHERE id_Reserva = ? AND id_Habitacion = ?;";
+			String c = "UPDATE linea_reserva SET activo = ? WHERE id_Reserva = ? AND id_Habitacion = ?;";
 			
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -109,7 +109,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 			ps.setInt(2, idReserva);
 			ps.setInt(3, idHabitacion);
 			
-			key = (ps.executeUpdate() == 1) ? idReserva: -1 ;
+			key = (ps.executeUpdate() == 1) ? idReserva : -1 ;
 
 			Cnx.close();
 			ps.close();
@@ -175,7 +175,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 			while (rs.next()){
 				
-				lista.add(new TReserva(rs.getInt("Id"), rs.getFloat("total"),rs.getDate("Fecha_entrada"), rs.getInt("id_cliente"), 
+				lista.add(new TReserva(rs.getInt("Id"), rs.getFloat("total"),rs.getDate("Fecha_entrada"), rs.getInt("cliente_Id"), 
 						rs.getInt("noches"), rs.getBoolean("activo")));
 				
 			}
