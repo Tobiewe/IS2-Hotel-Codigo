@@ -17,13 +17,12 @@ public class SAClienteIMP implements SACliente{
 		
 		String numero = Integer.toString(entradaCliente.getTelefono());
 		// Patrón para validar el email
-        Pattern pattern = Pattern
-                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(entradaCliente.getCorreo());
 		
 		
-		if(entradaCliente.getApellidos().trim().equals("") || entradaCliente.getCIF().trim().equals("") || entradaCliente.getCorreo().trim().equals("") || entradaCliente.getNIF().trim().equals("") || entradaCliente.getNombre().trim().equals("")){
+		if(entradaCliente.getApellidos().trim().equals("") || entradaCliente.getCorreo().trim().equals("")  || entradaCliente.getNombre().trim().equals("")){
 			return -5; // los datos introducidos estan vacios porfavor complete los campos
 		}
 		else if(numero.length() != 9){

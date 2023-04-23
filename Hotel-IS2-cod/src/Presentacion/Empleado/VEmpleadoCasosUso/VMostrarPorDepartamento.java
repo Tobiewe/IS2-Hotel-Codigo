@@ -47,7 +47,7 @@ public class VMostrarPorDepartamento extends JFrame implements IGUI {
 		});
 	}
 	public void initGUI() {
-		setTitle("Mostrar empleados por empleado");
+		setTitle("Mostrar empleados por departamento");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
@@ -192,7 +192,7 @@ public class VMostrarPorDepartamento extends JFrame implements IGUI {
 		}
 		else if(event == Events.EMPLEADO_MOSTRAR_POR_DEPARTAMENTO_NOID)
 		{
-			JOptionPane.showMessageDialog(this, "ERROR: El empleado con id "+ (Integer) idDepartamento + " no tiene empleado registradas");
+			JOptionPane.showMessageDialog(this, "ERROR: El departamento con id "+ (Integer) idDepartamento + " no tiene empleados registradas");
 		}
 	}
 

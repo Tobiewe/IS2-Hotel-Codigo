@@ -113,7 +113,7 @@ public class VCrearDepartamento extends JFrame implements IGUI {
 		else if (event == Events.DEPARTAMENTO_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
 		else if (event == Events.DEPARTAMENTO_CREAR_SUCCESS){
-			JOptionPane.showMessageDialog(this,"El departamento " + (String) datos + " ha sido creado correctamente");
+			JOptionPane.showMessageDialog(this,"El departamento " + (Integer) datos + " ha sido creado correctamente");
 			setVisible(false);
 			ctrl.carryAction(Events.DEPARTAMENTO_NUEVA_VISTA, null);
 		}
