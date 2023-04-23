@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -136,6 +137,11 @@ public class VEliminarHabitaciones extends JFrame implements IGUI {
 	}
 	@Override
 	public void update(int event, Object datos) {
-
+		if(event == Events.RESERVA_QUITAR_HABITACIONES_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: Ha habido un error en la operación");
+		else if(event == Events.RESERVA_QUITAR_HABITACIONES_OCUPADA)
+			JOptionPane.showMessageDialog(this, "ERROR: La habitación "+ (Integer) datos + " está ocupada");
+		else if(event == Events.RESERVA_QUITAR_HABITACIONES_SUCCESS)
+			JOptionPane.showMessageDialog(this, "La habitación ha sido eliminada de la reserva con éxito");
 	}
 }

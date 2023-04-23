@@ -423,14 +423,15 @@ public class ControllerImp extends Controller {
 			else if(saSolution == -1)
 				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_ERROR, null);
 			break;
-			//commit
+			
 		case Events.RESERVA_QUITAR_HABITACIONES:
 			tLineaPedido=(TLineaReserva)data;
 			saSolution = saReserva.eliminarHabitacion(tLineaPedido.getId_reserva(), tLineaPedido.getId_habitacion());
-			
-			if(saSolution == -6)
+			if(saSolution == -1)
+				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_ERROR, tLineaPedido.getId_habitacion());
+			else if(saSolution == -6)
 				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
-			else
+			else if(saSolution > 0)
 				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
 			break;
 			
