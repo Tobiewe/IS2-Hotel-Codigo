@@ -37,10 +37,8 @@ import Presentacion.Controller.IGUI;
 public class VModificarReserva extends JFrame implements IGUI {
 	private Controller ctrl;
 	private String title = "Modificar Reserva";
-	private Integer idHabitacion;
 	private Integer id;
 	private Integer idCliente;
-    private DefaultListModel<Integer> listaHabitaciones;
     private JPanel añadirHabitacionesPanel;
     private boolean activa;
 	private Integer noches;
@@ -48,7 +46,6 @@ public class VModificarReserva extends JFrame implements IGUI {
 	
 	public VModificarReserva(){
 		ctrl = Controller.getInstance();
-		listaHabitaciones  = new DefaultListModel<>();
 		añadirHabitacionesPanel = new JPanel();
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -84,7 +81,7 @@ public class VModificarReserva extends JFrame implements IGUI {
 	    
 	    JPanel idClientePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	    idClientePanel.add(new JLabel("Id del Cliente: "));
-	    idClientePanel.add(idSpinner());	
+	    idClientePanel.add(idClienteSpinner());	
 	    
 //	    JPanel nombrePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 //	    nombrePanel.add(new JLabel("Nombre: "));
@@ -143,6 +140,7 @@ public class VModificarReserva extends JFrame implements IGUI {
 		return idSpin;
 		
 	}
+	
 	public JPanel panelActivo()
 	{
 		JPanel panelActivo = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -202,35 +200,12 @@ public class VModificarReserva extends JFrame implements IGUI {
 	    return fechaSpin;
 	}
 	
-
-	public JPanel panelIdHabitacion() {
-		JPanel panelIdEmpleado = new JPanel();
-		panelIdEmpleado.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-		JLabel idEmpleadoLabel = new JLabel("Número de habitación: ");
-		JSpinner idEmpleadoSpinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
-		idEmpleadoSpinner.setPreferredSize(new Dimension(40, 20));
-		idHabitacion = (Integer) idEmpleadoSpinner.getValue();
-		idEmpleadoSpinner.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				idHabitacion = (Integer) idEmpleadoSpinner.getValue();
-			}
-
-		});
-
-		panelIdEmpleado.add(idEmpleadoLabel);
-		panelIdEmpleado.add(idEmpleadoSpinner);
-
-		return panelIdEmpleado;
-	}
-	
 	public JButton modificarReservaButton() {
 		
 		JButton modificarReservaButton = new JButton("Modificar");
 		modificarReservaButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(idCliente);
 				TReserva tReserva = new TReserva(id, null, fecha, idCliente, noches,activa);
 				ctrl.carryAction(Events.RESERVA_MODIFICAR, tReserva);
 			}

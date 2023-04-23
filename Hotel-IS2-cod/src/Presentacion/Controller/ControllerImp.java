@@ -361,6 +361,7 @@ public class ControllerImp extends Controller {
 			
 		case Events.RESERVA_MODIFICAR:
 			tReserva = (TReserva)data;
+			System.out.println(tReserva.getId_cliente());
 			saSolution = saReserva.modificar(tReserva);
 			if(saSolution == -2)
 				cIGUI.update(Events.RESERVA_MODIFICAR_NOTFOUND, tReserva.getId());

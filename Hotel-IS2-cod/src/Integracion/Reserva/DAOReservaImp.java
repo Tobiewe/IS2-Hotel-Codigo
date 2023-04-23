@@ -118,7 +118,9 @@ public class DAOReservaImp implements DAOReserva {
 
 			ps = Cnx.prepareStatement(c);
 
-			ps.setDate(1, (Date) tReserva.getFecha_entrada());
+			java.util.Date fecha_entrada = tReserva.getFecha_entrada();
+			java.sql.Date sql_fecha_entrada = new java.sql.Date(fecha_entrada.getTime());
+			ps.setDate(1, sql_fecha_entrada);;
 			ps.setInt(2, tReserva.getNoches());
 			ps.setInt(3, total);
 			ps.setInt(4, tReserva.getId());

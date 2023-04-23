@@ -42,6 +42,8 @@ public class SAReservaIMP implements SAReserva{
 			return -5;
 		}
 		
+		System.out.println(reserva.getId_cliente());
+		
 		DAOCliente daoc = FactoriaIntegracion.getInstance().newDAOCliente();
 		TCliente tc = daoc.MostrarUno(reserva.getId_cliente());
 		
