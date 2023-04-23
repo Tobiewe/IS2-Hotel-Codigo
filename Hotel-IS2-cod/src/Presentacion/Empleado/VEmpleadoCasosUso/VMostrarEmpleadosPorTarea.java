@@ -58,7 +58,7 @@ public class VMostrarEmpleadosPorTarea extends JFrame implements IGUI {
 		buttonsPanel.add(cancelButton());
 		
 		mainPanel.add(buttonsPanel);
-		//Commit
+		//Comm
 		mainPanel.add(tableModel.transformTableToPanel());
 		
 		pack();
