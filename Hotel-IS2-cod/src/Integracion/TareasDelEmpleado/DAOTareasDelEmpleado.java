@@ -14,8 +14,6 @@ public interface DAOTareasDelEmpleado {
 
 	public Integer eliminar(TTareasDelEmpleado tTareasDelEmpleado);
 	
-	public Pair<Collection<TEmpleados>,Collection<TTareas>> Leertodos();
-
 	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas);
 	
 	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado);

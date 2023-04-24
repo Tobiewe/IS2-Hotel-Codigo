@@ -220,42 +220,6 @@ public class SAEmpleadoIMP implements SAEmpleado {
 
 
 	
-	public  Pair<Collection<TEmpleados>,Collection<TTareas>> LeertodosDeTareasEmpleado() {
-
-		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
-		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
-		
-		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
-		Pair<Collection<TEmpleados>,Collection<TTareas>> lista = daote.Leertodos();
-		ArrayList<TTareas> listatareas = new ArrayList<TTareas>();
-		ArrayList<TEmpleados> listaempleados = new ArrayList<TEmpleados>();
-		
-		for(TEmpleados t : lista.left){
-			
-			TEmpleados tem = daoEmpl.MostrarUno(t.getId());
-			
-			if(tem != null){
-				listaempleados.add(t);
-			}
-			
-		}
-		
-		for(TTareas t : lista.right){
-			
-			TTareas tta = daoTarea.leerUno(t.getId());
-			
-			if(tta != null){
-				listatareas.add(t);
-			}
-			
-		}
-		
-		 Pair<Collection<TEmpleados>,Collection<TTareas>> dev = new  Pair<>(listaempleados, listatareas);
-		return dev;
-	}
-
-
-	
 	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas) {
 		
 		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
@@ -278,7 +242,6 @@ public class SAEmpleadoIMP implements SAEmpleado {
 	}
 
 
-	
 	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
 		
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();

@@ -96,7 +96,7 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 		
 		try {
 			
-			String c = "UPDATE empleado SET sueldo = ?, nombre = ?, apellidos = ?, correo = ?, telefono = ?, iddepartamento = ? WHERE Id = ?;";
+			String c = "UPDATE empleado SET sueldo = ?, nombre = ?, apellidos = ?, correo = ?, telefono = ?, iddepartamento = ?, activo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -107,7 +107,8 @@ public class DAOEmpleadoImp implements DAOEmpleados {
 			ps.setString(4, tEmpleados.getCorreo());
 			ps.setInt(5, tEmpleados.getTelefono());
 			ps.setInt(6, tEmpleados.getId_Departamento());
-			ps.setInt(7, tEmpleados.getId());
+			ps.setBoolean(7, tEmpleados.getActivo());
+			ps.setInt(8, tEmpleados.getId());
 			ps.executeUpdate();
 			
 			if(ps.executeUpdate() == 1) key = tEmpleados.getId();
