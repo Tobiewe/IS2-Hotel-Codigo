@@ -114,7 +114,7 @@ public class DAOReservaImp implements DAOReserva {
 			System.out.println(total);
 			rs.close();
 			
-			c = "UPDATE reserva SET Fecha_entrada = ?, noches = ?, total = ? WHERE Id = ?;";
+			c = "UPDATE reserva SET Fecha_entrada = ?, noches = ?, total = ?, activo = ? WHERE Id = ?;";
 
 			ps = Cnx.prepareStatement(c);
 
@@ -123,7 +123,8 @@ public class DAOReservaImp implements DAOReserva {
 			ps.setDate(1, sql_fecha_entrada);;
 			ps.setInt(2, tReserva.getNoches());
 			ps.setInt(3, (total*tReserva.getNoches()));
-			ps.setInt(4, tReserva.getId());
+			ps.setBoolean(4, tReserva.getActivo());
+			ps.setInt(5, tReserva.getId());
 			ps.executeUpdate();
 
 			if(ps.executeUpdate()==1) key = tReserva.getId();

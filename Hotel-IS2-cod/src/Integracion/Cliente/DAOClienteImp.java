@@ -118,7 +118,7 @@ public class DAOClienteImp implements DAOCliente {
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE cliente SET telefono = ?, Correo = ?, nombre = ? WHERE Id = ?;";
+			String c = "UPDATE cliente SET telefono = ?, Correo = ?, nombre = ?, activo = ? WHERE Id = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -126,7 +126,8 @@ public class DAOClienteImp implements DAOCliente {
 			ps.setInt(1, tCliente.getTelefono());
 			ps.setString(2, tCliente.getCorreo());
 			ps.setString(3, tCliente.getNombre());
-			ps.setInt(4, tCliente.getId());
+			ps.setBoolean(4, tCliente.getActivo());
+			ps.setInt(5, tCliente.getId());
 			
 			if(ps.executeUpdate()==1) ok= tCliente.getId();
 			

@@ -86,54 +86,6 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 	}
 
 	
-	public Pair<Collection<TEmpleados>,Collection<TTareas>> Leertodos() {
-		
-		ArrayList<TTareas> listatareas = new ArrayList<TTareas>();
-		ArrayList<TEmpleados> listaempleados = new ArrayList<TEmpleados>();
-		
-		try {
-			String c = "SELECT * FROM tareas JOIN tareas_empleado ON tareas.Id = tareas_empleado.id_tareas;";
-
-			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
-			Statement St = Cnx.createStatement();
-			ResultSet Rs = St.executeQuery(c);
-
-			while (Rs.next()){
-				
-				listatareas.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
-						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
-				
-			}
-			
-			c = "SELECT * FROM empleado JOIN tareas_empleado ON empleado.Id = tareas_empleado.id_empleado;";
-			
-			St = Cnx.createStatement();
-			Rs = St.executeQuery(c);
-			
-			while (Rs.next()){
-				
-				listaempleados.add(new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
-						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartamento")));
-				
-			}
-			
-			Cnx.close();
-			St.close();
-			Rs.close();
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-			
-		}
-		
-		
-		 Pair<Collection<TEmpleados>,Collection<TTareas>> dev = new  Pair<>(listaempleados, listatareas);
-		 
-		 return dev;
-	}
-
-	
 	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas) {
 
 		ArrayList<TTareas> lista = new ArrayList<TTareas>();

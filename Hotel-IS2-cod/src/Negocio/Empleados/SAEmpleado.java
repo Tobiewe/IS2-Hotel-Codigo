@@ -25,8 +25,6 @@ public interface SAEmpleado {
 
 	public Integer desvincular(TTareasDelEmpleado tTareasDelEmpleado);
 	
-	public Pair<Collection<TEmpleados>,Collection<TTareas>> LeertodosDeTareasEmpleado();
-
 	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas);
 	
 	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado);

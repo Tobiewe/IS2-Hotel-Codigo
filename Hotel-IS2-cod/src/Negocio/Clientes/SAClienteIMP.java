@@ -17,27 +17,34 @@ public class SAClienteIMP implements SACliente{
 		
 		String numero = Integer.toString(entradaCliente.getTelefono());
 		// Patrón para validar el email
-        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(entradaCliente.getCorreo());
 		
 		
-		if(entradaCliente.getApellidos().trim().equals("") || entradaCliente.getCorreo().trim().equals("")  || entradaCliente.getNombre().trim().equals("")){
+		if(entradaCliente.getCorreo().trim().equals("")  || entradaCliente.getNombre().trim().equals("")){
 			return -5; // los datos introducidos estan vacios porfavor complete los campos
 		}
-		else if(numero.length() != 9){
+		if(entradaCliente.getApellidos() != null){
+			if(entradaCliente.getApellidos().trim().equals("")){
+				return -5;
+			}
+		}
+		if(numero.length() != 9){
 			return -6; // numero de longuitdud mayor
 		}
-		else if(!mather.find()){
+		if(!mather.find()){
 			return -7; //correo no valido
 		}
-		else if(!NIFCIFValido(entradaCliente.getCIF())){
-			return -8; // cif invalido
+		if(entradaCliente.getCIF() != null ){
+			if(!CIFValido(entradaCliente.getCIF())){
+				return -8; // cif invalido
+			}
 		}
-		else if(!NIFCIFValido(entradaCliente.getNIF())){
-			return -9; // nif invalido
+		if(entradaCliente.getNIF() != null){
+			if(!NIFValido(entradaCliente.getNIF())){
+				return -9; // nif invalido
+			}
 		}
-
 		
 		
 		//Creamos el dao
@@ -69,28 +76,38 @@ public class SAClienteIMP implements SACliente{
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(cliente.getCorreo());
 		
-		
-		if(cliente.getApellidos().trim().equals("") || cliente.getCIF().trim().equals("") || cliente.getCorreo().trim().equals("") || cliente.getNIF().trim().equals("") || cliente.getNombre().trim().equals("")){
-			return -5; // los datos introducidos estan vacios porfavor complete los campos
-		}
-		else if(numero.length() != 9){
-			return -6; // numero de longuitdud mayor
-		}
-		else if(!mather.find()){
-			return -7; //correo no valido
-		}
-		else if(!NIFCIFValido(cliente.getCIF())){
-			return -8; // cif invalido
-		}
-		else if(!NIFCIFValido(cliente.getNIF())){
-			return -9; // nif invalido
-		}
-		
 		DAOCliente daoCliente = FactoriaIntegracion.getInstance().newDAOCliente();
 		TCliente auxCliente = daoCliente.MostrarUno(cliente.getId());
 		
-		if(auxCliente == null )
+		if(auxCliente == null)
 			return -2;
+		
+		if(cliente.getCorreo().trim().equals("") || cliente.getNombre().trim().equals("")){
+			return -5; // los datos introducidos estan vacios porfavor complete los campos
+		}
+		if(cliente.getApellidos() != null){
+			if(cliente.getApellidos().trim().equals("")){
+				return -5;
+			}
+		}
+		if(numero.length() != 9){
+			return -6; // numero de longuitdud mayor
+		}
+		if(!mather.find()){
+			return -7; //correo no valido
+		}
+		if(cliente.getCIF() != null ){
+			System.out.println(cliente.getNIF());
+			if(!CIFValido(cliente.getCIF())){
+				return -8; // cif invalido
+			}
+		}
+		if(cliente.getNIF() != null){
+			System.out.println(cliente.getNIF());
+			if(!NIFValido(cliente.getNIF())){
+				return -9; // nif invalido
+			}
+		}
 		
 		return daoCliente.modificar(cliente);
 	}
@@ -169,7 +186,17 @@ public class SAClienteIMP implements SACliente{
 	}
 	
 	
-    public static boolean NIFCIFValido(String doc) {
+    public static boolean NIFValido(String doc) {
+        boolean valido = false;
+        if(doc.matches("\\d{8}[A-Z]")) {
+            if(doc.length() == 9) {
+                valido = true;
+            }
+        }
+        return valido;
+    }
+    
+    public static boolean CIFValido(String doc) {
         boolean valido = false;
         if(doc.matches("\\d{8}[A-Z]")) {
             if(doc.length() == 9) {

@@ -288,28 +288,20 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.EMPLEADO_DESVINCULAR_SUCCESS, null);
 			break;
 			
-		case Events.EMPLEADO_MOSTRAR_EMPYTAR:
-			Pair<Collection<TEmpleados>, Collection<TTareas>> collectionTodos = saEmpleado.LeertodosDeTareasEmpleado();
-			if(collectionTodos == null)
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_EMPYTAR_NOID, null);
-			else
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_EMPYTAR_ID, null);
-			break;
-			
-		case Events.EMPLEADO_MOSTRAR_POR_TAREA:
+		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
 			Collection<TEmpleados> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data);
 			if(collectionEmpleadosPorTarea == null)
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, null);
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, (Integer) data);
 			else
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_NOID, null);
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_NOID, (Integer) data);
 			break;
 
-		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
+		case Events.EMPLEADO_MOSTRAR_POR_TAREA:
 			Collection<TTareas> collectionTareasPorEmpleado = saEmpleado.LeerLineasPedidoPorTareas((Integer) data);
 			if(collectionTareasPorEmpleado == null)
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, null);
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, (Integer) data);
 			else
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, null);
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, (Integer) data);
 			break;		
 			
 			//RESERVA
