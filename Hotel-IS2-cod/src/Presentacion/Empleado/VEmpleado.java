@@ -49,7 +49,6 @@ public class VEmpleado extends JFrame implements IGUI{
 		mainPanel.add(mostrarPorDepartamentoButton(), BorderLayout.CENTER);
 		mainPanel.add(vincularTareaButton(), BorderLayout.CENTER);
 		mainPanel.add(desvincularTareaButton(), BorderLayout.CENTER);
-		mainPanel.add(mostrarTodoButton(),  BorderLayout.CENTER);
 		mainPanel.add(mostrarTareaPorEmpleado(),BorderLayout.CENTER);
 		mainPanel.add(mostrarEmpleadoPorTarea(),BorderLayout.CENTER);
 		
@@ -161,20 +160,6 @@ public class VEmpleado extends JFrame implements IGUI{
 				}
 			});
 			return mostrarPorDepartamentoButton;
-		}
-		public JButton mostrarTodoButton()
-		{
-			JButton crearEmpleadoButton = new JButton("Mostrar Empleados y Tareas");
-			crearEmpleadoButton.setSize(buttonDimension);
-			crearEmpleadoButton.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					ctrl.carryAction(Events.EMPLEADO_MOSTRAR_EMPYTAR_VISTA, null);
-					setVisible(false);
-				}
-			});
-			return crearEmpleadoButton;
 		}
 		public JButton vincularTareaButton()
 		{
