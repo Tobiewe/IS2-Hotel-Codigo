@@ -143,5 +143,7 @@ public class VEliminarHabitaciones extends JFrame implements IGUI {
 			JOptionPane.showMessageDialog(this, "ERROR: La habitación "+ (Integer) datos + " está ocupada");
 		else if(event == Events.RESERVA_QUITAR_HABITACIONES_SUCCESS)
 			JOptionPane.showMessageDialog(this, "La habitación ha sido eliminada de la reserva con éxito");
+		setVisible(false);
+		ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
 	}
 }
