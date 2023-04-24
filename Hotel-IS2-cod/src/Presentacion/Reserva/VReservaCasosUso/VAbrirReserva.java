@@ -172,6 +172,8 @@ public class VAbrirReserva extends JFrame implements IGUI {
 			JOptionPane.showMessageDialog(this, "ERROR: El cliente no está activo");
 		else if(event == Events.RESERVA_CREAR_SUCCESS)
 			JOptionPane.showMessageDialog(this, "La reserva ha sido creada correctamente");
+		setVisible(false);
+		ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
 	}
 
 }
