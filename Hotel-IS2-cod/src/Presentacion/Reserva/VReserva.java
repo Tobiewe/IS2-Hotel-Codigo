@@ -1,5 +1,6 @@
 package Presentacion.Reserva;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -31,21 +32,24 @@ public class VReserva extends JFrame implements IGUI {
 		});
 	}
 	protected void initGUI(){
+		setTitle("Reserva");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		Dimension d = new Dimension(500,150);
+		mainPanel.setPreferredSize(d);
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
 		mainPanel.add(volverButton());
 
-		mainPanel.add(crearReservaButton());
-		mainPanel.add(modificarReservaButton());
-		mainPanel.add(eliminarReservaButton());
-		mainPanel.add(mostrarunaReservaButton());
-		mainPanel.add(mostrartodasReservaButton());
-		mainPanel.add(mostrarporclienteReservaButton());
-		mainPanel.add(añadirhabitacionesReservaButton());
-		mainPanel.add(eliminarHabitacionesReservaButton());
-		mainPanel.add(mostrarHabitacionesReservaButton());
-		mainPanel.add(mostrarReservaHabitacionButton());
+		mainPanel.add(crearReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(modificarReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(eliminarReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarunaReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrartodasReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarporclienteReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(añadirhabitacionesReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(eliminarHabitacionesReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarHabitacionesReservaButton(), BorderLayout.CENTER);
+		mainPanel.add(mostrarReservaHabitacionButton(), BorderLayout.CENTER);
 		
 		
 		pack();
