@@ -242,7 +242,6 @@ public class SAEmpleadoIMP implements SAEmpleado {
 	}
 
 
-	
 	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
 		
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
