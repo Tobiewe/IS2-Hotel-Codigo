@@ -176,7 +176,7 @@ public class VMostrarHabitacionesReserva extends JFrame implements IGUI{
 			return tablaPanel;
 		}
 		
-	}
+	}//g
 	
 	@Override
 	public void update(int event, Object datos) {
