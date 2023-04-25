@@ -11,10 +11,8 @@ public class SAHabitacionTest {
 
 	@Test
 	public void testCrearHabitacion() {
-		
-		Float p = (float) 100.00;
-		
-		THabitaciones habi = new THabitaciones(2,3,4,p,false,1);
+				
+		THabitaciones habi = new THabitaciones(2,3,4, 100f,false,1);
 		
 		Integer dev = SAFactory.getInstance().newSAHabitaciones().crear(habi);
 		assertTrue( dev > 0);
