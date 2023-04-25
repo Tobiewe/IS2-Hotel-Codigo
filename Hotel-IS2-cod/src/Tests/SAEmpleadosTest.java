@@ -17,6 +17,8 @@ public class SAEmpleadosTest {
 		
 		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
 		
+		assertTrue(devDept > 0);
+		
 		TEmpleados empleado = new TEmpleados(null, 1500f,"hugo","Aguilera",true, "olaola@gmail.com",651687431, devDept);
 		
 		Integer dev = SAFactory.getInstance().newSAEmpleado().crear(empleado);
@@ -86,6 +88,8 @@ public class SAEmpleadosTest {
 		
 		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
 		
+		assertTrue(devDept > 0);
+		
 		TEmpleados empleado = new TEmpleados(null, 1500f,"hugo","Aguilera",true, "olaola@gmail.com",651687431, devDept);
 		Integer dev = SAFactory.getInstance().newSAEmpleado().crear(empleado);
 		
@@ -128,7 +132,7 @@ public class SAEmpleadosTest {
 		
 		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
 		
-		
+		assertTrue(devDept > 0);
 		
 		TEmpleados empleado = new TEmpleados(null, 1500f,"Pepe", "Juan", true, "Pjuan@gmail.com", 651687431, devDept);
 		Integer dev = SAFactory.getInstance().newSAEmpleado().crear(empleado);
@@ -178,6 +182,8 @@ public class SAEmpleadosTest {
 		TDepartamento depart = new TDepartamento(null, "Test ModificarEmpleadoI", true);
 		
 		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
+		
+		assertTrue(devDept > 0);
 		
 		TEmpleados empleado = new TEmpleados(null, 1500f,"hugo","Aguilera",true, "olaola@gmail.com",651687431, devDept);
 		

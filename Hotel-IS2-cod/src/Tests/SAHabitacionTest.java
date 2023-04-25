@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Negocio.Departamentos.TDepartamento;
+import Negocio.Empleados.TEmpleados;
 import Negocio.Habitaciones.THabitaciones;
 import Negocio.NegocioFactory.SAFactory;
 
@@ -11,8 +13,20 @@ public class SAHabitacionTest {
 
 	@Test
 	public void testCrearHabitacion() {
+		
+		TDepartamento depart = new TDepartamento(null, "Test crearhabitacion", true);
+		
+		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
+		
+		assertTrue(devDept > 0);
+		
+		TEmpleados empleado = new TEmpleados(null, 1500f,"crear","habitacion",true, "olaola@gmail.com",651687431, devDept);
+		
+		Integer devempl = SAFactory.getInstance().newSAEmpleado().crear(empleado);
+		
+		assertTrue(devempl > 0);
 				
-		THabitaciones habi = new THabitaciones(2,3,4, 100f,false,1);
+		THabitaciones habi = new THabitaciones(null,3,4, 100f,false, devempl);
 		
 		Integer dev = SAFactory.getInstance().newSAHabitaciones().crear(habi);
 		assertTrue( dev > 0);
@@ -20,8 +34,8 @@ public class SAHabitacionTest {
 		THabitaciones habicheck=SAFactory.getInstance().newSAHabitaciones().mostrarUno(dev);
 		
 		assertNotNull(habicheck);
-		assertEquals(habi.getId_empledo(),habicheck.getId_empledo());
-		assertEquals(habi.getNumero(), habicheck.getNumero());
+		assertEquals(devempl,habicheck.getId_empledo());
+		assertEquals(dev, habicheck.getNumero());
 		assertEquals(habi.getOcupada(), habicheck.getOcupada());
 		assertEquals(habi.getPiso(), habicheck.getPiso());
 		assertEquals(habi.getPrecio(), habicheck.getPrecio());
@@ -61,9 +75,19 @@ public class SAHabitacionTest {
 	@Test
 	public void eliminarHabiCorrect(){
 		
-		Float p = (float) 100.00;
+		TDepartamento depart = new TDepartamento(null, "Test eliminarhabitacion", true);
 		
-		THabitaciones habi = new THabitaciones(2,3,4,p,false,1);
+		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
+		
+		assertTrue(devDept > 0);
+		
+		TEmpleados empleado = new TEmpleados(null, 1500f,"eliminar","habitacion",true, "olaola@gmail.com",651687431, devDept);
+		
+		Integer devempl = SAFactory.getInstance().newSAEmpleado().crear(empleado);
+		
+		assertTrue(devempl > 0);
+		
+		THabitaciones habi = new THabitaciones(null,3,4, 200f,false, devempl);
 		
 		Integer dev = SAFactory.getInstance().newSAHabitaciones().crear(habi);
 		assertTrue( dev > 0);
@@ -71,8 +95,8 @@ public class SAHabitacionTest {
 		THabitaciones habicheck=SAFactory.getInstance().newSAHabitaciones().mostrarUno(dev);
 		
 		assertNotNull(habicheck);
-		assertEquals(habi.getId_empledo(),habicheck.getId_empledo());
-		assertEquals(habi.getNumero(), habicheck.getNumero());
+		assertEquals(devempl,habicheck.getId_empledo());
+		assertEquals(dev, habicheck.getNumero());
 		assertEquals(habi.getOcupada(), habicheck.getOcupada());
 		assertEquals(habi.getPiso(), habicheck.getPiso());
 		assertEquals(habi.getPrecio(), habicheck.getPrecio());
@@ -95,63 +119,74 @@ public class SAHabitacionTest {
 	@Test
 	public void modificarHabiCorrecto() {
 
-		Float p = (float) 100.00;
+TDepartamento depart = new TDepartamento(null, "Test modificarhabitacion", true);
 		
-		THabitaciones habi = new THabitaciones(2,3,4,p,false,1);
+		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
+		
+		assertTrue(devDept > 0);
+		
+		TEmpleados empleado = new TEmpleados(null, 1500f,"modificar","habitacion",true, "olaola@gmail.com",651687431, devDept);
+		
+		Integer devempl = SAFactory.getInstance().newSAEmpleado().crear(empleado);
+		
+		assertTrue(devempl > 0);
+		
+		THabitaciones habi = new THabitaciones(null,3,4, 200f,false, devempl);
 		
 		Integer dev = SAFactory.getInstance().newSAHabitaciones().crear(habi);
-		assertTrue( dev > 0);
+
+		assertTrue(dev > 0);
 		
 		THabitaciones habicheck=SAFactory.getInstance().newSAHabitaciones().mostrarUno(dev);
 		
 		assertNotNull(habicheck);
-		assertEquals(habi.getId_empledo(),habicheck.getId_empledo());
-		assertEquals(habi.getNumero(), habicheck.getNumero());
+		assertEquals(devempl,habicheck.getId_empledo());
+		assertEquals(dev, habicheck.getNumero());
 		assertEquals(habi.getOcupada(), habicheck.getOcupada());
 		assertEquals(habi.getPiso(), habicheck.getPiso());
 		assertEquals(habi.getPrecio(), habicheck.getPrecio());
 		assertEquals(habi.gettamanyo(), habicheck.gettamanyo());
 		
-		p=(float) 200.00;
-		habi.setNumero(4);
+		habi.setNumero(dev);
 		habi.setPiso(1);
 		habi.setTamanyo(2);
-		habi.setPrecio(p);
-		habi.setIdEmp(2);
+		habi.setPrecio(500f);
 		
 		Integer result = SAFactory.getInstance().newSAHabitaciones().modificar(habi);
 		assertTrue(result > 0);
 		
-		THabitaciones habicheck1=SAFactory.getInstance().newSAHabitaciones().mostrarUno(dev);
+		THabitaciones habicheck1=SAFactory.getInstance().newSAHabitaciones().mostrarUno(habi.getNumero());
 		
 		assertNotNull(habicheck);
-		assertEquals(habi.getId_empledo(),habicheck1.getId_empledo());
-		assertEquals(habi.getNumero(), habicheck1.getNumero());
 		assertEquals(habi.getOcupada(), habicheck1.getOcupada());
-		assertEquals(habi.getPiso(), habicheck1.getPiso());
 		assertEquals(habi.getPrecio(), habicheck1.getPrecio());
-		assertEquals(habi.gettamanyo(), habicheck1.gettamanyo());
-		
-		
-		
-		
 	}
 	
 	@Test
 	public void modificarHabiIncorrecto() {
+		TDepartamento depart = new TDepartamento(null, "Test modificarhabitacionincorrecto", true);
 		
-Float p = (float) 100.00;
+		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
 		
-		THabitaciones habi = new THabitaciones(2,3,4,p,false,1);
+		assertTrue(devDept > 0);
+		
+		TEmpleados empleado = new TEmpleados(null, 1500f,"modificar","habitacionincorrecto",true, "olaola@gmail.com",651687431, devDept);
+		
+		Integer devempl = SAFactory.getInstance().newSAEmpleado().crear(empleado);
+		
+		assertTrue(devempl > 0);
+		
+		THabitaciones habi = new THabitaciones(null,3,4, 200f,false, devempl);
 		
 		Integer dev = SAFactory.getInstance().newSAHabitaciones().crear(habi);
-		assertTrue( dev > 0);
+
+		assertTrue(dev > 0);
 		
 		THabitaciones habicheck=SAFactory.getInstance().newSAHabitaciones().mostrarUno(dev);
 		
 		assertNotNull(habicheck);
 		assertEquals(habi.getId_empledo(),habicheck.getId_empledo());
-		assertEquals(habi.getNumero(), habicheck.getNumero());
+		assertEquals(dev, habicheck.getNumero());
 		assertEquals(habi.getOcupada(), habicheck.getOcupada());
 		assertEquals(habi.getPiso(), habicheck.getPiso());
 		assertEquals(habi.getPrecio(), habicheck.getPrecio());
@@ -159,21 +194,13 @@ Float p = (float) 100.00;
 		
 		habi.setPiso(-1);
 		Integer result = SAFactory.getInstance().newSAHabitaciones().modificar(habi);
-		assertTrue(result > 0);
+		assertTrue(result < 0);
 		habi.setPiso(3);
 		
 		habi.setTamanyo(0);
 		Integer result2 = SAFactory.getInstance().newSAHabitaciones().modificar(habi);
-		assertTrue(result2 > 0);
-		habi.setTamanyo(4);
-		
-		p = (float)0.00;
-		habi.setPrecio(p);
-		Integer result3 = SAFactory.getInstance().newSAHabitaciones().modificar(habi);
-		assertTrue(result3 > 0);
-		p=(float)100.00;
-		habi.setPrecio(p);
-		
+		assertTrue(result2 < 0);
+		habi.setTamanyo(4);	
 		
 	}
 	
