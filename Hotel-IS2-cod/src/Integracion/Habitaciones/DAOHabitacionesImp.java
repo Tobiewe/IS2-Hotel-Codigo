@@ -85,7 +85,7 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 		int ok = -1;
 		try {
 			
-			String c = "UPDATE habitacion SET precio = ?, ocupada = ?, id_empleado = ? WHERE Numero = ?;";
+			String c = "UPDATE habitacion SET precio = ?, ocupada = ?, id_empleado = ?, tamanyo = ? WHERE Numero = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
@@ -93,7 +93,8 @@ public class DAOHabitacionesImp implements DAOHabitaciones{
 			ps.setFloat(1, tHabitaciones.getPrecio());
 			ps.setBoolean(2, tHabitaciones.getOcupada());
 			ps.setInt(3, tHabitaciones.getId_empledo());
-			ps.setInt(4, tHabitaciones.getNumero());
+			ps.setInt(4, tHabitaciones.gettamanyo());
+			ps.setInt(5, tHabitaciones.getNumero());
 			
 			if(ps.executeUpdate()==1) ok= tHabitaciones.getNumero();
 			

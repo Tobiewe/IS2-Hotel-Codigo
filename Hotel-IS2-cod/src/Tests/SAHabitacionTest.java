@@ -119,7 +119,7 @@ public class SAHabitacionTest {
 	@Test
 	public void modificarHabiCorrecto() {
 
-TDepartamento depart = new TDepartamento(null, "Test modificarhabitacion", true);
+		TDepartamento depart = new TDepartamento(null, "Test modificarhabitacion", true);
 		
 		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
 		
@@ -155,11 +155,12 @@ TDepartamento depart = new TDepartamento(null, "Test modificarhabitacion", true)
 		Integer result = SAFactory.getInstance().newSAHabitaciones().modificar(habi);
 		assertTrue(result > 0);
 		
-		THabitaciones habicheck1=SAFactory.getInstance().newSAHabitaciones().mostrarUno(habi.getNumero());
+		THabitaciones habicheck1 = SAFactory.getInstance().newSAHabitaciones().mostrarUno(dev);
 		
 		assertNotNull(habicheck);
 		assertEquals(habi.getOcupada(), habicheck1.getOcupada());
 		assertEquals(habi.getPrecio(), habicheck1.getPrecio());
+		assertEquals(habi.gettamanyo(), habicheck1.gettamanyo());
 	}
 	
 	@Test
