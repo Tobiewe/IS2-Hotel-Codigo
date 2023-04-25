@@ -146,9 +146,7 @@ public class SAClientesTest {
 		TEmpresa empresa = new TEmpresa(null, "andetel@gmail.com", 789456123, "Andetel", "48675634G", null, null, true);
 
 		Integer devEmpresa = SAFactory.getInstance().newSACliente().crear(empresa);
-		
-		System.out.println(devEmpresa);
-		
+				
 		assertTrue(devEmpresa > 0);
 
 		TCliente empresaLeido = (TCliente) SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
@@ -167,14 +165,13 @@ public class SAClientesTest {
 		empresa.setCorreo("hola@gmail.com");
 		empresa.setNombre("Hola");
 		empresa.setTelefono(673819100);
-
-		//empresa.setId(devEmpresa) añadir la funcion del id a la empresa
+		empresa.setId(devEmpresa);
 		
 		Integer result = SAFactory.getInstance().newSACliente().modificar(empresa);
 
 		assertTrue(result > 0);
 
-		TEmpresa empresaLeidoMod = (TEmpresa)SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
+		TCliente empresaLeidoMod = (TCliente)SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
 
 		assertNotNull(empresaLeidoMod);
 		assertNotNull(empresaLeido);
@@ -239,7 +236,7 @@ public class SAClientesTest {
 
 		assertTrue(devEmpresa > 0);
 
-		TEmpresa empresaLeido = (TEmpresa) SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
+		TCliente empresaLeido = (TCliente) SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
 
 		assertNotNull(empresaLeido);
 		assertEquals(empresa.getCorreo(), empresaLeido.getCorreo());
@@ -251,7 +248,8 @@ public class SAClientesTest {
 		assertNull(empresa.getNIF());
 
 		empresa.setCorreo("holgmail.com");
-
+		empresa.setId(devEmpresa);
+		
 		Integer result = SAFactory.getInstance().newSACliente().modificar(empresa);
 
 		assertTrue(result < 0);

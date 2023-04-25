@@ -15,7 +15,7 @@ public class SAClienteIMP implements SACliente{
 
 	public Integer crear(TCliente entradaCliente) {
 		
-		if(entradaCliente.getTelefono() != null){
+		if(entradaCliente.getTelefono() == null){
 			return -5;
 		}
 		
