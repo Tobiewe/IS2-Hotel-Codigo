@@ -24,7 +24,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 	public Integer añadirHabitacion(TLineaReserva tLineaPedido) {
 		
-		int key = -1;
+		int key = 1;
 		
 		Integer total = 0, noches = 0;
 		

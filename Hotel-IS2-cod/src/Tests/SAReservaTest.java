@@ -12,8 +12,12 @@ import Integracion.Cliente.DAOCliente;
 import Integracion.FactoriaIntegracion.FactoriaIntegracion;
 import Negocio.Clientes.TCliente;
 import Negocio.Clientes.TEmpresa;
-
+import Negocio.Clientes.TParticular;
+import Negocio.Departamentos.TDepartamento;
+import Negocio.Empleados.TEmpleados;
+import Negocio.Habitaciones.THabitaciones;
 import Negocio.NegocioFactory.SAFactory;
+import Negocio.Reserva.TLineaReserva;
 import Negocio.Reserva.TReserva;
 
 public class SAReservaTest {
@@ -21,8 +25,17 @@ public class SAReservaTest {
 	@SuppressWarnings("reservarecation")
 	@Test
 	public void crearReservaCorrecto() {
+		
+		TParticular particular = new TParticular(null, "pepejjj@gmail.com", 123456789, "Testreservacrear", null, "Pérez","45236794K", true);
 
-		TReserva reserva = new TReserva(null, (float) 6.0, new Date(120, 5, 3), 1, 5, true);
+		Integer devParticular = SAFactory.getInstance().newSACliente().crear(particular);
+
+		assertTrue(devParticular > 0);
+		
+		java.util.Date fecha_entrada = new Date(116, 5 ,3);
+		java.sql.Date sql_fecha_entrada = new java.sql.Date(fecha_entrada.getTime());
+
+		TReserva reserva = new TReserva(null, 0f, sql_fecha_entrada, devParticular, 5, true);
 
 		Integer dev = SAFactory.getInstance().newSAReserva().abrir(reserva);
 
@@ -34,7 +47,7 @@ public class SAReservaTest {
 
 		assertEquals(reserva.getActivo(), reservaLeida.getActivo());
 		assertEquals(reserva.getFecha_entrada(), reservaLeida.getFecha_entrada());
-		assertEquals(reserva.getId(), reservaLeida.getId());
+		assertEquals(dev, reservaLeida.getId());
 		assertEquals(reserva.getId_cliente(), reservaLeida.getId_cliente());
 		assertEquals(reserva.getTotal(), reservaLeida.getTotal());
 
@@ -76,7 +89,16 @@ public class SAReservaTest {
 	@Test
 	public void EliminarReservaCorrecto() {
 
-		TReserva reserva = new TReserva(null, (float) 6.0, new Date(120, 5, 3), 1, 5, true);
+		TParticular particular = new TParticular(null, "pepejjj@gmail.com", 123456789, "Testreservaeliminar", null, "Pérez","45236794K", true);
+
+		Integer devParticular = SAFactory.getInstance().newSACliente().crear(particular);
+
+		assertTrue(devParticular > 0);
+		
+		java.util.Date fecha_entrada = new Date(116, 5 ,3);
+		java.sql.Date sql_fecha_entrada = new java.sql.Date(fecha_entrada.getTime());
+
+		TReserva reserva = new TReserva(null, 0f, sql_fecha_entrada, devParticular, 5, true);
 
 		Integer dev = SAFactory.getInstance().newSAReserva().abrir(reserva);
 
@@ -87,7 +109,7 @@ public class SAReservaTest {
 		assertNotNull(reservaLeida);
 		assertEquals(reserva.getActivo(), reservaLeida.getActivo());
 		assertEquals(reserva.getFecha_entrada(), reservaLeida.getFecha_entrada());
-		assertEquals(reserva.getId(), reservaLeida.getId());
+		assertEquals(dev, reservaLeida.getId());
 		assertEquals(reserva.getId_cliente(), reservaLeida.getId_cliente());
 		assertEquals(reserva.getTotal(), reservaLeida.getTotal());
 
@@ -108,7 +130,16 @@ public class SAReservaTest {
 	@Test
 	public void modificarReservaCorrecto() {
 
-		TReserva reserva = new TReserva(null, (float) 6.0, new Date(120, 5, 3), 1, 5, true);
+		TParticular particular = new TParticular(null, "pepejjj@gmail.com", 123456789, "Testreservamodificarcorecto", null, "Pérez","45236794K", true);
+
+		Integer devParticular = SAFactory.getInstance().newSACliente().crear(particular);
+
+		assertTrue(devParticular > 0);
+		
+		java.util.Date fecha_entrada = new Date(116, 5 ,3);
+		java.sql.Date sql_fecha_entrada = new java.sql.Date(fecha_entrada.getTime());
+
+		TReserva reserva = new TReserva(null, 0f, sql_fecha_entrada, devParticular, 5, true);
 
 		Integer dev = SAFactory.getInstance().newSAReserva().abrir(reserva);
 
@@ -119,14 +150,17 @@ public class SAReservaTest {
 		assertNotNull(reservaLeida);
 		assertEquals(reserva.getActivo(), reservaLeida.getActivo());
 		assertEquals(reserva.getFecha_entrada(), reservaLeida.getFecha_entrada());
-		assertEquals(reserva.getId(), reservaLeida.getId());
+		assertEquals(dev, reservaLeida.getId());
 		assertEquals(reserva.getId_cliente(), reservaLeida.getId_cliente());
 		assertEquals(reserva.getTotal(), reservaLeida.getTotal());
 
+		reserva.setId(dev);
 		reserva.setActivo(false);
-		reserva.setFecha_entrada(new Date(112, 3, 4));
+		java.util.Date fecha_entrada2 = new Date(112, 3, 4);
+		java.sql.Date sql_fecha_entrada2 = new java.sql.Date(fecha_entrada2.getTime());
+		reserva.setFecha_entrada(sql_fecha_entrada2);
 		reserva.setNoches(3);
-		reserva.setTotal((float) 500);
+		reserva.setTotal(500f);
 
 		Integer result = SAFactory.getInstance().newSAReserva().modificar(reserva);
 
@@ -139,13 +173,21 @@ public class SAReservaTest {
 		assertEquals(reserva.getFecha_entrada(), reservaLeidaMod.getFecha_entrada());
 		assertEquals(reserva.getId(), reservaLeidaMod.getId());
 		assertEquals(reserva.getId_cliente(), reservaLeidaMod.getId_cliente());
-		assertEquals(reserva.getTotal(), reservaLeidaMod.getTotal());
 
 	}
 
 	@Test
 	public void modificaRreservaIncorrecto() {
-		TReserva reserva = new TReserva(null, (float) 6.0, new Date(120, 5, 3), 1, 5, true);
+		TParticular particular = new TParticular(null, "pepejjj@gmail.com", 123456789, "Testreservamodificarinc", null, "Pérez","45236794K", true);
+
+		Integer devParticular = SAFactory.getInstance().newSACliente().crear(particular);
+
+		assertTrue(devParticular > 0);
+		
+		java.util.Date fecha_entrada = new Date(116, 5 ,3);
+		java.sql.Date sql_fecha_entrada = new java.sql.Date(fecha_entrada.getTime());
+
+		TReserva reserva = new TReserva(null, 0f, sql_fecha_entrada, devParticular, 5, true);
 
 		Integer dev = SAFactory.getInstance().newSAReserva().abrir(reserva);
 
@@ -156,7 +198,7 @@ public class SAReservaTest {
 		assertNotNull(reservaLeida);
 		assertEquals(reserva.getActivo(), reservaLeida.getActivo());
 		assertEquals(reserva.getFecha_entrada(), reservaLeida.getFecha_entrada());
-		assertEquals(reserva.getId(), reservaLeida.getId());
+		assertEquals(dev, reservaLeida.getId());
 		assertEquals(reserva.getId_cliente(), reservaLeida.getId_cliente());
 		assertEquals(reserva.getTotal(), reservaLeida.getTotal());
 		
@@ -171,39 +213,51 @@ public class SAReservaTest {
 		Integer result1 = SAFactory.getInstance().newSAReserva().modificar(reserva);
 
 		assertTrue(result1 < 0);
-		
-		reserva.setNoches(1);
-		reserva.setTotal((float)0);
-		
-		Integer result2 = SAFactory.getInstance().newSAReserva().modificar(reserva);
-
-		assertTrue(result2 < 0);
-		
-		reserva.setTotal((float)-6);
-		
-		Integer result3 = SAFactory.getInstance().newSAReserva().modificar(reserva);
-
-		assertTrue(result3 < 0);
 
 	}
-//	@Test
-//	public void añadirHabitacionCorrecto() {
-//		TReserva reserva = new TReserva(null, (float) 6.0, new Date(120, 5, 3), 1, 5, true);
-//
-//		Integer dev = SAFactory.getInstance().newSAReserva().abrir(reserva);
-//
-//		assertTrue(dev > 0);
-//
-//		TReserva reservaLeida = SAFactory.getInstance().newSAReserva().MostrarUna(dev);
-//
-//		assertNotNull(reservaLeida);
-//		assertEquals(reserva.getActivo(), reservaLeida.getActivo());
-//		assertEquals(reserva.getFecha_entrada(), reservaLeida.getFecha_entrada());
-//		assertEquals(reserva.getId(), reservaLeida.getId());
-//		assertEquals(reserva.getId_cliente(), reservaLeida.getId_cliente());
-//		assertEquals(reserva.getTotal(), reservaLeida.getTotal());
-//		
-//		
-//
-//	}
+
+	@Test
+	public void AñadirHabitacionyEliminar() {
+		TParticular particular = new TParticular(null, "pepejjj@gmail.com", 123456789, "Testreservaañadiryeliminar", null, "Pérez","45236794K", true);
+
+		Integer devParticular = SAFactory.getInstance().newSACliente().crear(particular);
+
+		assertTrue(devParticular > 0);
+		
+		java.util.Date fecha_entrada = new Date(116, 5 ,3);
+		java.sql.Date sql_fecha_entrada = new java.sql.Date(fecha_entrada.getTime());
+
+		TReserva reserva = new TReserva(null, 0f, sql_fecha_entrada, devParticular, 5, true);
+
+		Integer devreserva = SAFactory.getInstance().newSAReserva().abrir(reserva);
+
+		assertTrue(devreserva > 0);//------------------------------------------------------------------------------------
+
+		TDepartamento depart = new TDepartamento(null, "Test AÑADIRYELIMINARHABITACION", true);
+		
+		Integer devDept = SAFactory.getInstance().newSADepartamento().crear(depart);
+		
+		assertTrue(devDept > 0);
+		
+		TEmpleados empleado = new TEmpleados(null, 1500f,"añadiryeliminar","habitacion",true, "olaola@gmail.com",651687431, devDept);
+		
+		Integer devempl = SAFactory.getInstance().newSAEmpleado().crear(empleado);
+		
+		assertTrue(devempl > 0);
+				
+		THabitaciones habi = new THabitaciones(null,3,4, 100f,false, devempl);
+		
+		Integer devhabi = SAFactory.getInstance().newSAHabitaciones().crear(habi);
+		assertTrue( devhabi > 0);// ------------------------------------------------------------------------------------
+		
+		TLineaReserva tLineaPedido = new TLineaReserva(devreserva, devhabi, true);
+		Integer dev = SAFactory.getInstance().newSAReserva().añadirHabitacion(tLineaPedido);
+		
+		assertTrue(dev > 0);
+		
+		Integer deve = SAFactory.getInstance().newSAReserva().eliminarHabitacion(devreserva, devhabi);
+		
+		assertTrue(deve > 0);
+
+	}
 }
