@@ -190,6 +190,7 @@ public class VMostrarPorEmpleado extends JFrame implements IGUI{
 		if(event == Events.HABITACION_MOSTRAR_POR_EMPLEADO_ID)
 		{
 			tableModel.setList((Collection<THabitaciones>)datos);
+			
 		}
 		else if(event == Events.HABITACION_MOSTRAR_POR_EMPLEADO_NOID)
 		{

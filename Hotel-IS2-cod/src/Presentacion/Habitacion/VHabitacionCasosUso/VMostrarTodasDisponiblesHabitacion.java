@@ -142,6 +142,7 @@ public class VMostrarTodasDisponiblesHabitacion extends JFrame implements IGUI {
 		if(event == Events.HABITACION_MOSTRAR_DISPONIBLES_SUCCESS)
 		{
 			tableModel.setList((Collection<THabitaciones>) datos);
+			
 		}
 		else if(event == Events.HABITACION_MOSTRAR_DISPONIBLES_ERROR)
 		{

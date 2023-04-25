@@ -56,11 +56,11 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 		precioText.setPreferredSize(new Dimension(70, 25));
 		
 		mainPanel.add(panelId());
-		mainPanel.add(panelPiso());
-		mainPanel.add(tamanyoPanel());
 		mainPanel.add(precioPanel(precioText));
 		mainPanel.add(panelIdEmpleado());
 		mainPanel.add(panelOcupada());
+		tamanyo = 1;
+		piso = 1;
 		
 		
 		
@@ -68,6 +68,7 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 		
 		buttonPanel.add(modificarButton(precioText));
 		buttonPanel.add(cancelButton());
+		
 		
 		mainPanel.add(buttonPanel);
 //		Dimension d = new Dimension(600,400);
@@ -154,60 +155,7 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 		
 		return panelIdEmpleado;
 	}
-	public JPanel panelPiso()
-	{
-		JPanel panelPiso = new JPanel();
-		panelPiso.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel pisoLabel = new JLabel("Piso: ");
-		JSpinner pisoSpinner = new JSpinner(new SpinnerNumberModel(1,1,5,1));
-		pisoSpinner.setPreferredSize(new Dimension(40, 15));
-		piso = (Integer) pisoSpinner.getValue();
-		pisoSpinner.addChangeListener(new ChangeListener()
-		{
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				piso = (Integer) pisoSpinner.getValue();
-			}
-			
-		});
-		
-		panelPiso.add(pisoLabel);
-		panelPiso.add(pisoSpinner);
-		
-		return panelPiso;
-	}
 	
-	public JPanel tamanyoPanel()
-	{
-		JPanel tamanyoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		
-		JLabel tamanyoLabel = new JLabel("Tamaño: ");
-		JComboBox<Integer> tamanyoCombo = new JComboBox<Integer>();
-		
-		tamanyoCombo.addItem(1);
-		tamanyoCombo.addItem(2);
-		tamanyoCombo.addItem(3);
-		tamanyoCombo.addItem(4);
-		
-		tamanyo = (Integer) tamanyoCombo.getSelectedItem();
-		
-		tamanyoCombo.addItemListener(new ItemListener()
-		{
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				tamanyo = (Integer) tamanyoCombo.getSelectedItem();
-			}
-			
-		});
-		
-		tamanyoPanel.add(tamanyoLabel);
-		tamanyoPanel.add(tamanyoCombo);
-		
-		return tamanyoPanel;
-	}
 	public JPanel precioPanel(JTextField precioText)
 	{
 		JPanel precioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -227,6 +175,7 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 		JButton crearButton = new JButton("Modificar");
 		crearButton.addActionListener(new ActionListener()
 		{
+			
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

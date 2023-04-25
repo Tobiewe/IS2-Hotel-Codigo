@@ -207,12 +207,17 @@ public class VAñadirHabitacion  extends JFrame implements IGUI{
 			JOptionPane.showMessageDialog(this, "ERROR: Ya existe una habitación con el id " + (Integer) datos);
 		else if(event == Events.HABITACION_CREAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Parámetros introducidos incorrectos");
+		else if(event== Events.HABITACION_CREAR_EMPLEADO_NOT_FOUND)
+			JOptionPane.showMessageDialog(this, "ERROR: El empleado seleccionado no existe"+(Integer) datos);
+		else if(event==Events.HABITACION_CREAR_EMPLEADO_NOT_ACTIVE)
+			JOptionPane.showMessageDialog(this, "ERROR: El empleado seleccionado no esta activo"+(Integer) datos);
 		else if(event == Events.HABITACION_CREAR_SUCCESS)
 		{
 			JOptionPane.showMessageDialog(this, "La habitación con id " +(Integer) datos +" se ha creado correctamente");
 			setVisible(false);
 			ctrl.carryAction(Events.HABITACION_NUEVA_VISTA, null);
 		}
+		
 			
 	}
 }

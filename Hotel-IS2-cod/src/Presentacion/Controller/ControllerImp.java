@@ -113,7 +113,7 @@ public class ControllerImp extends Controller {
 			else if(saSolution == -5)
 				cIGUI.update(Events.DEPARTAMENTO_CREAR_WRONG_PARAMETERS, null);
 			else if(saSolution > 0)
-				cIGUI.update(Events.DEPARTAMENTO_CREAR_SUCCESS, saSolution);
+				cIGUI.update(Events.DEPARTAMENTO_CREAR_SUCCESS, tDepartamento.getNombre());
 			break;
 			
 		case Events.DEPARTAMENTO_MODIFICAR:
@@ -288,20 +288,21 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.EMPLEADO_DESVINCULAR_SUCCESS, null);
 			break;
 			
-		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
-			Collection<TTareas> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorTareas((Integer) data);
+			
+		case Events.EMPLEADO_MOSTRAR_POR_TAREA:
+			Collection<TEmpleados> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data);
 			if(collectionEmpleadosPorTarea == null)
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, (Integer) data);
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, null);
 			else
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, (Collection<TTareas>) collectionEmpleadosPorTarea);
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_NOID, null);
 			break;
 
-		case Events.EMPLEADO_MOSTRAR_POR_TAREA:
-			Collection<TEmpleados> collectionTareasPorEmpleado = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data);
+		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
+			Collection<TTareas> collectionTareasPorEmpleado = saEmpleado.LeerLineasPedidoPorTareas((Integer) data);
 			if(collectionTareasPorEmpleado == null)
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_NOID, (Integer) data);
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, null);
 			else
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, (Collection<TEmpleados>) collectionTareasPorEmpleado);
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, null);
 			break;		
 			
 			//RESERVA
@@ -353,7 +354,6 @@ public class ControllerImp extends Controller {
 			
 		case Events.RESERVA_MODIFICAR:
 			tReserva = (TReserva)data;
-			System.out.println(tReserva.getId_cliente());
 			saSolution = saReserva.modificar(tReserva);
 			if(saSolution == -2)
 				cIGUI.update(Events.RESERVA_MODIFICAR_NOTFOUND, tReserva.getId());
@@ -369,8 +369,10 @@ public class ControllerImp extends Controller {
 			
 		case Events.RESERVA_ELIMINAR:
 			saSolution= saReserva.eliminar((Integer)data);
+			
 			if(saSolution == -1)
 				cIGUI.update(Events.RESERVA_ELIMINAR_ERROR, data);
+			
 			else
 				cIGUI.update(Events.RESERVA_ELIMINAR_SUCCESS, data);
 			break;
@@ -400,30 +402,23 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.RESERVA_AÑADIR_HABITACIONES:
-			tLineaPedido = (TLineaReserva) data;
-			System.out.println(tLineaPedido.getId_habitacion());
+			tLineaPedido = (TLineaReserva)data;
+			
 			saSolution = saReserva.añadirHabitacion(tLineaPedido);
 			
-			if(saSolution == -5)
-				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_NO_RESERVA, tLineaPedido.getId_reserva());
-			else if (saSolution == -6)
+			if (saSolution == -6)
 				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
-			else if(saSolution == -7)
-				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_NO_HABITACION, tLineaPedido.getId_habitacion());
-			else if(saSolution > 0)
-				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS, null);
-			else if(saSolution == -1)
-				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_ERROR, null);
+			else 
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
 			break;
 			
 		case Events.RESERVA_QUITAR_HABITACIONES:
 			tLineaPedido=(TLineaReserva)data;
 			saSolution = saReserva.eliminarHabitacion(tLineaPedido.getId_reserva(), tLineaPedido.getId_habitacion());
-			if(saSolution == -1)
-				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_ERROR, tLineaPedido.getId_habitacion());
-			else if(saSolution == -6)
+			
+			if(saSolution == -6)
 				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
-			else if(saSolution > 0)
+			else
 				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
 			break;
 			
@@ -671,6 +666,10 @@ public class ControllerImp extends Controller {
 				cIGUI.update(Events.HABITACION_MODIFICAR_NOTFOUND, tHabitacion.getNumero());
 			else if(saSolution == -5)
 				cIGUI.update(Events.HABITACION_MODIFICAR_WRONG_PARAMETERS, tHabitacion.getNumero());
+			else if(saSolution==-6)
+				cIGUI.update(Events.HABITACION_CREAR_EMPLEADO_NOT_FOUND, tHabitacion.getId_empledo());
+			else if (saSolution == -7)
+				cIGUI.update(Events.HABITACION_CREAR_EMPLEADO_NOT_ACTIVE, tHabitacion.getId_empledo());
 			else if(saSolution > 0)
 				cIGUI.update(Events.HABITACION_MODIFICAR_SUCCESS, tHabitacion.getNumero());
 			break;
