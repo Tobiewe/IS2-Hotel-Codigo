@@ -188,10 +188,12 @@ public class SAClientesTest {
 		TEmpresa empresa = new TEmpresa(null, "andetel@gmail.com", 789456123, "Andetel", "48675634G", null, null, true);
 
 		Integer devEmpresa = SAFactory.getInstance().newSACliente().crear(empresa);
-
+		
+		System.out.println(devEmpresa);
+		
 		assertTrue(devEmpresa > 0);
 
-		TEmpresa empresaLeido = (TEmpresa) SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
+		TCliente empresaLeido = (TCliente) SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
 
 		assertNotNull(empresaLeido);
 		assertEquals(empresa.getCorreo(), empresaLeido.getCorreo());
