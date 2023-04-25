@@ -34,7 +34,6 @@ import Presentacion.Reserva.VReservaCasosUso.VMostrarTodasReserva.reservaTableMo
 public class VMostrarReservaCliente extends JFrame implements IGUI {
 
 	private Controller ctrl;
-	private String title = "Mostrar todas las reserva";
 	private Integer idCliente;
 	private reservaTableModel reservaTableModel;
 	public VMostrarReservaCliente(){
@@ -47,7 +46,7 @@ public class VMostrarReservaCliente extends JFrame implements IGUI {
 		});
 	}
 	protected void initGUI() {
-		setTitle("Mostrar empleados por empleado");
+		setTitle("Mostrar Reservas por Cliente");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);

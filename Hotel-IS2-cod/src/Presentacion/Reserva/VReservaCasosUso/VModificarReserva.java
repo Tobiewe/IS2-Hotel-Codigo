@@ -232,8 +232,8 @@ public class VModificarReserva extends JFrame implements IGUI {
 	public void update(int event, Object datos) {
 		if(event == Events.RESERVA_MODIFICAR_WRONG_PARAMETERS)
 			JOptionPane.showMessageDialog(this, "ERROR: Los parámetros introducidos son erróneos");
-//		else if(event == Events.HABITACION_MODIFICAR_IDREPEATED) 
-//			JOptionPane.showMessageDialog(this, "ERROR: La habitación con id " + (Integer)datos + "ya existe");
+		else if(event == Events.RESERVA_MODIFICAR_CLIENTE_NOT_FOUND)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha encontrado al cliente");
 		else if(event == Events.RESERVA_MODIFICAR_NOTFOUND) 
 			JOptionPane.showMessageDialog(this, "ERROR: La reserva con id " + (Integer)datos + " no se ha encontrado");
 		else if(event == Events.RESERVA_MODIFICAR_SUCCESS){
@@ -241,6 +241,8 @@ public class VModificarReserva extends JFrame implements IGUI {
 			setVisible(false);
 			ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
 		}
+		else if(event == Events.RESERVA_MODIFICAR_CLIENTE_NOT_ACTIVE)
+			JOptionPane.showMessageDialog(this, "ERROR: El cliente no se encuentra activo");
 
 	}
 }

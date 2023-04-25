@@ -150,8 +150,9 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 			JOptionPane.showMessageDialog(this, "La habitación ha sido añadida a la reserva correctamente");
 		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_ERROR)
 			JOptionPane.showMessageDialog(this, "ERROR: Ha habido un error en la operación");
-		setVisible(false);
-		ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
+			setVisible(false);
+			ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
 		//Una vez añadida una habitacion, se sigue abriendo la vista de añadir habitaciones por si se desea añadir mas.
+			
 	}
 }

@@ -29,7 +29,7 @@ import Presentacion.Controller.IGUI;
 
 public class VEliminarHabitaciones extends JFrame implements IGUI {
 	private Controller ctrl;
-	private String title = "Añadir Habitaciones";
+	private String title = "Quitar Habitaciones";
 	private Integer idHabitacion;
 	private Integer idReserva;
 

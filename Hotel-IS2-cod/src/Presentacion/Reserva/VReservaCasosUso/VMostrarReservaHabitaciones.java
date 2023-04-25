@@ -49,7 +49,7 @@ public class VMostrarReservaHabitaciones extends JFrame implements IGUI {
 		});
 	}
 	public void initGUI() {
-		setTitle("Mostrar habitaciones por reserva");
+		setTitle("Mostrar Reservas por Habitación");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
@@ -73,7 +73,7 @@ public class VMostrarReservaHabitaciones extends JFrame implements IGUI {
 	{
 		JPanel idPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
-		JLabel idLabel = new JLabel("Id de la habitación: ");
+		JLabel idLabel = new JLabel("Número de la habitación: ");
 		
 		JSpinner idSpinner = new JSpinner( new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
 		idHabitacion = (Integer) idSpinner.getValue();
@@ -194,7 +194,7 @@ public class VMostrarReservaHabitaciones extends JFrame implements IGUI {
 		}
 		else if(event == Events.RESERVA_MOSTRAR_RESERVA_FAILED)
 		{
-			JOptionPane.showMessageDialog(this, "ERROR: La reserva con id " + (Integer) datos + " no tiene reservas registradas");
+			JOptionPane.showMessageDialog(this, "ERROR: La habitación con número " + (Integer) datos + " no tiene reservas registradas");
 		}
 	}
 	

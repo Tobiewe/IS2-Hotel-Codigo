@@ -436,7 +436,7 @@ public class ControllerImp extends Controller {
 			break;
 			
 		case Events.RESERVA_MOSTRAR_RESERVA:
-			Collection<TReserva> collectionReservPorId =  saReserva.ListarReservasPorHabitacion((Integer)data);
+			Collection<TReserva> collectionReservPorId = saReserva.ListarReservasPorHabitacion((Integer)data);
 			if(collectionReservPorId.isEmpty())
 				cIGUI.update(Events.RESERVA_MOSTRAR_RESERVA_FAILED, (Integer)data);
 			else
