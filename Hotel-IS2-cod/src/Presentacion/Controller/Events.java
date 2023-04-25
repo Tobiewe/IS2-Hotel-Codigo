@@ -212,7 +212,8 @@ public class Events {
 	public static final int HABITACION_CREAR_REPEATED = 413;
 	public static final int HABITACION_CREAR_WRONG_PARAMETERS= 414;
 	public static final int HABITACION_CREAR_SUCCESS = 415;
-
+	public static final int HABITACION_CREAR_EMPLEADO_NOT_FOUND = 416;
+	public static final int HABITACION_CREAR_EMPLEADO_NOT_ACTIVE = 417;
 	
 	public static final int HABITACION_ELIMINAR = 420;
 	public static final int HABITACION_ELIMINAR_VISTA = 421;
