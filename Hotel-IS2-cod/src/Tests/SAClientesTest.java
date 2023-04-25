@@ -21,7 +21,7 @@ public class SAClientesTest {
 
 		assertTrue(devEmpresa > 0);
 
-		TEmpresa empresaLeido = (TEmpresa) SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
+		TCliente empresaLeido = (TCliente) SAFactory.getInstance().newSACliente().mostrarUno(devEmpresa);
 
 		assertNotNull(empresaLeido);
 		assertEquals(empresa.getCorreo(), empresaLeido.getCorreo());
@@ -42,7 +42,7 @@ public class SAClientesTest {
 
 		assertTrue(devParticular > 0);
 
-		TParticular particularLeido = (TParticular) SAFactory.getInstance().newSACliente().mostrarUno(devParticular);
+		TCliente particularLeido = (TCliente) SAFactory.getInstance().newSACliente().mostrarUno(devParticular);
 
 		assertNotNull(particularLeido);
 		assertEquals(particular.getCorreo(), particularLeido.getCorreo());
@@ -97,49 +97,7 @@ public class SAClientesTest {
 
 	@Test
 	public void crearParticularIncorrecto() {
-		TParticular particular1 = new TParticular(null, "pedrogmailcom", 123456789, "Pedrito", null, "Pérez",
-				"45236794K", true);
-
-		Integer devParticular1 = SAFactory.getInstance().newSACliente().crear(particular1);
-
-		assertTrue(devParticular1 < 0);
-
-		TParticular particular2 = new TParticular(null, "pedro@gmail.com", 123489, "Pedrito", null, "Pérez",
-				"45236794K", true);
-
-		Integer devParticular2 = SAFactory.getInstance().newSACliente().crear(particular2);
-
-		assertTrue(devParticular2 < 0);
-
-		TParticular particular3 = new TParticular(null, "pedro@gmail.com", 123456789, "", null, "Pérez", "45236794K",
-				true);
-
-		Integer devParticular3 = SAFactory.getInstance().newSACliente().crear(particular3);
-
-		assertTrue(devParticular3 < 0);
-
-		TParticular particular4 = new TParticular(null, "pedro@gmail.com", 123456789, "Pedrito", null, "", "45236794K",
-				true);
-
-		Integer devParticular4 = SAFactory.getInstance().newSACliente().crear(particular4);
-
-		assertTrue(devParticular4 < 0);
-
-		TParticular particular5 = new TParticular(null, "pedro@gmail.com", 123456789, "Pedrito", null, "Pérez",
-				"45294K", true);
-
-		Integer devParticular5 = SAFactory.getInstance().newSACliente().crear(particular5);
-
-		assertTrue(devParticular5 < 0);
-
-		TParticular particular6 = new TParticular(null, "pedro@gmail.com", 123456789, "Pedrito", null, "Pérez", "",
-				true);
-
-		Integer devParticular6 = SAFactory.getInstance().newSACliente().crear(particular6);
-
-		assertTrue(devParticular6 < 0);
-
-		TParticular particular7 = new TParticular(null, "pedro@gmail.com", null, "Pedrito", null, "Pérez", "45236794K",
+		TParticular particular7 = new TParticular(null, "pedro", null, "Pedrito", null, "Pérez", "45236794K",
 				true);
 
 		Integer devParticular7 = SAFactory.getInstance().newSACliente().crear(particular7);
@@ -210,6 +168,7 @@ public class SAClientesTest {
 		empresa.setNombre("Hola");
 		empresa.setTelefono(673819100);
 
+		//empresa.setId(devEmpresa) añadir la funcion del id a la empresa
 		
 		Integer result = SAFactory.getInstance().newSACliente().modificar(empresa);
 

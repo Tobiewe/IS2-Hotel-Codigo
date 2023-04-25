@@ -15,6 +15,10 @@ public class SAClienteIMP implements SACliente{
 
 	public Integer crear(TCliente entradaCliente) {
 		
+		if(entradaCliente.getTelefono() != null){
+			return -5;
+		}
+		
 		String numero = Integer.toString(entradaCliente.getTelefono());
 		// Patrón para validar el email
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
