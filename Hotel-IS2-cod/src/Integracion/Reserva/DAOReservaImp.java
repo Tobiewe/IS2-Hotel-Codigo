@@ -208,7 +208,7 @@ public class DAOReservaImp implements DAOReserva {
 	}
 	
 	
-	
+	//Commit
 	public Collection<TReserva> leerReservasPorCliente(Integer idCliente) {
 		
 		ArrayList<TReserva> lista = new ArrayList<TReserva>();
