@@ -210,6 +210,7 @@ public class SAClientesTest {
 		empresa.setNombre("Hola");
 		empresa.setTelefono(673819100);
 
+		
 		Integer result = SAFactory.getInstance().newSACliente().modificar(empresa);
 
 		assertTrue(result > 0);
