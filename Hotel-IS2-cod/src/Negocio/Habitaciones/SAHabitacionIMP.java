@@ -81,7 +81,7 @@ public class SAHabitacionIMP implements SAHabitacion {
 		Collection<TLineaReserva> lista = daolinea.LeerLineasPedidoPorHabitacion(idHabitacion);
 		
 		for(TLineaReserva tl : lista){
-			if(tl.getActiva()){
+			if(tl == null){
 				return -2;
 			}
 		}

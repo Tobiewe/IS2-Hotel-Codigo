@@ -117,7 +117,7 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 		JButton añadirHabitacionesButton = new JButton("Añadir Habitaciones");
 		añadirHabitacionesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TLineaReserva tLineaReserva = new TLineaReserva(idReserva, idHabitacion, true);
+				TLineaReserva tLineaReserva = new TLineaReserva(idReserva, idHabitacion);
 				ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES, tLineaReserva);
 			}
 		});
@@ -146,12 +146,13 @@ public class VAñadirHabitaciones extends JFrame implements IGUI {
 			JOptionPane.showMessageDialog(this, "ERROR: La habitación "+ (Integer) datos + " está ocupada");
 		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_NO_HABITACION)
 			JOptionPane.showMessageDialog(this, "ERROR: No se ha encontrado la habitación "+ (Integer) datos );
-		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS)
+		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS){
 			JOptionPane.showMessageDialog(this, "La habitación ha sido añadida a la reserva correctamente");
-		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: Ha habido un error en la operación");
 			setVisible(false);
 			ctrl.carryAction(Events.RESERVA_AÑADIR_HABITACIONES_VISTA, null);
+		}
+		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_ERROR)
+			JOptionPane.showMessageDialog(this, "ERROR: Ha habido un error en la operación");
 		//Una vez añadida una habitacion, se sigue abriendo la vista de añadir habitaciones por si se desea añadir mas.
 			
 	}

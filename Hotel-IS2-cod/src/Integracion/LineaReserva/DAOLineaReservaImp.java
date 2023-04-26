@@ -30,14 +30,13 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 		
 		try {
 		
-		String c = "INSERT INTO linea_reserva (id_Reserva, id_Habitacion, activo) VALUES (?, ?, ?);";
+		String c = "INSERT INTO linea_reserva (id_Reserva, id_Habitacion) VALUES (?, ?);";
 
 		Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 		PreparedStatement ps = Cnx.prepareStatement(c, Statement.RETURN_GENERATED_KEYS);
 
 		ps.setInt(1, tLineaPedido.getId_reserva());
 		ps.setInt(2, tLineaPedido.getId_habitacion());
-		ps.setBoolean(3, tLineaPedido.getActiva());
 		ps.executeUpdate();
 
 		ResultSet rs = ps.getGeneratedKeys();
@@ -57,7 +56,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 			total = rs.getInt(1);
 		}
 		
-		c = "SELECT noches FROM reserva JOIN linea_reserva ON reserva.Id = linea_reserva.id_Reserva WHERE id_Reserva = ?;";
+		c = "SELECT noches, total FROM reserva JOIN linea_reserva ON reserva.Id = linea_reserva.id_Reserva WHERE id_Reserva = ?;";
 		
 		ps = Cnx.prepareStatement(c);
 		
@@ -73,12 +72,21 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 		ps = Cnx.prepareStatement(c);
 
-		total = total * noches;
+
+		total = (total * noches);		
 		ps.setInt(1, total);
 		ps.setBoolean(2, true);
 		ps.setInt(3, tLineaPedido.getId_reserva());
 		ps.executeUpdate();
-			
+		
+		c = "UPDATE habitacion SET ocupada = ? WHERE habitacion.numero = ?;";
+		
+		ps = Cnx.prepareStatement(c);
+
+		ps.setBoolean(1, true);
+		ps.setInt(2, tLineaPedido.getId_habitacion());
+		ps.executeUpdate();
+		
 		Cnx.close();
 		ps.close();
 		rs.close();
@@ -100,17 +108,24 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 		try {
 			
-			String c = "UPDATE linea_reserva SET activo = ? WHERE id_Reserva = ? AND id_Habitacion = ?;";
+			String c = "DELETE FROM linea_reserva WHERE id_Reserva = ? AND id_Habitacion = ?;";
 			
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
-			ps.setBoolean(1, false);
-			ps.setInt(2, idReserva);
-			ps.setInt(3, idHabitacion);
+			ps.setInt(1, idReserva);
+			ps.setInt(2, idHabitacion);
 			
 			key = (ps.executeUpdate() == 1) ? idReserva : -1 ;
 
+			c = "UPDATE habitacion SET ocupada = ? WHERE habitacion.numero = ?;";
+			
+			ps = Cnx.prepareStatement(c);
+
+			ps.setBoolean(1, false);
+			ps.setInt(2, idHabitacion);
+			ps.executeUpdate();
+			
 			Cnx.close();
 			ps.close();
 			
@@ -209,7 +224,7 @@ public class DAOLineaReservaImp implements DAOLineaReserva {
 
 			while (Rs.next()){
 				
-				lista.add(new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_habitacion"), Rs.getBoolean("activo")));
+				lista.add(new TLineaReserva(Rs.getInt("id_reserva"), Rs.getInt("id_habitacion")));
 				
 			}
 						

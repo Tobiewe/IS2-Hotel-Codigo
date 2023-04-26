@@ -114,7 +114,7 @@ public class VEliminarHabitaciones extends JFrame implements IGUI {
 		JButton eliminarHabitacionesButton = new JButton("Quitar Habitaciones");
 		eliminarHabitacionesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TLineaReserva tLineaReserva = new TLineaReserva(idReserva, idHabitacion, true);
+				TLineaReserva tLineaReserva = new TLineaReserva(idReserva, idHabitacion);
 				ctrl.carryAction(Events.RESERVA_QUITAR_HABITACIONES,tLineaReserva);
 			}
 		});
@@ -137,13 +137,15 @@ public class VEliminarHabitaciones extends JFrame implements IGUI {
 	}
 	@Override
 	public void update(int event, Object datos) {
-		if(event == Events.RESERVA_QUITAR_HABITACIONES_ERROR)
-			JOptionPane.showMessageDialog(this, "ERROR: Ha habido un error en la operación");
-		else if(event == Events.RESERVA_QUITAR_HABITACIONES_OCUPADA)
-			JOptionPane.showMessageDialog(this, "ERROR: La habitación "+ (Integer) datos + " está ocupada");
-		else if(event == Events.RESERVA_QUITAR_HABITACIONES_SUCCESS)
+		if(event == Events.RESERVA_AÑADIR_HABITACIONES_NO_RESERVA)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha encontrado la reserva " + (Integer) datos);
+		else if(event == Events.RESERVA_AÑADIR_HABITACIONES_NO_HABITACION)
+			JOptionPane.showMessageDialog(this, "ERROR: No se ha encontrado la habitación "+ (Integer) datos );
+		else if(event == Events.RESERVA_QUITAR_HABITACIONES_SUCCESS){
 			JOptionPane.showMessageDialog(this, "La habitación ha sido eliminada de la reserva con éxito");
-		setVisible(false);
-		ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
+			setVisible(false);
+			ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
+		}
+		
 	}
 }

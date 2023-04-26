@@ -5,13 +5,11 @@ public class TLineaReserva {
 	
 	private Integer id_reserva;
 	private Integer id_habitacion;
-	private Boolean activa;
 	
-	public TLineaReserva(Integer id_reserva, Integer id_habitacion, Boolean activa){
+	public TLineaReserva(Integer id_reserva, Integer id_habitacion){
 		
 		this.id_reserva = id_reserva;
 		this.id_habitacion = id_habitacion;
-		this.activa = activa;
 		
 	}
 
@@ -23,12 +21,5 @@ public class TLineaReserva {
 		return id_habitacion;
 	}
 
-	public Boolean getActiva() {
-		return activa;
-	}
-
-	public void setActiva(Boolean activa) {
-		this.activa = activa;
-	}
 
 }

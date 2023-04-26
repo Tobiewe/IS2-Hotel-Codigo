@@ -153,8 +153,14 @@ public class SAReservaIMP implements SAReserva{
 		DAOHabitaciones daoH = FactoriaIntegracion.getInstance().newDAOHabitaciones();
 		THabitaciones th = daoH.MostrarUna(idHabitacion);
 
-		if(th.getOcupada()){
-			return -6; //habitacion ocupada
+		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
+		TReserva tr = daoR.MostrarUna(idReserva);
+		
+		if(tr == null){
+			return -5;
+		}
+		if(th == null){
+			return -7;
 		}
 		
 		DAOLineaReserva daoLR = FactoriaIntegracion.getInstance().newLineaReserva();

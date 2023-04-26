@@ -44,7 +44,9 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	}
 	
 	protected void initGUI() {
+		setTitle("Abrir Reserva");
 	    JPanel mainPanel = new JPanel();
+	    mainPanel.setPreferredSize(new Dimension(250, 200));
 	    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		añadirHabitacionesPanel.setLayout(new BoxLayout(añadirHabitacionesPanel, BoxLayout.Y_AXIS));
 
@@ -73,7 +75,8 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	    mainPanel.add(añadirHabitacionesPanel);
 
 	    pack();
-	    setLocationRelativeTo(null);
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	    setVisible(true);
 	}
 	
@@ -170,10 +173,12 @@ public class VAbrirReserva extends JFrame implements IGUI {
 			JOptionPane.showMessageDialog(this, "ERROR: El cliente no existe");
 		else if(event == Events.RESERVA_CREAR_CLIENTE_NOT_ACTIVE)
 			JOptionPane.showMessageDialog(this, "ERROR: El cliente no está activo");
-		else if(event == Events.RESERVA_CREAR_SUCCESS)
-			JOptionPane.showMessageDialog(this, "La reserva ha sido creada correctamente");
-		setVisible(false);
-		ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
+		else if(event == Events.RESERVA_CREAR_SUCCESS){
+			JOptionPane.showMessageDialog(this, "La reserva con id "+(Integer) datos+" ha sido creada correctamente");
+			setVisible(false);
+			ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
+		}
+
 	}
 
 }

@@ -250,7 +250,7 @@ public class SAReservaTest {
 		Integer devhabi = SAFactory.getInstance().newSAHabitaciones().crear(habi);
 		assertTrue( devhabi > 0);// ------------------------------------------------------------------------------------
 		
-		TLineaReserva tLineaPedido = new TLineaReserva(devreserva, devhabi, true);
+		TLineaReserva tLineaPedido = new TLineaReserva(devreserva, devhabi);
 		Integer dev = SAFactory.getInstance().newSAReserva().añadirHabitacion(tLineaPedido);
 		
 		assertTrue(dev > 0);

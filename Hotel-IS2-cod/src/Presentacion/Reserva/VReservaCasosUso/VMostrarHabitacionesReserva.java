@@ -189,8 +189,7 @@ public class VMostrarHabitacionesReserva extends JFrame implements IGUI{
 			JOptionPane.showMessageDialog(this, "ERROR: La reserva con id " + (Integer) datos + " no tiene habitaciones registradas");
 			
 		}
-		setVisible(false);
-		ctrl.carryAction(Events.RESERVA_NUEVA_VISTA, null);
+
 	}
 
 }

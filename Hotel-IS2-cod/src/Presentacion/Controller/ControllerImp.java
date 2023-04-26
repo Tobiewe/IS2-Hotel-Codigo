@@ -349,7 +349,7 @@ public class ControllerImp extends Controller {
 			else if(saSolution == -7)
 				cIGUI.update(Events.RESERVA_CREAR_CLIENTE_NOT_ACTIVE, tReserva.getId_cliente());
 			else if(saSolution > 0)
-				cIGUI.update(Events.RESERVA_CREAR_SUCCESS, null);
+				cIGUI.update(Events.RESERVA_CREAR_SUCCESS, saSolution);
 			break;
 			
 		case Events.RESERVA_MODIFICAR:
@@ -408,6 +408,12 @@ public class ControllerImp extends Controller {
 			
 			if (saSolution == -6)
 				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
+			else if(saSolution == -5){
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_NO_RESERVA, tLineaPedido.getId_reserva());
+			}
+			else if(saSolution == -7){
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_NO_HABITACION, tLineaPedido.getId_habitacion());
+			}
 			else 
 				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
 			break;
@@ -418,6 +424,12 @@ public class ControllerImp extends Controller {
 			
 			if(saSolution == -6)
 				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_OCUPADA, tLineaPedido.getId_habitacion());
+			else if(saSolution == -5){
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_NO_RESERVA, tLineaPedido.getId_reserva());
+			}
+			else if(saSolution == -7){
+				cIGUI.update(Events.RESERVA_AÑADIR_HABITACIONES_NO_HABITACION, tLineaPedido.getId_habitacion());
+			}
 			else
 				cIGUI.update(Events.RESERVA_QUITAR_HABITACIONES_SUCCESS, tLineaPedido.getId_habitacion());
 			break;
