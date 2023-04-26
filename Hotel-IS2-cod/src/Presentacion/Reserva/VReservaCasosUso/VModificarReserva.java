@@ -56,7 +56,8 @@ public class VModificarReserva extends JFrame implements IGUI {
 	}
 	
 	protected void initGUI() {
-	    JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(400, 300));
 	    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		añadirHabitacionesPanel.setLayout(new BoxLayout(añadirHabitacionesPanel, BoxLayout.Y_AXIS));
 
@@ -102,7 +103,8 @@ public class VModificarReserva extends JFrame implements IGUI {
 	    
 
 	    pack();
-	    setLocationRelativeTo(null);
+		setLocationRelativeTo(getParent());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	    setVisible(true);
 	}
 	
