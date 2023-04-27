@@ -1,6 +1,7 @@
 package Presentacion.Habitacion.VHabitacionCasosUso;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +42,7 @@ public class VMostrarTodasHabitacion extends JFrame implements IGUI{
 	protected void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		mainPanel.setPreferredSize(new Dimension(550, 500));
 		setContentPane(mainPanel);
 		setTitle(title);
 		

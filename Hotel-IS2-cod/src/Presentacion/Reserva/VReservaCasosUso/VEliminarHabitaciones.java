@@ -46,7 +46,7 @@ public class VEliminarHabitaciones extends JFrame implements IGUI {
 	protected void initGUI() {
 
 		JPanel mainPanel = new JPanel();
-		mainPanel.setPreferredSize(new Dimension(300, 150));
+		mainPanel.setPreferredSize(new Dimension(450, 150));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setTitle(title);

@@ -46,7 +46,7 @@ public class VAbrirReserva extends JFrame implements IGUI {
 	protected void initGUI() {
 		setTitle("Abrir Reserva");
 	    JPanel mainPanel = new JPanel();
-	    mainPanel.setPreferredSize(new Dimension(250, 200));
+	    mainPanel.setPreferredSize(new Dimension(400, 200));
 	    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		añadirHabitacionesPanel.setLayout(new BoxLayout(añadirHabitacionesPanel, BoxLayout.Y_AXIS));
 

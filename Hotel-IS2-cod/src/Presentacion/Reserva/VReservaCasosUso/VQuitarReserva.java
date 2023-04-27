@@ -42,7 +42,7 @@ public void initGUI(){
 		
 		setTitle("Eliminar Reserva");
 		JPanel mainPanel = new JPanel();
-		mainPanel.setPreferredSize(new Dimension(400, 200));
+		mainPanel.setPreferredSize(new Dimension(400, 100));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());

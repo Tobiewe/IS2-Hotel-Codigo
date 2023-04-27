@@ -46,7 +46,7 @@ public class VDesvincularTarea extends JFrame implements IGUI{
 		
 		setTitle("Desvincular Tarea");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		mainPanel.setPreferredSize(new Dimension(400, 200));
+		mainPanel.setPreferredSize(new Dimension(400, 150));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());
