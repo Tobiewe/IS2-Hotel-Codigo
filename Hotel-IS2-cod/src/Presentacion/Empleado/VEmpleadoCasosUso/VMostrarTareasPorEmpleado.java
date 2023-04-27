@@ -1,6 +1,7 @@
 package Presentacion.Empleado.VEmpleadoCasosUso;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,6 +52,7 @@ public class VMostrarTareasPorEmpleado extends JFrame implements IGUI{
 	public void initGUI() {
 		setTitle("Mostrar Tareas por Empleado");
 		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(550, 500));
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		

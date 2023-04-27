@@ -41,7 +41,7 @@ public class VBorrarCliente extends JFrame implements IGUI{
 		
 		setTitle("Eliminar Cliente");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		mainPanel.setPreferredSize(new Dimension(400, 200));
+		mainPanel.setPreferredSize(new Dimension(400, 100));
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		setLocationRelativeTo(getParent());

@@ -1,6 +1,7 @@
 package Presentacion.Reserva.VReservaCasosUso;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,6 +49,7 @@ public class VMostrarReservaCliente extends JFrame implements IGUI {
 	protected void initGUI() {
 		setTitle("Mostrar Reservas por Cliente");
 		JPanel mainPanel = new JPanel();
+	    mainPanel.setPreferredSize(new Dimension(500, 500));
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		setContentPane(mainPanel);
 		

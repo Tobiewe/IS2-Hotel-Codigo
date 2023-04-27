@@ -1,6 +1,7 @@
 package Presentacion.Habitacion.VHabitacionCasosUso;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +31,7 @@ public class VMostrarTodasDisponiblesHabitacion extends JFrame implements IGUI {
 
 	
 	private Controller ctrl;
-	private String title = "Mostrar todas las habitaciones disponibles";
+	private String title = "Mostrar las habitaciones disponibles";
 	private habitacionesTableModel tableModel;
 	public VMostrarTodasDisponiblesHabitacion(){
 		ctrl = Controller.getInstance();
@@ -44,6 +45,7 @@ public class VMostrarTodasDisponiblesHabitacion extends JFrame implements IGUI {
 	protected void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		mainPanel.setPreferredSize(new Dimension(550, 500));
 		setContentPane(mainPanel);
 		setTitle(title);
 		
