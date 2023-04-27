@@ -90,16 +90,8 @@ public class SAReservaIMP implements SAReserva{
 		
 		DAOReserva daoR = FactoriaIntegracion.getInstance().newDAOReserva();
 		Collection<TReserva> lista = daoR.MostrarTodas();
-		Collection<TReserva> dev = new ArrayList<TReserva>();
 		
-		for(TReserva t : lista){
-			TReserva tr = daoR.MostrarUna(t.getId());
-			if(tr != null){
-				dev.add(t);
-			}
-		}
-		
-		return dev;
+		return lista;
 		
 	}
 
@@ -175,16 +167,8 @@ public class SAReservaIMP implements SAReserva{
 
 		DAOLineaReserva daoLR = FactoriaIntegracion.getInstance().newLineaReserva();
 		Collection<THabitaciones> lista = daoLR.ListarHabitacionesPorReserva(idReserva);
-		Collection<THabitaciones> dev = new ArrayList<THabitaciones>();
 		
-		for(THabitaciones t : lista){
-			
-			if(t != null){
-				dev.add(t);
-			}
-		}
-		
-		return dev;
+		return lista;
 
 	}
 
@@ -194,16 +178,8 @@ public class SAReservaIMP implements SAReserva{
 
 		DAOLineaReserva daoLR = FactoriaIntegracion.getInstance().newLineaReserva();
 		Collection<TReserva> lista = daoLR.ListarReservasPorHabitacion(idHabitacion);
-		Collection<TReserva> dev = new ArrayList<TReserva>();
 		
-		for(TReserva t : lista){
-			
-			if(t != null){
-				dev.add(t);
-			}
-		}
-		
-		return dev;
+		return lista;
 		
 	}
 

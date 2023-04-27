@@ -139,16 +139,9 @@ public class SAEmpleadoIMP implements SAEmpleado {
 		
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
 		Collection<TEmpleados> lista = daoEmpl.MostrarTodos();
-		Collection<TEmpleados> dev = new ArrayList<TEmpleados>();
+
 		
-		for(TEmpleados te : lista){
-			
-			if(daoEmpl.MostrarUno(te.getId()) != null){
-				dev.add(te);
-			}
-		}
-		
-		return dev;
+		return lista;
 	}
 
 	
@@ -156,16 +149,9 @@ public class SAEmpleadoIMP implements SAEmpleado {
 		
 		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
 		Collection<TEmpleados> lista = daoEmpl.mostrarPorDepartamento(idDepartamento);
-		Collection<TEmpleados> dev = new ArrayList<TEmpleados>();
+
 		
-		for(TEmpleados te : lista){
-			
-			if(daoEmpl.MostrarUno(te.getId()) != null){
-				dev.add(te);
-			}
-		}
-		
-		return dev;
+		return lista;
 	}
 
 

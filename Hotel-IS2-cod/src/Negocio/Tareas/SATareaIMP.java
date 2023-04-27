@@ -93,18 +93,8 @@ public class SATareaIMP implements SATarea {
 		
 		DAOTareas daoTareas = FactoriaIntegracion.getInstance().newDAOTarea();
 		Collection<TTareas> lista = daoTareas.leerTodos();
-		Collection<TTareas> dev = new ArrayList<TTareas>();
 		
-		
-		for(TTareas t : lista){
-			TTareas tt = daoTareas.leerUno(t.getId());
-			
-			if(tt != null){
-				dev.add(t);
-			}
-		}
-		
-		return dev;
+		return lista;
 	}
 	
 	

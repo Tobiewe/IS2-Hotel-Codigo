@@ -108,34 +108,16 @@ public class SAHabitacionIMP implements SAHabitacion {
 		
 		DAOHabitaciones daoHab = FactoriaIntegracion.getInstance().newDAOHabitaciones();
 		Collection<THabitaciones> lista = daoHab.MostrarTodas();
-		Collection<THabitaciones> dev = new ArrayList<THabitaciones>();
 		
-		for(THabitaciones th : lista){
-			
-			if(daoHab.MostrarUna(th.getNumero()) != null){
-				dev.add(th);
-			}
-			
-		}
-		
-		return dev;
+		return lista;
 	}
 
 	
 	public Collection<THabitaciones> mostrarPorEmpleado(Integer idEmpleado) {
 		DAOHabitaciones daoHab = FactoriaIntegracion.getInstance().newDAOHabitaciones();
 		Collection<THabitaciones> lista = daoHab.leerHabitacionesPorEmpleado(idEmpleado);
-		Collection<THabitaciones> dev = new ArrayList<THabitaciones>();
 		
-		for(THabitaciones th : lista){
-			
-			if(daoHab.MostrarUna(th.getNumero()) != null){
-				dev.add(th);
-			}
-			
-		}
-		
-		return dev;
+		return lista;
 	}
 
 
@@ -143,16 +125,9 @@ public class SAHabitacionIMP implements SAHabitacion {
 	public Collection<THabitaciones> MostrarTodasDisponibles() {
 		DAOHabitaciones daoHab = FactoriaIntegracion.getInstance().newDAOHabitaciones();
 		Collection<THabitaciones> lista = daoHab.MostrarTodasDisponibles();
-		Collection<THabitaciones> dev = new ArrayList<THabitaciones>();
 		
-		for(THabitaciones th : lista){
-			
-			if(daoHab.MostrarUna(th.getNumero()) != null && !th.getOcupada()){
-				dev.add(th);
-			}
-			
-		}
-		return dev;
+		
+		return lista;
 	}
 
 }
