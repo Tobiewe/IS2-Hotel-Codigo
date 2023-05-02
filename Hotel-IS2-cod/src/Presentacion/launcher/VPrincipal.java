@@ -31,7 +31,7 @@ public class VPrincipal extends JFrame implements IGUI{
 	{
 		setTitle("UHotel");
 		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		Dimension d = new Dimension(700,300);
+		Dimension d = new Dimension(700,150);
 		mainPanel.setPreferredSize(d);
 		setLocationRelativeTo(null);
 		setContentPane(mainPanel);
@@ -130,7 +130,7 @@ public class VPrincipal extends JFrame implements IGUI{
 	public JButton departamentoButton()
 	{
 		JButton Botongeneral = new JButton("Departamento");
-		Botongeneral.setPreferredSize(new Dimension(100, 50));
+		Botongeneral.setPreferredSize(new Dimension(150, 50));
 		Botongeneral.addActionListener(new ActionListener()
 		{
 			@Override

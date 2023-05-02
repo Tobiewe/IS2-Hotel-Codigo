@@ -85,7 +85,7 @@ public class VModificarHabitacion extends JFrame implements IGUI {
 		JPanel panelId = new JPanel();
 		panelId.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
-		JLabel idLabel = new JLabel("Id: ");
+		JLabel idLabel = new JLabel("Número: ");
 		JSpinner idSpinner = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
 		idSpinner.setPreferredSize(new Dimension(40, 20));
 		id = (Integer) idSpinner.getValue();
