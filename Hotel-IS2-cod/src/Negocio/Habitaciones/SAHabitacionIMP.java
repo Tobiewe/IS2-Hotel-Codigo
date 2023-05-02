@@ -99,7 +99,8 @@ public class SAHabitacionIMP implements SAHabitacion {
 			return null;		
 		}
 		
-		return daoHab.MostrarUna(idHabitacion);
+		
+		return th;
 		
 	}
 
