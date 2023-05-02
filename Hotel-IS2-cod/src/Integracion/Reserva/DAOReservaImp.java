@@ -220,13 +220,12 @@ public class DAOReservaImp implements DAOReserva {
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setInt(1, idCliente);
-			ps.executeUpdate();
 
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()){
 				
-				lista.add(new TReserva(rs.getInt("Id"), rs.getFloat("total"),rs.getDate("Fecha_entrada"), rs.getInt("id_cliente"), 
+				lista.add(new TReserva(rs.getInt("Id"), rs.getFloat("Total"),rs.getDate("Fecha_entrada"), rs.getInt("cliente_Id"), 
 						rs.getInt("noches"), rs.getBoolean("activo")));
 				
 			}

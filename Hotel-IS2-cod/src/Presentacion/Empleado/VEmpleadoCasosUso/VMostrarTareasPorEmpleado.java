@@ -194,7 +194,7 @@ public class VMostrarTareasPorEmpleado extends JFrame implements IGUI{
 		}
 		else if(event == Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID)
 		{
-			JOptionPane.showMessageDialog(this, "ERROR: La tarea con id " + (Integer) datos + " no tiene empleados registradas");
+			JOptionPane.showMessageDialog(this, "ERROR: El empleado no tiene tareas registradas");
 		}
 	}
 

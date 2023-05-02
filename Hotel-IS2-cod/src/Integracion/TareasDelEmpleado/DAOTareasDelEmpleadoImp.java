@@ -90,8 +90,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 
 
 		ArrayList<TEmpleados> lista = new ArrayList<TEmpleados>();
-		Integer id_empleado = 0;
-		System.out.println(idTareas);
+		ArrayList<Integer>id_empleado = new ArrayList();
 		try {
 			String c = "SELECT tareas_empleado.id_empleado FROM tareas_empleado WHERE tareas_empleado.id_tareas = ?;";
 
@@ -101,27 +100,32 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 			ps.setInt(1, idTareas);
 			ResultSet Rs = ps.executeQuery();
 			
-			if (Rs.next()){ 		
-				id_empleado = Rs.getInt(1);
-			}
-			
-			System.out.println(id_empleado);
-			
-			c = "SELECT * FROM empleado WHERE Id = ?;";
-			
-			Cnx = DriverManager.getConnection(url, usuario, clave);
-			ps = Cnx.prepareStatement(c);
-			
-			ps.setInt(1, id_empleado);
-			Rs = ps.executeQuery();
+			while(Rs.next()){
+                id_empleado.add(Rs.getInt(1)); 
 
-	
-			while (Rs.next()){
-				
-				lista.add(new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
-						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartamento")));
-				
+            }
+			for(int i = 0; i < id_empleado.size();i++)
+			{	
+				c = "SELECT * FROM empleado WHERE Id = ?;";
+
+		            Cnx = DriverManager.getConnection(url, usuario, clave);
+		            ps = Cnx.prepareStatement(c);
+
+		            ps.setInt(1, id_empleado.get(i));
+		            Rs = ps.executeQuery();
+
+		            while (Rs.next()){
+						
+						lista.add(new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
+								 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartamento")));
+						
+					}
 			}
+			
+			
+	
+			
+			
 			
 			Cnx.close();
 			ps.close();
@@ -140,7 +144,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 	public Collection<TTareas> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
 
 		ArrayList<TTareas> lista = new ArrayList<TTareas>();
-		Integer id_tarea = 0;
+		ArrayList<Integer>id_tarea = new ArrayList();
 		try {
 			String c = "SELECT tareas_empleado.id_tareas FROM tareas_empleado WHERE tareas_empleado.id_empleado = ?;";
 
@@ -150,27 +154,28 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 			ps.setInt(1, idEmpleado);
 			ResultSet Rs = ps.executeQuery();
 			
-			while (Rs.next()){ 		
-				id_tarea = Rs.getInt(1);
-				
-				c = "SELECT * FROM tareas WHERE Id = ?;";
-				
-				Cnx = DriverManager.getConnection(url, usuario, clave);
-				ps = Cnx.prepareStatement(c);
-				
-				ps.setInt(1, id_tarea);
-				Rs = ps.executeQuery();
+			while(Rs.next()){
+                id_tarea.add(Rs.getInt(1)); 
 
-				while (Rs.next()){
-					
-					lista.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
-							Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
-					
-				}
-				
+            }
+			for(int i = 0; i < id_tarea.size();i++)
+			{	
+				 c = "SELECT * FROM tareas WHERE Id = ?;";
+
+		            Cnx = DriverManager.getConnection(url, usuario, clave);
+		            ps = Cnx.prepareStatement(c);
+
+		            ps.setInt(1, id_tarea.get(i));
+		            Rs = ps.executeQuery();
+
+		            while (Rs.next()){
+
+		                lista.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
+		                        Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
+
+		            }
 			}
-			
-	
+
 			Cnx.close();
 			ps.close();
 			Rs.close();
