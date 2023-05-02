@@ -73,7 +73,6 @@ public class VEliminarHabitacion extends JFrame implements IGUI{
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
 				id=(Integer) numField.getValue();
 			}
 			

@@ -43,7 +43,6 @@ public class VPrincipal extends JFrame implements IGUI{
 		mainPanel.add(departamentoButton(), BorderLayout.CENTER);
 		mainPanel.add(empleadoButton(), BorderLayout.CENTER);
 		
-		
 		setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/2 - 350,Toolkit.getDefaultToolkit().getScreenSize().height/2 - 100);
 		pack();
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
