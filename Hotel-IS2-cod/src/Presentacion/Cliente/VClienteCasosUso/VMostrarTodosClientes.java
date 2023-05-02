@@ -121,7 +121,7 @@ public class VMostrarTodosClientes extends JFrame implements IGUI{
 			JTable hTable = new JTable(this); 
 			
 			tablaPanel.add(hTable);
-			TitledBorder titleBorder = BorderFactory.createTitledBorder("Habitación");
+			TitledBorder titleBorder = BorderFactory.createTitledBorder("Mostrar Clientes");
 			tablaPanel.setBorder(titleBorder);
 			
 			JScrollPane sPanel = new JScrollPane(hTable);

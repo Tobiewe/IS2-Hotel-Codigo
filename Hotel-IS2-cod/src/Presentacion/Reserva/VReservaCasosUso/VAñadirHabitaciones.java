@@ -32,7 +32,7 @@ import Presentacion.Controller.IGUI;
 public class VAñadirHabitaciones extends JFrame implements IGUI {
 
 	private Controller ctrl;
-	private String title = "Añadir Habitaciones";
+	private String title = "Añadir Habitación";
 	private Integer idHabitacion;
 	private Integer idReserva;
 

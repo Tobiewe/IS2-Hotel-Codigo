@@ -50,7 +50,7 @@ public class VMostrarReservaHabitaciones extends JFrame implements IGUI {
 		});
 	}
 	public void initGUI() {
-		setTitle("Mostrar Reservas por Habitación");
+		setTitle("Mostrar Reserva por Habitación");
 		JPanel mainPanel = new JPanel();
 		mainPanel.setPreferredSize(new Dimension(550, 500));
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));

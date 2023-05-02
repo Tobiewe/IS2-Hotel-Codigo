@@ -27,7 +27,7 @@ import Presentacion.Controller.IGUI;
 
 public class VMostrarTodasReserva extends JFrame implements IGUI {
 	private Controller ctrl;
-	private String title = "Mostrar todas las reserva";
+	private String title = "Mostrar todas las reservas";
 	private reservaTableModel reservaTableModel;
 	public VMostrarTodasReserva(){
 		ctrl = Controller.getInstance();

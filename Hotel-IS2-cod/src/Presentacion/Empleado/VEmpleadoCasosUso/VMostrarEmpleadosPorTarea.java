@@ -175,7 +175,7 @@ public class VMostrarEmpleadosPorTarea extends JFrame implements IGUI {
 			JTable hTable = new JTable(this); 
 			
 			tablaPanel.add(hTable);
-			TitledBorder titleBorder = BorderFactory.createTitledBorder("Empleados por Departamento");
+			TitledBorder titleBorder = BorderFactory.createTitledBorder("Mostrar Empleados por Tarea");
 			tablaPanel.setBorder(titleBorder);
 			
 			JScrollPane sPanel = new JScrollPane(hTable);
