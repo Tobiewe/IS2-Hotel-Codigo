@@ -206,17 +206,19 @@ public class SAEmpleadoIMP implements SAEmpleado {
 
 
 	
-	public Collection<TTareas> LeerLineasPedidoPorTareas(Integer idTareas) {
+	public Collection<TEmpleados> LeerLineasPedidoPorTareas(Integer idTareas) {
 		
-		DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
+		//DAOTareas daoTarea = FactoriaIntegracion.getInstance().newDAOTarea();
+		DAOEmpleados daoEmpl =  FactoriaIntegracion.getInstance().newDAOEmpleado();
+
 		
 		DAOTareasDelEmpleado daote = FactoriaIntegracion.getInstance().newDAOTareasDelEmpleado();
-		Collection<TTareas> lista = daote.LeerLineasPedidoPorTareas(idTareas);
-		Collection<TTareas> dev = new ArrayList<TTareas>();
+		Collection<TEmpleados> lista = daote.LeerLineasPedidoPorTareas(idTareas);
+		Collection<TEmpleados> dev = new ArrayList<TEmpleados>();
 		
-		for(TTareas t : lista){
+		for(TEmpleados t : lista){
 			
-			TTareas tta = daoTarea.leerUno(idTareas);
+			TEmpleados tta = daoEmpl.MostrarUno(idTareas);
 			
 			if(tta != null){
 				dev.add(t);

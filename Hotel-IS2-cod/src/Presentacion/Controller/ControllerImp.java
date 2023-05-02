@@ -290,16 +290,16 @@ public class ControllerImp extends Controller {
 			
 			
 		case Events.EMPLEADO_MOSTRAR_POR_TAREA:
-			Collection<TEmpleados> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data);
-			if(collectionEmpleadosPorTarea == null)
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, null);
+			Collection<TEmpleados> collectionTareasPorEmpleado = saEmpleado.LeerLineasPedidoPorTareas((Integer) data);
+			if(collectionTareasPorEmpleado != null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_ID, collectionTareasPorEmpleado);
 			else
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_TAREA_NOID, null);
 			break;
 
 		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
-			Collection<TTareas> collectionTareasPorEmpleado = saEmpleado.LeerLineasPedidoPorTareas((Integer) data);
-			if(collectionTareasPorEmpleado == null)
+			Collection<TEmpleados> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data); 
+			if(collectionEmpleadosPorTarea == null)
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, null);
 			else
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, null);
