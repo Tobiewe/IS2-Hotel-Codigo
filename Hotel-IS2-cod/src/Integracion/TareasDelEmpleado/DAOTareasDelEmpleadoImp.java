@@ -150,26 +150,26 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 			ps.setInt(1, idEmpleado);
 			ResultSet Rs = ps.executeQuery();
 			
-			if (Rs.next()){ 		
+			while (Rs.next()){ 		
 				id_tarea = Rs.getInt(1);
-			}
-			
-			System.out.println(id_tarea);
-			
-			c = "SELECT * FROM tareas WHERE Id = ?;";
-			
-			Cnx = DriverManager.getConnection(url, usuario, clave);
-			ps = Cnx.prepareStatement(c);
-			
-			ps.setInt(1, id_tarea);
-			Rs = ps.executeQuery();
+				
+				c = "SELECT * FROM tareas WHERE Id = ?;";
+				
+				Cnx = DriverManager.getConnection(url, usuario, clave);
+				ps = Cnx.prepareStatement(c);
+				
+				ps.setInt(1, id_tarea);
+				Rs = ps.executeQuery();
 
-			while (Rs.next()){
-				
-				lista.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
-						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
+				while (Rs.next()){
+					
+					lista.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
+							Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
+					
+				}
 				
 			}
+			
 	
 			Cnx.close();
 			ps.close();
