@@ -27,5 +27,5 @@ public interface SAEmpleado {
 	
 	public Collection<TEmpleados> LeerLineasPedidoPorTareas(Integer idTareas);
 	
-	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
+	public Collection<TTareas> LeerLineasPedidoPorEmpleado(Integer idEmpleado);
 }

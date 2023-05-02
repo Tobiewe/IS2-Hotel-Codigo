@@ -298,9 +298,9 @@ public class ControllerImp extends Controller {
 			break;
 
 		case Events.EMPLEADO_MOSTRAR_POR_EMPLEADO:
-			Collection<TEmpleados> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data); 
-			if(collectionEmpleadosPorTarea == null)
-				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, null);
+			Collection<TTareas> collectionEmpleadosPorTarea = saEmpleado.LeerLineasPedidoPorEmpleado((Integer) data); 
+			if(collectionEmpleadosPorTarea != null)
+				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_ID, collectionEmpleadosPorTarea);
 			else
 				cIGUI.update(Events.EMPLEADO_MOSTRAR_POR_EMPLEADO_NOID, null);
 			break;		

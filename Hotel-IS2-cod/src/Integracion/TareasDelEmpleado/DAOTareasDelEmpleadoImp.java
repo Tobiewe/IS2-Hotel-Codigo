@@ -88,7 +88,7 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 	
 	public Collection<TEmpleados> LeerLineasPedidoPorTareas(Integer idTareas) {
 
-		//ArrayList<TTareas> lista = new ArrayList<TTareas>();
+
 		ArrayList<TEmpleados> lista = new ArrayList<TEmpleados>();
 		Integer id_empleado = 0;
 		System.out.println(idTareas);
@@ -115,12 +115,6 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 			ps.setInt(1, id_empleado);
 			Rs = ps.executeQuery();
 
-			/*while (Rs.next()){
-				
-				lista.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
-						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
-				
-			}*/
 	
 			while (Rs.next()){
 				
@@ -143,23 +137,37 @@ public class DAOTareasDelEmpleadoImp implements DAOTareasDelEmpleado {
 	}
 
 	
-	public Collection<TEmpleados> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
+	public Collection<TTareas> LeerLineasPedidoPorEmpleado(Integer idEmpleado) {
 
-		ArrayList<TEmpleados> lista = new ArrayList<TEmpleados>();
-		
+		ArrayList<TTareas> lista = new ArrayList<TTareas>();
+		Integer id_tarea = 0;
 		try {
-			String c = "SELECT * FROM empleado JOIN tareas_empleado ON empleado.Id = tareas_empleado.id_empleado WHERE Id = ?;";
+			String c = "SELECT tareas_empleado.id_tareas FROM tareas_empleado WHERE tareas_empleado.id_empleado = ?;";
 
 			Connection Cnx = DriverManager.getConnection(url, usuario, clave);
 			PreparedStatement ps = Cnx.prepareStatement(c);
 
 			ps.setInt(1, idEmpleado);
 			ResultSet Rs = ps.executeQuery();
+			
+			if (Rs.next()){ 		
+				id_tarea = Rs.getInt(1);
+			}
+			
+			System.out.println(id_tarea);
+			
+			c = "SELECT * FROM tareas WHERE Id = ?;";
+			
+			Cnx = DriverManager.getConnection(url, usuario, clave);
+			ps = Cnx.prepareStatement(c);
+			
+			ps.setInt(1, id_tarea);
+			Rs = ps.executeQuery();
 
 			while (Rs.next()){
 				
-				lista.add(new TEmpleados(Rs.getInt("Id"), Rs.getFloat("sueldo"), Rs.getString("nombre"), Rs.getString("apellidos"), Rs.getBoolean("activo") 
-						 ,Rs.getString("correo"),  Rs.getInt("telefono"), Rs.getInt("iddepartamento")));
+				lista.add(new TTareas(Rs.getInt("Id"), Rs.getString("Descripcion"),
+						Rs.getString("Lugar"), Rs.getString("Nombre"), Rs.getBoolean("activa")));
 				
 			}
 	
